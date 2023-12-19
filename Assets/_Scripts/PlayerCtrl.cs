@@ -6,15 +6,19 @@ public class PlayerCtrl : MonoBehaviour
 {
     float h = 0.0f;
     float v = 0.0f;
-    float moveSpeed = 5.0f;
+    float moveSpeed = 0.5f;
 
-    Vector3 moveDir = Vector3.zero;
+    //Vector3 moveDir = Vector3.zero;
+    Vector2 moveDir = Vector2.zero;
     Vector3 scale = Vector3.one;
     Vector3 limitPos = Vector3.zero;
 
+    SpriteRenderer bgRender = null;
+    Vector2 bgOffset = Vector2.zero;
+
     void Start()
     {
-
+        bgRender = GameObject.Find("Background").GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -29,16 +33,20 @@ public class PlayerCtrl : MonoBehaviour
             scale.x = -1;
         transform.localScale = scale;
 
-        moveDir = (Vector3.up * v) + (Vector3.right * h);
+        moveDir = (Vector2.up * v) + (Vector2.right * h);
         if (1.0f < moveDir.magnitude)
             moveDir.Normalize();
 
-        transform.position += moveDir * moveSpeed * Time.deltaTime;
+        bgOffset += moveDir * moveSpeed * Time.deltaTime;
+        bgRender.material.mainTextureOffset = bgOffset;
+        //transform.position += moveDir * moveSpeed * Time.deltaTime;
 
-        MoveLimit();
+        //MoveLimit();
     }
 
-    void MoveLimit() //TODO : player sprite 크기 고려하기.
+    //TODO : player sprite 크기 고려하기.
+    //offset 사용한다면 float 제한 해주기
+    void MoveLimit() 
     {
         limitPos = transform.position;
 
