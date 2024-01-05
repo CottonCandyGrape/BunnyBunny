@@ -6,19 +6,14 @@ public class PlayerCtrl : MonoBehaviour
 {
     float h = 0.0f;
     float v = 0.0f;
-    float moveSpeed = 0.5f;
+    float moveSpeed = 3.0f;
 
-    //Vector3 moveDir = Vector3.zero;
-    Vector2 moveDir = Vector2.zero;
+    Vector3 moveDir = Vector3.zero;
     Vector3 scale = Vector3.one;
     Vector3 limitPos = Vector3.zero;
 
-    SpriteRenderer bgRender = null;
-    Vector2 bgOffset = Vector2.zero;
-
     void Start()
     {
-        bgRender = GameObject.Find("Background").GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -37,10 +32,9 @@ public class PlayerCtrl : MonoBehaviour
         if (1.0f < moveDir.magnitude)
             moveDir.Normalize();
 
-        bgOffset += moveDir * moveSpeed * Time.deltaTime;
-        bgRender.material.mainTextureOffset = bgOffset;
-        //transform.position += moveDir * moveSpeed * Time.deltaTime;
+        transform.position += moveDir * moveSpeed * Time.deltaTime;
 
+        //TODO : 카메라 이동. 특정 방향의 어느 부분까지 넘어왔다면 lerp 로 이동시켜주기
         //MoveLimit();
     }
 

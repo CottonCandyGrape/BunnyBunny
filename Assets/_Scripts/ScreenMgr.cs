@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class ScreenMgr : MonoBehaviour
 {
+    const int width = 9;
+    const int height = 16;
+
     public static Vector3 ScMin = Vector3.zero;
     public static Vector3 ScMax = Vector3.zero;
 
@@ -15,7 +18,7 @@ public class ScreenMgr : MonoBehaviour
         //기기 화면비
         float deviceRatio = (float)Screen.width / Screen.height;
         //원하는 화면비
-        float targetRatio = (float)16 / 9;
+        float targetRatio = (float)width / height;
 
         //Viewport Coords에서의 Height, Width 크기 (0f~1f)
         float scaleHeight = deviceRatio / targetRatio;
