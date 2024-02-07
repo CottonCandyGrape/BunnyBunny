@@ -7,12 +7,18 @@ public class ScreenMgr : MonoBehaviour
     const int width = 9;
     const int height = 16;
 
-    public static Vector3 ScMin = Vector3.zero;
-    public static Vector3 ScMax = Vector3.zero;
+    public static Vector3 InitScMin = Vector3.zero;
+    public static Vector3 InitScMax = Vector3.zero;
 
-    void Start()
+    public static Vector3 CurScMin = Vector3.zero;
+    public static Vector3 CurScMax = Vector3.zero;
+
+    Camera cam = null;
+
+    void Awake()
     {
-        Camera cam = Camera.main;
+        cam = Camera.main;
+
         Rect rect = cam.rect;
 
         //기기 화면비
@@ -38,7 +44,24 @@ public class ScreenMgr : MonoBehaviour
         cam.rect = rect;
 
         //rect 설정 후 Screen Size 얻어오기
-        ScMin = cam.ViewportToWorldPoint(Vector3.zero);
-        ScMax = cam.ViewportToWorldPoint(Vector3.one);
+        InitScMin = cam.ViewportToWorldPoint(Vector3.zero);
+        InitScMax = cam.ViewportToWorldPoint(Vector3.one);
+    }
+
+    void Start()
+    {
+        Debug.Log("Camera.main.rect.width : " + Camera.main.rect.width);
+        Debug.Log("Camera.main.rect.height : " + Camera.main.rect.height);
+        Debug.Log("Camera.main.rect.x : " + Camera.main.rect.x);
+        Debug.Log("Camera.main.rect.y : " + Camera.main.rect.y);
+    }
+
+    void Update()
+    {
+        Debug.Log("Camera.main.aspect : " + Camera.main.aspect);
+        Debug.Log("Screen.width : " + Screen.width);
+        Debug.Log("Screen.height : " + Screen.height);
+        CurScMin = cam.ViewportToWorldPoint(Vector3.zero);
+        CurScMax = cam.ViewportToWorldPoint(Vector3.one);
     }
 }

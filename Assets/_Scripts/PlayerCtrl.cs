@@ -4,19 +4,25 @@ using UnityEngine;
 
 public class PlayerCtrl : MonoBehaviour
 {
-    float h = 0.0f;
-    float v = 0.0f;
+    [HideInInspector] public float h = 0.0f;
+    [HideInInspector] public float v = 0.0f;
     float moveSpeed = 3.0f;
 
     Vector3 moveDir = Vector3.zero;
     Vector3 scale = Vector3.one;
-    Vector3 limitPos = Vector3.zero;
+    //Vector3 limitPos = Vector3.zero;
 
     void Start()
     {
+
     }
 
     void Update()
+    {
+        MovePlayer();
+    }
+
+    void MovePlayer()
     {
         h = Input.GetAxis("Horizontal");
         v = Input.GetAxis("Vertical");
@@ -33,13 +39,9 @@ public class PlayerCtrl : MonoBehaviour
             moveDir.Normalize();
 
         transform.position += moveDir * moveSpeed * Time.deltaTime;
-
-        //TODO : 카메라 이동. 특정 방향의 어느 부분까지 넘어왔다면 lerp 로 이동시켜주기
-        //MoveLimit();
     }
 
-    //TODO : player sprite 크기 고려하기.
-    //offset 사용한다면 float 제한 해주기
+    /*
     void MoveLimit() 
     {
         limitPos = transform.position;
@@ -55,4 +57,5 @@ public class PlayerCtrl : MonoBehaviour
 
         transform.position = limitPos;
     }
+    */
 }
