@@ -9,7 +9,7 @@ public enum MonsterType
     BossMon,
 }
 
-public class Monster : MonoBehaviour
+public class MonsterCtrl : MonoBehaviour
 {
     MonsterType monType = MonsterType.NormalMon;
 
