@@ -50,17 +50,10 @@ public class ScreenMgr : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("Camera.main.rect.width : " + Camera.main.rect.width);
-        Debug.Log("Camera.main.rect.height : " + Camera.main.rect.height);
-        Debug.Log("Camera.main.rect.x : " + Camera.main.rect.x);
-        Debug.Log("Camera.main.rect.y : " + Camera.main.rect.y);
     }
 
     void Update()
     {
-        Debug.Log("Camera.main.aspect : " + Camera.main.aspect);
-        Debug.Log("Screen.width : " + Screen.width);
-        Debug.Log("Screen.height : " + Screen.height);
         CurScMin = cam.ViewportToWorldPoint(Vector3.zero);
         CurScMax = cam.ViewportToWorldPoint(Vector3.one);
     }
