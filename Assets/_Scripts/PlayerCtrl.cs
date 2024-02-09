@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerCtrl : MonoBehaviour
 {
+    //이동 관련
     [HideInInspector] public float h = 0.0f;
     [HideInInspector] public float v = 0.0f;
     float moveSpeed = 3.0f;
@@ -11,6 +12,18 @@ public class PlayerCtrl : MonoBehaviour
     Vector3 moveDir = Vector3.zero;
     Vector3 scale = Vector3.one;
     //Vector3 limitPos = Vector3.zero;
+    //이동 관련
+
+    //게임 관련
+    float curHp = 100;
+    float maxHp = 100;
+    float attack = 10;
+    float defense = 10;
+    float curExp = 0;
+    float nextExp = 100;
+    //게임 관련
+
+    //TODO : Skill
 
     void Start()
     {
@@ -19,10 +32,10 @@ public class PlayerCtrl : MonoBehaviour
 
     void Update()
     {
-        MovePlayer();
+        Move();
     }
 
-    void MovePlayer()
+    void Move()
     {
         h = Input.GetAxis("Horizontal");
         v = Input.GetAxis("Vertical");
