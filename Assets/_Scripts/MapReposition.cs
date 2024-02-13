@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Reposition : MonoBehaviour
+public class MapReposition : MonoBehaviour
 {
     int moveDist = 20;
 
     void OnTriggerExit2D(Collider2D coll)
     {
-        if (!coll.CompareTag("Area"))
+        if (!coll.tag.Contains("Area"))
             return;
 
         Vector3 playerPos = GameMgr.inst.player.transform.position;

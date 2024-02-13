@@ -11,17 +11,22 @@ public enum MonsterType
 
 public class MonsterCtrl : MonoBehaviour
 {
-    MonsterType monType = MonsterType.NormalMon;
+    public MonsterType monType = MonsterType.NormalMon;
 
     float moveSpeed = 1.0f;
     Vector3 moveDir = Vector3.one;
     Vector3 scale = Vector3.one;
 
-    Vector3 spawnPos = Vector3.zero;
+    int maxHp = 100;
+    int curHp = 100;
+    //int defense = 10;
+    //int attack = 10;
+    int dftDmg = 30;
 
-    float hp = 100;
-    float defense = 10;
-    float attack = 10;
+    void OnEnable()
+    {
+        curHp = maxHp;
+    }
 
     void Start()
     {
@@ -31,6 +36,24 @@ public class MonsterCtrl : MonoBehaviour
     void Update()
     {
         Move();
+    }
+
+    void OnTriggerEnter2D(Collider2D coll)
+    {
+        if (coll.tag.Contains("P_Bullet"))
+        {
+            GetDamage(dftDmg);
+        }
+        else if (coll.tag.Contains("Player"))
+        {
+            int dmg = 10;
+            if (monType == MonsterType.EliteMon)
+                dmg = 20;
+            else if (monType == MonsterType.BossMon)
+                dmg = 30;
+
+            GameMgr.inst.player.GetDamage(dmg);
+        }
     }
 
     void Move()
@@ -46,5 +69,23 @@ public class MonsterCtrl : MonoBehaviour
         transform.localScale = scale;
 
         transform.position += moveDir * moveSpeed * Time.deltaTime;
+    }
+
+    void GetDamage(int damage)
+    {
+        curHp -= damage;
+
+        if (curHp <= 0)
+        {
+            MonsterDie();
+            return;
+        }
+
+        //TODO : 데미지 UI 표시 하기
+    }
+
+    void MonsterDie()
+    {
+        gameObject.SetActive(false);
     }
 }

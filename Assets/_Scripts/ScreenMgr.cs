@@ -48,9 +48,7 @@ public class ScreenMgr : MonoBehaviour
         InitScMax = cam.ViewportToWorldPoint(Vector3.one);
     }
 
-    void Start()
-    {
-    }
+    //void Start() { } 
 
     void Update()
     {

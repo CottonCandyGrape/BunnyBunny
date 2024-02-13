@@ -9,30 +9,45 @@ public class PlayerCtrl : MonoBehaviour
     [HideInInspector] public float v = 0.0f;
     float moveSpeed = 3.0f;
 
-    Vector3 moveDir = Vector3.zero;
+    public Vector3 moveDir = Vector3.zero;
     Vector3 scale = Vector3.one;
     //Vector3 limitPos = Vector3.zero;
+
+    public GameObject DirArrow = null;
+    float arrowAngle = 0.0f;
+    float angleOffset = 90.0f;
+    const float arrowDistcst = 0.7f;
     //이동 관련
 
-    //게임 관련
-    float curHp = 100;
-    float maxHp = 100;
-    float attack = 10;
-    float defense = 10;
-    float curExp = 0;
-    float nextExp = 100;
-    //게임 관련
+    //능력치 관련
+    int curHp = 100;
+    int maxHp = 100;
+    int attack = 10;
+    int defense = 10;
+    int curExp = 0;
+    int nextExp = 100;
+    //능력치 관련
+
+    //공격 관련
+    float bulletTime = 0.0f;
+    //공격 관련
 
     //TODO : Skill
 
     void Start()
     {
-
+        curHp = maxHp;
     }
 
     void Update()
     {
         Move();
+        DirectionArrow();
+        FireBullet();
+    }
+
+    void OnTriggerEnter2D(Collider2D coll)
+    {
     }
 
     void Move()
@@ -52,6 +67,48 @@ public class PlayerCtrl : MonoBehaviour
             moveDir.Normalize();
 
         transform.position += moveDir * moveSpeed * Time.deltaTime;
+    }
+
+    void DirectionArrow()
+    {
+        arrowAngle = Mathf.Atan2(moveDir.normalized.y, moveDir.normalized.x) * Mathf.Rad2Deg;
+        DirArrow.transform.rotation = Quaternion.AngleAxis(arrowAngle - angleOffset, Vector3.forward);
+        DirArrow.transform.position = transform.position + moveDir.normalized * arrowDistcst;
+    }
+
+    void FireBullet()
+    {
+        bulletTime -= Time.deltaTime;
+
+        if(bulletTime <= 0.0f)
+        {
+            bulletTime = 0.2f;
+
+            BulletCtrl bltCtrl = MemoryPoolMgr.Inst.AddBulletPool();
+            bltCtrl.gameObject.SetActive(true);
+            bltCtrl.transform.position = transform.position + moveDir.normalized * 0.3f;
+            float angle = Mathf.Atan2(moveDir.y, moveDir.x) * Mathf.Rad2Deg;
+            bltCtrl.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        }
+    }
+
+    public void GetDamage(int damage)
+    {
+        curHp -= damage;
+
+        if (curHp <= 0)
+        {
+            PlayerDie();
+        }
+
+        //TODO : UI 데미지 표시
+        //TODO : 피 게이지바 표시
+    }
+
+    void PlayerDie()
+    {
+        Time.timeScale = 0.0f;
+        return;
     }
 
     /*

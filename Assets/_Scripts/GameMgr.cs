@@ -13,7 +13,7 @@ public class GameMgr : MonoBehaviour
     float curTime = 0.0f;
     int min = 0;
     int sec = 0;
-    float endTime = 10.0f;
+    float endTime = 90.0f; //Test 용. //TODO : 적정 시간 찾기
     //게임 시간 관련 변수
 
     void Awake()
