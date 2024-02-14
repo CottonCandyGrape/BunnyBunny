@@ -17,6 +17,7 @@ public class PlayerCtrl : MonoBehaviour
     float arrowAngle = 0.0f;
     float angleOffset = 90.0f;
     const float arrowDistcst = 0.7f;
+    public Vector3 arrowDir = Vector3.right;
     //이동 관련
 
     //능력치 관련
@@ -36,7 +37,8 @@ public class PlayerCtrl : MonoBehaviour
 
     void Start()
     {
-        curHp = maxHp;
+        //curHp = maxHp;
+        curHp = int.MaxValue; //TODO : Test 용임
     }
 
     void Update()
@@ -44,10 +46,6 @@ public class PlayerCtrl : MonoBehaviour
         Move();
         DirectionArrow();
         FireBullet();
-    }
-
-    void OnTriggerEnter2D(Collider2D coll)
-    {
     }
 
     void Move()
@@ -71,9 +69,12 @@ public class PlayerCtrl : MonoBehaviour
 
     void DirectionArrow()
     {
-        arrowAngle = Mathf.Atan2(moveDir.normalized.y, moveDir.normalized.x) * Mathf.Rad2Deg;
+        if (moveDir.normalized != Vector3.zero)
+            arrowDir = moveDir.normalized;
+
+        arrowAngle = Mathf.Atan2(arrowDir.normalized.y, arrowDir.normalized.x) * Mathf.Rad2Deg;
         DirArrow.transform.rotation = Quaternion.AngleAxis(arrowAngle - angleOffset, Vector3.forward);
-        DirArrow.transform.position = transform.position + moveDir.normalized * arrowDistcst;
+        DirArrow.transform.position = transform.position + arrowDir.normalized * arrowDistcst;
     }
 
     void FireBullet()
@@ -86,8 +87,8 @@ public class PlayerCtrl : MonoBehaviour
 
             BulletCtrl bltCtrl = MemoryPoolMgr.Inst.AddBulletPool();
             bltCtrl.gameObject.SetActive(true);
-            bltCtrl.transform.position = transform.position + moveDir.normalized * 0.3f;
-            float angle = Mathf.Atan2(moveDir.y, moveDir.x) * Mathf.Rad2Deg;
+            bltCtrl.transform.position = transform.position + arrowDir.normalized * 0.3f;
+            float angle = Mathf.Atan2(arrowDir.y, arrowDir.x) * Mathf.Rad2Deg;
             bltCtrl.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
     }
