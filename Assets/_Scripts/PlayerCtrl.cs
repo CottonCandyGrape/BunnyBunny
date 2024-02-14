@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerCtrl : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class PlayerCtrl : MonoBehaviour
     float moveSpeed = 3.0f;
 
     public Vector3 moveDir = Vector3.zero;
-    Vector3 scale = Vector3.one;
+    SpriteRenderer playerSpRenderer = null;
     //Vector3 limitPos = Vector3.zero;
 
     public GameObject DirArrow = null;
@@ -21,12 +22,12 @@ public class PlayerCtrl : MonoBehaviour
     //이동 관련
 
     //능력치 관련
-    int curHp = 100;
-    int maxHp = 100;
-    int attack = 10;
-    int defense = 10;
-    int curExp = 0;
-    int nextExp = 100;
+    float curHp = 100.0f;
+    float maxHp = 100.0f;
+    float attack = 10.0f;
+    float defense = 10.0f;
+    float curExp = 0.0f;
+    float nextExp = 100.0f;
     //능력치 관련
 
     //공격 관련
@@ -38,12 +39,16 @@ public class PlayerCtrl : MonoBehaviour
     int curFire = 0;
     //공격 관련
 
+    //UI 관련
+    public Image HpBar_Img = null;
+    //UI 관련
+
     //TODO : Skill
 
     void Start()
     {
-        //curHp = maxHp;
-        curHp = int.MaxValue; //TODO : Test 용임. 정리하기
+        playerSpRenderer = GameObject.Find("Player_Img").GetComponent<SpriteRenderer>();
+        curHp = maxHp;
     }
 
     void Update()
@@ -60,10 +65,9 @@ public class PlayerCtrl : MonoBehaviour
 
         //좌우 방향 바뀔때마다 flip
         if (0.0f < h)
-            scale.x = 1;
+            playerSpRenderer.flipX = false;
         else if (h < 0.0f)
-            scale.x = -1;
-        transform.localScale = scale;
+            playerSpRenderer.flipX = true;
 
         moveDir = (Vector2.up * v) + (Vector2.right * h);
         if (1.0f < moveDir.magnitude)
@@ -86,7 +90,7 @@ public class PlayerCtrl : MonoBehaviour
     {
         bulletTimer -= Time.deltaTime;
 
-        if(bulletTimer <= 0.0f)
+        if (bulletTimer <= 0.0f)
         {
             bulletTimer = bltTime;
 
@@ -125,17 +129,18 @@ public class PlayerCtrl : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         curHp -= damage;
 
-        if (curHp <= 0)
+        HpBar_Img.fillAmount = curHp / maxHp;
+
+        if (curHp <= 0.0f)
         {
             PlayerDie();
         }
 
         //TODO : UI 데미지 표시
-        //TODO : 피 게이지바 표시
     }
 
     void PlayerDie()
