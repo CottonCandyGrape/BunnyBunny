@@ -8,10 +8,11 @@ public class MemoryPoolMgr : MonoBehaviour
     Transform BulletPool = null;
 
     public GameObject[] MonsterPrefabs = null;
-    List<MonsterCtrl> MonCtrlPool = new List<MonsterCtrl>();
+    public List<MonsterCtrl> MonCtrlPool = new List<MonsterCtrl>();
+    public int ActiveMonsterCount = 0;
 
     public GameObject[] BulletPrefabs = null;
-    List<BulletCtrl> BulletCtrlPool = new List<BulletCtrl>();
+    public List<BulletCtrl> BulletCtrlPool = new List<BulletCtrl>();
 
     int initPoolCount = 30;
 
@@ -47,6 +48,8 @@ public class MemoryPoolMgr : MonoBehaviour
     //TODO : Normal Mon, Elite, Boss Mon 스폰 시키는 코드 추가하기
     public MonsterCtrl AddMonsterPool() //Pool에 norm 몬스터 추가 or Mon return
     {
+        ActiveMonsterCount++;
+
         for (int i = 0; i < MonCtrlPool.Count; i++)
         {
             if (!MonCtrlPool[i].gameObject.activeSelf)

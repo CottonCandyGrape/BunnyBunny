@@ -5,6 +5,7 @@ using UnityEngine;
 public class MonGenerator : MonoBehaviour
 {
     float spawnTime = 0.0f;
+    int monLimit = 30;
 
     void Start()
     {
@@ -15,7 +16,7 @@ public class MonGenerator : MonoBehaviour
     {
         spawnTime -= Time.deltaTime;
 
-        if (spawnTime <= 0.0f)
+        if (spawnTime <= 0.0f && MemoryPoolMgr.Inst.ActiveMonsterCount < monLimit)
         {
             spawnTime = Random.Range(0.1f, 0.3f);
             MonsterCtrl monCtrl = MemoryPoolMgr.Inst.AddMonsterPool();

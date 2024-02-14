@@ -86,6 +86,8 @@ public class MonsterCtrl : MonoBehaviour
 
     void MonsterDie()
     {
+        MemoryPoolMgr.Inst.ActiveMonsterCount--;
+
         gameObject.SetActive(false);
     }
 }
