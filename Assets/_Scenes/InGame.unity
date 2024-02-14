@@ -155,8 +155,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MonsterPrefabs:
   - {fileID: 8410854005670488055, guid: 24312ea1650f6414ba485b2b3a3cd8da, type: 3}
+  MonCtrlPool: []
+  ActiveMonsterCount: 0
   BulletPrefabs:
   - {fileID: 3075842727269708303, guid: d38857d8160e7e54eb24774bccc6c165, type: 3}
+  BulletCtrlPool: []
 --- !u!4 &125638752
 Transform:
   m_ObjectHideFlags: 0
@@ -4370,6 +4373,7 @@ MonoBehaviour:
   v: 0
   moveDir: {x: 0, y: 0, z: 0}
   DirArrow: {fileID: 1827385772}
+  arrowDir: {x: 1, y: 0, z: 0}
 --- !u!50 &699597826
 Rigidbody2D:
   serializedVersion: 4
@@ -6198,13 +6202,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1827385772}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.7, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.7, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 699597824}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1934829316
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,8 +16,8 @@ public class PlayerCtrl : MonoBehaviour
     public GameObject DirArrow = null;
     float arrowAngle = 0.0f;
     float angleOffset = 90.0f;
-    const float arrowDistcst = 0.7f;
-    public Vector3 arrowDir = Vector3.right;
+    const float cstArrowDist = 0.7f;
+    public Vector3 arrowDir = Vector3.up;
     //이동 관련
 
     //능력치 관련
@@ -31,6 +31,7 @@ public class PlayerCtrl : MonoBehaviour
 
     //공격 관련
     float bulletTime = 0.0f;
+    const float cstBulletDist = 0.3f;
     //공격 관련
 
     //TODO : Skill
@@ -74,7 +75,7 @@ public class PlayerCtrl : MonoBehaviour
 
         arrowAngle = Mathf.Atan2(arrowDir.normalized.y, arrowDir.normalized.x) * Mathf.Rad2Deg;
         DirArrow.transform.rotation = Quaternion.AngleAxis(arrowAngle - angleOffset, Vector3.forward);
-        DirArrow.transform.position = transform.position + arrowDir.normalized * arrowDistcst;
+        DirArrow.transform.position = transform.position + arrowDir.normalized * cstArrowDist;
     }
 
     void FireBullet()
@@ -87,13 +88,13 @@ public class PlayerCtrl : MonoBehaviour
 
             BulletCtrl bltCtrl = MemoryPoolMgr.Inst.AddBulletPool();
             bltCtrl.gameObject.SetActive(true);
-            bltCtrl.transform.position = transform.position + arrowDir.normalized * 0.3f;
-            float angle = Mathf.Atan2(arrowDir.y, arrowDir.x) * Mathf.Rad2Deg;
+            bltCtrl.transform.position = transform.position + arrowDir.normalized * cstBulletDist;
+            float angle = Mathf.Atan2(arrowDir.normalized.y, arrowDir.normalized.x) * Mathf.Rad2Deg;
             bltCtrl.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
     }
 
-    public void GetDamage(int damage)
+    public void TakeDamage(int damage)
     {
         curHp -= damage;
 

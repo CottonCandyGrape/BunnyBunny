@@ -42,7 +42,7 @@ public class MonsterCtrl : MonoBehaviour
     {
         if (coll.tag.Contains("P_Bullet"))
         {
-            GetDamage(dftDmg);
+            TakeDamage(dftDmg);
         }
         else if (coll.tag.Contains("Player"))
         {
@@ -52,7 +52,7 @@ public class MonsterCtrl : MonoBehaviour
             else if (monType == MonsterType.BossMon)
                 dmg = 30;
 
-            GameMgr.inst.player.GetDamage(dmg);
+            GameMgr.inst.player.TakeDamage(dmg);
         }
     }
 
@@ -71,7 +71,7 @@ public class MonsterCtrl : MonoBehaviour
         transform.position += moveDir * moveSpeed * Time.deltaTime;
     }
 
-    void GetDamage(int damage)
+    void TakeDamage(int damage)
     {
         curHp -= damage;
 
