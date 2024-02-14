@@ -12,7 +12,7 @@ public class BulletCtrl : MonoBehaviour
 
     void OnEnable()
     {
-        bulletDir = GameMgr.inst.player.arrowDir.normalized;
+        bulletDir = GameMgr.inst.player.bulletDir.normalized;
         lifeTime = 5.0f;
     }
 
