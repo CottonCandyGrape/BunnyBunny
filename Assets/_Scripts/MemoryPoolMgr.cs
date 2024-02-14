@@ -8,11 +8,11 @@ public class MemoryPoolMgr : MonoBehaviour
     Transform BulletPool = null;
 
     public GameObject[] MonsterPrefabs = null;
-    public List<MonsterCtrl> MonCtrlPool = new List<MonsterCtrl>();
-    public int ActiveMonsterCount = 0;
+    List<MonsterCtrl> MonCtrlPool = new List<MonsterCtrl>();
+    [HideInInspector] public int ActiveMonsterCount = 0;
 
     public GameObject[] BulletPrefabs = null;
-    public List<BulletCtrl> BulletCtrlPool = new List<BulletCtrl>();
+    List<BulletCtrl> BulletCtrlPool = new List<BulletCtrl>();
 
     int initPoolCount = 30;
 
