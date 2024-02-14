@@ -117,7 +117,7 @@ public class PlayerCtrl : MonoBehaviour
 
     void FanFire(Vector3 midDir)
     {
-        int deg = 20;// TODO : 하드코딩 바꾸기 
+        int deg = 20; //TODO : 하드코딩 바꾸기 
         for (int cnt = -2; cnt < 3; cnt++)
         {
             Vector3 dir = Quaternion.AngleAxis(cnt * deg, Vector3.forward) * midDir;

@@ -6,7 +6,7 @@ public class BulletCtrl : MonoBehaviour
 {
     Vector3 bulletDir = Vector3.one;
 
-    float bulletSpeed = 20.0f;
+    float bulletSpeed = 10.0f;
     float lifeTime = 0.0f;
     float outLine = 3.0f;
 
