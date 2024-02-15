@@ -52,13 +52,13 @@ public class MonsterCtrl : MonoBehaviour
             else if (monType == MonsterType.BossMon)
                 dmg = 30;
 
-            GameMgr.inst.player.TakeDamage(dmg);
+            GameMgr.Inst.player.TakeDamage(dmg);
         }
     }
 
     void Move()
     {
-        moveDir = GameMgr.inst.player.transform.position - transform.position;
+        moveDir = GameMgr.Inst.player.transform.position - transform.position;
         moveDir.Normalize();
 
         if (moveDir.x < 0)
@@ -87,6 +87,7 @@ public class MonsterCtrl : MonoBehaviour
     void MonsterDie()
     {
         MemoryPoolMgr.Inst.ActiveMonsterCount--;
+        GameMgr.Inst.KillTxtUpdate();
 
         gameObject.SetActive(false);
     }

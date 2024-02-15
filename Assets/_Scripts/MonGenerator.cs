@@ -21,7 +21,7 @@ public class MonGenerator : MonoBehaviour
             spawnTime = Random.Range(0.1f, 0.3f);
             MonsterCtrl monCtrl = MemoryPoolMgr.Inst.AddMonsterPool();
             monCtrl.gameObject.SetActive(true);
-            monCtrl.transform.position = GameMgr.inst.player.transform.position + GetMonSpawnPos();
+            monCtrl.transform.position = GameMgr.Inst.player.transform.position + GetMonSpawnPos();
         }
     }
 

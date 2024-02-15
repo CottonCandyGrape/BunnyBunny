@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class GameMgr : MonoBehaviour
 {
-    public static GameMgr inst = null; 
     public PlayerCtrl player = null;
 
     //게임 시간 관련 변수
@@ -17,9 +16,16 @@ public class GameMgr : MonoBehaviour
     float endTime = 90.0f; //Test 용. //TODO : 적정 시간 찾기
     //게임 시간 관련 변수
 
+    //몬스터 킬수 표시
+    public Text Kill_Txt = null;
+    int killCount = 0;
+    //몬스터 킬수 표시
+
+    public static GameMgr Inst = null; 
+
     void Awake()
     {
-        inst = this;
+        Inst = this;
     }
 
     void Start()
@@ -48,6 +54,13 @@ public class GameMgr : MonoBehaviour
             GameOver();
             return;
         }
+    }
+
+    public void KillTxtUpdate()
+    {
+        killCount++;
+        if (Kill_Txt != null)
+            Kill_Txt.text = killCount.ToString(); 
     }
 
     void GameOver()

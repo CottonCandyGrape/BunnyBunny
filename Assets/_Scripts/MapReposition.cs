@@ -11,14 +11,14 @@ public class MapReposition : MonoBehaviour
         if (!coll.tag.Contains("Area"))
             return;
 
-        Vector3 playerPos = GameMgr.inst.player.transform.position;
+        Vector3 playerPos = GameMgr.Inst.player.transform.position;
         Vector3 tilePos = this.transform.position;
 
         float distX = Mathf.Abs(playerPos.x - tilePos.x);
         float distY = Mathf.Abs(playerPos.y - tilePos.y);
 
-        float dirX = GameMgr.inst.player.h < 0 ? -1 : 1;
-        float dirY = GameMgr.inst.player.v < 0 ? -1 : 1;
+        float dirX = GameMgr.Inst.player.h < 0 ? -1 : 1;
+        float dirY = GameMgr.Inst.player.v < 0 ? -1 : 1;
 
         if (distX > distY)
             transform.position += Vector3.right * dirX * moveDist;
