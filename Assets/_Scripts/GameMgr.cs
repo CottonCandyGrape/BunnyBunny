@@ -21,6 +21,11 @@ public class GameMgr : MonoBehaviour
     int killCount = 0;
     //몬스터 킬수 표시
 
+    //데미지 표시
+    public Canvas SubCanvas = null;
+    public GameObject DmgTxtPrefab = null;
+    //데미지 표시
+
     public static GameMgr Inst = null; 
 
     void Awake()
@@ -66,5 +71,12 @@ public class GameMgr : MonoBehaviour
     void GameOver()
     {
         Time.timeScale = 0.0f;
+    }
+
+    public void SpawnDmgTxt(Vector3 pos, float damage)
+    {
+        GameObject dmgObj = Instantiate(DmgTxtPrefab, SubCanvas.transform);
+        DmgTxtCtrl dmgTxtCtrl = dmgObj.GetComponent<DmgTxtCtrl>();
+        dmgTxtCtrl.Init(pos, damage);
     }
 }

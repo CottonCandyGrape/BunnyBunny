@@ -40,7 +40,9 @@ public class PlayerCtrl : MonoBehaviour
     //공격 관련
 
     //UI 관련
+    public Canvas SubCanvas = null;
     public Image HpBar_Img = null;
+    Vector3 dmgTxtOffset = new Vector3(0, 0.5f, 0);
     //UI 관련
 
     //TODO : Skill
@@ -56,6 +58,7 @@ public class PlayerCtrl : MonoBehaviour
         Move();
         DirectionArrow();
         LoadBullet();
+        //MoveSubCanvas();
     }
 
     void Move()
@@ -74,6 +77,8 @@ public class PlayerCtrl : MonoBehaviour
             moveDir.Normalize();
 
         transform.position += moveDir * moveSpeed * Time.deltaTime;
+
+        SubCanvas.transform.position = transform.position; //subcanvas 까지 움직임. 한줄이라 여기에 추가
     }
 
     void DirectionArrow()
@@ -131,9 +136,12 @@ public class PlayerCtrl : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        //1. Hp변수 깎기
         curHp -= damage;
-
+        //2. Hp UI 수정
         HpBar_Img.fillAmount = curHp / maxHp;
+        //3. Dmg Txt 띄우기 
+        GameMgr.Inst.SpawnDmgTxt(transform.position + dmgTxtOffset, damage);
 
         if (curHp <= 0.0f)
         {
@@ -148,6 +156,13 @@ public class PlayerCtrl : MonoBehaviour
         Time.timeScale = 0.0f;
         return;
     }
+
+    /*
+    void MoveSubCanvas()
+    {
+        SubCanvas.transform.position = transform.position;
+    }
+    */
 
     /*
     void MoveLimit() 

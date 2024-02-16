@@ -13,25 +13,30 @@ public class MonsterCtrl : MonoBehaviour
 {
     public MonsterType monType = MonsterType.NormalMon;
 
+    //이동 관련
     float moveSpeed = 1.0f;
     Vector3 moveDir = Vector3.one;
     Vector3 scale = Vector3.one;
+    //이동 관련
 
+    //능력치 관련
     int maxHp = 100;
     int curHp = 100;
     //int defense = 10;
     //int attack = 10;
     int dftDmg = 30;
+    //능력치 관련
+
+    //UI 관련
+    Vector3 dmgTxtOffset = new Vector3(0, 0.5f, 0);
+    //UI 관련
 
     void OnEnable()
     {
         curHp = maxHp;
     }
 
-    void Start()
-    {
-        
-    }
+    void Start() { }
 
     void Update()
     {
@@ -73,7 +78,10 @@ public class MonsterCtrl : MonoBehaviour
 
     void TakeDamage(int damage)
     {
+        //1. Hp변수 깎기
         curHp -= damage;
+        //2. Dmg Txt 띄우기 
+        GameMgr.Inst.SpawnDmgTxt(transform.position + dmgTxtOffset, damage);
 
         if (curHp <= 0)
         {
