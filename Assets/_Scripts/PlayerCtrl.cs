@@ -61,6 +61,9 @@ public class PlayerCtrl : MonoBehaviour
         //MoveSubCanvas();
     }
 
+    //MapRePosition하는 큰 Box Collider 때문에 웬만하면 여기서 이 함수 구현 안함
+    //void OnTriggerEnter2D(Collider2D coll) { }
+
     void Move()
     {
         h = Input.GetAxis("Horizontal");
@@ -157,7 +160,7 @@ public class PlayerCtrl : MonoBehaviour
         return;
     }
 
-    /*
+    /* //너무 짧아서 그냥 호출
     void MoveSubCanvas()
     {
         SubCanvas.transform.position = transform.position;

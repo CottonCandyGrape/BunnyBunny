@@ -21,12 +21,17 @@ public class GameMgr : MonoBehaviour
     int killCount = 0;
     //몬스터 킬수 표시
 
+    //Gold 관련
+    public Text Gold_Txt = null;
+    int curGold = 0;
+    //Gold 관련
+
     //데미지 표시
     public Canvas SubCanvas = null;
     public GameObject DmgTxtPrefab = null;
     //데미지 표시
 
-    public static GameMgr Inst = null; 
+    public static GameMgr Inst = null;
 
     void Awake()
     {
@@ -54,23 +59,24 @@ public class GameMgr : MonoBehaviour
 
         Time_Txt.text = string.Format("{0:D2}:{1:D2}", min, sec);
 
-        if(endTime <= curTime)
+        if (endTime <= curTime)
         {
             GameOver();
             return;
         }
     }
 
+    public void AddGold(int val)
+    {
+        curGold += val;
+        Gold_Txt.text = curGold.ToString();
+    }
+
     public void KillTxtUpdate()
     {
         killCount++;
         if (Kill_Txt != null)
-            Kill_Txt.text = killCount.ToString(); 
-    }
-
-    void GameOver()
-    {
-        Time.timeScale = 0.0f;
+            Kill_Txt.text = killCount.ToString();
     }
 
     public void SpawnDmgTxt(Vector3 pos, float damage)
@@ -78,5 +84,10 @@ public class GameMgr : MonoBehaviour
         GameObject dmgObj = Instantiate(DmgTxtPrefab, SubCanvas.transform);
         DmgTxtCtrl dmgTxtCtrl = dmgObj.GetComponent<DmgTxtCtrl>();
         dmgTxtCtrl.Init(pos, damage);
+    }
+
+    void GameOver()
+    {
+        Time.timeScale = 0.0f;
     }
 }
