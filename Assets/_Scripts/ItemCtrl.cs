@@ -44,7 +44,10 @@ public class ItemCtrl : MonoBehaviour
         }
     }
 
-    void Start() { }
+    void Start()
+    {
+        Destroy(gameObject, 10.0f); //TODO : 나중에는 안먹으면 안사라지게 할거임
+    }
 
     //void Update() { }
 
