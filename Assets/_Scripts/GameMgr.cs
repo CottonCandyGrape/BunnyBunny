@@ -108,7 +108,7 @@ public class GameMgr : MonoBehaviour
                 break;
         }
 
-        //CurExpLevel_Txt.text = inGameExp.ToString(); //inGameExp Test 용
+        //CurExpLevel_Txt.text = inGameExp.ToString(); //inGameExp Test용
         ExpLevel_Txt.text = inGameLevel.ToString();
 
         if (inGameLevel >= maxLevel)
@@ -118,7 +118,6 @@ public class GameMgr : MonoBehaviour
             ExpBar_Img.fillAmount = (inGameExp - expLevelArr[inGameLevel - 1]) /
                 (expLevelArr[inGameLevel] - expLevelArr[inGameLevel - 1]);
         }
-
     }
 
     void GameOver()

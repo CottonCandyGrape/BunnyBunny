@@ -16,10 +16,7 @@ public class BulletCtrl : MonoBehaviour
         lifeTime = 5.0f;
     }
 
-    void Start()
-    {
-
-    }
+    void Start() { }
 
     void Update()
     {

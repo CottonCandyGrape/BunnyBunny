@@ -23,12 +23,10 @@ public class PlayerCtrl : MonoBehaviour
 
     //능력치 관련
     float curHp = 100.0f;
-    //float maxHp = 100.0f;
-    float maxHp = float.MaxValue;
+    float maxHp = 100.0f;
+    //float maxHp = float.MaxValue;
     float attack = 10.0f;
     float defense = 10.0f;
-    float curExp = 0.0f;
-    float nextExp = 100.0f;
     //능력치 관련
 
     //공격 관련
@@ -153,6 +151,19 @@ public class PlayerCtrl : MonoBehaviour
         }
 
         //TODO : UI 데미지 표시
+    }
+
+    public void GetHp()
+    {
+        float hp = maxHp * 0.3f;
+
+        curHp += hp;
+        if (maxHp <= curHp)
+            curHp = maxHp;
+
+        HpBar_Img.fillAmount = curHp / maxHp;
+
+        GameMgr.Inst.SpawnDmgTxt(transform.position + dmgTxtOffset, hp); //TODO : Heal 음,양 값 구분하기
     }
 
     void PlayerDie()

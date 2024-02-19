@@ -103,8 +103,6 @@ public class MonsterCtrl : MonoBehaviour
             MonsterDie();
             return;
         }
-
-        //TODO : 데미지 UI 표시 하기
     }
 
     void SpawnGold()

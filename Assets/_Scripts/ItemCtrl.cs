@@ -58,12 +58,14 @@ public class ItemCtrl : MonoBehaviour
             if (itemType == ItemType.Gold)
             {
                 GameMgr.Inst.AddGold(goldVal);
-                Destroy(gameObject);
             }
             else if (itemType == ItemType.Heal)
             {
-
+                PlayerCtrl player = GameMgr.Inst.player.GetComponent<PlayerCtrl>();
+                player.GetHp();
             }
+
+            Destroy(gameObject);
         }
     }
 }
