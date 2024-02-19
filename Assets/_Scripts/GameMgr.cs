@@ -23,8 +23,17 @@ public class GameMgr : MonoBehaviour
 
     //Gold 관련
     public Text Gold_Txt = null;
-    int curGold = 0;
+    float inGameGold = 0.0f;
     //Gold 관련
+
+    //Exp 관련
+    //public Text CurExpLevel_Txt = null; //inGameExp test 용
+    public Text ExpLevel_Txt = null;
+    public Image ExpBar_Img = null;
+    float inGameExp = 0.0f;
+    float[] expLevelArr = { 0.0f, 30.0f, 60.0f, 100.0f, 150.0f, 210.0f, 280.0f, 360.0f, 450.0f, 550.0f, 660.0f };
+    int inGameLevel = 1;
+    //Exp 관련
 
     //데미지 표시
     public Canvas SubCanvas = null;
@@ -66,10 +75,10 @@ public class GameMgr : MonoBehaviour
         }
     }
 
-    public void AddGold(int val)
+    public void AddGold(float val)
     {
-        curGold += val;
-        Gold_Txt.text = curGold.ToString();
+        inGameGold += val;
+        Gold_Txt.text = inGameGold.ToString();
     }
 
     public void KillTxtUpdate()
@@ -84,6 +93,23 @@ public class GameMgr : MonoBehaviour
         GameObject dmgObj = Instantiate(DmgTxtPrefab, SubCanvas.transform);
         DmgTxtCtrl dmgTxtCtrl = dmgObj.GetComponent<DmgTxtCtrl>();
         dmgTxtCtrl.Init(pos, damage);
+    }
+
+    public void AddExpVal(float eVal)
+    {
+        inGameExp += eVal;
+        for (int i = 0; i < expLevelArr.Length; i++)
+        {
+            if (expLevelArr[i] <= inGameExp)
+                inGameLevel = i + 1;
+            else
+                break;
+        }
+
+        //CurExpLevel_Txt.text = inGameExp.ToString(); //inGameExp Test 용
+        ExpLevel_Txt.text = inGameLevel.ToString();
+        ExpBar_Img.fillAmount = (inGameExp - expLevelArr[inGameLevel - 1]) / 
+            (expLevelArr[inGameLevel] - expLevelArr[inGameLevel - 1]);
     }
 
     void GameOver()

@@ -20,11 +20,12 @@ public class MonsterCtrl : MonoBehaviour
     //이동 관련
 
     //능력치 관련
-    int maxHp = 100;
-    int curHp = 100;
-    //int defense = 10;
-    //int attack = 10;
-    int dftDmg = 30;
+    float maxHp = 100;
+    float curHp = 100;
+    //float defense = 10;
+    //float attack = 10;
+    float dftDmg = 30;
+    float expVal = 0;
     //능력치 관련
 
     //UI 관련
@@ -38,6 +39,7 @@ public class MonsterCtrl : MonoBehaviour
     void OnEnable()
     {
         curHp = maxHp;
+        SetExp();
     }
 
     void Start() { }
@@ -55,7 +57,7 @@ public class MonsterCtrl : MonoBehaviour
         }
         else if (coll.tag.Contains("Player"))
         {
-            int dmg = 10;
+            float dmg = 10;
             if (monType == MonsterType.EliteMon)
                 dmg = 20;
             else if (monType == MonsterType.BossMon)
@@ -63,6 +65,15 @@ public class MonsterCtrl : MonoBehaviour
 
             GameMgr.Inst.player.TakeDamage(dmg);
         }
+    }
+    
+    void SetExp() //TODO : Init()만들어서 monType으로 나뉘는 변수들 한번에 초기화 하기
+    {
+        expVal = 10;
+        if (monType == MonsterType.EliteMon)
+            expVal = 20;
+        else if (monType == MonsterType.BossMon)
+            expVal = 30;
     }
 
     void Move()
@@ -80,7 +91,7 @@ public class MonsterCtrl : MonoBehaviour
         transform.position += moveDir * moveSpeed * Time.deltaTime;
     }
 
-    void TakeDamage(int damage)
+    void TakeDamage(float damage)
     {
         //1. Hp변수 깎기
         curHp -= damage;
@@ -115,6 +126,8 @@ public class MonsterCtrl : MonoBehaviour
         MemoryPoolMgr.Inst.ActiveMonsterCount--;
         GameMgr.Inst.KillTxtUpdate();
         SpawnGold();
+
+        GameMgr.Inst.AddExpVal(expVal);
 
         gameObject.SetActive(false);
     }

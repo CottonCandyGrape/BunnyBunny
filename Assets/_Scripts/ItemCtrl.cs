@@ -12,8 +12,8 @@ public class ItemCtrl : MonoBehaviour
 {
     public ItemType itemType = ItemType.Gold;
 
-    int goldVal = 0;
-    public int GoldVal
+    float goldVal = 0.0f;
+    public float GoldVal
     {
         get
         {
@@ -28,8 +28,8 @@ public class ItemCtrl : MonoBehaviour
         }
     }
 
-    int healVal = 0;
-    public int HealVal
+    float healVal = 0.0f;
+    public float HealVal
     {
         get
         {
