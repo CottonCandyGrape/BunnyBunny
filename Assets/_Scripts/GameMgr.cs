@@ -13,7 +13,8 @@ public class GameMgr : MonoBehaviour
     float minTime = 60.0f;
     int min = 0;
     int sec = 0;
-    float endTime = 90.0f; //Test 용. //TODO : 적정 시간 찾기
+    //float endTime = 90.0f;
+    float endTime = float.MaxValue; //Test 용. //TODO : 적정 시간 찾기
     //게임 시간 관련 변수
 
     //몬스터 킬수 표시
