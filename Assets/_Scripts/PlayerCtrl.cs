@@ -153,17 +153,17 @@ public class PlayerCtrl : MonoBehaviour
         //TODO : UI 데미지 표시
     }
 
-    public void GetHp()
+    public void GetHp(float healRate)
     {
-        float hp = maxHp * 0.3f;
+        float heal = maxHp * healRate;
 
-        curHp += hp;
+        curHp += heal;
         if (maxHp <= curHp)
             curHp = maxHp;
 
         HpBar_Img.fillAmount = curHp / maxHp;
 
-        GameMgr.Inst.SpawnDmgTxt(transform.position + dmgTxtOffset, hp, Color.blue);
+        GameMgr.Inst.SpawnDmgTxt(transform.position + dmgTxtOffset, heal, Color.blue);
     }
 
     void PlayerDie()

@@ -105,7 +105,7 @@ public class MonsterCtrl : MonoBehaviour
     {
         MemoryPoolMgr.Inst.ActiveMonsterCount--;
         GameMgr.Inst.KillTxtUpdate(); //킬수 올리기
-        GameMgr.Inst.SpawnGold(transform.position, monType); //골드 스폰
+        ItemMgr.Inst.SpawnGold(transform.position, monType); //골드 스폰
         GameMgr.Inst.AddExpVal(expVal); //경험치 올리기
 
         gameObject.SetActive(false);

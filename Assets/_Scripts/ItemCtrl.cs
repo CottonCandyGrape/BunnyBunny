@@ -2,12 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ItemType
-{
-    Gold,
-    Heal,
-}
-
 public class ItemCtrl : MonoBehaviour
 {
     public ItemType itemType = ItemType.Gold;
@@ -28,17 +22,17 @@ public class ItemCtrl : MonoBehaviour
         }
     }
 
-    float healVal = 0.0f;
-    public float HealVal
+    float healRate = 0.0f;
+    public float HealRate
     {
         get
         {
-            return HealVal;
+            return HealRate;
         }
         set
         {
             if (itemType == ItemType.Heal)
-                healVal = value;
+                healRate = value;
             else
                 return;
         }
@@ -62,7 +56,7 @@ public class ItemCtrl : MonoBehaviour
             else if (itemType == ItemType.Heal)
             {
                 PlayerCtrl player = GameMgr.Inst.player.GetComponent<PlayerCtrl>();
-                player.GetHp();
+                player.GetHp(healRate);
             }
 
             Destroy(gameObject);
