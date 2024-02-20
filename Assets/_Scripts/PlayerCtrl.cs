@@ -143,7 +143,7 @@ public class PlayerCtrl : MonoBehaviour
         //2. Hp UI 수정
         HpBar_Img.fillAmount = curHp / maxHp;
         //3. Dmg Txt 띄우기 
-        GameMgr.Inst.SpawnDmgTxt(transform.position + dmgTxtOffset, damage);
+        GameMgr.Inst.SpawnDmgTxt(transform.position + dmgTxtOffset, damage, Color.red);
 
         if (curHp <= 0.0f)
         {
@@ -163,7 +163,7 @@ public class PlayerCtrl : MonoBehaviour
 
         HpBar_Img.fillAmount = curHp / maxHp;
 
-        GameMgr.Inst.SpawnDmgTxt(transform.position + dmgTxtOffset, hp); //TODO : Heal 음,양 값 구분하기
+        GameMgr.Inst.SpawnDmgTxt(transform.position + dmgTxtOffset, hp, Color.blue);
     }
 
     void PlayerDie()

@@ -96,7 +96,7 @@ public class MonsterCtrl : MonoBehaviour
         //1. Hp변수 깎기
         curHp -= damage;
         //2. Dmg Txt 띄우기 
-        GameMgr.Inst.SpawnDmgTxt(transform.position + dmgTxtOffset, damage);
+        GameMgr.Inst.SpawnDmgTxt(transform.position + dmgTxtOffset, damage, Color.red);
 
         if (curHp <= 0)
         {

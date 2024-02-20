@@ -90,11 +90,11 @@ public class GameMgr : MonoBehaviour
             Kill_Txt.text = killCount.ToString();
     }
 
-    public void SpawnDmgTxt(Vector3 pos, float damage)
+    public void SpawnDmgTxt(Vector3 pos, float damage, Color txt_color)
     {
         GameObject dmgObj = Instantiate(DmgTxtPrefab, SubCanvas.transform);
         DmgTxtCtrl dmgTxtCtrl = dmgObj.GetComponent<DmgTxtCtrl>();
-        dmgTxtCtrl.Init(pos, damage);
+        dmgTxtCtrl.Init(pos, damage, txt_color);
     }
 
     public void AddExpVal(float eVal)

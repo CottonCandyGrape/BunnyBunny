@@ -26,10 +26,13 @@ public class DmgTxtCtrl : MonoBehaviour
         }
     }
 
-    public void Init(Vector3 pos, float damage) //TODO : Color, Alpha 값 추가될 수도 있음
+    public void Init(Vector3 pos, float damage, Color txt_color) //TODO : Alpha 값 추가될 수도 있음
     {
         transform.position = pos;
         if (dmg_Txt != null)
-            dmg_Txt.text = "-" + ((int)damage).ToString();
+        {
+            dmg_Txt.text = ((int)damage).ToString();
+            dmg_Txt.color = txt_color;
+        }
     }
 }
