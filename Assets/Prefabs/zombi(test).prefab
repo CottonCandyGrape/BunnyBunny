@@ -100,7 +100,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monType: 0
-  GoldPrefab: {fileID: 6789435181923091613, guid: 1b980474b502a074fb70c3a51f9a60b7, type: 3}
 --- !u!70 &4465123536294424877
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

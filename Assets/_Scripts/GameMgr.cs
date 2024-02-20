@@ -24,6 +24,7 @@ public class GameMgr : MonoBehaviour
 
     //Gold 관련
     public Text Gold_Txt = null;
+    public GameObject GoldPrefab = null;
     float inGameGold = 0.0f;
     //Gold 관련
 
@@ -75,6 +76,19 @@ public class GameMgr : MonoBehaviour
             GameOver();
             return;
         }
+    }
+
+    public void SpawnGold(Vector3 pos, MonsterType monType)
+    {
+        GameObject gold = Instantiate(GoldPrefab);
+        gold.transform.position = pos;
+
+        ItemCtrl item = gold.GetComponent<ItemCtrl>();
+        item.GoldVal = 10;
+        if (monType == MonsterType.EliteMon)
+            item.GoldVal = 50;
+        else if (monType == MonsterType.BossMon)
+            item.GoldVal = 100;
     }
 
     public void AddGold(float val)

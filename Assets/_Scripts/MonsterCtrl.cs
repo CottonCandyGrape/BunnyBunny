@@ -32,10 +32,6 @@ public class MonsterCtrl : MonoBehaviour
     Vector3 dmgTxtOffset = new Vector3(0, 0.5f, 0);
     //UI 관련
 
-    //Gold 관련
-    public GameObject GoldPrefab = null;
-    //Gold 관련
-
     void OnEnable()
     {
         curHp = maxHp;
@@ -105,27 +101,12 @@ public class MonsterCtrl : MonoBehaviour
         }
     }
 
-    void SpawnGold()
-    {
-        GameObject gold = Instantiate(GoldPrefab);
-        gold.transform.position = transform.position;
-
-        ItemCtrl item = gold.GetComponent<ItemCtrl>();
-        if (monType == MonsterType.NormalMon)
-            item.GoldVal = 10;
-        else if (monType == MonsterType.EliteMon)
-            item.GoldVal = 50;
-        else if (monType == MonsterType.BossMon)
-            item.GoldVal = 100;
-    }
-
     void MonsterDie()
     {
         MemoryPoolMgr.Inst.ActiveMonsterCount--;
-        GameMgr.Inst.KillTxtUpdate();
-        SpawnGold();
-
-        GameMgr.Inst.AddExpVal(expVal);
+        GameMgr.Inst.KillTxtUpdate(); //킬수 올리기
+        GameMgr.Inst.SpawnGold(transform.position, monType); //골드 스폰
+        GameMgr.Inst.AddExpVal(expVal); //경험치 올리기
 
         gameObject.SetActive(false);
     }

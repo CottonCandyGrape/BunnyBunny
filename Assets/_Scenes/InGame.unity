@@ -220,6 +220,7 @@ MonoBehaviour:
   Time_Txt: {fileID: 1081136792}
   Kill_Txt: {fileID: 196949011}
   Gold_Txt: {fileID: 1385715506}
+  GoldPrefab: {fileID: 6789435181923091613, guid: 1b980474b502a074fb70c3a51f9a60b7, type: 3}
   ExpLevel_Txt: {fileID: 1119525322}
   ExpBar_Img: {fileID: 714101167}
   SubCanvas: {fileID: 2012018422}
