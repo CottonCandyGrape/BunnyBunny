@@ -14,14 +14,32 @@ public class ItemMgr : MonoBehaviour
 
     public GameObject[] ItemPrefabs = null;
 
+    float meatTimer = 0.0f;
+    float meatTime = 10.0f;
+
     void Awake()
     {
         Inst = this;
     }
 
-    void Start() { }
+    void Start()
+    {
+        meatTimer = meatTime;
+    }
 
-    //void Update() { }
+    void Update()
+    {
+        meatTimer -= Time.deltaTime;
+        if (meatTimer <= 0.0f)
+        {
+            float x = Random.Range(ScreenMgr.CurScMin.x, ScreenMgr.CurScMax.x);
+            float y = Random.Range(ScreenMgr.CurScMin.y, ScreenMgr.CurScMax.y);
+            Vector2 pos = new Vector2(x, y);
+            SpawnMeat(pos, 0.3f);
+
+            meatTimer = meatTime;
+        }
+    }
 
     public void SpawnGold(Vector3 pos, MonsterType monType)
     {
@@ -37,7 +55,7 @@ public class ItemMgr : MonoBehaviour
     }
 
 
-    public void SpawnMeat(Vector4 pos, float healRate) //TODO : healRate 기준 정하기.
+    void SpawnMeat(Vector3 pos, float healRate) //TODO : healRate 기준 정하기.
     {
         GameObject meat = Instantiate(ItemPrefabs[(int)ItemType.Heal]);
         meat.transform.position = pos;
