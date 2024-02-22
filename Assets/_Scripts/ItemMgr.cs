@@ -6,16 +6,21 @@ public enum ItemType
 {
     Gold,
     Heal,
+    Bomb,
 }
 
 public class ItemMgr : MonoBehaviour
 {
-    public static ItemMgr Inst = null;
+    public Transform Golds = null;
+    public Transform Bombs = null;
+    public Transform Meats = null;
 
     public GameObject[] ItemPrefabs = null;
 
     float meatTimer = 0.0f;
     float meatTime = 10.0f;
+
+    public static ItemMgr Inst = null;
 
     void Awake()
     {
@@ -29,21 +34,12 @@ public class ItemMgr : MonoBehaviour
 
     void Update()
     {
-        meatTimer -= Time.deltaTime;
-        if (meatTimer <= 0.0f)
-        {
-            float x = Random.Range(ScreenMgr.CurScMin.x, ScreenMgr.CurScMax.x);
-            float y = Random.Range(ScreenMgr.CurScMin.y, ScreenMgr.CurScMax.y);
-            Vector2 pos = new Vector2(x, y);
-            SpawnMeat(pos, 0.3f);
-
-            meatTimer = meatTime;
-        }
+        UpdateMeatTimer();
     }
 
     public void SpawnGold(Vector3 pos, MonsterType monType)
     {
-        GameObject gold = Instantiate(ItemPrefabs[(int)ItemType.Gold]);
+        GameObject gold = Instantiate(ItemPrefabs[(int)ItemType.Gold], Golds);
         gold.transform.position = pos;
 
         ItemCtrl item = gold.GetComponent<ItemCtrl>();
@@ -54,13 +50,43 @@ public class ItemMgr : MonoBehaviour
             item.GoldVal = 100;
     }
 
-
-    void SpawnMeat(Vector3 pos, float healRate) //TODO : healRate 기준 정하기.
+    void UpdateMeatTimer()
     {
-        GameObject meat = Instantiate(ItemPrefabs[(int)ItemType.Heal]);
-        meat.transform.position = pos;
+        meatTimer -= Time.deltaTime;
+        if (meatTimer <= 0.0f)
+        {
+            SpawnMeat(0.3f);
+            meatTimer = meatTime;
+        }
+    }
+
+    void SpawnMeat(float healRate) //TODO : healRate 기준 정하기.
+    {
+        GameObject meat = Instantiate(ItemPrefabs[(int)ItemType.Heal], Meats);
+        meat.transform.position = ScreenMgr.Inst.GetRandomPosInCurScreen(); 
 
         ItemCtrl item = meat.GetComponent<ItemCtrl>();
-        item.HealRate = healRate; 
+        item.HealRate = healRate;
+    }
+
+    void SpawnBomb(Vector3 pos) //TODO : 호출위치 정하기. 매개변수 pos 필요 없을 수도.
+    {
+        GameObject bomb = Instantiate(ItemPrefabs[(int)ItemType.Bomb], Bombs);
+        bomb.transform.position = pos;
+    }
+
+    public void ExplosionBomb(float radius) 
+    {
+        Vector2 playerPos = GameMgr.Inst.player.transform.position;
+        Collider2D[] colls = Physics2D.OverlapCircleAll(playerPos, radius);
+
+        for (int i = 0; i < colls.Length; i++)
+        {
+            if (colls[i].CompareTag("Monster"))
+            {
+                MonsterCtrl monCtrl = colls[i].gameObject.GetComponent<MonsterCtrl>();
+                monCtrl.TakeDamage(1000); //TODO : Bomb 데미지 정하기
+            }
+        }
     }
 }

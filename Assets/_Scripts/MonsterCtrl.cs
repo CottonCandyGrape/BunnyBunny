@@ -87,12 +87,13 @@ public class MonsterCtrl : MonoBehaviour
         transform.position += moveDir * moveSpeed * Time.deltaTime;
     }
 
-    void TakeDamage(float damage)
+    public void TakeDamage(float damage)
     {
         //1. Hp변수 깎기
+        float dmgTxt = curHp < damage ? curHp : damage;
         curHp -= damage;
         //2. Dmg Txt 띄우기 
-        GameMgr.Inst.SpawnDmgTxt(transform.position + dmgTxtOffset, damage, Color.red);
+        GameMgr.Inst.SpawnDmgTxt(transform.position + dmgTxtOffset, dmgTxt, Color.red);
 
         if (curHp <= 0)
         {

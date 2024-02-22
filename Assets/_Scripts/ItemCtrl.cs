@@ -38,8 +38,12 @@ public class ItemCtrl : MonoBehaviour
         }
     }
 
+    float bombRadius = 0.0f;
+
     void Start()
     {
+        bombRadius = (ScreenMgr.InitScMax.x - ScreenMgr.InitScMin.x) / 2.0f;
+
         Destroy(gameObject, 10.0f); //TODO : 나중에는 안먹으면 안사라지게 할거임
     }
 
@@ -57,6 +61,10 @@ public class ItemCtrl : MonoBehaviour
             {
                 PlayerCtrl player = GameMgr.Inst.player.GetComponent<PlayerCtrl>();
                 player.GetHp(healRate);
+            }
+            else if (itemType == ItemType.Bomb)
+            {
+                ItemMgr.Inst.ExplosionBomb(bombRadius);
             }
 
             Destroy(gameObject);

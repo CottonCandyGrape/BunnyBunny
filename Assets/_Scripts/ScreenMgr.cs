@@ -15,8 +15,12 @@ public class ScreenMgr : MonoBehaviour
 
     Camera cam = null;
 
+    public static ScreenMgr Inst = null;
+
     void Awake()
     {
+        Inst = this;
+
         cam = Camera.main;
 
         Rect rect = cam.rect;
@@ -54,5 +58,14 @@ public class ScreenMgr : MonoBehaviour
     {
         CurScMin = cam.ViewportToWorldPoint(Vector3.zero);
         CurScMax = cam.ViewportToWorldPoint(Vector3.one);
+    }
+
+    public Vector2 GetRandomPosInCurScreen()
+    {
+        Vector2 pos = Vector2.zero;
+        pos.x = Random.Range(CurScMin.x, CurScMax.x);
+        pos.y = Random.Range(CurScMin.y, CurScMax.y);
+
+        return pos;
     }
 }
