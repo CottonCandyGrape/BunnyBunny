@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6367311025553367229}
   m_Layer: 0
   m_Name: MeatPrefab
-  m_TagString: Item
+  m_TagString: Meat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
