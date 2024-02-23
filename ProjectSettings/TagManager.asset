@@ -9,6 +9,7 @@ TagManager:
   - P_Bullet
   - Monster
   - Item
+  - Weapon
   layers:
   - Default
   - TransparentFX

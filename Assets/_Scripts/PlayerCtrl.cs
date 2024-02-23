@@ -50,6 +50,8 @@ public class PlayerCtrl : MonoBehaviour
     {
         playerSpRenderer = GameObject.Find("Player_Img").GetComponent<SpriteRenderer>();
         curHp = maxHp;
+
+        WeaponMgr.Inst.SetGuardians(); //가디언 test 용
     }
 
     void Update()
@@ -58,6 +60,9 @@ public class PlayerCtrl : MonoBehaviour
         DirectionArrow();
         LoadBullet();
         //MoveSubCanvas();
+
+        if (Input.GetKeyDown(KeyCode.Space))
+            WeaponMgr.Inst.LevelUpGuardiands(); //가디언 test 용
     }
 
     //MapRePosition하는 큰 Box Collider 때문에 웬만하면 여기서 이 함수 구현 안함
