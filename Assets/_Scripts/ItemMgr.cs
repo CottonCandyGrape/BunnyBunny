@@ -12,8 +12,15 @@ public enum ItemType
 public class ItemMgr : MonoBehaviour
 {
     public Transform Golds = null;
-    public Transform Bombs = null;
     public Transform Meats = null;
+    public Transform Bombs = null;
+
+    //섬광 관련 
+    public SpriteRenderer FlashRender = null;
+    Color flashColor = new Color(1, 1, 1, 0);
+    float alphaSpeed = 5.0f;
+    Coroutine flashCo = null;
+    //섬광 관련 
 
     public GameObject[] ItemPrefabs = null;
 
@@ -87,6 +94,29 @@ public class ItemMgr : MonoBehaviour
                 MonsterCtrl monCtrl = colls[i].gameObject.GetComponent<MonsterCtrl>();
                 monCtrl.TakeDamage(1000); //TODO : Bomb 데미지 정하기
             }
+        }
+
+        //섬광 효과
+        FlashRender.transform.position = playerPos; //섬광 좌표
+        if (flashCo != null)
+            StopCoroutine(flashCo);
+        flashCo = StartCoroutine(FlashEffect());
+    }
+
+    IEnumerator FlashEffect()
+    {
+        while (flashColor.a < 1.0f) // 섬광 터지기
+        {
+            flashColor.a += alphaSpeed * Time.deltaTime;
+            FlashRender.color = flashColor;
+            yield return null;
+        }
+
+        while (0.0f < flashColor.a) // 잦아들기
+        {
+            flashColor.a -= alphaSpeed * Time.deltaTime;
+            FlashRender.color = flashColor;
+            yield return null;
         }
     }
 }
