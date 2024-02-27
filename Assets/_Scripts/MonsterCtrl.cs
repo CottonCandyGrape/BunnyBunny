@@ -64,6 +64,7 @@ public class MonsterCtrl : MonoBehaviour
         if (coll.tag.Contains("P_Bullet"))
         {
             TakeDamage(dftDmg);
+            coll.gameObject.SetActive(false);
         }
         else if (coll.tag.Contains("Player"))
         {
