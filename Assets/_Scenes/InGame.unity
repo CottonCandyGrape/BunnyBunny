@@ -4901,10 +4901,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   h: 0
   v: 0
-  moveDir: {x: 0, y: 0, z: 0}
   DirArrow: {fileID: 1827385772}
   arrowDir: {x: 1, y: 0, z: 0}
-  bulletDir: {x: 0, y: 1, z: 0}
   SubCanvas: {fileID: 2012018422}
   HpBar_Img: {fileID: 470771535}
 --- !u!50 &699597826
@@ -5044,6 +5042,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 714101165}
   m_CullTransparentMesh: 1
+--- !u!1 &743305140
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 743305141}
+  m_Layer: 0
+  m_Name: MainWeapon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &743305141
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 743305140}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1043123218}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &761598643
 GameObject:
   m_ObjectHideFlags: 0
@@ -5161,6 +5190,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7aa50d311affedc40ab798744a44be6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MWPrefabs:
+  - {fileID: 5592649674584467475, guid: f250212330c3586448e44a8f4f34b960, type: 3}
+  - {fileID: 6699362348618382821, guid: 84b0cfd6d6a77e841b765d42c6996af9, type: 3}
+  MainWeapon: {fileID: 743305141}
+  MainType: 0
   Guardians: {fileID: 678642573}
   GuardPrefab: {fileID: 1460741818276647314, guid: 0f6ed09fb8820e94e99a7a9835a77b8b, type: 3}
 --- !u!1 &914463612
@@ -5308,6 +5342,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 743305141}
   - {fileID: 678642573}
   m_Father: {fileID: 699597824}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

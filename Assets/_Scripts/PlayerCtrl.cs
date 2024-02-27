@@ -4,18 +4,18 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerCtrl : MonoBehaviour
-{
+{ 
     //이동 관련
     [HideInInspector] public float h = 0.0f;
     [HideInInspector] public float v = 0.0f;
     float moveSpeed = 3.0f;
 
-    public Vector3 moveDir = Vector3.zero;
+    Vector3 moveDir = Vector3.zero;
     SpriteRenderer playerSpRenderer = null;
     //Vector3 limitPos = Vector3.zero;
 
     public GameObject DirArrow = null;
-    public Vector3 arrowDir = Vector3.up;
+    [HideInInspector] public Vector3 arrowDir = Vector3.up;
     float arrowAngle = 0.0f;
     float angleOffset = 90.0f;
     const float cstArrowDist = 0.7f;
@@ -30,10 +30,8 @@ public class PlayerCtrl : MonoBehaviour
     //능력치 관련
 
     //공격 관련
-    public Vector3 bulletDir = Vector3.up;
-    const float cstBulletDist = 0.3f;
-    float bulletTimer = 0.0f;
-    float bltTime = 0.2f;
+    float atkTimer = 0.0f;
+    float atkTime = 0.2f;
     int fireCnt = 5;
     int curFire = 0;
     //공격 관련
@@ -58,7 +56,7 @@ public class PlayerCtrl : MonoBehaviour
     {
         Move();
         DirectionArrow();
-        LoadBullet();
+        ReadyAttack();
         //MoveSubCanvas();
 
         //if (Input.GetKeyDown(KeyCode.Space))
@@ -98,46 +96,24 @@ public class PlayerCtrl : MonoBehaviour
         DirArrow.transform.position = transform.position + arrowDir.normalized * cstArrowDist;
     }
 
-    void LoadBullet()
+    void ReadyAttack() // 공격 텀 재는 함수
     {
-        bulletTimer -= Time.deltaTime;
+        atkTimer -= Time.deltaTime;
 
-        if (bulletTimer <= 0.0f)
+        if (atkTimer <= 0.0f)
         {
-            bulletTimer = bltTime;
+            atkTimer = atkTime;
 
             if (fireCnt < curFire)
             {
-                FanFire(arrowDir);
+                WeaponMgr.Inst.GunCtrlSc.FanFire(arrowDir);
                 curFire = 0;
             }
             else
             {
-                FireBullet(arrowDir);
+                WeaponMgr.Inst.GunCtrlSc.FireBullet(arrowDir);
                 curFire++;
             }
-        }
-    }
-
-    void FireBullet(Vector3 bltDir)
-    {
-        bltDir.Normalize();
-        bulletDir = bltDir;
-
-        BulletCtrl bltCtrl = MemoryPoolMgr.Inst.AddBulletPool();
-        bltCtrl.gameObject.SetActive(true);
-        bltCtrl.transform.position = transform.position + bltDir * cstBulletDist;
-        float angle = Mathf.Atan2(bltDir.y, bltDir.x) * Mathf.Rad2Deg;
-        bltCtrl.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-    }
-
-    void FanFire(Vector3 midDir)
-    {
-        int deg = 20; //TODO : 하드코딩 바꾸기 
-        for (int cnt = -2; cnt < 3; cnt++)
-        {
-            Vector3 dir = Quaternion.AngleAxis(cnt * deg, Vector3.forward) * midDir;
-            FireBullet(dir);
         }
     }
 

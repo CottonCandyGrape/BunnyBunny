@@ -5,14 +5,16 @@ using UnityEngine;
 public class BulletCtrl : MonoBehaviour
 {
     Vector3 bulletDir = Vector3.one;
-
+    public Vector3 BulletDir
+    {
+        set { bulletDir = value; }
+    }
     float bulletSpeed = 10.0f;
     float lifeTime = 0.0f;
     float outLine = 3.0f;
 
     void OnEnable()
     {
-        bulletDir = GameMgr.Inst.player.bulletDir.normalized;
         lifeTime = 5.0f;
     }
 
