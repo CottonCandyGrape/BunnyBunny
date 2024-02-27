@@ -27,7 +27,7 @@ public class MonGenerator : MonoBehaviour
 
     Vector3 GetMonSpawnPos()
     {
-        Vector3 pos = Vector3.one;
+        Vector3 pos = Vector3.zero;
         float radius = Random.Range(5.0f, 7.0f);
         float sinDeg = Random.Range(0f, 360f);
         float cosDeg = Random.Range(0f, 360f);

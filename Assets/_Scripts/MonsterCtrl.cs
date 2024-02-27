@@ -16,8 +16,17 @@ public class MonsterCtrl : MonoBehaviour
     //이동 관련
     float moveSpeed = 1.0f;
     Vector3 moveDir = Vector3.one;
-    Vector3 scale = Vector3.one;
+    SpriteRenderer spRenderer = null;
     //이동 관련
+
+    //넉백 관련 
+    bool isKnockBack = false;
+    float kbDist = -2.0f;
+    float kbSpeed = 3.0f;
+    float kbTime = 1.0f;
+    float kbTimer = 0.0f;
+    Vector3 kbTarget = Vector3.zero;
+    //넉백 관련 
 
     //능력치 관련
     float maxHp = 100;
@@ -31,6 +40,11 @@ public class MonsterCtrl : MonoBehaviour
     //UI 관련
     Vector3 dmgTxtOffset = new Vector3(0, 0.5f, 0);
     //UI 관련
+
+    void Awake()
+    {
+        spRenderer = GetComponent<SpriteRenderer>();
+    }
 
     void OnEnable()
     {
@@ -61,6 +75,11 @@ public class MonsterCtrl : MonoBehaviour
 
             GameMgr.Inst.player.TakeDamage(dmg);
         }
+        else if (coll.tag.Contains("Guardians"))
+        {
+            isKnockBack = true;
+            kbTarget = transform.position + moveDir * kbDist;
+        }
     }
     
     void SetExp() //TODO : Init()만들어서 monType으로 나뉘는 변수들 한번에 초기화 하기
@@ -74,17 +93,29 @@ public class MonsterCtrl : MonoBehaviour
 
     void Move()
     {
-        moveDir = GameMgr.Inst.player.transform.position - transform.position;
-        moveDir.Normalize();
+        if (!isKnockBack)
+        {
+            moveDir = GameMgr.Inst.player.transform.position - transform.position;
+            moveDir.Normalize();
 
-        if (moveDir.x < 0)
-            scale.x = 1;
-        else
-            scale.x = -1;
+            if (moveDir.x < 0)
+                spRenderer.flipX = false;
+            else
+                spRenderer.flipX = true;
 
-        transform.localScale = scale;
+            transform.position += moveDir * moveSpeed * Time.deltaTime;
+        }
+        else 
+        {
+            kbTimer += kbSpeed * Time.deltaTime;
+            transform.position = Vector3.Lerp(transform.position, kbTarget, kbTimer / kbTime);
 
-        transform.position += moveDir * moveSpeed * Time.deltaTime;
+            if (1.0f <= (kbTimer / kbTime))
+            {
+                isKnockBack = false;
+                kbTimer = 0.0f;
+            }
+        }
     }
 
     public void TakeDamage(float damage)
@@ -106,8 +137,8 @@ public class MonsterCtrl : MonoBehaviour
     {
         MemoryPoolMgr.Inst.ActiveMonsterCount--;
         GameMgr.Inst.KillTxtUpdate(); //킬수 올리기
-        ItemMgr.Inst.SpawnGold(transform.position, monType); //골드 스폰
         GameMgr.Inst.AddExpVal(expVal); //경험치 올리기
+        ItemMgr.Inst.SpawnGold(transform.position, monType); //골드 스폰
 
         gameObject.SetActive(false);
     }
