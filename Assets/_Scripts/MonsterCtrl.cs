@@ -61,12 +61,12 @@ public class MonsterCtrl : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D coll)
     {
-        if (coll.tag.Contains("P_Bullet"))
+        if (coll.CompareTag("P_Bullet"))
         {
             TakeDamage(dftDmg);
             coll.gameObject.SetActive(false);
         }
-        else if (coll.tag.Contains("Player"))
+        else if (coll.CompareTag("Player"))
         {
             float dmg = 10;
             if (monType == MonsterType.EliteMon)
@@ -76,7 +76,7 @@ public class MonsterCtrl : MonoBehaviour
 
             GameMgr.Inst.player.TakeDamage(dmg);
         }
-        else if (coll.tag.Contains("Guardians"))
+        else if (coll.CompareTag("Guardians"))
         {
             isKnockBack = true;
             kbTarget = transform.position + moveDir * kbDist;

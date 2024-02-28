@@ -8,7 +8,7 @@ public class MapReposition : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D coll)
     {
-        if (!coll.tag.Contains("Area"))
+        if (!coll.CompareTag("Area"))
             return;
 
         Vector3 playerPos = GameMgr.Inst.player.transform.position;
