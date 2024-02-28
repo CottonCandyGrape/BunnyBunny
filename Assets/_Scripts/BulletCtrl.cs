@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class BulletCtrl : MonoBehaviour
 {
-    Vector3 moveDir = Vector3.one;
+    protected float moveSpeed = 10.0f;
+    protected float lifeTime = 0.0f;
+    float outLine = 3.0f;
+
+    protected Vector3 moveDir = Vector3.one;
     public Vector3 MoveDir
     {
         set { moveDir = value; }
     }
-    float moveSpeed = 10.0f;
-    float lifeTime = 0.0f;
-    float outLine = 3.0f;
 
     void OnEnable()
     {
@@ -20,21 +21,23 @@ public class BulletCtrl : MonoBehaviour
 
     void Start() { }
 
-    void Update()
+    protected virtual void Update()
     {
-        lifeTime -= Time.deltaTime;
-        if (lifeTime <= 0.0f)
-        {
-            gameObject.SetActive(false);
-            return;
-        }
-
         transform.position += moveDir * moveSpeed * Time.deltaTime;
 
         CheckOutLine();
+
+        CalcLifeTime();
     }
 
-    void CheckOutLine()
+    protected void CalcLifeTime() //lifeTime 계산
+    {
+        lifeTime -= Time.deltaTime;
+        if (lifeTime <= 0.0f)
+            gameObject.SetActive(false);
+    }
+
+    protected void CheckOutLine() //밖으로 나갔는지 체크
     {
         if (ScreenMgr.CurScMax.x + outLine < transform.position.x ||
             transform.position.x < ScreenMgr.CurScMin.x - outLine ||

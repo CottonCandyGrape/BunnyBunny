@@ -28,6 +28,11 @@ public class WeaponMgr : MonoBehaviour
         }
     }
     //TODO : bladeCtrl.cs 추가하기
+
+    float mAtkTimer = 0.0f;
+    float mAtkTime = 0.2f;
+    int fireCnt = 5;
+    int curFire = 0;
     //메인 무기
 
     [Header("------ Guardians ------")]
@@ -35,8 +40,18 @@ public class WeaponMgr : MonoBehaviour
     public Transform Guardians = null;
     public GameObject GuardPrefab = null;
     const int MaxGuardCount = 6;
-    const int InitCount = 3;
+    const int GuardInitCount = 3;
     //수호자 관련
+
+    [Header("------ Rockets ------")]
+    //로켓관련
+    public Transform Rockets = null;
+    public GameObject RocketPrefab = null;
+    List<RocketCtrl> rocketPool = new List<RocketCtrl>();
+    const int RocketInitCount = 5;
+    float rktTime = 2.0f;
+    float rktTimer = 0.0f;
+    //로켓관련
 
     public static WeaponMgr Inst = null;
 
@@ -49,7 +64,10 @@ public class WeaponMgr : MonoBehaviour
 
     void Start() { }
 
-    //void Update() { }
+    void Update()
+    {
+        CalcWeaponTimer();
+    }
 
     void SetMainWeapon(MWType mwType) //메인 무기 세팅 및 교체 함수
     {
@@ -68,15 +86,15 @@ public class WeaponMgr : MonoBehaviour
     }
 
     //수호자 관련
-    public void SetGuardians() //3개로 시작
+    public void InitGuardians() //3개로 시작
     {
         Guardians.gameObject.SetActive(true);
 
-        for (int i = 0; i < InitCount; i++)
+        for (int i = 0; i < GuardInitCount; i++)
         {
             GameObject guardObj = Instantiate(GuardPrefab, Guardians);
             GuardCtrl guard = guardObj.GetComponent<GuardCtrl>();
-            guard.Degree = (360 / InitCount) * i;
+            guard.Degree = (360 / GuardInitCount) * i;
         }
     }
 
@@ -91,8 +109,37 @@ public class WeaponMgr : MonoBehaviour
     }
     //수호자 관련
 
+    //로켓 관련
+    public void InitRockets()
+    {
+        for (int i = 0; i < RocketInitCount; i++)
+        {
+            GameObject rocket = Instantiate(RocketPrefab, Rockets);
+            rocket.SetActive(false);
+            rocketPool.Add(rocket.GetComponent<RocketCtrl>());
+        }
+    }
 
-    //public void Rockets() { }
+    //로켓 관련
+
+    void CalcWeaponTimer()
+    {
+        mAtkTimer -= Time.deltaTime;
+        if (mAtkTimer <= 0.0f)
+        {
+            mAtkTimer = mAtkTime;
+            if (fireCnt < curFire)
+            {
+                GunCtrlSc.FanFire(GameMgr.Inst.player.arrowDir);
+                curFire = 0;
+            }
+            else
+            {
+                GunCtrlSc.FireBullet(GameMgr.Inst.player.arrowDir);
+                curFire++;
+            }
+        }
+    }
 
     //public void Drills() { }
 }

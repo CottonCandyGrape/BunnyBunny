@@ -15,7 +15,7 @@ public class MonsterCtrl : MonoBehaviour
 
     //이동 관련
     float moveSpeed = 1.0f;
-    Vector3 moveDir = Vector3.one;
+    Vector3 moveDir = Vector3.zero;
     SpriteRenderer spRenderer = null;
     //이동 관련
 

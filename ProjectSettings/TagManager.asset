@@ -14,6 +14,7 @@ TagManager:
   - NormalMonster
   - EliteMonster
   - BossMonster
+  - Rocket
   layers:
   - Default
   - TransparentFX

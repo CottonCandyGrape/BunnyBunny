@@ -29,13 +29,6 @@ public class PlayerCtrl : MonoBehaviour
     float defense = 10.0f;
     //능력치 관련
 
-    //공격 관련
-    float atkTimer = 0.0f;
-    float atkTime = 0.2f;
-    int fireCnt = 5;
-    int curFire = 0;
-    //공격 관련
-
     //UI 관련
     public Canvas SubCanvas = null;
     public Image HpBar_Img = null;
@@ -50,14 +43,13 @@ public class PlayerCtrl : MonoBehaviour
         curHp = maxHp;
 
         //WeaponMgr.Inst.SetGuardians(); //가디언 test 용
+        WeaponMgr.Inst.InitRockets(); //로켓 test 용
     }
 
     void Update()
     {
         Move();
         DirectionArrow();
-        ReadyAttack();
-        //MoveSubCanvas();
 
         //if (Input.GetKeyDown(KeyCode.Space))
         //    WeaponMgr.Inst.LevelUpGuardiands(); //가디언 test 용
@@ -94,27 +86,6 @@ public class PlayerCtrl : MonoBehaviour
         arrowAngle = Mathf.Atan2(arrowDir.normalized.y, arrowDir.normalized.x) * Mathf.Rad2Deg;
         DirArrow.transform.rotation = Quaternion.AngleAxis(arrowAngle - angleOffset, Vector3.forward);
         DirArrow.transform.position = transform.position + arrowDir.normalized * cstArrowDist;
-    }
-
-    void ReadyAttack() // 공격 텀 재는 함수
-    {
-        atkTimer -= Time.deltaTime;
-
-        if (atkTimer <= 0.0f)
-        {
-            atkTimer = atkTime;
-
-            if (fireCnt < curFire)
-            {
-                WeaponMgr.Inst.GunCtrlSc.FanFire(arrowDir);
-                curFire = 0;
-            }
-            else
-            {
-                WeaponMgr.Inst.GunCtrlSc.FireBullet(arrowDir);
-                curFire++;
-            }
-        }
     }
 
     public void TakeDamage(float damage)
