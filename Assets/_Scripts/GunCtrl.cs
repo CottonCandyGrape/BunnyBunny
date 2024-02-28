@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class GunCtrl : MonoBehaviour
 {
+    [HideInInspector] public static int level = 0;
+    [HideInInspector] public static bool evolve = false;
+
     const float cstBulletDist = 0.3f;
 
     void Start() { }
@@ -15,7 +18,7 @@ public class GunCtrl : MonoBehaviour
         bltDir.Normalize();
 
         BulletCtrl bltCtrl = MemoryPoolMgr.Inst.AddBulletPool();
-        bltCtrl.BulletDir = bltDir;
+        bltCtrl.MoveDir = bltDir;
         bltCtrl.gameObject.SetActive(true);
         bltCtrl.transform.position = transform.position + bltDir * cstBulletDist;
         float angle = Mathf.Atan2(bltDir.y, bltDir.x) * Mathf.Rad2Deg;
