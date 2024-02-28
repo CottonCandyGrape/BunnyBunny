@@ -9,10 +9,7 @@ public class ItemCtrl : MonoBehaviour
     float goldVal = 0.0f;
     public float GoldVal
     {
-        get
-        {
-            return goldVal;
-        }
+        get { return goldVal; }
         set
         {
             if (itemType == ItemType.Gold)
@@ -25,10 +22,7 @@ public class ItemCtrl : MonoBehaviour
     float healRate = 0.0f;
     public float HealRate
     {
-        get
-        {
-            return HealRate;
-        }
+        get { return HealRate; }
         set
         {
             if (itemType == ItemType.Heal)
@@ -64,7 +58,19 @@ public class ItemCtrl : MonoBehaviour
             }
             else if (itemType == ItemType.Bomb)
             {
-                ItemMgr.Inst.ExplosionBomb(bombRadius);
+                Collider2D[] colls = Physics2D.OverlapCircleAll(transform.position, bombRadius);
+
+                for (int i = 0; i < colls.Length; i++)
+                {
+                    if (colls[i].tag.Contains("Monster"))
+                    {
+                        MonsterCtrl monCtrl = colls[i].gameObject.GetComponent<MonsterCtrl>();
+                        monCtrl.TakeDamage(1000); //TODO : Bomb 데미지 정하기
+                    }
+                }
+
+                //섬광 효과. 코루틴 있어서 ItemMgr에 구현
+                ItemMgr.Inst.FlashEffect(); 
             }
 
             Destroy(gameObject);

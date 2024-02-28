@@ -82,28 +82,15 @@ public class ItemMgr : MonoBehaviour
         bomb.transform.position = pos;
     }
 
-    public void ExplosionBomb(float radius) 
+    public void FlashEffect()
     {
-        Vector2 playerPos = GameMgr.Inst.player.transform.position;
-        Collider2D[] colls = Physics2D.OverlapCircleAll(playerPos, radius);
-
-        for (int i = 0; i < colls.Length; i++)
-        {
-            if (colls[i].tag.Contains("Monster"))
-            {
-                MonsterCtrl monCtrl = colls[i].gameObject.GetComponent<MonsterCtrl>();
-                monCtrl.TakeDamage(1000); //TODO : Bomb 데미지 정하기
-            }
-        }
-
-        //섬광 효과
-        FlashRender.transform.position = playerPos; //섬광 좌표
+        FlashRender.transform.position = GameMgr.Inst.player.transform.position; //섬광 좌표
         if (flashCo != null)
             StopCoroutine(flashCo);
-        flashCo = StartCoroutine(FlashEffect());
+        flashCo = StartCoroutine(FlashEffectCo());
     }
 
-    IEnumerator FlashEffect()
+    IEnumerator FlashEffectCo()
     {
         while (flashColor.a < 1.0f) // 섬광 터지기
         {
