@@ -89,7 +89,7 @@ public class ItemMgr : MonoBehaviour
 
         for (int i = 0; i < colls.Length; i++)
         {
-            if (colls[i].CompareTag("Monster"))
+            if (colls[i].tag.Contains("Monster"))
             {
                 MonsterCtrl monCtrl = colls[i].gameObject.GetComponent<MonsterCtrl>();
                 monCtrl.TakeDamage(1000); //TODO : Bomb 데미지 정하기
