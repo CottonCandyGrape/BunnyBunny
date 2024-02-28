@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerCtrl : MonoBehaviour
-{ 
+{
     //이동 관련
     [HideInInspector] public float h = 0.0f;
     [HideInInspector] public float v = 0.0f;
@@ -35,7 +35,17 @@ public class PlayerCtrl : MonoBehaviour
     Vector3 dmgTxtOffset = new Vector3(0, 0.5f, 0);
     //UI 관련
 
-    //TODO : Skill
+    //공격 관련
+    int fireCnt = 5;
+    int curFire = 0;
+    //공격 관련
+
+    //Timer 관련
+    float mAtkTimer = 0.0f;
+    float mAtkTime = 0.2f;
+    float rktTimer = 0.0f;
+    float rktTime = 2.0f;
+    //Timer 관련
 
     void Start()
     {
@@ -50,6 +60,7 @@ public class PlayerCtrl : MonoBehaviour
     {
         Move();
         DirectionArrow();
+        CalcWeaponsTimer();
 
         //if (Input.GetKeyDown(KeyCode.Space))
         //    WeaponMgr.Inst.LevelUpGuardiands(); //가디언 test 용
@@ -102,8 +113,6 @@ public class PlayerCtrl : MonoBehaviour
         {
             PlayerDie();
         }
-
-        //TODO : UI 데미지 표시
     }
 
     public void GetHp(float healRate)
@@ -119,18 +128,32 @@ public class PlayerCtrl : MonoBehaviour
         GameMgr.Inst.SpawnDmgTxt(transform.position + dmgTxtOffset, heal, Color.blue);
     }
 
+    void CalcWeaponsTimer()
+    {
+        //메인 무기 타이머
+        mAtkTimer -= Time.deltaTime;
+        if (mAtkTimer <= 0.0f)
+        {
+            mAtkTimer = mAtkTime;
+            if (fireCnt < curFire)
+            {
+                WeaponMgr.Inst.GunCtrlSc.FanFire(arrowDir);
+                curFire = 0;
+            }
+            else
+            {
+                WeaponMgr.Inst.GunCtrlSc.FireBullet(arrowDir);
+                curFire++;
+            }
+        }
+        //메인 무기 타이머
+    }
+
     void PlayerDie()
     {
         Time.timeScale = 0.0f;
         return;
     }
-
-    /* //너무 짧아서 그냥 호출
-    void MoveSubCanvas()
-    {
-        SubCanvas.transform.position = transform.position;
-    }
-    */
 
     /*
     void MoveLimit() 

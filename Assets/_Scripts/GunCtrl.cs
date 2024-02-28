@@ -7,7 +7,7 @@ public class GunCtrl : MonoBehaviour
     [HideInInspector] public static int level = 0;
     [HideInInspector] public static bool evolve = false;
 
-    const float cstBulletDist = 0.3f;
+    const float BulletOffset = 0.3f;
 
     void Start() { }
 
@@ -20,7 +20,7 @@ public class GunCtrl : MonoBehaviour
         BulletCtrl bltCtrl = MemoryPoolMgr.Inst.AddBulletPool();
         bltCtrl.MoveDir = bltDir;
         bltCtrl.gameObject.SetActive(true);
-        bltCtrl.transform.position = transform.position + bltDir * cstBulletDist;
+        bltCtrl.transform.position = transform.position + bltDir * BulletOffset;
         float angle = Mathf.Atan2(bltDir.y, bltDir.x) * Mathf.Rad2Deg;
         bltCtrl.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
