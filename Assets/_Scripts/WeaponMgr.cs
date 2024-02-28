@@ -110,6 +110,28 @@ public class WeaponMgr : MonoBehaviour
             rocketPool.Add(rocket.GetComponent<RocketCtrl>());
         }
     }
+
+    public void FireRocket(Vector3 pos, Vector3 dir)
+    {
+        for (int i = 0; i < Rockets.childCount; i++)
+        {
+            GameObject rkt = Rockets.GetChild(i).gameObject;
+            if (!rkt.activeSelf)
+            {
+                rkt.SetActive(true);
+
+                RocketCtrl rktCtrl = rkt.GetComponent<RocketCtrl>();
+                rktCtrl.MoveDir = dir; //dir normalized 돼서 넘어옴
+                float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+                rktCtrl.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+                rktCtrl.transform.position = pos + dir * RocketOffset;
+                return;
+            }
+            else continue;
+        }
+        // 발사주기를 생각했을때 꺼진게 없으면 안되는데(5개 까지도 필요없음)
+        // 일단 꺼진게 없으면 발사 안함. TODO : 어케 해야할지 생각하기 
+    }
     //로켓 관련
 
     //public void Drills() { }

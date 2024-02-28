@@ -15,10 +15,10 @@ public class PlayerCtrl : MonoBehaviour
     //Vector3 limitPos = Vector3.zero;
 
     public GameObject DirArrow = null;
-    [HideInInspector] public Vector3 arrowDir = Vector3.up;
+    Vector3 arrowDir = Vector3.up;
     float arrowAngle = 0.0f;
     float angleOffset = 90.0f;
-    const float cstArrowDist = 0.7f;
+    const float ArrowOffset = 0.7f;
     //이동 관련
 
     //능력치 관련
@@ -96,7 +96,7 @@ public class PlayerCtrl : MonoBehaviour
 
         arrowAngle = Mathf.Atan2(arrowDir.normalized.y, arrowDir.normalized.x) * Mathf.Rad2Deg;
         DirArrow.transform.rotation = Quaternion.AngleAxis(arrowAngle - angleOffset, Vector3.forward);
-        DirArrow.transform.position = transform.position + arrowDir.normalized * cstArrowDist;
+        DirArrow.transform.position = transform.position + arrowDir.normalized * ArrowOffset;
     }
 
     public void TakeDamage(float damage)
@@ -147,6 +147,16 @@ public class PlayerCtrl : MonoBehaviour
             }
         }
         //메인 무기 타이머
+
+        //로켓 타이머
+        rktTimer -= Time.deltaTime; 
+        if(rktTimer <= 0.0f)
+        {
+            rktTimer = rktTime;
+            Vector3 tmp = new Vector3(0, 0, 0); //TODO : 어느 방향으로 할까?.. 가장 가까운?..
+            WeaponMgr.Inst.FireRocket(transform.position, Vector3.up); //dir normalized 해서 넘기기
+        }
+        //로켓 타이머
     }
 
     void PlayerDie()
