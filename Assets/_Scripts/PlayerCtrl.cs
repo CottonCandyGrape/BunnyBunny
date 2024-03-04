@@ -47,14 +47,14 @@ public class PlayerCtrl : MonoBehaviour
     float rktTime = 2.0f;
     //Timer 관련
 
-    WeaponMgr weaponMgr = null;
+    WeaponMgr wpMgr = null;
 
     void Start()
     {
         playerSpRenderer = GameObject.Find("Player_Img").GetComponent<SpriteRenderer>();
         curHp = maxHp;
 
-        weaponMgr = GameObject.Find("WeaponMgr").GetComponent<WeaponMgr>();
+        wpMgr = GameObject.Find("WeaponMgr").GetComponent<WeaponMgr>();
 
         //weaponMgr.SetGuardians(); //가디언 test 용
         //weaponMgr.InitRockets(); //로켓 test 용
@@ -66,7 +66,8 @@ public class PlayerCtrl : MonoBehaviour
         DirectionArrow();
         CalcWeaponsTimer();
 
-        //if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
+            wpMgr.SetRockets(); //로켓 test 용
         //    WeaponMgr.Inst.LevelUpGuardiands(); //가디언 test 용
     }
 
@@ -141,12 +142,12 @@ public class PlayerCtrl : MonoBehaviour
             mAtkTimer = mAtkTime;
             if (fireCnt < curFire)
             {
-                weaponMgr.GunCtrlSc.FanFire(arrowDir);
+                wpMgr.GunCtrlSc.FanFire(arrowDir);
                 curFire = 0;
             }
             else
             {
-                weaponMgr.GunCtrlSc.FireBullet(arrowDir);
+                wpMgr.GunCtrlSc.FireBullet(arrowDir);
                 curFire++;
             }
         }
@@ -158,6 +159,8 @@ public class PlayerCtrl : MonoBehaviour
         {
             rktTimer = rktTime;
             Vector3 dir = Vector3.up; //TODO : 어느 방향으로 할까?.. 가장 가까운?..
+            if (wpMgr.RocketCtrlSc != null)
+                wpMgr.RocketCtrlSc.FireRocket(transform.position, arrowDir.normalized);
             //weaponMgr.FireRocket(transform.position, dir.normalized); //dir normalized 해서 넘기기
         }
         //로켓 타이머

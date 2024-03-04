@@ -4866,7 +4866,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &678642573
 Transform:
   m_ObjectHideFlags: 0
@@ -5260,8 +5260,7 @@ MonoBehaviour:
   MainType: 0
   Guardians: {fileID: 678642573}
   GuardPrefab: {fileID: 1460741818276647314, guid: 0f6ed09fb8820e94e99a7a9835a77b8b, type: 3}
-  Rockets: {fileID: 562004942}
-  RocketPrefab: {fileID: 1846367747582555154, guid: 5d49b4507d7159e4a8b621e13efb2335, type: 3}
+  Rockets: {fileID: 1910032754}
 --- !u!1 &914463612
 GameObject:
   m_ObjectHideFlags: 0
@@ -5968,7 +5967,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1574635738
 Transform:
   m_ObjectHideFlags: 0
@@ -7755,7 +7754,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1910032755
 Transform:
   m_ObjectHideFlags: 0
@@ -7783,6 +7782,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b4d820d9dc427647bbdb3f2dbfa198a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RocketPool: {fileID: 562004942}
+  RocketPrefab: {fileID: 1846367747582555154, guid: 5d49b4507d7159e4a8b621e13efb2335, type: 3}
 --- !u!1 &1934829316
 GameObject:
   m_ObjectHideFlags: 0

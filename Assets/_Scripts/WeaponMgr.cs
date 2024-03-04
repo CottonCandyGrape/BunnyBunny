@@ -23,8 +23,7 @@ public class WeaponMgr : MonoBehaviour
         {
             if (gunCtrlSc != null)
                 return gunCtrlSc;
-            else
-                return null;
+            else return null;
         }
     }
     //TODO : bladeCtrl.cs 추가하기
@@ -38,16 +37,20 @@ public class WeaponMgr : MonoBehaviour
     const int GuardInitCount = 3;
     //수호자 관련
 
-    /*
     [Header("------ Rockets ------")]
     //로켓관련
-    public Transform Rockets = null;
-    public GameObject RocketPrefab = null;
-    List<RocketCtrl> rocketPool = new List<RocketCtrl>();
-    const int RocketInitCount = 5;
-    const float RocketOffset = 0.35f;
+    public GameObject Rockets = null;
+    RocketCtrl rocketCtrlSc = null;
+    public RocketCtrl RocketCtrlSc
+    {
+        get
+        {
+            if (rocketCtrlSc != null)
+                return rocketCtrlSc;
+            else return null;
+        }
+    }
     //로켓관련
-    */
 
     void Awake()
     {
@@ -98,8 +101,17 @@ public class WeaponMgr : MonoBehaviour
     }
     //수호자 관련
 
-    /*
     //로켓 관련
+    public void SetRockets()
+    {
+        if (!Rockets.activeSelf)
+        {
+            Rockets.SetActive(true);
+            rocketCtrlSc = Rockets.GetComponent<RocketCtrl>();
+        }
+    }
+
+    /*
     public void InitRockets()
     {
         for (int i = 0; i < RocketInitCount; i++)
@@ -131,8 +143,9 @@ public class WeaponMgr : MonoBehaviour
         // 발사주기를 생각했을때 꺼진게 없으면 안되는데(5개 까지도 필요없음)
         // 일단 꺼진게 없으면 발사 안함. TODO : 어케 해야할지 생각하기 
     }
-    //로켓 관련
     */
+
+    //로켓 관련
 
     //public void Drills() { }
 }

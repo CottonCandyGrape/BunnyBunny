@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7617485193631220063}
   - component: {fileID: 5600299874533862225}
-  - component: {fileID: 3303670476574553878}
+  - component: {fileID: 7205166312697958443}
   - component: {fileID: 6822875956055534555}
   m_Layer: 0
   m_Name: RocketPrefab
@@ -86,7 +86,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3303670476574553878
+--- !u!114 &7205166312697958443
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,9 +95,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1846367747582555154}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b4d820d9dc427647bbdb3f2dbfa198a, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a82f5dce35919b4591a07479d5fbbdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BltType: 1
 --- !u!70 &6822875956055534555
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
