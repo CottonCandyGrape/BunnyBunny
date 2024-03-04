@@ -47,12 +47,8 @@ public class WeaponMgr : MonoBehaviour
     const float RocketOffset = 0.35f;
     //로켓관련
 
-    public static WeaponMgr Inst = null;
-
     void Awake()
     {
-        Inst = this;
-
         SetMainWeapon(MainType);
     }
 

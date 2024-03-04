@@ -47,13 +47,17 @@ public class PlayerCtrl : MonoBehaviour
     float rktTime = 2.0f;
     //Timer 관련
 
+    WeaponMgr weaponMgr = null;
+
     void Start()
     {
         playerSpRenderer = GameObject.Find("Player_Img").GetComponent<SpriteRenderer>();
         curHp = maxHp;
 
-        //WeaponMgr.Inst.SetGuardians(); //가디언 test 용
-        WeaponMgr.Inst.InitRockets(); //로켓 test 용
+        weaponMgr = GameObject.Find("WeaponMgr").GetComponent<WeaponMgr>();
+
+        //weaponMgr.SetGuardians(); //가디언 test 용
+        weaponMgr.InitRockets(); //로켓 test 용
     }
 
     void Update()
@@ -137,12 +141,12 @@ public class PlayerCtrl : MonoBehaviour
             mAtkTimer = mAtkTime;
             if (fireCnt < curFire)
             {
-                WeaponMgr.Inst.GunCtrlSc.FanFire(arrowDir);
+                weaponMgr.GunCtrlSc.FanFire(arrowDir);
                 curFire = 0;
             }
             else
             {
-                WeaponMgr.Inst.GunCtrlSc.FireBullet(arrowDir);
+                weaponMgr.GunCtrlSc.FireBullet(arrowDir);
                 curFire++;
             }
         }
@@ -153,8 +157,8 @@ public class PlayerCtrl : MonoBehaviour
         if(rktTimer <= 0.0f)
         {
             rktTimer = rktTime;
-            Vector3 tmp = new Vector3(0, 0, 0); //TODO : 어느 방향으로 할까?.. 가장 가까운?..
-            WeaponMgr.Inst.FireRocket(transform.position, Vector3.up); //dir normalized 해서 넘기기
+            Vector3 dir = Vector3.up; //TODO : 어느 방향으로 할까?.. 가장 가까운?..
+            weaponMgr.FireRocket(transform.position, dir.normalized); //dir normalized 해서 넘기기
         }
         //로켓 타이머
     }
