@@ -13,11 +13,11 @@ public class BulletCtrl : MonoBehaviour
 {
     public BulletType BltType = BulletType.Bullet;
 
-    protected float moveSpeed = 10.0f;
-    protected float lifeTime = 0.0f;
+    float moveSpeed = 0.0f;
+    float lifeTime = 0.0f;
     float outLine = 3.0f;
 
-    protected Vector3 moveDir = Vector3.one;
+    Vector3 moveDir = Vector3.one;
     public Vector3 MoveDir
     {
         set { moveDir = value; }
@@ -25,28 +25,38 @@ public class BulletCtrl : MonoBehaviour
 
     void OnEnable()
     {
-        lifeTime = 5.0f;
+        if(BltType == BulletType.Bullet)
+        {
+            moveSpeed = 10.0f;
+            lifeTime = 5.0f;
+        }
+        else if(BltType == BulletType.Rocket)
+        {
+            moveSpeed = 5.0f;
+            lifeTime = 8.0f;
+        }
+        else if(BltType == BulletType.Drill)
+        { }
     }
 
     void Start() { }
 
-    protected virtual void Update()
+    void Update()
     {
         transform.position += moveDir * moveSpeed * Time.deltaTime;
 
         CheckOutLine();
-
         CalcLifeTime();
     }
 
-    protected void CalcLifeTime() //lifeTime 계산
+    void CalcLifeTime() //lifeTime 계산
     {
         lifeTime -= Time.deltaTime;
         if (lifeTime <= 0.0f)
             gameObject.SetActive(false);
     }
 
-    protected void CheckOutLine() //밖으로 나갔는지 체크
+    void CheckOutLine() //밖으로 나갔는지 체크
     {
         if (ScreenMgr.CurScMax.x + outLine < transform.position.x ||
             transform.position.x < ScreenMgr.CurScMin.x - outLine ||
