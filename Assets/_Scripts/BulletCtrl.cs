@@ -2,8 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum BulletType
+{
+    Bullet,
+    Rocket,
+    Drill,
+}
+
 public class BulletCtrl : MonoBehaviour
 {
+    public BulletType BltType = BulletType.Bullet;
+
     protected float moveSpeed = 10.0f;
     protected float lifeTime = 0.0f;
     float outLine = 3.0f;
