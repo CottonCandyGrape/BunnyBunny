@@ -57,7 +57,7 @@ public class PlayerCtrl : MonoBehaviour
         weaponMgr = GameObject.Find("WeaponMgr").GetComponent<WeaponMgr>();
 
         //weaponMgr.SetGuardians(); //가디언 test 용
-        weaponMgr.InitRockets(); //로켓 test 용
+        //weaponMgr.InitRockets(); //로켓 test 용
     }
 
     void Update()
@@ -158,7 +158,7 @@ public class PlayerCtrl : MonoBehaviour
         {
             rktTimer = rktTime;
             Vector3 dir = Vector3.up; //TODO : 어느 방향으로 할까?.. 가장 가까운?..
-            weaponMgr.FireRocket(transform.position, dir.normalized); //dir normalized 해서 넘기기
+            //weaponMgr.FireRocket(transform.position, dir.normalized); //dir normalized 해서 넘기기
         }
         //로켓 타이머
     }

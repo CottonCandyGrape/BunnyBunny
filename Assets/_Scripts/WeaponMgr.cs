@@ -38,6 +38,7 @@ public class WeaponMgr : MonoBehaviour
     const int GuardInitCount = 3;
     //수호자 관련
 
+    /*
     [Header("------ Rockets ------")]
     //로켓관련
     public Transform Rockets = null;
@@ -46,6 +47,7 @@ public class WeaponMgr : MonoBehaviour
     const int RocketInitCount = 5;
     const float RocketOffset = 0.35f;
     //로켓관련
+    */
 
     void Awake()
     {
@@ -96,6 +98,7 @@ public class WeaponMgr : MonoBehaviour
     }
     //수호자 관련
 
+    /*
     //로켓 관련
     public void InitRockets()
     {
@@ -129,6 +132,7 @@ public class WeaponMgr : MonoBehaviour
         // 일단 꺼진게 없으면 발사 안함. TODO : 어케 해야할지 생각하기 
     }
     //로켓 관련
+    */
 
     //public void Drills() { }
 }
