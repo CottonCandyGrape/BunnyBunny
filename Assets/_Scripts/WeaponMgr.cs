@@ -52,8 +52,12 @@ public class WeaponMgr : MonoBehaviour
     }
     //로켓관련
 
+    public static WeaponMgr Inst = null;
+
     void Awake()
     {
+        Inst = this;
+
         SetMainWeapon(MainType);
     }
 

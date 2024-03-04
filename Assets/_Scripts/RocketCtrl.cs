@@ -25,26 +25,23 @@ public class RocketCtrl : MonoBehaviour
         InitRockets();
     }
 
-    void Update() { }
+    //void Update() { }
 
-    void OnTriggerEnter2D(Collider2D coll)
+    public void ExploseRocket(GameObject rocketObj)
     {
-        if (coll.tag.Contains("Monster"))
+        //TODO : 폭발 이펙트 추가 (시각, 소리) 
+        Collider2D[] colls = Physics2D.OverlapCircleAll(transform.position, bombRadius);
+        for (int i = 0; i < colls.Length; i++)
         {
-            //TODO : 폭발 이펙트 추가 (시각, 소리) 
-            Collider2D[] colls = Physics2D.OverlapCircleAll(transform.position, bombRadius);
-            for (int i = 0; i < colls.Length; i++)
+            if (colls[i].tag.Contains("Monster"))
             {
-                if (colls[i].tag.Contains("Monster"))
-                {
-                    MonsterCtrl monCtrl = colls[i].GetComponent<MonsterCtrl>();
-                    monCtrl.TakeDamage(40); //TODO : 로켓 데미지 정하기
-                }
-                else continue;
+                MonsterCtrl monCtrl = colls[i].GetComponent<MonsterCtrl>();
+                monCtrl.TakeDamage(40); //TODO : 로켓 데미지 정하기
             }
-
-            gameObject.SetActive(false);
+            else continue;
         }
+
+        rocketObj.SetActive(false);
     }
 
     void InitRockets()
@@ -66,11 +63,11 @@ public class RocketCtrl : MonoBehaviour
             {
                 rkt.SetActive(true);
 
-                BulletCtrl rktCtrl = rkt.GetComponent<BulletCtrl>();
-                rktCtrl.MoveDir = dir;
+                BulletCtrl rocket = rkt.GetComponent<BulletCtrl>();
+                rocket.MoveDir = dir;
                 float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-                rktCtrl.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-                rktCtrl.transform.position = pos + dir * RocketOffset;
+                rocket.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+                rocket.transform.position = pos + dir * RocketOffset;
                 return;
             }
             else continue;

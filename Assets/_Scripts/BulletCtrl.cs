@@ -4,14 +4,14 @@ using UnityEngine;
 
 public enum BulletType
 {
-    Bullet,
+    Gun,
     Rocket,
     Drill,
 }
 
 public class BulletCtrl : MonoBehaviour
 {
-    public BulletType BltType = BulletType.Bullet;
+    public BulletType BltType = BulletType.Gun;
 
     float moveSpeed = 0.0f;
     float lifeTime = 0.0f;
@@ -25,7 +25,7 @@ public class BulletCtrl : MonoBehaviour
 
     void OnEnable()
     {
-        if(BltType == BulletType.Bullet)
+        if(BltType == BulletType.Gun)
         {
             moveSpeed = 10.0f;
             lifeTime = 5.0f;
@@ -47,6 +47,17 @@ public class BulletCtrl : MonoBehaviour
 
         CheckOutLine();
         CalcLifeTime();
+    }
+
+    void OnTriggerEnter2D(Collider2D coll)
+    {
+        if (BltType == BulletType.Rocket)
+        {
+            if (coll.tag.Contains("Monster"))
+            {
+                WeaponMgr.Inst.RocketCtrlSc.ExploseRocket(gameObject);
+            }
+        }
     }
 
     void CalcLifeTime() //lifeTime 계산
