@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class GuardCtrl : MonoBehaviour
 {
-    [HideInInspector] public static int level = 0;
-    [HideInInspector] public static bool evolve = false;
-
     float degree = 0.0f;
     public float Degree
     {

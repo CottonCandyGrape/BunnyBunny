@@ -56,8 +56,8 @@ public class PlayerCtrl : MonoBehaviour
 
         wpMgr = GameObject.Find("WeaponMgr").GetComponent<WeaponMgr>();
 
-        //wpMgr.InitGuardians(); //가디언 test 용
-        wpMgr.SetRockets(); //로켓 test 용
+        //wpMgr.SetGuardians(); //가디언 test 용
+        //wpMgr.SetRockets(); //로켓 test 용
     }
 
     void Update()
@@ -68,7 +68,7 @@ public class PlayerCtrl : MonoBehaviour
 
         //if (Input.GetKeyDown(KeyCode.Space))
         //    wpMgr.SetRockets(); //로켓 test 용
-        //    wpMgr.LevelUpGuardiands(); //가디언 test 용
+        //    wpMgr.GuardiansCtrlSc.LevelUpGuardiands(); //가디언 test 용
     }
 
     //MapRePosition하는 큰 Box Collider 때문에 웬만하면 여기서 이 함수 구현 안함

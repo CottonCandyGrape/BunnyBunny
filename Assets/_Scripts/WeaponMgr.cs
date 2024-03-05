@@ -10,8 +10,8 @@ public enum MWType //Main Weapon Type
 
 public class WeaponMgr : MonoBehaviour
 {
-    [Header("------ Main Weapon ------")]
     //메인 무기
+    [Header("------ Main Weapon ------")]
     public GameObject[] MWPrefabs = null;
     public Transform MainWeapon = null; 
     public MWType MainType = MWType.Gun; //TODO : public 이어야 할지 잘 모르겠네
@@ -20,8 +20,8 @@ public class WeaponMgr : MonoBehaviour
     public GunCtrl GunCtrlSc
     {
         get
-        {
-            if (gunCtrlSc != null)
+        {//TODO : 사용할때 null check 하면 이렇게 구현 안해도 되는데... 흠..
+            if (gunCtrlSc != null) 
                 return gunCtrlSc;
             else return null;
         }
@@ -29,16 +29,23 @@ public class WeaponMgr : MonoBehaviour
     //TODO : bladeCtrl.cs 추가하기
     //메인 무기
 
-    [Header("------ Guardians ------")]
     //수호자 관련
-    public Transform Guardians = null;
-    public GameObject GuardPrefab = null;
-    const int MaxGuardCount = 6;
-    const int GuardInitCount = 3;
+    [Header("------ Guardians ------")]
+    public GameObject Guardians = null;
+    GuardiansCtrl guardiansCtrlSc = null;
+    public GuardiansCtrl GuardiansCtrlSc
+    {
+        get
+        {
+            if (guardiansCtrlSc != null)
+                return guardiansCtrlSc;
+            else return null;
+        }
+    }
     //수호자 관련
 
+    //로켓 관련
     [Header("------ Rockets ------")]
-    //로켓관련
     public GameObject Rockets = null;
     RocketCtrl rocketCtrlSc = null;
     public RocketCtrl RocketCtrlSc
@@ -50,7 +57,7 @@ public class WeaponMgr : MonoBehaviour
             else return null;
         }
     }
-    //로켓관련
+    //로켓 관련
 
     public static WeaponMgr Inst = null;
 
@@ -82,26 +89,13 @@ public class WeaponMgr : MonoBehaviour
     }
 
     //수호자 관련
-    public void InitGuardians() //3개로 시작
+    public void SetGuardians()
     {
-        Guardians.gameObject.SetActive(true);
-
-        for (int i = 0; i < GuardInitCount; i++)
+        if (!Guardians.activeSelf)
         {
-            GameObject guardObj = Instantiate(GuardPrefab, Guardians);
-            GuardCtrl guard = guardObj.GetComponent<GuardCtrl>();
-            guard.Degree = (360 / GuardInitCount) * i;
+            Guardians.SetActive(true);
+            guardiansCtrlSc = Guardians.GetComponent<GuardiansCtrl>();
         }
-    }
-
-    public void LevelUpGuardiands() //수호자 개수 늘리기
-    {
-        if (Guardians.childCount >= MaxGuardCount) return;
-
-        GameObject guardObj = Instantiate(GuardPrefab, Guardians);
-        GuardCtrl[] guards = Guardians.GetComponentsInChildren<GuardCtrl>();
-        for (int i = 0; i < guards.Length; i++)
-            guards[i].Degree = (360 / guards.Length) * i;
     }
     //수호자 관련
 
@@ -114,42 +108,12 @@ public class WeaponMgr : MonoBehaviour
             rocketCtrlSc = Rockets.GetComponent<RocketCtrl>();
         }
     }
-
-    /*
-    public void InitRockets()
-    {
-        for (int i = 0; i < RocketInitCount; i++)
-        {
-            GameObject rocket = Instantiate(RocketPrefab, Rockets);
-            rocket.SetActive(false);
-            rocketPool.Add(rocket.GetComponent<RocketCtrl>());
-        }
-    }
-
-    public void FireRocket(Vector3 pos, Vector3 dir)
-    {
-        for (int i = 0; i < Rockets.childCount; i++)
-        {
-            GameObject rkt = Rockets.GetChild(i).gameObject;
-            if (!rkt.activeSelf)
-            {
-                rkt.SetActive(true);
-
-                RocketCtrl rktCtrl = rkt.GetComponent<RocketCtrl>();
-                rktCtrl.MoveDir = dir; //dir normalized 돼서 넘어옴
-                float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-                rktCtrl.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-                rktCtrl.transform.position = pos + dir * RocketOffset;
-                return;
-            }
-            else continue;
-        }
-        // 발사주기를 생각했을때 꺼진게 없으면 안되는데(5개 까지도 필요없음)
-        // 일단 꺼진게 없으면 발사 안함. TODO : 어케 해야할지 생각하기 
-    }
-    */
-
     //로켓 관련
 
-    //public void Drills() { }
+    //드릴 관련
+    public void SetDrills()
+    {
+
+    }
+    //드릴 관련
 }

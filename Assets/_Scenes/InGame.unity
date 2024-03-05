@@ -4860,6 +4860,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 678642573}
+  - component: {fileID: 678642574}
   m_Layer: 0
   m_Name: Guardians
   m_TagString: Untagged
@@ -4882,6 +4883,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1043123218}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &678642574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 678642572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1cc95c09b6852b468069f20a6508824, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GuardPrefab: {fileID: 1460741818276647314, guid: 0f6ed09fb8820e94e99a7a9835a77b8b, type: 3}
+  Guardians: {fileID: 678642573}
 --- !u!1 &692346001
 GameObject:
   m_ObjectHideFlags: 0
@@ -5258,8 +5273,7 @@ MonoBehaviour:
   - {fileID: 6699362348618382821, guid: 84b0cfd6d6a77e841b765d42c6996af9, type: 3}
   MainWeapon: {fileID: 743305141}
   MainType: 0
-  Guardians: {fileID: 678642573}
-  GuardPrefab: {fileID: 1460741818276647314, guid: 0f6ed09fb8820e94e99a7a9835a77b8b, type: 3}
+  Guardians: {fileID: 678642572}
   Rockets: {fileID: 1910032754}
 --- !u!1 &914463612
 GameObject:

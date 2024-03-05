@@ -8,13 +8,13 @@ TagManager:
   - Area
   - P_Bullet
   - Bomb
-  - Guardians
   - Meat
   - Gold
   - NormalMonster
   - EliteMonster
   - BossMonster
   - Rocket
+  - Guard
   layers:
   - Default
   - TransparentFX

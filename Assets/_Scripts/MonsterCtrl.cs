@@ -76,7 +76,7 @@ public class MonsterCtrl : MonoBehaviour
 
             GameMgr.Inst.player.TakeDamage(dmg);
         }
-        else if (coll.CompareTag("Guardians"))
+        else if (coll.CompareTag("Guard"))
         {
             isKnockBack = true;
             kbTarget = transform.position + moveDir * kbDist;
