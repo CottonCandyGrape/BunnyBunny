@@ -7782,6 +7782,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b4d820d9dc427647bbdb3f2dbfa198a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MonsterPool: {fileID: 1335071687}
   RocketPool: {fileID: 562004942}
   RocketPrefab: {fileID: 1846367747582555154, guid: 5d49b4507d7159e4a8b621e13efb2335, type: 3}
 --- !u!1 &1934829316

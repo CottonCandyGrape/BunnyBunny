@@ -57,6 +57,7 @@ public class PlayerCtrl : MonoBehaviour
         wpMgr = GameObject.Find("WeaponMgr").GetComponent<WeaponMgr>();
 
         //wpMgr.InitGuardians(); //가디언 test 용
+        wpMgr.SetRockets(); //로켓 test 용
     }
 
     void Update()
@@ -153,13 +154,12 @@ public class PlayerCtrl : MonoBehaviour
         //메인 무기 타이머
 
         //로켓 타이머
-        rktTimer -= Time.deltaTime; 
-        if(rktTimer <= 0.0f)
+        rktTimer -= Time.deltaTime;
+        if (rktTimer <= 0.0f)
         {
             rktTimer = rktTime;
-            Vector3 dir = Vector3.up; //TODO : 어느 방향으로 할까?.. 가장 가까운?..
             if (wpMgr.RocketCtrlSc != null)
-                wpMgr.RocketCtrlSc.FireRocket(transform.position, arrowDir.normalized); //dir normalized 해서 넘기기
+                wpMgr.RocketCtrlSc.FireRocket();
         }
         //로켓 타이머
     }
