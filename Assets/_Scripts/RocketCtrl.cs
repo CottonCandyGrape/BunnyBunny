@@ -8,10 +8,9 @@ public class RocketCtrl : MonoBehaviour
     [HideInInspector] public static bool evolve = false;
 
     public Transform MonsterPool = null;
-
     public Transform RocketPool = null;
     public GameObject RocketPrefab = null;
-    List<RocketCtrl> rocketList = new List<RocketCtrl>();
+    List<BulletCtrl> rocketList = new List<BulletCtrl>();
 
     const int RocketInitCount = 5;
     const float RocketOffset = 0.35f;
@@ -30,7 +29,7 @@ public class RocketCtrl : MonoBehaviour
         {
             GameObject rocket = Instantiate(RocketPrefab, RocketPool);
             rocket.SetActive(false);
-            rocketList.Add(rocket.GetComponent<RocketCtrl>());
+            rocketList.Add(rocket.GetComponent<BulletCtrl>());
         }
     }
 
@@ -93,7 +92,8 @@ public class RocketCtrl : MonoBehaviour
             if (colls[i].tag.Contains("Monster"))
             {
                 MonsterCtrl monCtrl = colls[i].GetComponent<MonsterCtrl>();
-                monCtrl.TakeDamage(40); //TODO : 로켓 데미지 정하기
+                if (monCtrl != null)
+                    monCtrl.TakeDamage(40); //TODO : 로켓 데미지 정하기
             }
             else continue;
         }

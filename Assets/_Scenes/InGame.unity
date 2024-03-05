@@ -5275,6 +5275,7 @@ MonoBehaviour:
   MainType: 0
   Guardians: {fileID: 678642572}
   Rockets: {fileID: 1910032754}
+  Drills: {fileID: 1574635737}
 --- !u!1 &914463612
 GameObject:
   m_ObjectHideFlags: 0
