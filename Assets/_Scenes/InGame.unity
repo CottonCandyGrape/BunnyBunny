@@ -6010,6 +6010,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a933bb2771ab74f4a8bb04f058d4829c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DrillPool: {fileID: 181716575}
+  DrillPrefab: {fileID: 1109511720056543635, guid: b39f31346e09d404491c0015907c8f66, type: 3}
 --- !u!1 &1595864535
 GameObject:
   m_ObjectHideFlags: 0

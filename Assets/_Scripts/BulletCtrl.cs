@@ -16,6 +16,7 @@ public class BulletCtrl : MonoBehaviour
     float moveSpeed = 0.0f;
     float lifeTime = 0.0f;
     float outLine = 3.0f;
+    float drlOffset = 0.5f;
 
     Vector3 moveDir = Vector3.one;
     public Vector3 MoveDir
@@ -36,7 +37,10 @@ public class BulletCtrl : MonoBehaviour
             lifeTime = 8.0f;
         }
         else if(BltType == BulletType.Drill)
-        { }
+        { 
+            moveSpeed = 8.0f;
+            lifeTime = 100.0f;
+        }
     }
 
     void Start() { }
@@ -45,9 +49,24 @@ public class BulletCtrl : MonoBehaviour
     {
         transform.position += moveDir * moveSpeed * Time.deltaTime;
 
-        CheckOutLine();
+        if (BltType == BulletType.Drill)
+            WallBounding();
+        else
+            CheckOutLine();
+
+        //if (BltType != BulletType.Drill)
+        //    CheckOutLine();
+
         CalcLifeTime();
     }
+
+    //void LateUpdate()
+    //{
+    //    if (BltType == BulletType.Drill)
+    //        WallBounding();
+
+    //    transform.position += moveDir * moveSpeed * Time.deltaTime;
+    //}
 
     void OnTriggerEnter2D(Collider2D coll)
     {
@@ -76,5 +95,28 @@ public class BulletCtrl : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
+    }
+
+    void WallBounding() //Drill일 경우 튕기기.
+    {
+        if (transform.position.x - drlOffset < ScreenMgr.CurScMin.x ||
+            ScreenMgr.CurScMax.x < transform.position.x + drlOffset) 
+        {
+            moveDir.x *= -1;
+            Debug.Log("x팅김 : " + moveDir);
+        }
+
+        if (transform.position.y - drlOffset < ScreenMgr.CurScMin.y ||
+            ScreenMgr.CurScMax.y < transform.position.y + drlOffset)
+        {
+            moveDir.y *= -1;
+            Debug.Log("y팅김 : " + moveDir);
+        }
+        moveDir.Normalize();
+
+        Debug.Log("normalized moveDir : " + moveDir);
+
+        float angle = Mathf.Atan2(moveDir.y, moveDir.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 }

@@ -59,6 +59,21 @@ public class WeaponMgr : MonoBehaviour
     }
     //로켓 관련
 
+    //드릴 관련
+    [Header("------ Drills ------")]
+    public GameObject Drills = null;
+    DrillCtrl drillCtrlSc = null;
+    public DrillCtrl DrillCtrlSc
+    {
+        get
+        {
+            if (drillCtrlSc != null)
+                return drillCtrlSc;
+            else return null;
+        }
+    }
+    //드릴 관련
+
     public static WeaponMgr Inst = null;
 
     void Awake()
@@ -113,7 +128,11 @@ public class WeaponMgr : MonoBehaviour
     //드릴 관련
     public void SetDrills()
     {
-
+        if(!Drills.activeSelf)
+        {
+            Drills.SetActive(true);
+            drillCtrlSc = Drills.GetComponent<DrillCtrl>();
+        }
     }
     //드릴 관련
 }
