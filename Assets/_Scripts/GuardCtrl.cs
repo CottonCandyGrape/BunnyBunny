@@ -24,8 +24,6 @@ public class GuardCtrl : MonoBehaviour
         RotateGuardians();
     }
 
-    void OnTriggerEnter2D(Collider2D coll) { }
-
     void RotateGuardians()
     {
         degree += rotSpeed * Time.deltaTime;
