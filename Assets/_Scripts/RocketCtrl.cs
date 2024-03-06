@@ -92,8 +92,7 @@ public class RocketCtrl : MonoBehaviour
             if (colls[i].tag.Contains("Monster"))
             {
                 MonsterCtrl monCtrl = colls[i].GetComponent<MonsterCtrl>();
-                if (monCtrl != null)
-                    monCtrl.TakeDamage(40); //TODO : 로켓 데미지 정하기
+                monCtrl.TakeDamage(40); //TODO : 로켓 데미지 정하기
             }
             else continue;
         }
