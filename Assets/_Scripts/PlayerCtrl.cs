@@ -45,6 +45,8 @@ public class PlayerCtrl : MonoBehaviour
     float mAtkTime = 0.2f;
     float rktTimer = 0.0f;
     float rktTime = 2.0f;
+    float drlTimer = 0.0f;
+    float drlTime = 5.0f; //TODO : 드릴개수에 따라 계산하여 정하기
     //Timer 관련
 
     WeaponMgr wpMgr = null;
@@ -58,6 +60,7 @@ public class PlayerCtrl : MonoBehaviour
 
         //wpMgr.SetGuardians(); //가디언 test 용
         //wpMgr.SetRockets(); //로켓 test 용
+        wpMgr.SetDrills(); //드릴 test 용
     }
 
     void Update()
@@ -66,9 +69,10 @@ public class PlayerCtrl : MonoBehaviour
         DirectionArrow();
         CalcWeaponsTimer();
 
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //    wpMgr.SetRockets(); //로켓 test 용
-        //    wpMgr.GuardiansCtrlSc.LevelUpGuardiands(); //가디언 test 용
+        if (Input.GetKeyDown(KeyCode.Space))
+            //    wpMgr.SetRockets(); //로켓 test 용
+            //    wpMgr.GuardiansCtrlSc.LevelUpGuardiands(); //가디언 test 용
+            wpMgr.DrillCtrlSc.LevelUpDrills(); //드릴 test 용
     }
 
     //MapRePosition하는 큰 Box Collider 때문에 웬만하면 여기서 이 함수 구현 안함
@@ -162,6 +166,16 @@ public class PlayerCtrl : MonoBehaviour
                 wpMgr.RocketCtrlSc.FireRocket();
         }
         //로켓 타이머
+
+        //드릴 타이머
+        drlTimer -= Time.deltaTime;
+        if (drlTimer <= 0.0f)
+        {
+            drlTimer = drlTime;
+            if(wpMgr.DrillCtrlSc!= null)
+                wpMgr.DrillCtrlSc.FireDrills();
+        }
+        //드릴 타이머
     }
 
     void PlayerDie()
