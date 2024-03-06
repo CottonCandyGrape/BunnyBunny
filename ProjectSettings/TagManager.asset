@@ -15,6 +15,7 @@ TagManager:
   - BossMonster
   - Rocket
   - Guard
+  - Drill
   layers:
   - Default
   - TransparentFX

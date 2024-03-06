@@ -80,6 +80,11 @@ public class MonsterCtrl : MonoBehaviour
         {
             isKnockBack = true;
             kbTarget = transform.position + moveDir * kbDist;
+            TakeDamage(10);
+        }
+        else if (coll.CompareTag("Drill"))
+        {
+            TakeDamage(dftDmg);
         }
     }
     
