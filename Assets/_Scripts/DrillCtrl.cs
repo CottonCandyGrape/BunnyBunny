@@ -22,10 +22,7 @@ public class DrillCtrl : MonoBehaviour
         FireDrill();
     }
 
-    void Update()
-    {
-        
-    }
+    //void Update() { }
 
     void InitDrills()
     {
@@ -48,7 +45,7 @@ public class DrillCtrl : MonoBehaviour
             randDir.y = Random.Range(-1.0f, 1.0f);
             randDir.Normalize();
             rocketBlt.MoveDir = randDir;
-            Debug.Log("Drill Dir : " + randDir);
+
             float angle = Mathf.Atan2(randDir.y, randDir.x) * Mathf.Rad2Deg;
             rocketBlt.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
             rocketBlt.transform.position = pos + randDir * DrillOffset;

@@ -16,7 +16,7 @@ public class BulletCtrl : MonoBehaviour
     float moveSpeed = 0.0f;
     float lifeTime = 0.0f;
     float outLine = 3.0f;
-    float drlOffset = 0.5f;
+    float drlOffset = 0.3f;
 
     Vector3 moveDir = Vector3.one;
     public Vector3 MoveDir
@@ -54,19 +54,8 @@ public class BulletCtrl : MonoBehaviour
         else
             CheckOutLine();
 
-        //if (BltType != BulletType.Drill)
-        //    CheckOutLine();
-
         CalcLifeTime();
     }
-
-    //void LateUpdate()
-    //{
-    //    if (BltType == BulletType.Drill)
-    //        WallBounding();
-
-    //    transform.position += moveDir * moveSpeed * Time.deltaTime;
-    //}
 
     void OnTriggerEnter2D(Collider2D coll)
     {
@@ -99,24 +88,35 @@ public class BulletCtrl : MonoBehaviour
 
     void WallBounding() //Drill일 경우 튕기기.
     {
-        if (transform.position.x - drlOffset < ScreenMgr.CurScMin.x ||
-            ScreenMgr.CurScMax.x < transform.position.x + drlOffset) 
-        {
-            moveDir.x *= -1;
-            Debug.Log("x팅김 : " + moveDir);
-        }
+        if (transform.position.x - drlOffset < ScreenMgr.CurScMin.x)
+            moveDir.x = Mathf.Abs(moveDir.x); //-> 양
+        else if (ScreenMgr.CurScMax.x < transform.position.x + drlOffset)
+            moveDir.x = -Mathf.Abs(moveDir.x); //-> 음
 
-        if (transform.position.y - drlOffset < ScreenMgr.CurScMin.y ||
-            ScreenMgr.CurScMax.y < transform.position.y + drlOffset)
-        {
-            moveDir.y *= -1;
-            Debug.Log("y팅김 : " + moveDir);
-        }
+        if (transform.position.y - drlOffset < ScreenMgr.CurScMin.y)
+            moveDir.y = Mathf.Abs(moveDir.y);
+        else if (ScreenMgr.CurScMax.y < transform.position.y + drlOffset)
+            moveDir.y = -Mathf.Abs(moveDir.y);
+
         moveDir.Normalize();
-
-        Debug.Log("normalized moveDir : " + moveDir);
 
         float angle = Mathf.Atan2(moveDir.y, moveDir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
+    /*
+    void WallBounding() //Drill일 경우 튕기기.
+    {
+    //이 코드는 방향을 바꾼후에도 조건에 들어오는 경우가 있어서 
+    //화면 밖에 머물러서 계속 방향을 바꾸는 버그가 있었다(jittering?)
+    //이렇게 짜지 말자
+        if (transform.position.x - drlOffset < ScreenMgr.CurScMin.x ||
+            ScreenMgr.CurScMax.x < transform.position.x + drlOffset) 
+            moveDir.x *= -1;
+
+        if (transform.position.y - drlOffset < ScreenMgr.CurScMin.y ||
+            ScreenMgr.CurScMax.y < transform.position.y + drlOffset)
+            moveDir.y *= -1;
+        moveDir.Normalize();
+    }
+    */
 }
