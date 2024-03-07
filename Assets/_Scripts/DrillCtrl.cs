@@ -71,20 +71,14 @@ public class DrillCtrl : Weapon
         DrillCo = StartCoroutine(LoadDrills());
     }
 
-    public void LevelUpDrills()
+    public override void LevelUpWeapon()
     {
-        if (MaxDrillCount <= DrillPool.childCount)
-            return;
+        if (MaxLevel <= CurLevel) return;
 
         GameObject drill = Instantiate(DrillPrefab, DrillPool);
         drill.SetActive(false);
 
-        //TODO : level++ 해야함
-    }
-
-    public override void LevelUpWeapon()
-    {
-
+        CurLevel++;
     }
 
     public override void EvolveWeapon()
