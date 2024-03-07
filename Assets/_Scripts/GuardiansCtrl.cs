@@ -2,12 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GuardiansCtrl : MonoBehaviour
+public class GuardiansCtrl : Weapon
 {
-    const int MaxLevel = 3;
-    [HideInInspector] public static int level = 0; // 굳이 public, static 이어야 하는지?
-    [HideInInspector] public static bool evolve = false;
-
     const int GuardInitCount = 3;
     const int MaxGuardCount = 6;
 

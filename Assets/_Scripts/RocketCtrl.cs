@@ -2,11 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RocketCtrl : MonoBehaviour
+public class RocketCtrl : Weapon
 {
-    [HideInInspector] public static int level = 0;
-    [HideInInspector] public static bool evolve = false;
-
     public Transform MonsterPool = null;
     public Transform RocketPool = null;
     public GameObject RocketPrefab = null;

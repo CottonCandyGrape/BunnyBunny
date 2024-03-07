@@ -2,11 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GunCtrl : MonoBehaviour
+public class GunCtrl : Weapon
 {
-    [HideInInspector] public static int level = 0;
-    [HideInInspector] public static bool evolve = false;
-
     const float BulletOffset = 0.3f;
 
     void Start() { }

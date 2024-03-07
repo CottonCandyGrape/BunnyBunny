@@ -2,11 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DrillCtrl : MonoBehaviour
+public class DrillCtrl : Weapon
 {
-    [HideInInspector] public static int level = 0;
-    [HideInInspector] public static bool evolve = false;
-
     const int MaxDrillCount = 5; //TODO : 바꿀 수도 있음
     const int DrillInitCount = 2;
     const float DrillOffset = 0.35f;
