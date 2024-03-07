@@ -7,10 +7,11 @@ public class RocketCtrl : Weapon
     public Transform MonsterPool = null;
     public Transform RocketPool = null;
     public GameObject RocketPrefab = null;
-    List<BulletCtrl> rocketList = new List<BulletCtrl>();
+    GameObject rocket = null;
 
-    const int RocketInitCount = 5;
     const float RocketOffset = 0.35f;
+    const float BombScaler = 1.1f;
+
     float bombRadius = 0.0f;
 
     void Start()
@@ -22,15 +23,15 @@ public class RocketCtrl : Weapon
 
     void InitRockets()
     {
-        for (int i = 0; i < RocketInitCount; i++)
+        if (rocket == null)
         {
-            GameObject rocket = Instantiate(RocketPrefab, RocketPool);
+            rocket = Instantiate(RocketPrefab, RocketPool);
             rocket.SetActive(false);
-            rocketList.Add(rocket.GetComponent<BulletCtrl>());
         }
     }
 
-    Vector3 GetCloseTarget() {
+    Vector3 GetCloseTarget()
+    {
         Vector3 target = Vector3.up;
 
         MonsterCtrl[] monsters = MonsterPool.GetComponentsInChildren<MonsterCtrl>();
@@ -60,24 +61,17 @@ public class RocketCtrl : Weapon
         Vector3 pos = GameMgr.Inst.player.transform.position;
         Vector3 dir = (target - pos).normalized;
 
-        for (int i = 0; i < RocketPool.childCount; i++)
+        if (!rocket.activeSelf)
         {
-            GameObject rkt = RocketPool.GetChild(i).gameObject;
-            if (!rkt.activeSelf)
-            {
-                rkt.SetActive(true);
+            rocket.SetActive(true);
 
-                BulletCtrl rocketBlt = rkt.GetComponent<BulletCtrl>();
-                rocketBlt.MoveDir = dir;
-                float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-                rocketBlt.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-                rocketBlt.transform.position = pos + dir * RocketOffset;
-                return;
-            }
-            else continue;
+            BulletCtrl rocketBlt = rocket.GetComponent<BulletCtrl>();
+            rocketBlt.MoveDir = dir;
+
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            rocketBlt.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            rocketBlt.transform.position = pos + dir * RocketOffset;
         }
-        // 발사주기를 생각했을때 꺼진게 없으면 안되는데(5개 까지도 필요없음)
-        // 일단 꺼진게 없으면 발사 안함. TODO : 어케 해야할지 생각하기 
     }
 
     public void ExploseRocket(GameObject rocketObj)
@@ -89,7 +83,7 @@ public class RocketCtrl : Weapon
             if (colls[i].tag.Contains("Monster"))
             {
                 MonsterCtrl monCtrl = colls[i].GetComponent<MonsterCtrl>();
-                monCtrl.TakeDamage(40); //TODO : 로켓 데미지 정하기
+                monCtrl.TakeDamage((CurLevel + 1) * 30);
             }
             else continue;
         }
@@ -99,10 +93,14 @@ public class RocketCtrl : Weapon
 
     public override void LevelUpWeapon()
     {
+        if (MaxLevel <= CurLevel) return;
 
+        CurLevel++;
+        bombRadius *= BombScaler;
     }
 
     public override void EvolveWeapon()
     {
+
     }
 }
