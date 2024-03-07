@@ -81,4 +81,13 @@ public class DrillCtrl : Weapon
 
         //TODO : level++ 해야함
     }
+
+    public override void LevelUpWeapon()
+    {
+
+    }
+
+    public override void EvolveWeapon()
+    {
+    }
 }

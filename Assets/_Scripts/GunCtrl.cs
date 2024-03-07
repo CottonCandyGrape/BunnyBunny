@@ -31,4 +31,13 @@ public class GunCtrl : Weapon
             FireBullet(dir);
         }
     }
+
+    public override void LevelUpWeapon()
+    {
+
+    }
+
+    public override void EvolveWeapon()
+    {
+    }
 }

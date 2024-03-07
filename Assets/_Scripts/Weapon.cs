@@ -2,19 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon : MonoBehaviour
+abstract public class Weapon : MonoBehaviour
 {
-    const int MaxLevel = 3;
-    [HideInInspector] public static int level = 0; // 굳이 public, static 이어야 하는지?
-    [HideInInspector] public static bool evolve = false;
+    protected const int MaxLevel = 3;
 
-    void Start()
-    {
-        
-    }
+    protected int CurLevel = 0;
+    protected bool IsEvolve = false;
 
-    void Update()
-    {
-        
-    }
+    //void Start() { }
+
+    //void Update() { }
+
+    abstract public void LevelUpWeapon();
+    abstract public void EvolveWeapon();
 }

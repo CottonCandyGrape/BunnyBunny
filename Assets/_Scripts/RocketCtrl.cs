@@ -96,4 +96,13 @@ public class RocketCtrl : Weapon
 
         rocketObj.SetActive(false);
     }
+
+    public override void LevelUpWeapon()
+    {
+
+    }
+
+    public override void EvolveWeapon()
+    {
+    }
 }
