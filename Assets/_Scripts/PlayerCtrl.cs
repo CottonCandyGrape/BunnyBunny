@@ -60,7 +60,7 @@ public class PlayerCtrl : MonoBehaviour
 
         //wpMgr.SetGuardians(); //가디언 test 용
         //wpMgr.SetRockets(); //로켓 test 용
-        wpMgr.SetDrills(); //드릴 test 용
+        //wpMgr.SetDrills(); //드릴 test 용
     }
 
     void Update()
@@ -70,9 +70,11 @@ public class PlayerCtrl : MonoBehaviour
         CalcWeaponsTimer();
 
         if (Input.GetKeyDown(KeyCode.Space))
-            //    wpMgr.SetRockets(); //로켓 test 용
-            //    wpMgr.GuardiansCtrlSc.LevelUpGuardiands(); //가디언 test 용
-            wpMgr.DrillCtrlSc.LevelUpDrills(); //드릴 test 용
+        {
+            //wpMgr.GuardiansCtrlSc.LevelUpWeapon(); //가디언 test 용
+            //wpMgr.RocketCtrlSc.LevelUpWeapon(); //로켓 test 용
+            //wpMgr.DrillCtrlSc.LevelUpWeapon(); //드릴 test 용
+        }
     }
 
     //MapRePosition하는 큰 Box Collider 때문에 웬만하면 여기서 이 함수 구현 안함
@@ -172,7 +174,7 @@ public class PlayerCtrl : MonoBehaviour
         if (drlTimer <= 0.0f)
         {
             drlTimer = drlTime;
-            if(wpMgr.DrillCtrlSc!= null)
+            if (wpMgr.DrillCtrlSc != null)
                 wpMgr.DrillCtrlSc.FireDrills();
         }
         //드릴 타이머

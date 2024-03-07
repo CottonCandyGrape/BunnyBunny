@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class GuardiansCtrl : Weapon
 {
-    const int GuardInitCount = 3;
-
     public GameObject GuardPrefab = null;
     public Transform Guardians = null;
+
+    const int GuardInitCount = 3;
 
     float lifeTimer = 0.0f;
     float lifeTime = 3.0f;

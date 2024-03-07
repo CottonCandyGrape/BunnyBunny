@@ -9,10 +9,6 @@ abstract public class Weapon : MonoBehaviour
     protected int CurLevel = 0;
     protected bool IsEvolve = false;
 
-    //void Start() { }
-
-    //void Update() { }
-
     abstract public void LevelUpWeapon();
     abstract public void EvolveWeapon();
 }

@@ -85,8 +85,7 @@ public class WeaponMgr : MonoBehaviour
 
     void Start() { }
 
-    //void Update() { }
-
+    //메인 무기 관련
     void SetMainWeapon(MWType mwType) //메인 무기 세팅 및 교체 함수
     {
         for (int i = 0; i < MainWeapon.childCount; i++) //교체를 위해 이전 오브젝트 삭제. 
@@ -102,6 +101,7 @@ public class WeaponMgr : MonoBehaviour
             //TODO : BladeCtrl.cs 만들고 추가해야함.
         }
     }
+    //메인 무기 관련
 
     //수호자 관련
     public void SetGuardians()

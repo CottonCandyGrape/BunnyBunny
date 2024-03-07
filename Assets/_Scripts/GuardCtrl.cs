@@ -14,6 +14,7 @@ public class GuardCtrl : MonoBehaviour
     float rotSpeed = 150.0f; //player 주변 회전 속도
     float spinSpeed = 100.0f; //Guard 회전 속도
     float radius = 1.0f;
+
     Vector2 center = Vector2.zero;
     Vector2 guardPos = Vector2.zero;
 

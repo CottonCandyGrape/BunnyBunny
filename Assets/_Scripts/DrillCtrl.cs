@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class DrillCtrl : Weapon
 {
-    const int MaxDrillCount = 5; //TODO : 바꿀 수도 있음
-    const int DrillInitCount = 2;
-    const float DrillOffset = 0.35f;
-
     public Transform DrillPool = null;
     public GameObject DrillPrefab = null;
 
     Vector3 randDir = Vector3.zero;
     WaitForSeconds fireTerm = new WaitForSeconds(0.2f);
     Coroutine DrillCo = null;
+
+    const int MaxDrillCount = 5; //TODO : 바꿀 수도 있음
+    const int DrillInitCount = 2;
+    const float DrillOffset = 0.35f;
 
     void Start()
     {
@@ -83,5 +83,6 @@ public class DrillCtrl : Weapon
 
     public override void EvolveWeapon()
     {
+
     }
 }
