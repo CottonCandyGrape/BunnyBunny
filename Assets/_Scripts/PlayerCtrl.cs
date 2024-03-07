@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class PlayerCtrl : MonoBehaviour
 {
+    public bool FullPowerTest = true;
+
     //이동 관련
     [HideInInspector] public float h = 0.0f;
     [HideInInspector] public float v = 0.0f;
@@ -41,11 +43,11 @@ public class PlayerCtrl : MonoBehaviour
     //공격 관련
 
     //Timer 관련
-    float mAtkTimer = 0.0f;
+    float mAtkTimer = 0.0f; //메인 총알
     float mAtkTime = 0.2f;
-    float rktTimer = 0.0f;
+    float rktTimer = 0.0f; //로켓
     float rktTime = 2.0f;
-    float drlTimer = 0.0f;
+    float drlTimer = 0.0f; //드릴
     float drlTime = 5.0f; //TODO : 드릴개수에 따라 계산하여 정하기
     //Timer 관련
 
@@ -58,9 +60,12 @@ public class PlayerCtrl : MonoBehaviour
 
         wpMgr = GameObject.Find("WeaponMgr").GetComponent<WeaponMgr>();
 
-        //wpMgr.SetGuardians(); //가디언 test 용
-        //wpMgr.SetRockets(); //로켓 test 용
-        //wpMgr.SetDrills(); //드릴 test 용
+        if(FullPowerTest)
+        {
+            wpMgr.SetGuardians(); //가디언 test 용
+            wpMgr.SetRockets(); //로켓 test 용
+            wpMgr.SetDrills(); //드릴 test 용
+        }
     }
 
     void Update()
@@ -69,11 +74,11 @@ public class PlayerCtrl : MonoBehaviour
         DirectionArrow();
         CalcWeaponsTimer();
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && FullPowerTest)
         {
-            //wpMgr.GuardiansCtrlSc.LevelUpWeapon(); //가디언 test 용
-            //wpMgr.RocketCtrlSc.LevelUpWeapon(); //로켓 test 용
-            //wpMgr.DrillCtrlSc.LevelUpWeapon(); //드릴 test 용
+            wpMgr.GuardiansCtrlSc.LevelUpWeapon(); //가디언 test 용
+            wpMgr.RocketCtrlSc.LevelUpWeapon(); //로켓 test 용
+            wpMgr.DrillCtrlSc.LevelUpWeapon(); //드릴 test 용
         }
     }
 

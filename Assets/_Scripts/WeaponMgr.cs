@@ -13,18 +13,13 @@ public class WeaponMgr : MonoBehaviour
     //메인 무기
     [Header("------ Main Weapon ------")]
     public GameObject[] MWPrefabs = null;
-    public Transform MainWeapon = null; 
+    public Transform MainWeapon = null;
     public MWType MainType = MWType.Gun; //TODO : public 이어야 할지 잘 모르겠네
 
     GunCtrl gunCtrlSc = null;
     public GunCtrl GunCtrlSc
     {
-        get
-        {//TODO : 사용할때 null check 하면 이렇게 구현 안해도 되는데... 흠..
-            if (gunCtrlSc != null) 
-                return gunCtrlSc;
-            else return null;
-        }
+        get { return gunCtrlSc; }
     }
     //TODO : bladeCtrl.cs 추가하기
     //메인 무기
@@ -35,12 +30,7 @@ public class WeaponMgr : MonoBehaviour
     GuardiansCtrl guardiansCtrlSc = null;
     public GuardiansCtrl GuardiansCtrlSc
     {
-        get
-        {
-            if (guardiansCtrlSc != null)
-                return guardiansCtrlSc;
-            else return null;
-        }
+        get { return guardiansCtrlSc; }
     }
     //수호자 관련
 
@@ -50,12 +40,7 @@ public class WeaponMgr : MonoBehaviour
     RocketCtrl rocketCtrlSc = null;
     public RocketCtrl RocketCtrlSc
     {
-        get
-        {
-            if (rocketCtrlSc != null)
-                return rocketCtrlSc;
-            else return null;
-        }
+        get { return rocketCtrlSc; }
     }
     //로켓 관련
 
@@ -65,12 +50,7 @@ public class WeaponMgr : MonoBehaviour
     DrillCtrl drillCtrlSc = null;
     public DrillCtrl DrillCtrlSc
     {
-        get
-        {
-            if (drillCtrlSc != null)
-                return drillCtrlSc;
-            else return null;
-        }
+        get { return drillCtrlSc; }
     }
     //드릴 관련
 
@@ -128,7 +108,7 @@ public class WeaponMgr : MonoBehaviour
     //드릴 관련
     public void SetDrills()
     {
-        if(!Drills.activeSelf)
+        if (!Drills.activeSelf)
         {
             Drills.SetActive(true);
             drillCtrlSc = Drills.GetComponent<DrillCtrl>();

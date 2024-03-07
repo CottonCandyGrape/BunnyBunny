@@ -11,7 +11,6 @@ public class DrillCtrl : Weapon
     WaitForSeconds fireTerm = new WaitForSeconds(0.2f);
     Coroutine DrillCo = null;
 
-    const int MaxDrillCount = 5; //TODO : 바꿀 수도 있음
     const int DrillInitCount = 2;
     const float DrillOffset = 0.35f;
 
@@ -73,12 +72,12 @@ public class DrillCtrl : Weapon
 
     public override void LevelUpWeapon()
     {
-        if (MaxLevel <= CurLevel) return;
+        if (MaxLevel <= curLevel) return;
 
         GameObject drill = Instantiate(DrillPrefab, DrillPool);
         drill.SetActive(false);
 
-        CurLevel++;
+        curLevel++;
     }
 
     public override void EvolveWeapon()

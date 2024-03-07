@@ -64,7 +64,7 @@ public class GuardiansCtrl : Weapon
 
     public override void LevelUpWeapon()
     {
-        if (MaxLevel <= CurLevel) return;
+        if (MaxLevel <= curLevel) return;
 
         GameObject guardObj = Instantiate(GuardPrefab, Guardians);
         if (!IsOn) guardObj.SetActive(false);
@@ -73,7 +73,7 @@ public class GuardiansCtrl : Weapon
         for (int i = 0; i < guards.Length; i++)
             guards[i].Degree = (360 / guards.Length) * i;
 
-        CurLevel++;
+        curLevel++;
     }
 
     public override void EvolveWeapon()

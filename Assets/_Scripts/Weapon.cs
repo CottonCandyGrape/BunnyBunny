@@ -6,8 +6,8 @@ abstract public class Weapon : MonoBehaviour
 {
     protected const int MaxLevel = 3;
 
-    protected int CurLevel = 0;
-    protected bool IsEvolve = false;
+    protected int curLevel = 0;
+    protected bool isEvolve = false;
 
     abstract public void LevelUpWeapon();
     abstract public void EvolveWeapon();

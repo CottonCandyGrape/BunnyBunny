@@ -83,7 +83,7 @@ public class RocketCtrl : Weapon
             if (colls[i].tag.Contains("Monster"))
             {
                 MonsterCtrl monCtrl = colls[i].GetComponent<MonsterCtrl>();
-                monCtrl.TakeDamage((CurLevel + 1) * 30);
+                monCtrl.TakeDamage((curLevel + 1) * 30);
             }
             else continue;
         }
@@ -93,9 +93,9 @@ public class RocketCtrl : Weapon
 
     public override void LevelUpWeapon()
     {
-        if (MaxLevel <= CurLevel) return;
+        if (MaxLevel <= curLevel) return;
 
-        CurLevel++;
+        curLevel++;
         bombRadius *= BombScaler;
     }
 

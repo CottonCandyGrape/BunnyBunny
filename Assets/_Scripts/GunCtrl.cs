@@ -12,14 +12,15 @@ public class GunCtrl : Weapon
 
     public void FireBullet(Vector3 bltDir) //방향, 위치, 각도 정하여 발사
     {
-        bltDir.Normalize();
-
         BulletCtrl bltCtrl = MemoryPoolMgr.Inst.AddBulletPool();
-        bltCtrl.MoveDir = bltDir;
         bltCtrl.gameObject.SetActive(true);
-        bltCtrl.transform.position = transform.position + bltDir * BulletOffset;
+
+        bltDir.Normalize();
+        bltCtrl.MoveDir = bltDir;
+
         float angle = Mathf.Atan2(bltDir.y, bltDir.x) * Mathf.Rad2Deg;
         bltCtrl.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        bltCtrl.transform.position = transform.position + bltDir * BulletOffset;
     }
 
     public void FanFire(Vector3 midDir) //부채꼴 모양 발사 스킬
