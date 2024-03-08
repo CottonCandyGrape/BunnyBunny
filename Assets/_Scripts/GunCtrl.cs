@@ -5,6 +5,10 @@ using UnityEngine;
 public class GunCtrl : Weapon
 {
     const float BulletOffset = 0.3f;
+    const float YOffset = 0.25f;
+    const int BaseShotCnt = 3;
+    const int LastShotCnt = 5;
+    int curCount = 0;
 
     void Start() { }
 

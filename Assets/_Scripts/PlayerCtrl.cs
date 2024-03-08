@@ -37,11 +37,6 @@ public class PlayerCtrl : MonoBehaviour
     Vector3 dmgTxtOffset = new Vector3(0, 0.5f, 0);
     //UI 관련
 
-    //공격 관련
-    int fireCnt = 5;
-    int curFire = 0;
-    //공격 관련
-
     //Timer 관련
     float mAtkTimer = 0.0f; //메인 총알
     float mAtkTime = 0.2f;
@@ -151,16 +146,8 @@ public class PlayerCtrl : MonoBehaviour
         if (mAtkTimer <= 0.0f)
         {
             mAtkTimer = mAtkTime;
-            if (fireCnt < curFire)
-            {
-                wpMgr.GunCtrlSc.FanFire(arrowDir);
-                curFire = 0;
-            }
-            else
-            {
+            if (wpMgr.GunCtrlSc != null)
                 wpMgr.GunCtrlSc.FireBullet(arrowDir);
-                curFire++;
-            }
         }
         //메인 무기 타이머
 
