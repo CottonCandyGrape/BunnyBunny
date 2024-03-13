@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum PlayerAnim
+{
+    Idle, Run, Hurt, Dead
+}
+
 public class PlayerCtrl : MonoBehaviour
 {
     public bool FullPowerTest = true;
@@ -14,6 +19,10 @@ public class PlayerCtrl : MonoBehaviour
 
     Vector3 moveDir = Vector3.zero;
     SpriteRenderer playerSpRenderer = null;
+
+    CapsuleCollider2D capColl = null;
+    Vector2 capVec = Vector2.zero;
+    float capOffsetX = 0.04f;
     //Vector3 limitPos = Vector3.zero;
 
     public GameObject DirArrow = null;
@@ -24,6 +33,7 @@ public class PlayerCtrl : MonoBehaviour
     //이동 관련
 
     //능력치 관련
+    bool isDead = false;
     float curHp = 100.0f;
     float maxHp = 100.0f;
     //float maxHp = float.MaxValue;
@@ -46,16 +56,23 @@ public class PlayerCtrl : MonoBehaviour
     float drlTime = 5.0f; //TODO : 드릴개수에 따라 계산하여 정하기
     //Timer 관련
 
+    //Animation 관련
+    [HideInInspector] public PlayerAnim AnimState = PlayerAnim.Idle;
+    Animator animator = null;
+    //Animation 관련
+
     WeaponMgr wpMgr = null;
 
     void Start()
     {
         playerSpRenderer = GameObject.Find("Player_Img").GetComponent<SpriteRenderer>();
+        capColl = GetComponent<CapsuleCollider2D>();
+        wpMgr = GameObject.Find("WeaponMgr").GetComponent<WeaponMgr>();
+        animator = GetComponentInChildren<Animator>();
+
         curHp = maxHp;
 
-        wpMgr = GameObject.Find("WeaponMgr").GetComponent<WeaponMgr>();
-
-        if(FullPowerTest)
+        if (FullPowerTest)
         {
             wpMgr.SetGuardians(); //가디언 test 용
             wpMgr.SetRockets(); //로켓 test 용
@@ -68,12 +85,14 @@ public class PlayerCtrl : MonoBehaviour
         Move();
         DirectionArrow();
         CalcWeaponsTimer();
+        PlayerStateUpdate();
 
         if (Input.GetKeyDown(KeyCode.Space) && FullPowerTest)
         {
             wpMgr.GuardiansCtrlSc.LevelUpWeapon(); //가디언 test 용
             wpMgr.RocketCtrlSc.LevelUpWeapon(); //로켓 test 용
             wpMgr.DrillCtrlSc.LevelUpWeapon(); //드릴 test 용
+            wpMgr.GunCtrlSc.LevelUpWeapon();
         }
     }
 
@@ -87,9 +106,15 @@ public class PlayerCtrl : MonoBehaviour
 
         //좌우 방향 바뀔때마다 flip
         if (0.0f < h)
-            playerSpRenderer.flipX = false;
-        else if (h < 0.0f)
+        {
             playerSpRenderer.flipX = true;
+            SetCapCollOffset(true);
+        }
+        else if (h < 0.0f)
+        {
+            playerSpRenderer.flipX = false;
+            SetCapCollOffset(false);
+        }
 
         moveDir = (Vector2.up * v) + (Vector2.right * h);
         if (1.0f < moveDir.magnitude)
@@ -98,6 +123,16 @@ public class PlayerCtrl : MonoBehaviour
         transform.position += moveDir * moveSpeed * Time.deltaTime;
 
         SubCanvas.transform.position = transform.position; //subcanvas 까지 움직임. 한줄이라 여기에 추가
+    }
+
+    void SetCapCollOffset(bool flip)
+    {
+        capVec = capColl.offset;
+        if (flip)
+            capVec.x = capOffsetX;
+        else
+            capVec.x = -capOffsetX;
+        capColl.offset = capVec;
     }
 
     void DirectionArrow()
@@ -172,9 +207,64 @@ public class PlayerCtrl : MonoBehaviour
         //드릴 타이머
     }
 
+    void PlayerStateUpdate()
+    {
+        if (moveDir.normalized == Vector3.zero)
+            animator.SetBool("Moving", false);
+        else
+            animator.SetBool("Moving", true);
+    }
+
+    //state, action update 하는 함수 따로 만들기?
+    /*
+    void PlayerStateUpdate()
+    {
+        if (animator == null)
+        {
+            Debug.Log("Animator is null");
+            return;
+        }
+
+        if (isDead) return;
+
+        switch(AnimState)
+        {
+            case PlayerAnim.Idle:
+                {
+                    if (moveDir.normalized == Vector3.zero)
+                        animator.SetBool("Moving", false);
+                }
+                break;
+
+            case PlayerAnim.Run:
+                {
+                    if (moveDir.normalized != Vector3.zero)
+                        animator.SetBool("Moving", true);
+                }
+                break;
+
+            case PlayerAnim.Hurt:
+                break;
+
+            case PlayerAnim.Dead:
+                break;
+        }
+
+
+
+        if (moveDir.normalized == Vector3.zero)
+            animator.SetBool("Moving", false);
+        else
+            animator.SetBool("Moving", true);
+    }
+    */
+
     void PlayerDie()
     {
         Time.timeScale = 0.0f;
+        //isDead = true; //TODO : 어떤 상태 넣을건지?
+        //AnimState = PlayerAnim.Dead;
+
         return;
     }
 
