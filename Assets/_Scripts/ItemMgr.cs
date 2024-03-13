@@ -12,7 +12,7 @@ public enum ItemType
 public class ItemMgr : MonoBehaviour
 {
     public Transform Golds = null;
-    public Transform Meats = null;
+    public Transform Carrots = null;
     public Transform Bombs = null;
 
     //섬광 관련 
@@ -24,8 +24,8 @@ public class ItemMgr : MonoBehaviour
 
     public GameObject[] ItemPrefabs = null;
 
-    float meatTimer = 0.0f;
-    float meatTime = 10.0f;
+    float carrotTimer = 0.0f;
+    float carrotTime = 10.0f;
 
     public static ItemMgr Inst = null;
 
@@ -36,12 +36,37 @@ public class ItemMgr : MonoBehaviour
 
     void Start()
     {
-        meatTimer = meatTime;
+        carrotTimer = carrotTime;
     }
 
     void Update()
     {
-        UpdateMeatTimer();
+        UpdateCarrotTimer();
+    }
+
+    void UpdateCarrotTimer()
+    {
+        carrotTimer -= Time.deltaTime;
+        if (carrotTimer <= 0.0f)
+        {
+            SpawnCarrot(0.3f);
+            carrotTimer = carrotTime;
+        }
+    }
+
+    void SpawnCarrot(float healRate) //TODO : healRate 기준 정하기.
+    {
+        GameObject crt = Instantiate(ItemPrefabs[(int)ItemType.Heal], Carrots);
+        crt.transform.position = ScreenMgr.Inst.GetRandomPosInCurScreen(); 
+
+        ItemCtrl item = crt.GetComponent<ItemCtrl>();
+        item.HealRate = healRate;
+    }
+
+    void SpawnBomb(Vector3 pos) //TODO : 호출위치 정하기. 매개변수 pos 필요 없을 수도.
+    {
+        GameObject bomb = Instantiate(ItemPrefabs[(int)ItemType.Bomb], Bombs);
+        bomb.transform.position = pos;
     }
 
     public void SpawnGold(Vector3 pos, MonsterType monType)
@@ -55,31 +80,6 @@ public class ItemMgr : MonoBehaviour
             item.GoldVal = 50;
         else if (monType == MonsterType.BossMon)
             item.GoldVal = 100;
-    }
-
-    void UpdateMeatTimer()
-    {
-        meatTimer -= Time.deltaTime;
-        if (meatTimer <= 0.0f)
-        {
-            SpawnMeat(0.3f);
-            meatTimer = meatTime;
-        }
-    }
-
-    void SpawnMeat(float healRate) //TODO : healRate 기준 정하기.
-    {
-        GameObject meat = Instantiate(ItemPrefabs[(int)ItemType.Heal], Meats);
-        meat.transform.position = ScreenMgr.Inst.GetRandomPosInCurScreen(); 
-
-        ItemCtrl item = meat.GetComponent<ItemCtrl>();
-        item.HealRate = healRate;
-    }
-
-    void SpawnBomb(Vector3 pos) //TODO : 호출위치 정하기. 매개변수 pos 필요 없을 수도.
-    {
-        GameObject bomb = Instantiate(ItemPrefabs[(int)ItemType.Bomb], Bombs);
-        bomb.transform.position = pos;
     }
 
     public void FlashEffect()

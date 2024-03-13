@@ -4852,7 +4852,7 @@ GameObject:
   m_Component:
   - component: {fileID: 625163494}
   m_Layer: 0
-  m_Name: Meats
+  m_Name: Carrots
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7929,7 +7929,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Golds: {fileID: 6438200}
-  Meats: {fileID: 625163494}
+  Carrots: {fileID: 625163494}
   Bombs: {fileID: 2041500094}
   FlashRender: {fileID: 1116137260}
   ItemPrefabs:
