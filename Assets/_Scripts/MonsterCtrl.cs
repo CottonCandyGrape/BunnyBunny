@@ -43,7 +43,7 @@ public class MonsterCtrl : MonoBehaviour
 
     void Awake()
     {
-        spRenderer = GetComponent<SpriteRenderer>();
+        spRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     void OnEnable()
