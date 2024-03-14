@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MonsterPrefabs:
-  - {fileID: 8410854005670488055, guid: 24312ea1650f6414ba485b2b3a3cd8da, type: 3}
+  - {fileID: 5858948726359585759, guid: c8dd1641fcda8284e958cc3d4dc7ac0a, type: 3}
   ActiveMonsterCount: 0
   BulletPrefabs:
   - {fileID: 5458404892107507589, guid: d38857d8160e7e54eb24774bccc6c165, type: 3}
@@ -513,7 +513,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 688172944, guid: 125adbe2b84156f4da7427c149ffd47e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
