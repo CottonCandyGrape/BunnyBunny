@@ -35,6 +35,7 @@ public class GameMgr : MonoBehaviour
     float[] expLevelArr = { 0.0f, 30.0f, 60.0f, 100.0f, 150.0f, 210.0f, 280.0f, 360.0f, 450.0f, 550.0f }; //TODO : 만랩 늘리면 수식으로 바꾸기
     int inGameLevel = 1;
     int maxLevel = 10; // 현재 만랩 10 //TODO : 만랩 늘리기. 
+    Coroutine expCo = null;
     //Exp 관련
 
     //데미지 표시
@@ -128,8 +129,26 @@ public class GameMgr : MonoBehaviour
             ExpBar_Img.fillAmount = 1;
         else
         {
-            ExpBar_Img.fillAmount = (inGameExp - expLevelArr[inGameLevel - 1]) /
+            if (expCo != null)
+                StopCoroutine(expCo);
+            float end = (inGameExp - expLevelArr[inGameLevel - 1]) /
                 (expLevelArr[inGameLevel] - expLevelArr[inGameLevel - 1]);
+
+            expCo = StartCoroutine(ExpBarFill(end));
+        }
+    }
+
+    IEnumerator ExpBarFill(float end)
+    {
+        float expTimer = 0.0f;
+        float expTime = 1.0f;
+        float speed = 5.0f;
+
+        while (expTimer < 1.0f)
+        {
+            expTimer += speed * Time.deltaTime;
+            ExpBar_Img.fillAmount = Mathf.Lerp(ExpBar_Img.fillAmount, end, (expTimer / expTime));
+            yield return null;
         }
     }
 
