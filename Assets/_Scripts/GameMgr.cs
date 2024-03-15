@@ -44,10 +44,12 @@ public class GameMgr : MonoBehaviour
 
     //현재 인게임 관련
     //static으로 할까? Scene 시작할때 바로 초기화 돼서 MemoryPoolMgr로 안전하게 넘겨야 하는데..
-    public int StageNum = 0; 
+    //static 이면 awake에서 해도되나?
+    [HideInInspector] public int StageNum = 0; 
     //현재 인게임 관련
 
     public static GameMgr Inst = null;
+    MonGenerator mongen = null;
 
     void Awake()
     {
@@ -59,11 +61,17 @@ public class GameMgr : MonoBehaviour
         curTime = 0.0f;
 
         Time.timeScale = 1.0f;
+        mongen = FindObjectOfType<MonGenerator>();
     }
 
     void Update()
     {
         UpdateGameTime();
+
+        //if(Input.GetKeyDown(KeyCode.Space)) //Elite Mon Spawn Test 코드
+        //{
+        //    mongen.SpawnEliteMon();
+        //}
     }
 
     void UpdateGameTime()

@@ -4,12 +4,24 @@ using UnityEngine;
 
 public class MonGenerator : MonoBehaviour
 {
+    Transform eliteBossPool = null;
+
+    public GameObject[] EliteMonPrefs = null;
+    public GameObject[] BossMonPrefs = null;
+
     float spawnTime = 0.0f;
+
     int monLimit = 20;
+    int curStage = 0;
 
     void Start()
     {
         spawnTime = Random.Range(0.1f, 0.3f);
+
+        eliteBossPool = GameObject.Find("EliteBossPool").GetComponent<Transform>();
+
+        //현재 스테이지 초기화 //TODO : 안전한가?
+        curStage = GameMgr.Inst.StageNum;
     }
 
     void Update()
@@ -19,7 +31,7 @@ public class MonGenerator : MonoBehaviour
         if (spawnTime <= 0.0f && MemoryPoolMgr.Inst.ActiveMonsterCount < monLimit)
         {
             spawnTime = Random.Range(0.1f, 0.3f);
-            MonsterCtrl monCtrl = MemoryPoolMgr.Inst.AddMonsterPool(GameMgr.Inst.StageNum); //TODO : 꼭! StageNum 안전한지 확인해야함.
+            MonsterCtrl monCtrl = MemoryPoolMgr.Inst.AddMonsterPool(curStage);
             monCtrl.gameObject.SetActive(true);
             monCtrl.transform.position = GameMgr.Inst.player.transform.position + GetMonSpawnPos();
         }
@@ -37,5 +49,11 @@ public class MonGenerator : MonoBehaviour
         pos *= radius;
 
         return pos;
+    }
+
+    public void SpawnEliteMon()
+    {
+        GameObject eliteMon = Instantiate(EliteMonPrefs[curStage], eliteBossPool);
+        eliteMon.transform.position = GameMgr.Inst.player.transform.position + GetMonSpawnPos();
     }
 }

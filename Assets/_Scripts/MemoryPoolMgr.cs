@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class MemoryPoolMgr : MonoBehaviour
 {
-    Transform MonsterPool = null;
-    Transform BulletPool = null;
+    Transform norMonPool = null;
+    Transform bulletPool = null;
 
-    public GameObject[] NorMonPref1 = null;
-    public GameObject[] NorMonPref2 = null;
-    public GameObject[] NorMonPref3 = null;
+    public GameObject[] NorMonPrefs1 = null;
+    public GameObject[] NorMonPrefs2 = null;
+    public GameObject[] NorMonPrefs3 = null;
     List<GameObject[]> norMonList;
 
     List<MonsterCtrl> MonCtrlPool = new List<MonsterCtrl>();
@@ -18,7 +18,8 @@ public class MemoryPoolMgr : MonoBehaviour
     public GameObject[] BulletPrefabs = null;
     List<BulletCtrl> BulletCtrlPool = new List<BulletCtrl>();
 
-    int initPoolCount = 30;
+    int initMonCnt = 30;
+    int initBltCnt = 10;
     int curStage = 0;
 
     public static MemoryPoolMgr Inst = null;
@@ -30,26 +31,26 @@ public class MemoryPoolMgr : MonoBehaviour
 
     void Start()
     {
-        MonsterPool = GameObject.Find("MonsterPool").GetComponentInChildren<Transform>();
-        BulletPool = GameObject.Find("BulletPool").GetComponentInChildren<Transform>();
+        norMonPool = GameObject.Find("NorMonPool").GetComponent<Transform>();
+        bulletPool = GameObject.Find("BulletPool").GetComponent<Transform>();
 
         //현재 스테이지 초기화 //TODO : 안전한가?
         curStage = GameMgr.Inst.StageNum;
-        norMonList = new List<GameObject[]> { NorMonPref1, NorMonPref2, NorMonPref3 };
+        norMonList = new List<GameObject[]> { NorMonPrefs1, NorMonPrefs2, NorMonPrefs3 };
 
-        //MonsterPool
-        for (int i = 0; i < initPoolCount; i++) 
+        //norMonPool
+        for (int i = 0; i < initMonCnt; i++) 
         {
             int idx = Random.Range(0, norMonList[curStage].Length);
-            GameObject mon = Instantiate(norMonList[curStage][idx], MonsterPool);
+            GameObject mon = Instantiate(norMonList[curStage][idx], norMonPool);
             mon.SetActive(false);
             MonCtrlPool.Add(mon.GetComponent<MonsterCtrl>());
         }
 
         //BulletPool
-        for (int i = 0; i < initPoolCount; i++)
+        for (int i = 0; i < initBltCnt; i++)
         {
-            GameObject blt = Instantiate(BulletPrefabs[0], BulletPool);
+            GameObject blt = Instantiate(BulletPrefabs[0], bulletPool);
             blt.SetActive(false);
             BulletCtrlPool.Add(blt.GetComponent<BulletCtrl>());
         }
@@ -66,7 +67,7 @@ public class MemoryPoolMgr : MonoBehaviour
         }
 
         int idx = Random.Range(0, norMonList[curStage].Length);
-        GameObject mon = Instantiate(norMonList[curStage][idx], MonsterPool);
+        GameObject mon = Instantiate(norMonList[curStage][idx], norMonPool);
         mon.SetActive(false);
         MonsterCtrl monCtrl = mon.GetComponent<MonsterCtrl>();
         MonCtrlPool.Add(monCtrl);
@@ -82,7 +83,7 @@ public class MemoryPoolMgr : MonoBehaviour
                 return BulletCtrlPool[i];
         }
 
-        GameObject blt = Instantiate(BulletPrefabs[0], BulletPool);
+        GameObject blt = Instantiate(BulletPrefabs[0], bulletPool);
         blt.SetActive(false);
         BulletCtrl bltCtrl = blt.GetComponent<BulletCtrl>();
         BulletCtrlPool.Add(bltCtrl);
