@@ -50,7 +50,9 @@ public class GameMgr : MonoBehaviour
     //현재 인게임 관련
 
     public static GameMgr Inst = null;
-    MonGenerator mongen = null;
+
+    MonGenerator mongen = null; //Elite Mon Spawn Test 코드
+    CameraCtrl camctrl = null; //zoom out test 코드
 
     void Awake()
     {
@@ -62,7 +64,9 @@ public class GameMgr : MonoBehaviour
         curTime = 0.0f;
 
         Time.timeScale = 1.0f;
-        mongen = FindObjectOfType<MonGenerator>();
+
+        //mongen = FindObjectOfType<MonGenerator>(); //Elite Mon Spawn Test 코드
+        //camctrl = FindObjectOfType<CameraCtrl>(); //zoom out test 코드
     }
 
     void Update()
@@ -72,6 +76,10 @@ public class GameMgr : MonoBehaviour
         //if(Input.GetKeyDown(KeyCode.Space)) //Elite Mon Spawn Test 코드
         //{
         //    mongen.SpawnEliteMon();
+        //}
+        //if(Input.GetKeyDown(KeyCode.Space)) //zoom out test 코드
+        //{
+        //    camctrl.ZoomOut();
         //}
     }
 
@@ -144,7 +152,7 @@ public class GameMgr : MonoBehaviour
         float expTime = 1.0f;
         float speed = 5.0f;
 
-        while (expTimer < 1.0f)
+        while (expTimer <= 1.0f)
         {
             expTimer += speed * Time.deltaTime;
             ExpBar_Img.fillAmount = Mathf.Lerp(ExpBar_Img.fillAmount, end, (expTimer / expTime));
