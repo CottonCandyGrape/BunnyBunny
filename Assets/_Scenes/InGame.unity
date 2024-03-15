@@ -184,8 +184,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f99bea60f084d8d44b8741b4729ba1cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MonsterPrefabs:
+  NorMonPref1:
+  - {fileID: 2508714043467447835, guid: b7e3635eb7c3c3b409f39acf93602331, type: 3}
+  - {fileID: 3589768968204905313, guid: 22471fcbecacc524a8b19042557275fc, type: 3}
+  - {fileID: 1824253857635018522, guid: c632749b0cd1d2448b0d470bfaae2fa1, type: 3}
+  - {fileID: 15085427666625911, guid: bbb91ec0cd7f0664c908acf72310494c, type: 3}
   - {fileID: 5858948726359585759, guid: c8dd1641fcda8284e958cc3d4dc7ac0a, type: 3}
+  - {fileID: 874490185030943205, guid: 9ddd7e4f277844046820105fb2f56e21, type: 3}
+  - {fileID: 5726108731037132038, guid: 2739da2dc1f77b74cafa6cf60cc3b000, type: 3}
+  NorMonPref2: []
+  NorMonPref3: []
   ActiveMonsterCount: 0
   BulletPrefabs:
   - {fileID: 5458404892107507589, guid: d38857d8160e7e54eb24774bccc6c165, type: 3}
@@ -257,6 +265,7 @@ MonoBehaviour:
   ExpBar_Img: {fileID: 714101167}
   SubCanvas: {fileID: 2012018422}
   DmgTxtPrefab: {fileID: 9158740485534171274, guid: 7e369a2ece098ab498b78a7daead6ce7, type: 3}
+  StageNum: 0
 --- !u!4 &145007060
 Transform:
   m_ObjectHideFlags: 0

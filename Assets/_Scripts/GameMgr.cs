@@ -42,6 +42,11 @@ public class GameMgr : MonoBehaviour
     public GameObject DmgTxtPrefab = null;
     //데미지 표시
 
+    //현재 인게임 관련
+    //static으로 할까? Scene 시작할때 바로 초기화 돼서 MemoryPoolMgr로 안전하게 넘겨야 하는데..
+    public int StageNum = 0; 
+    //현재 인게임 관련
+
     public static GameMgr Inst = null;
 
     void Awake()

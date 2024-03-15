@@ -5,7 +5,7 @@ using UnityEngine;
 public class MonGenerator : MonoBehaviour
 {
     float spawnTime = 0.0f;
-    int monLimit = 30;
+    int monLimit = 20;
 
     void Start()
     {
@@ -19,7 +19,7 @@ public class MonGenerator : MonoBehaviour
         if (spawnTime <= 0.0f && MemoryPoolMgr.Inst.ActiveMonsterCount < monLimit)
         {
             spawnTime = Random.Range(0.1f, 0.3f);
-            MonsterCtrl monCtrl = MemoryPoolMgr.Inst.AddMonsterPool();
+            MonsterCtrl monCtrl = MemoryPoolMgr.Inst.AddMonsterPool(GameMgr.Inst.StageNum); //TODO : 꼭! StageNum 안전한지 확인해야함.
             monCtrl.gameObject.SetActive(true);
             monCtrl.transform.position = GameMgr.Inst.player.transform.position + GetMonSpawnPos();
         }
