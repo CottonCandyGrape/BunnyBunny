@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class GameMgr : MonoBehaviour
 {
+    //TODO : UI 변수 따로 빼서 헤더 선언할까?
     public PlayerCtrl player = null;
 
     //게임 시간 관련 변수
@@ -46,8 +47,12 @@ public class GameMgr : MonoBehaviour
     //현재 인게임 관련
     //static으로 할까? Scene 시작할때 바로 초기화 돼서 MemoryPoolMgr로 안전하게 넘겨야 하는데..
     //static 이면 awake에서 해도되나?
-    [HideInInspector] public int StageNum = 0; 
+    [HideInInspector] public int StageNum = 0;
     //현재 인게임 관련
+
+    //Boss전 관련
+    public GameObject BossRing = null;
+    //Boss전 관련
 
     public static GameMgr Inst = null;
 
@@ -65,8 +70,8 @@ public class GameMgr : MonoBehaviour
 
         Time.timeScale = 1.0f;
 
-        //mongen = FindObjectOfType<MonGenerator>(); //Elite Mon Spawn Test 코드
-        //camctrl = FindObjectOfType<CameraCtrl>(); //zoom out test 코드
+        mongen = FindObjectOfType<MonGenerator>(); //Elite Mon Spawn Test 코드
+        camctrl = FindObjectOfType<CameraCtrl>(); //zoom out test 코드
     }
 
     void Update()
@@ -77,11 +82,10 @@ public class GameMgr : MonoBehaviour
         //{
         //    mongen.SpawnEliteMon();
         //}
-        //if(Input.GetKeyDown(KeyCode.Space)) //zoom out test 코드
-        //{
-        //    camctrl.ZoomOut();
-        //    mongen.SpawnBossMon();
-        //}
+        if(Input.GetKeyDown(KeyCode.Space)) //zoom out test 코드
+        {
+            InitBossBattle();
+        }
     }
 
     void UpdateGameTime()
@@ -159,6 +163,21 @@ public class GameMgr : MonoBehaviour
             ExpBar_Img.fillAmount = Mathf.Lerp(ExpBar_Img.fillAmount, end, (expTimer / expTime));
             yield return null;
         }
+    }
+
+    void InitBossBattle()
+    {
+        Vector2 spawnPos = ScreenMgr.Inst.GetCenterCurScreen();
+
+        camctrl.ZoomOut();
+
+        if (BossRing != null) //링 스폰. TODO : 이때부터 범위 제한 해야한다. 데미지는 아직 no 
+        {
+            GameObject ring = Instantiate(BossRing);
+            ring.transform.position = spawnPos;
+        }
+
+        mongen.SpawnBossMon(spawnPos);  //몬스터 스폰. TODO : 몇 초 있다가 스폰 시키기
     }
 
     void GameOver()
