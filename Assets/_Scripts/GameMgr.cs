@@ -51,7 +51,8 @@ public class GameMgr : MonoBehaviour
     //현재 인게임 관련
 
     //Boss전 관련
-    public GameObject BossRing = null;
+    public GameObject BattleRing = null;
+    [HideInInspector] public bool hasBoss = false;
     //Boss전 관련
 
     public static GameMgr Inst = null;
@@ -167,19 +168,20 @@ public class GameMgr : MonoBehaviour
 
     void InitBossBattle()
     {
+        if (hasBoss) return; //Boss 스폰 되어있다면 return
+
         Vector2 spawnPos = ScreenMgr.Inst.GetCenterCurScreen();
 
         camctrl.ZoomOut(); //1. 카메라 올리기
-
         MemoryPoolMgr.Inst.OffAllNorMon(); //2. Normal Monster 다 끄기
-
-        if (BossRing != null) //3. 링 스폰. TODO : 이때부터 범위 제한 해야한다. 데미지는 아직 no 
+        if (BattleRing != null) //3. 링 스폰. TODO : 이때부터 범위 제한 해야한다. 데미지는 아직 no 
         {
-            GameObject ring = Instantiate(BossRing);
+            GameObject ring = Instantiate(BattleRing);
             ring.transform.position = spawnPos;
         }
-
         mongen.SpawnBossMon(spawnPos);  //4. Boss Monster 스폰. TODO : 몇 초 있다가 스폰 시키기
+
+        hasBoss = true;
     }
 
     void GameOver()

@@ -26,6 +26,11 @@ public class MonGenerator : MonoBehaviour
 
     void Update()
     {
+        if (!GameMgr.Inst.hasBoss) SpawnNormalMon();
+    }
+
+    void SpawnNormalMon()
+    {
         spawnTime -= Time.deltaTime;
 
         if (spawnTime <= 0.0f && MemoryPoolMgr.Inst.ActiveMonsterCount < monLimit)
