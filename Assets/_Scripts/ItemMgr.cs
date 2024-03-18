@@ -57,7 +57,7 @@ public class ItemMgr : MonoBehaviour
     void SpawnCarrot(float healRate) //TODO : healRate 기준 정하기.
     {
         GameObject crt = Instantiate(ItemPrefabs[(int)ItemType.Heal], Carrots);
-        crt.transform.position = ScreenMgr.Inst.GetRandomPosInCurScreen(); 
+        crt.transform.position = ScreenMgr.Inst.GetRandomPosCurScreen(); 
 
         ItemCtrl item = crt.GetComponent<ItemCtrl>();
         item.HealRate = healRate;

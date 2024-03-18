@@ -56,4 +56,10 @@ public class MonGenerator : MonoBehaviour
         GameObject eliteMon = Instantiate(EliteMonPrefs[curStage], eliteBossPool);
         eliteMon.transform.position = GameMgr.Inst.player.transform.position + GetMonSpawnPos();
     }
+
+    public void SpawnBossMon()
+    {
+        GameObject bossMon = Instantiate(BossMonPrefs[curStage], eliteBossPool);
+        bossMon.transform.position = ScreenMgr.Inst.GetCenterCurScreen();
+    }
 }

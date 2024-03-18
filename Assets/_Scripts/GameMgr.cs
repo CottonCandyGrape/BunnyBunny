@@ -80,6 +80,7 @@ public class GameMgr : MonoBehaviour
         //if(Input.GetKeyDown(KeyCode.Space)) //zoom out test 코드
         //{
         //    camctrl.ZoomOut();
+        //    mongen.SpawnBossMon();
         //}
     }
 

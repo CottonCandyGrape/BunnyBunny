@@ -60,11 +60,20 @@ public class ScreenMgr : MonoBehaviour
         CurScMax = cam.ViewportToWorldPoint(Vector3.one);
     }
 
-    public Vector2 GetRandomPosInCurScreen()
+    public Vector2 GetRandomPosCurScreen()
     {
         Vector2 pos = Vector2.zero;
         pos.x = Random.Range(CurScMin.x, CurScMax.x);
         pos.y = Random.Range(CurScMin.y, CurScMax.y);
+
+        return pos;
+    }
+
+    public Vector2 GetCenterCurScreen()
+    {
+        Vector2 pos = Vector2.zero;
+        pos.x = (CurScMin.x + CurScMax.x) / 2.0f;
+        pos.y = (CurScMin.y + CurScMax.y) / 2.0f;
 
         return pos;
     }
