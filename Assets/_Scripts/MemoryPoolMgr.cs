@@ -99,5 +99,7 @@ public class MemoryPoolMgr : MonoBehaviour
             if (mon.activeSelf)
                 mon.SetActive(false);
         }
+
+        ActiveMonsterCount = 0;
     }
 }
