@@ -39,7 +39,7 @@ public class MemoryPoolMgr : MonoBehaviour
         norMonList = new List<GameObject[]> { NorMonPrefs1, NorMonPrefs2, NorMonPrefs3 };
 
         //norMonPool
-        for (int i = 0; i < initMonCnt; i++) 
+        for (int i = 0; i < initMonCnt; i++)
         {
             int idx = Random.Range(0, norMonList[curStage].Length);
             GameObject mon = Instantiate(norMonList[curStage][idx], norMonPool);
@@ -89,5 +89,15 @@ public class MemoryPoolMgr : MonoBehaviour
         BulletCtrlPool.Add(bltCtrl);
 
         return bltCtrl;
+    }
+
+    public void OffAllNorMon()
+    {
+        for (int i = 0; i < norMonPool.childCount; i++)
+        {
+            GameObject mon = norMonPool.GetChild(i).gameObject;
+            if (mon.activeSelf)
+                mon.SetActive(false);
+        }
     }
 }

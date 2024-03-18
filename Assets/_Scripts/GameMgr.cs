@@ -56,7 +56,7 @@ public class GameMgr : MonoBehaviour
 
     public static GameMgr Inst = null;
 
-    MonGenerator mongen = null; //Elite Mon Spawn Test 코드
+    MonGenerator mongen = null; //Elite Mon Spawn Test 코드 //TODO : 이 두 변수 어케 처리 할지?
     CameraCtrl camctrl = null; //zoom out test 코드
 
     void Awake()
@@ -169,15 +169,17 @@ public class GameMgr : MonoBehaviour
     {
         Vector2 spawnPos = ScreenMgr.Inst.GetCenterCurScreen();
 
-        camctrl.ZoomOut();
+        camctrl.ZoomOut(); //1. 카메라 올리기
 
-        if (BossRing != null) //링 스폰. TODO : 이때부터 범위 제한 해야한다. 데미지는 아직 no 
+        MemoryPoolMgr.Inst.OffAllNorMon(); //2. Normal Monster 다 끄기
+
+        if (BossRing != null) //3. 링 스폰. TODO : 이때부터 범위 제한 해야한다. 데미지는 아직 no 
         {
             GameObject ring = Instantiate(BossRing);
             ring.transform.position = spawnPos;
         }
 
-        mongen.SpawnBossMon(spawnPos);  //몬스터 스폰. TODO : 몇 초 있다가 스폰 시키기
+        mongen.SpawnBossMon(spawnPos);  //4. Boss Monster 스폰. TODO : 몇 초 있다가 스폰 시키기
     }
 
     void GameOver()

@@ -36,7 +36,7 @@ public class CameraCtrl : MonoBehaviour
 
     IEnumerator ZoomOutCo()
     {
-        float size = 7.0f;
+        float size = 8.5f;
         float zTimer = 0.0f;
         float zTime = 1.0f;
         float speed = 0.5f; //TODO : 추후 조정
