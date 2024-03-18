@@ -39,7 +39,7 @@ public class CameraCtrl : MonoBehaviour
         float size = 8.5f;
         float zTimer = 0.0f;
         float zTime = 1.0f;
-        float speed = 0.5f; //TODO : 추후 조정
+        float speed = 0.2f; //TODO : 추후 조정
 
         while (zTimer <= 1.0f)
         {
