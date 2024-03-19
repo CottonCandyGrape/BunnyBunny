@@ -36,16 +36,19 @@ public class CameraCtrl : MonoBehaviour
 
     IEnumerator ZoomOutCo()
     {
-        float size = 8.5f;
-        float zTimer = 0.0f;
-        float zTime = 1.0f;
-        float speed = 0.2f; //TODO : 추후 조정
+        float tSize = 8.5f;
+        float speed = 3.0f; //TODO : 추후 조정
 
-        while (zTimer <= 1.0f)
+        while (cam.orthographicSize < tSize)
         {
-            zTimer += speed * Time.deltaTime;
-            cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, size, (zTimer / zTime));
-            yield return null;
+            cam.orthographicSize += speed * Time.deltaTime;
+            if (cam.orthographicSize >= tSize)
+            {
+                cam.orthographicSize = tSize;
+                yield break;
+            }
+            else
+                yield return null;
         }
     }
 }

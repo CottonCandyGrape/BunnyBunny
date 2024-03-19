@@ -8517,6 +8517,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4671127285282249128}
+  - component: {fileID: 374340319807492244}
   m_Layer: 0
   m_Name: BattleRing
   m_TagString: Untagged
@@ -8543,3 +8544,15 @@ Transform:
   - {fileID: 181529284517126221}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &374340319807492244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9094358934630592945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4fba7bf2cbd64e41880b3d94e18d89a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

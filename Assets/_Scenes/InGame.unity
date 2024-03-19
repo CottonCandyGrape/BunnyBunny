@@ -338,17 +338,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 699597825}
+  DmgTxtPrefab: {fileID: 9158740485534171274, guid: 7e369a2ece098ab498b78a7daead6ce7, type: 3}
+  StageNum: 0
+  BattleRing: {fileID: 9094358934630592945, guid: a7b01fb8701a74f41be00c5076789bb8, type: 3}
+  hasBoss: 0
   Time_Txt: {fileID: 1081136792}
   Kill_Txt: {fileID: 196949011}
   Gold_Txt: {fileID: 1385715506}
   ExpLevel_Txt: {fileID: 1119525322}
   ExpBar_Img: {fileID: 714101167}
-  SubCanvas: {fileID: 2012018422}
-  DmgTxtPrefab: {fileID: 9158740485534171274, guid: 7e369a2ece098ab498b78a7daead6ce7, type: 3}
-  StageNum: 0
-  BattleRing: {fileID: 9094358934630592945, guid: a7b01fb8701a74f41be00c5076789bb8, type: 3}
   BossHpBar_Img: {fileID: 52828951}
-  hasBoss: 0
+  SubCanvas: {fileID: 2012018422}
 --- !u!4 &145007060
 Transform:
   m_ObjectHideFlags: 0

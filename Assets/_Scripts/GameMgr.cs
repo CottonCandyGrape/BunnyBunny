@@ -158,8 +158,9 @@ public class GameMgr : MonoBehaviour
         }
     }
 
-    IEnumerator FillBarImg(Image fImg, float target)
-    {
+    //게이지 방향이 음, 양일 수 있어서 Lerp로 구현함.
+    IEnumerator FillBarImg(Image fImg, float target) 
+    {   
         float fTimer = 0.0f;
         float fTime = 1.0f;
         float speed = 5.0f;
