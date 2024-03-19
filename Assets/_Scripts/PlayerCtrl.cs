@@ -16,21 +16,29 @@ public class PlayerCtrl : MonoBehaviour
     [HideInInspector] public float h = 0.0f;
     [HideInInspector] public float v = 0.0f;
     float moveSpeed = 3.0f;
-
     Vector3 moveDir = Vector3.zero;
     SpriteRenderer playerSpRenderer = null;
+    //이동 관련
 
+    //링 이동 제한 
+    BoxCollider2D boxColl = null;
+    Rigidbody2D rigid = null;
+    //링 이동 제한 
+
+    //collider 위치 재배치 관련
     CapsuleCollider2D capColl = null;
     Vector2 capVec = Vector2.zero;
     float capOffsetX = 0.04f;
     //Vector3 limitPos = Vector3.zero;
+    //collider 위치 재배치 관련
 
+    //화살표 관련
     public GameObject DirArrow = null;
     Vector3 arrowDir = Vector3.up;
     float arrowAngle = 0.0f;
     float angleOffset = 90.0f;
     const float ArrowOffset = 0.7f;
-    //이동 관련
+    //화살표 관련
 
     //능력치 관련
     bool isDead = false;
@@ -67,8 +75,10 @@ public class PlayerCtrl : MonoBehaviour
     {
         playerSpRenderer = GameObject.Find("Player_Img").GetComponent<SpriteRenderer>();
         capColl = GetComponent<CapsuleCollider2D>();
-        wpMgr = GameObject.Find("WeaponMgr").GetComponent<WeaponMgr>();
+        boxColl = GetComponentInChildren<BoxCollider2D>();
+        rigid = GetComponent<Rigidbody2D>();
         animator = GetComponentInChildren<Animator>();
+        wpMgr = FindObjectOfType<WeaponMgr>();
 
         curHp = maxHp;
 
@@ -80,9 +90,16 @@ public class PlayerCtrl : MonoBehaviour
         }
     }
 
+    //MapRePosition하는 큰 Box Collider 때문에 웬만하면 여기서 이 함수 구현 안함
+    //void OnTriggerEnter2D(Collider2D coll) { }
+
+    void FixedUpdate()
+    {
+        Move(); //충돌 때문에 여기서 호출
+    }
+
     void Update()
     {
-        Move();
         DirectionArrow();
         CalcWeaponsTimer();
         PlayerStateUpdate();
@@ -95,9 +112,6 @@ public class PlayerCtrl : MonoBehaviour
             wpMgr.GunCtrlSc.LevelUpWeapon();
         }
     }
-
-    //MapRePosition하는 큰 Box Collider 때문에 웬만하면 여기서 이 함수 구현 안함
-    //void OnTriggerEnter2D(Collider2D coll) { }
 
     void Move()
     {
@@ -258,6 +272,15 @@ public class PlayerCtrl : MonoBehaviour
             animator.SetBool("Moving", true);
     }
     */
+
+    public void TrapBossRing()
+    {
+        //boxColl.enabled = false;
+        capColl.isTrigger = false;
+        rigid.bodyType = RigidbodyType2D.Dynamic;
+        rigid.gravityScale = 0.0f;
+        //rigid.mass = 1.0f; //TODO : 추후 정하기
+    }
 
     void PlayerDie()
     {
