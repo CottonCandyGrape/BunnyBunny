@@ -5,33 +5,27 @@ using UnityEngine.UI;
 
 public class GameMgr : MonoBehaviour
 {
-    //TODO : UI 변수 따로 빼서 헤더 선언할까?
     public PlayerCtrl player = null;
 
     //게임 시간 관련 변수
-    public Text Time_Txt = null;
     float curTime = 0.0f;
     float minTime = 60.0f;
     int min = 0;
     int sec = 0;
-    //float endTime = 90.0f;
-    float endTime = float.MaxValue; //Test 용. //TODO : 적정 시간 찾기
+    //float endTime = 180.0f;
+    float endTime = float.MaxValue; //Test 용. 
     //게임 시간 관련 변수
 
     //몬스터 킬수 표시
-    public Text Kill_Txt = null;
     int killCount = 0;
     //몬스터 킬수 표시
 
     //Gold 관련
-    public Text Gold_Txt = null;
     float inGameGold = 0.0f;
     //Gold 관련
 
     //Exp 관련
     //public Text CurExpLevel_Txt = null; //inGameExp test 용
-    public Text ExpLevel_Txt = null;
-    public Image ExpBar_Img = null;
     float inGameExp = 0.0f;
     float[] expLevelArr = { 0.0f, 30.0f, 60.0f, 100.0f, 150.0f, 210.0f, 280.0f, 360.0f, 450.0f, 550.0f }; //TODO : 만랩 늘리면 수식으로 바꾸기
     int inGameLevel = 1;
@@ -40,7 +34,6 @@ public class GameMgr : MonoBehaviour
     //Exp 관련
 
     //데미지 표시
-    public Canvas SubCanvas = null;
     public GameObject DmgTxtPrefab = null;
     //데미지 표시
 
@@ -55,10 +48,23 @@ public class GameMgr : MonoBehaviour
     [HideInInspector] public bool hasBoss = false;
     //Boss전 관련
 
-    public static GameMgr Inst = null;
-
+    //Class 변수
     MonGenerator monGen = null; //Elite Mon Spawn Test 코드 //TODO : 이 두 변수 어케 처리 할지?
     CameraCtrl camCtrl = null; //zoom out test 코드
+    //Class 변수
+
+    //UI 변수
+    [Header("------ UI ------")]
+    public Text Time_Txt = null;
+    public Text Kill_Txt = null;
+    public Text Gold_Txt = null;
+    public Text ExpLevel_Txt = null;
+    public Image ExpBar_Img = null;
+    public Image BossHpBar_Img = null;
+    public Canvas SubCanvas = null;
+    //UI 변수
+
+    public static GameMgr Inst = null;
 
     void Awake()
     {
@@ -145,23 +151,23 @@ public class GameMgr : MonoBehaviour
         {
             if (expCo != null)
                 StopCoroutine(expCo);
-            float end = (inGameExp - expLevelArr[inGameLevel - 1]) /
+            float target = (inGameExp - expLevelArr[inGameLevel - 1]) /
                 (expLevelArr[inGameLevel] - expLevelArr[inGameLevel - 1]);
 
-            expCo = StartCoroutine(ExpBarFill(end));
+            expCo = StartCoroutine(FillBarImg(ExpBar_Img, target));
         }
     }
 
-    IEnumerator ExpBarFill(float end)
+    IEnumerator FillBarImg(Image fImg, float target)
     {
-        float expTimer = 0.0f;
-        float expTime = 1.0f;
+        float fTimer = 0.0f;
+        float fTime = 1.0f;
         float speed = 5.0f;
 
-        while (expTimer <= 1.0f)
+        while (fTimer <= 1.0f)
         {
-            expTimer += speed * Time.deltaTime;
-            ExpBar_Img.fillAmount = Mathf.Lerp(ExpBar_Img.fillAmount, end, (expTimer / expTime));
+            fTimer += speed * Time.deltaTime;
+            fImg.fillAmount = Mathf.Lerp(fImg.fillAmount, target, (fTimer / fTime));
             yield return null;
         }
     }
@@ -170,20 +176,23 @@ public class GameMgr : MonoBehaviour
     {
         if (hasBoss) return; //Boss 스폰 되어있다면 return
 
-        Vector2 spawnPos = ScreenMgr.Inst.GetCenterCurScreen();
+        hasBoss = true;
 
-        camCtrl.ZoomOut(); //1. 카메라 올리기
-        MemoryPoolMgr.Inst.OffAllNorMon(); //2. Normal Monster 다 끄기
-        if (BattleRing != null) //3. 링 스폰. TODO : 이때부터 범위 제한 해야한다. 데미지는 아직 no 
+        camCtrl.ZoomOut(); //카메라 올리기
+        MemoryPoolMgr.Inst.OffAllNorMon(); //Normal Monster 다 끄기
+
+        Vector2 spawnPos = ScreenMgr.Inst.GetCenterCurScreen();
+        if (BattleRing != null) //링 스폰. TODO : 링에 닿으면 데미지 
         {
             GameObject ring = Instantiate(BattleRing);
             ring.transform.position = spawnPos;
         }
-        monGen.SpawnBossMon(spawnPos);  //4. Boss Monster 스폰. TODO : 몇 초 있다가 스폰 시키기
+        player.TrapBossRing(); //player 링에 가두기
 
-        player.TrapBossRing();
+        monGen.SpawnBossMon(spawnPos);  //Boss Monster 스폰. TODO : 몇 초 있다가 스폰 시키기
 
-        hasBoss = true;
+        GameObject bossHpBar = BossHpBar_Img.transform.parent.gameObject;
+        bossHpBar.SetActive(true); //bossHpBar 켜기. //Expbar는 뒤에 묻혀서 안껏음.
     }
 
     void GameOver()
