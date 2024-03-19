@@ -25,6 +25,14 @@ public class PlayerCtrl : MonoBehaviour
     Rigidbody2D rigid = null;
     //링 이동 제한 
 
+    ////넉백 관련 
+    //bool isKnockBack = false;
+    //float kbDist = -0.3f;
+    //float kbSpeed = 3.0f;
+    //float kbTimer = 0.0f;
+    //Vector3 kbTarget = Vector3.zero;
+    ////넉백 관련 
+
     //collider 위치 재배치 관련
     CapsuleCollider2D capColl = null;
     Vector2 capVec = Vector2.zero;
@@ -95,7 +103,7 @@ public class PlayerCtrl : MonoBehaviour
 
     void FixedUpdate()
     {
-        Move(); //충돌 때문에 여기서 호출
+        Move(); //충돌(collision, not trigger) 때문에 여기서 호출
     }
 
     void Update()

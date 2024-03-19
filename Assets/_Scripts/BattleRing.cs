@@ -4,16 +4,44 @@ using UnityEngine;
 
 public class BattleRing : MonoBehaviour
 {
-    SpriteRenderer[] spRenders = null; //64개. o.k.
+    SpriteRenderer[] spRenders = null;
+
+    float dmgTime = 0.5f;
+    float dmgTimer = 0.0f;
+    bool isHit = false;
 
     void Start()
     {
         spRenders = GetComponentsInChildren<SpriteRenderer>();
+
         StartCoroutine(BlinkBattleRing());
     }
 
     //void Update() { }
 
+    void OnCollisionEnter2D(Collision2D coll)
+    {
+        if (coll.gameObject.CompareTag("Player") && isHit)
+        {
+            GameMgr.Inst.player.TakeDamage(5);
+            dmgTimer = 0.0f;
+        }
+    }
+
+    void OnCollisionStay2D(Collision2D coll)
+    {
+        if (coll.gameObject.CompareTag("Player") && isHit)
+        {
+            dmgTimer += Time.deltaTime;
+            if (dmgTime <= dmgTimer)
+            {
+                GameMgr.Inst.player.TakeDamage(5);
+                dmgTimer = 0.0f;
+            }
+        }
+    }
+
+    //TODO : 이거 후에 보스 스폰 시키자 
     IEnumerator BlinkBattleRing()
     {
         Color clr = Color.white;
@@ -38,5 +66,7 @@ public class BattleRing : MonoBehaviour
                 yield return null;
             }
         }
+
+        isHit = true;
     }
 }

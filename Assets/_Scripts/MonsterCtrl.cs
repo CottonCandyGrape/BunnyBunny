@@ -23,7 +23,6 @@ public class MonsterCtrl : MonoBehaviour
     bool isKnockBack = false;
     float kbDist = -2.0f;
     float kbSpeed = 3.0f;
-    float kbTime = 1.0f;
     float kbTimer = 0.0f;
     Vector3 kbTarget = Vector3.zero;
     //넉백 관련 
@@ -87,7 +86,7 @@ public class MonsterCtrl : MonoBehaviour
             TakeDamage(dftDmg);
         }
     }
-    
+
     void SetExp() //TODO : Init()만들어서 monType으로 나뉘는 변수들 한번에 초기화 하기
     {
         expVal = 10;
@@ -111,12 +110,12 @@ public class MonsterCtrl : MonoBehaviour
 
             transform.position += moveDir * moveSpeed * Time.deltaTime;
         }
-        else 
+        else
         {
             kbTimer += kbSpeed * Time.deltaTime;
-            transform.position = Vector3.Lerp(transform.position, kbTarget, kbTimer / kbTime);
+            transform.position = Vector3.Lerp(transform.position, kbTarget, kbTimer);
 
-            if (1.0f <= (kbTimer / kbTime))
+            if (1.0f <= kbTimer)
             {
                 isKnockBack = false;
                 kbTimer = 0.0f;
