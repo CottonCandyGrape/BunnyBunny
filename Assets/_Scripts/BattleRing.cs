@@ -8,7 +8,6 @@ public class BattleRing : MonoBehaviour
 
     float dmgTime = 0.5f;
     float dmgTimer = 0.0f;
-    bool isHit = false;
 
     void Start()
     {
@@ -21,7 +20,7 @@ public class BattleRing : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D coll)
     {
-        if (coll.gameObject.CompareTag("Player") && isHit)
+        if (coll.gameObject.CompareTag("Player") && GameMgr.Inst.hasBoss)
         {
             GameMgr.Inst.player.TakeDamage(5);
             dmgTimer = 0.0f;
@@ -30,7 +29,7 @@ public class BattleRing : MonoBehaviour
 
     void OnCollisionStay2D(Collision2D coll)
     {
-        if (coll.gameObject.CompareTag("Player") && isHit)
+        if (coll.gameObject.CompareTag("Player") && GameMgr.Inst.hasBoss)
         {
             dmgTimer += Time.deltaTime;
             if (dmgTime <= dmgTimer)
@@ -41,7 +40,6 @@ public class BattleRing : MonoBehaviour
         }
     }
 
-    //TODO : 이거 후에 보스 스폰 시키자 
     IEnumerator BlinkBattleRing()
     {
         Color clr = Color.white;
@@ -66,7 +64,5 @@ public class BattleRing : MonoBehaviour
                 yield return null;
             }
         }
-
-        isHit = true;
     }
 }

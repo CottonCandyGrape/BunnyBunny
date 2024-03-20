@@ -46,6 +46,7 @@ public class GameMgr : MonoBehaviour
     //Boss전 관련
     public GameObject BattleRing = null;
     [HideInInspector] public bool hasBoss = false;
+    [HideInInspector] public bool hasRing = false;
     Coroutine bHpCo = null;
     //Boss전 관련
 
@@ -183,9 +184,8 @@ public class GameMgr : MonoBehaviour
 
     void InitBossBattle()
     {
-        if (hasBoss) return; //Boss 스폰 되어있다면 return
-
-        hasBoss = true;
+        if (hasRing) return; //BattleRing 스폰 되어있다면 return
+        hasRing = true;
 
         camCtrl.ZoomOut(); //카메라 올리기
         MemoryPoolMgr.Inst.OffAllNorMon(); //Normal Monster 다 끄기
@@ -198,7 +198,7 @@ public class GameMgr : MonoBehaviour
         }
         player.TrapBossRing(); //player 링에 가두기
 
-        monGen.SpawnBossMon(spawnPos);  //Boss Monster 스폰. TODO : 몇 초 있다가 스폰 시키기
+        monGen.SpawnBossMon(spawnPos);  //Boss Monster 스폰.
 
         GameObject bossHpBar = BossHpBar_Img.transform.parent.gameObject;
         bossHpBar.SetActive(true); //bossHpBar 켜기. //Expbar는 뒤에 묻혀서 안껏음.

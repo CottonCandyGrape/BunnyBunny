@@ -16,7 +16,7 @@ public class MonsterCtrl : MonoBehaviour
     //이동 관련
     float moveSpeed = 1.0f;
     Vector3 moveDir = Vector3.zero;
-    SpriteRenderer spRenderer = null;
+    protected SpriteRenderer spRenderer = null;
     //이동 관련
 
     //넉백 관련 
@@ -58,7 +58,7 @@ public class MonsterCtrl : MonoBehaviour
         Move();
     }
 
-    void OnTriggerEnter2D(Collider2D coll)
+    protected virtual void OnTriggerEnter2D(Collider2D coll)
     {
         if (coll.CompareTag("P_Bullet"))
         {

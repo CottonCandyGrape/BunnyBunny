@@ -26,7 +26,7 @@ public class MonGenerator : MonoBehaviour
 
     void Update()
     {
-        if (!GameMgr.Inst.hasBoss) SpawnNormalMon();
+        if (!GameMgr.Inst.hasRing) SpawnNormalMon();
     }
 
     void SpawnNormalMon()
