@@ -196,7 +196,7 @@ public class GameMgr : MonoBehaviour
         bossHpBar.SetActive(true); //bossHpBar 켜기. //Expbar는 뒤에 묻혀서 안껏음.
     }
 
-    void GameOver()
+    public void GameOver()
     {
         Time.timeScale = 0.0f;
     }

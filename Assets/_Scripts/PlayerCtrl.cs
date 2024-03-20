@@ -292,7 +292,7 @@ public class PlayerCtrl : MonoBehaviour
 
     void PlayerDie()
     {
-        Time.timeScale = 0.0f;
+        GameMgr.Inst.GameOver();
         //isDead = true; //TODO : 어떤 상태 넣을건지?
         //AnimState = PlayerAnim.Dead;
 

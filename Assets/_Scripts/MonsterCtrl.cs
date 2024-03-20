@@ -11,7 +11,7 @@ public enum MonsterType
 
 public class MonsterCtrl : MonoBehaviour
 {
-    public MonsterType monType = MonsterType.NormalMon;
+    protected MonsterType monType = MonsterType.NormalMon;
 
     //이동 관련
     float moveSpeed = 1.0f;
@@ -28,8 +28,8 @@ public class MonsterCtrl : MonoBehaviour
     //넉백 관련 
 
     //능력치 관련
+    protected float curHp = 100;
     float maxHp = 100;
-    float curHp = 100;
     //float defense = 10;
     //float attack = 10;
     float dftDmg = 30;
@@ -70,8 +70,6 @@ public class MonsterCtrl : MonoBehaviour
             float dmg = 10;
             if (monType == MonsterType.EliteMon)
                 dmg = 20;
-            else if (monType == MonsterType.BossMon)
-                dmg = 30;
 
             GameMgr.Inst.player.TakeDamage(dmg);
         }
@@ -92,11 +90,11 @@ public class MonsterCtrl : MonoBehaviour
         expVal = 10;
         if (monType == MonsterType.EliteMon)
             expVal = 20;
-        else if (monType == MonsterType.BossMon)
-            expVal = 30;
+        //else if (monType == MonsterType.BossMon) //TODO : Boss 죽으면 GameOver이기 때문에 필요 없네
+        //    expVal = 30;
     }
 
-    void Move()
+    protected void Move()
     {
         if (!isKnockBack)
         {
@@ -125,6 +123,8 @@ public class MonsterCtrl : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        if (curHp <= 0) return; //이미 0이하인 경우에도 들어오는 경우가 있어서 추가함.
+
         //1. Hp변수 깎기
         float dmgTxt = curHp < damage ? curHp : damage;
         curHp -= damage;
@@ -133,7 +133,11 @@ public class MonsterCtrl : MonoBehaviour
 
         if (curHp <= 0)
         {
-            MonsterDie();
+            if (monType == MonsterType.BossMon)
+                GameMgr.Inst.GameOver();
+            else
+                MonsterDie();
+
             return;
         }
     }
