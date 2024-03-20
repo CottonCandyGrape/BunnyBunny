@@ -90,8 +90,6 @@ public class MonsterCtrl : MonoBehaviour
         expVal = 10;
         if (monType == MonsterType.EliteMon)
             expVal = 20;
-        //else if (monType == MonsterType.BossMon) //TODO : Boss 죽으면 GameOver이기 때문에 필요 없네
-        //    expVal = 30;
     }
 
     protected void Move()
@@ -121,9 +119,10 @@ public class MonsterCtrl : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float damage)
+    public virtual void TakeDamage(float damage)
     {
         if (curHp <= 0) return; //이미 0이하인 경우에도 들어오는 경우가 있어서 추가함.
+        //boss여서 그런가?
 
         //1. Hp변수 깎기
         float dmgTxt = curHp < damage ? curHp : damage;
@@ -131,19 +130,14 @@ public class MonsterCtrl : MonoBehaviour
         //2. Dmg Txt 띄우기 
         GameMgr.Inst.SpawnDmgTxt(transform.position + dmgTxtOffset, dmgTxt, Color.red);
 
-        if (curHp <= 0)
-        {
-            if (monType == MonsterType.BossMon)
-                GameMgr.Inst.GameOver();
-            else
-                MonsterDie();
-
-            return;
-        }
+        if (curHp <= 0) MonsterDie();
     }
 
     void MonsterDie()
     {
+        //Boss 아닐때만 Die()
+        if (monType == MonsterType.BossMon) return;
+
         MemoryPoolMgr.Inst.ActiveMonsterCount--;
         GameMgr.Inst.KillTxtUpdate(); //킬수 올리기
         GameMgr.Inst.AddExpVal(expVal); //경험치 올리기

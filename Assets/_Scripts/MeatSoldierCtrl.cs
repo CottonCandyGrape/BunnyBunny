@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MeatSoldierCtrl : MonsterCtrl
 {
-    float bossHp = 100;
+    float bossHp = 1000;
     float collDmg = 30;
 
     void Start()
@@ -12,7 +12,7 @@ public class MeatSoldierCtrl : MonsterCtrl
         InitBoss();
     }
 
-    //void FixedUpdate() { }
+    //void FixedUpdate() { } 
 
     void Update()
     {
@@ -22,7 +22,7 @@ public class MeatSoldierCtrl : MonsterCtrl
     void OnCollisionEnter2D(Collision2D coll)
     {
         if (coll.gameObject.CompareTag("Player"))
-        {//Boss일때는 player collier에 isTrigger false되기 때문에 여기서 구현   
+        {   //Boss일때는 player collier에 isTrigger false되기 때문에 여기서 구현   
             GameMgr.Inst.player.TakeDamage(collDmg);
         }
     }
@@ -31,5 +31,15 @@ public class MeatSoldierCtrl : MonsterCtrl
     {
         monType = MonsterType.BossMon;
         curHp = bossHp;
+    }
+
+    public override void TakeDamage(float damage)
+    {
+        base.TakeDamage(damage);
+
+        float target = (curHp - damage) / bossHp;
+        GameMgr.Inst.UpdateBossHpBar(target);
+
+        if (curHp <= 0) GameMgr.Inst.GameOver();
     }
 }

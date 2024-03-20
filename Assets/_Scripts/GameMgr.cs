@@ -46,11 +46,12 @@ public class GameMgr : MonoBehaviour
     //Boss전 관련
     public GameObject BattleRing = null;
     [HideInInspector] public bool hasBoss = false;
+    Coroutine bHpCo = null;
     //Boss전 관련
 
     //Class 변수
-    MonGenerator monGen = null; //Elite Mon Spawn Test 코드 //TODO : 이 두 변수 어케 처리 할지?
-    CameraCtrl camCtrl = null; //zoom out test 코드
+    MonGenerator monGen = null;
+    CameraCtrl camCtrl = null;
     //Class 변수
 
     //UI 변수
@@ -77,8 +78,8 @@ public class GameMgr : MonoBehaviour
 
         Time.timeScale = 1.0f;
 
-        monGen = FindObjectOfType<MonGenerator>(); //Elite Mon Spawn Test 코드
-        camCtrl = FindObjectOfType<CameraCtrl>(); //zoom out test 코드
+        monGen = FindObjectOfType<MonGenerator>();
+        camCtrl = FindObjectOfType<CameraCtrl>();
     }
 
     void Update()
@@ -158,9 +159,16 @@ public class GameMgr : MonoBehaviour
         }
     }
 
+    public void UpdateBossHpBar(float target)
+    {
+        if (bHpCo != null)
+            StopCoroutine(bHpCo);
+        bHpCo = StartCoroutine(FillBarImg(BossHpBar_Img, target));
+    }
+
     //게이지 방향이 음, 양일 수 있어서 Lerp로 구현함.
-    IEnumerator FillBarImg(Image fImg, float target) 
-    {   
+    IEnumerator FillBarImg(Image fImg, float target)
+    {
         float fTimer = 0.0f;
         float fTime = 1.0f;
         float speed = 5.0f;
