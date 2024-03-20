@@ -21,17 +21,8 @@ public class PlayerCtrl : MonoBehaviour
     //이동 관련
 
     //링 이동 제한 
-    BoxCollider2D boxColl = null;
     Rigidbody2D rigid = null;
     //링 이동 제한 
-
-    ////넉백 관련 
-    //bool isKnockBack = false;
-    //float kbDist = -0.3f;
-    //float kbSpeed = 3.0f;
-    //float kbTimer = 0.0f;
-    //Vector3 kbTarget = Vector3.zero;
-    ////넉백 관련 
 
     //collider 위치 재배치 관련
     CapsuleCollider2D capColl = null;
@@ -83,7 +74,6 @@ public class PlayerCtrl : MonoBehaviour
     {
         playerSpRenderer = GameObject.Find("Player_Img").GetComponent<SpriteRenderer>();
         capColl = GetComponent<CapsuleCollider2D>();
-        boxColl = GetComponentInChildren<BoxCollider2D>();
         rigid = GetComponent<Rigidbody2D>();
         animator = GetComponentInChildren<Animator>();
         wpMgr = FindObjectOfType<WeaponMgr>();
