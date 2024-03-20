@@ -92,7 +92,7 @@ public class MonsterCtrl : MonoBehaviour
             expVal = 20;
     }
 
-    protected void Move()
+    void Move()
     {
         if (!isKnockBack)
         {
@@ -122,7 +122,7 @@ public class MonsterCtrl : MonoBehaviour
     public virtual void TakeDamage(float damage)
     {
         if (curHp <= 0) return; //이미 0이하인 경우에도 들어오는 경우가 있어서 추가함.
-        //boss여서 그런가?
+        //boss일때만 그런건가?
 
         //1. Hp변수 깎기
         float dmgTxt = curHp < damage ? curHp : damage;
@@ -133,9 +133,8 @@ public class MonsterCtrl : MonoBehaviour
         if (curHp <= 0) MonsterDie();
     }
 
-    void MonsterDie()
+    protected virtual void MonsterDie()
     {
-        //Boss 아닐때만 Die()
         if (monType == MonsterType.BossMon) return;
 
         MemoryPoolMgr.Inst.ActiveMonsterCount--;

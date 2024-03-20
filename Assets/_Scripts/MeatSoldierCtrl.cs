@@ -36,10 +36,13 @@ public class MeatSoldierCtrl : MonsterCtrl
     public override void TakeDamage(float damage)
     {
         base.TakeDamage(damage);
+        GameMgr.Inst.UpdateBossHpBar(curHp / bossHp);
 
-        float target = (curHp - damage) / bossHp;
-        GameMgr.Inst.UpdateBossHpBar(target);
+        if (curHp <= 0) MonsterDie();
+    }
 
-        if (curHp <= 0) GameMgr.Inst.GameOver();
+    protected override void MonsterDie()
+    {
+        GameMgr.Inst.GameOver();
     }
 }
