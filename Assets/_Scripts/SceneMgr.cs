@@ -25,5 +25,4 @@ public class SceneMgr : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
     }
-    //TODO : 수업시간에 제원쌤이 해준코드 보기
 }

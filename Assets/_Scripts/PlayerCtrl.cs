@@ -219,57 +219,14 @@ public class PlayerCtrl : MonoBehaviour
         //드릴 타이머
     }
 
-    void PlayerStateUpdate()
-    {
-        if (moveDir.normalized == Vector3.zero)
-            animator.SetBool("Moving", false);
-        else
-            animator.SetBool("Moving", true);
-    }
-
     //state, action update 하는 함수 따로 만들기?
-    /*
     void PlayerStateUpdate()
     {
-        if (animator == null)
-        {
-            Debug.Log("Animator is null");
-            return;
-        }
-
-        if (isDead) return;
-
-        switch(AnimState)
-        {
-            case PlayerAnim.Idle:
-                {
-                    if (moveDir.normalized == Vector3.zero)
-                        animator.SetBool("Moving", false);
-                }
-                break;
-
-            case PlayerAnim.Run:
-                {
-                    if (moveDir.normalized != Vector3.zero)
-                        animator.SetBool("Moving", true);
-                }
-                break;
-
-            case PlayerAnim.Hurt:
-                break;
-
-            case PlayerAnim.Dead:
-                break;
-        }
-
-
-
         if (moveDir.normalized == Vector3.zero)
             animator.SetBool("Moving", false);
         else
             animator.SetBool("Moving", true);
     }
-    */
 
     public void TrapBossRing()
     {

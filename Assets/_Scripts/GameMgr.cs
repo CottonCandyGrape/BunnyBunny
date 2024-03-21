@@ -39,7 +39,8 @@ public class GameMgr : MonoBehaviour
     //데미지 표시
 
     //현재 인게임 관련
-    //static으로 할까? Scene 시작할때 바로 초기화 돼서 MemoryPoolMgr로 안전하게 넘겨야 하는데..
+    //TODO : static으로 할까?
+    //Scene 시작할때 바로 초기화 돼서 MemoryPoolMgr로 안전하게 넘겨야 하는데..
     //static 이면 awake에서 해도되나?
     [HideInInspector] public int StageNum = 0;
     //현재 인게임 관련
@@ -192,7 +193,7 @@ public class GameMgr : MonoBehaviour
         MemoryPoolMgr.Inst.OffAllNorMon(); //Normal Monster 다 끄기
 
         Vector2 spawnPos = ScreenMgr.Inst.GetCenterCurScreen();
-        if (BattleRing != null) //링 스폰. TODO : 링에 닿으면 데미지 
+        if (BattleRing != null) //링 스폰. 
         {
             GameObject ring = Instantiate(BattleRing);
             ring.transform.position = spawnPos;
@@ -205,10 +206,18 @@ public class GameMgr : MonoBehaviour
         bossHpBar.SetActive(true); //bossHpBar 켜기. //Expbar는 뒤에 묻혀서 안껏음.
     }
 
+    void LoadBattleScene() //TODO : 임시 함수
+    {
+        SceneManager.LoadScene("Battle");
+    }
+
     public void GameOver()
     {
-        Time.timeScale = 0.0f;
+        // TODO : 이후에 게임오버 panel에 deltaTime을 이용한 효과 사용하려면 지워야 할지도
+        //Time.timeScale = 0.0f; 
 
-        SceneManager.LoadScene("Battle");
+        //이렇게 하면 플레이어 hp가 0인데도 바로 안죽고 돌아다니다가 1초뒤에 갑자기 죽는거 처럼 보인다.
+        Invoke("LoadBattleScene", 1.0f); // TODO : 임시 코드. 
+        //SceneManager.LoadScene("Battle");
     }
 }

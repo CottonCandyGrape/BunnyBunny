@@ -67,8 +67,10 @@ public class GunCtrl : Weapon
 
     public void FanFire(Vector3 midDir) //부채꼴 모양 발사 스킬
     {
-        int deg = 20; //TODO : 하드코딩 바꾸기 
-        for (int cnt = -2; cnt < 3; cnt++)
+        int deg = 20;
+        int start = -2;
+        int end = 3;
+        for (int cnt = start; cnt < end; cnt++)
         {
             Vector3 dir = Quaternion.AngleAxis(cnt * deg, Vector3.forward) * midDir;
             FireBullet(dir);

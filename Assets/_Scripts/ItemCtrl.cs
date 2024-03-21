@@ -14,8 +14,6 @@ public class ItemCtrl : MonoBehaviour
         {
             if (itemType == ItemType.Gold)
                 goldVal = value;
-            else
-                return;
         }
     }
 
@@ -27,8 +25,6 @@ public class ItemCtrl : MonoBehaviour
         {
             if (itemType == ItemType.Heal)
                 healRate = value;
-            else
-                return;
         }
     }
 
