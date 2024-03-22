@@ -74,7 +74,7 @@ public class MeatSoldierCtrl : MonsterCtrl
         curHp = bossHp;
         capColl.enabled = false;
 
-        runCo = StartCoroutine(BlinkBoss());
+        StartCoroutine(BlinkBoss());
     }
 
     void UpdateActionState()
@@ -192,8 +192,6 @@ public class MeatSoldierCtrl : MonsterCtrl
         }
 
         BattleSetting();
-        if (runCo != null)
-            runCo = null;
     }
 
     void BattleSetting()
