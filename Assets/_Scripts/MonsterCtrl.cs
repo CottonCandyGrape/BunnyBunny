@@ -14,9 +14,10 @@ public class MonsterCtrl : MonoBehaviour
     protected MonsterType monType = MonsterType.NormalMon;
 
     //이동 관련
-    float moveSpeed = 1.0f;
-    Vector3 moveDir = Vector3.zero;
+    protected float moveSpeed = 1.0f;
+    protected Vector3 moveDir = Vector3.zero;
     protected SpriteRenderer spRenderer = null;
+    protected Rigidbody2D rigid = null;
     //이동 관련
 
     //넉백 관련 
@@ -30,8 +31,6 @@ public class MonsterCtrl : MonoBehaviour
     //능력치 관련
     protected float curHp = 100;
     float maxHp = 100;
-    //float defense = 10;
-    //float attack = 10;
     float dftDmg = 30;
     float expVal = 0;
     //능력치 관련
@@ -40,9 +39,15 @@ public class MonsterCtrl : MonoBehaviour
     Vector3 dmgTxtOffset = new Vector3(0, 0.5f, 0);
     //UI 관련
 
+    //애니메이션 관련
+    protected Animator animator = null;
+    //애니메이션 관련
+
     void Awake()
     {
+        animator = GetComponentInChildren<Animator>();
         spRenderer = GetComponentInChildren<SpriteRenderer>();
+        rigid = GetComponent<Rigidbody2D>();
     }
 
     void OnEnable()
@@ -53,10 +58,12 @@ public class MonsterCtrl : MonoBehaviour
 
     void Start() { }
 
-    void Update()
+    void FixedUpdate()
     {
         Move();
     }
+
+    //void Update() { }
 
     protected virtual void OnTriggerEnter2D(Collider2D coll)
     {
@@ -92,30 +99,37 @@ public class MonsterCtrl : MonoBehaviour
             expVal = 20;
     }
 
-    void Move()
+    protected void Move()
     {
         if (!isKnockBack)
-        {
-            moveDir = GameMgr.Inst.player.transform.position - transform.position;
-            moveDir.Normalize();
-
-            if (moveDir.x < 0)
-                spRenderer.flipX = false;
-            else
-                spRenderer.flipX = true;
-
-            transform.position += moveDir * moveSpeed * Time.deltaTime;
-        }
+            TracePlayer();
         else
-        {
-            kbTimer += kbSpeed * Time.deltaTime;
-            transform.position = Vector3.Lerp(transform.position, kbTarget, kbTimer);
+            KnockBack();
+    }
 
-            if (1.0f <= kbTimer)
-            {
-                isKnockBack = false;
-                kbTimer = 0.0f;
-            }
+    void TracePlayer()
+    {
+        moveDir = GameMgr.Inst.player.transform.position - transform.position;
+        moveDir.Normalize();
+
+        if (moveDir.x < 0)
+            spRenderer.flipX = false;
+        else
+            spRenderer.flipX = true;
+
+        rigid.MovePosition(transform.position + moveDir * moveSpeed * Time.deltaTime);
+    }
+
+    void KnockBack()
+    {
+        kbTimer += kbSpeed * Time.deltaTime;
+        Vector3 lerpVec = Vector3.Lerp(transform.position, kbTarget, kbTimer);
+        rigid.MovePosition(lerpVec);
+
+        if (1.0f <= kbTimer)
+        {
+            isKnockBack = false;
+            kbTimer = 0.0f;
         }
     }
 

@@ -18,11 +18,8 @@ public class PlayerCtrl : MonoBehaviour
     float moveSpeed = 3.0f;
     Vector3 moveDir = Vector3.zero;
     SpriteRenderer playerSpRenderer = null;
-    //이동 관련
-
-    //링 이동 제한 
     Rigidbody2D rigid = null;
-    //링 이동 제한 
+    //이동 관련
 
     //collider 위치 재배치 관련
     CapsuleCollider2D capColl = null;
@@ -42,8 +39,8 @@ public class PlayerCtrl : MonoBehaviour
     //능력치 관련
     bool isDead = false;
     float curHp = 100.0f;
-    float maxHp = 100.0f;
-    //float maxHp = float.MaxValue;
+    //float maxHp = 100.0f;
+    float maxHp = float.MaxValue;
     float attack = 10.0f;
     float defense = 10.0f;
     //능력치 관련
@@ -132,7 +129,7 @@ public class PlayerCtrl : MonoBehaviour
         if (1.0f < moveDir.magnitude)
             moveDir.Normalize();
 
-        transform.position += moveDir * moveSpeed * Time.deltaTime;
+        rigid.MovePosition(transform.position + moveDir * moveSpeed * Time.deltaTime);
 
         SubCanvas.transform.position = transform.position; //subcanvas 까지 움직임. 한줄이라 여기에 추가
     }
