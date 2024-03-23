@@ -19,6 +19,8 @@ public class PlayerCtrl : MonoBehaviour
     Vector3 moveDir = Vector3.zero;
     SpriteRenderer playerSpRenderer = null;
     Rigidbody2D rigid = null;
+    const float OffsetX = 4.7f;
+    const float OffsetY = 5.1f;
     //이동 관련
 
     //collider 위치 재배치 관련
@@ -99,6 +101,8 @@ public class PlayerCtrl : MonoBehaviour
         CalcWeaponsTimer();
         PlayerStateUpdate();
 
+        SubCanvas.transform.position = transform.position; //Move()에 있었는데 느려서 여기서 호출 
+
         if (Input.GetKeyDown(KeyCode.Space) && FullPowerTest)
         {
             wpMgr.GuardiansCtrlSc.LevelUpWeapon(); //가디언 test 용
@@ -129,9 +133,20 @@ public class PlayerCtrl : MonoBehaviour
         if (1.0f < moveDir.magnitude)
             moveDir.Normalize();
 
-        rigid.MovePosition(transform.position + moveDir * moveSpeed * Time.deltaTime);
+        Vector3 targetPos = transform.position + moveDir * moveSpeed * Time.deltaTime;
+        rigid.MovePosition(targetPos);
 
-        SubCanvas.transform.position = transform.position; //subcanvas 까지 움직임. 한줄이라 여기에 추가
+        if (GameMgr.Inst.hasRing) LimitPos(targetPos);
+    }
+
+    void LimitPos(Vector2 pos)
+    {
+        pos.x = Mathf.Clamp(pos.x, GameMgr.Inst.BattleRing.transform.position.x - OffsetX,
+            GameMgr.Inst.BattleRing.transform.position.x + OffsetX);
+        pos.y = Mathf.Clamp(pos.y, GameMgr.Inst.BattleRing.transform.position.y - OffsetY,
+            GameMgr.Inst.BattleRing.transform.position.y + OffsetY);
+
+        rigid.MovePosition(pos);
     }
 
     void SetCapCollOffset(bool flip)
@@ -225,13 +240,21 @@ public class PlayerCtrl : MonoBehaviour
             animator.SetBool("Moving", true);
     }
 
-    public void TrapBossRing()
+    public void TrapBossRing(bool trap)
     {
-        //boxColl.enabled = false;
-        capColl.isTrigger = false;
-        rigid.bodyType = RigidbodyType2D.Dynamic;
-        rigid.gravityScale = 0.0f;
-        //rigid.mass = 1.0f; //TODO : 추후 정하기
+        if (trap)
+        {
+            //boxColl.enabled = false;
+            capColl.isTrigger = false;
+            rigid.bodyType = RigidbodyType2D.Dynamic;
+            rigid.gravityScale = 0.0f;
+            rigid.mass = 0; // 플레이어가 보스 못밀게 하려고 0
+        }
+        else
+        {
+            rigid.bodyType = RigidbodyType2D.Kinematic;
+            rigid.useFullKinematicContacts = true;
+        }
     }
 
     void PlayerDie()

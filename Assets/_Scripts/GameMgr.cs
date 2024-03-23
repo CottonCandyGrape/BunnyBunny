@@ -195,10 +195,10 @@ public class GameMgr : MonoBehaviour
         Vector2 spawnPos = ScreenMgr.Inst.GetCenterCurScreen();
         if (BattleRing != null) //링 스폰. 
         {
-            GameObject ring = Instantiate(BattleRing);
-            ring.transform.position = spawnPos;
+            BattleRing = Instantiate(BattleRing);
+            BattleRing.transform.position = spawnPos;
         }
-        player.TrapBossRing(); //player 링에 가두기
+        player.TrapBossRing(true); //player 링에 가두기
 
         monGen.SpawnBossMon(spawnPos);  //Boss Monster 스폰.
 
