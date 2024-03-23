@@ -6,24 +6,31 @@ public enum ActionState { None, Walk, Run, Shot } //일단 Run까지만 구현�
 
 public class MeatSoldierCtrl : MonsterCtrl
 {
-    public ActionState actState = ActionState.None;
+    public ActionState actState = ActionState.None; //test 중 private으로 할 것.
 
-    float bossHp = 1000;
-    float collDmg = 30;
-    float walkTimer = 0.0f;
-    float walkTime = 5.0f;
-
-    //float runWaitTimer = 0.0f; 
-    //float runWaitTime = 0.5f;
-
+    float bossHp = 1000000.0f; //test 중
+    float collDmg = 30.0f;
     bool isDie = false;
 
-    //public bool isRun = false;
+    //Walk
+    float walkTimer = 0.0f;
+    float walkTime = 5.0f;
+    float walkSpeed = 1.5f;
+    //Walk
+
+    //Run
+    const int RunCount = 3;
+    public int curRunCount = 0;
+
+    float runTimer = 0.0f;
+    float runTime = 1.0f;
+    float runSpeed = 5.0f;
+    bool isRun = false;
+    Vector3 runTarget = Vector3.zero;
+    const float TargetRange = 0.5f;
+    //Run
 
     CapsuleCollider2D capColl = null;
-
-    //WaitForSeconds waitRunSec = new WaitForSeconds(0.5f);
-    //Coroutine runCo = null;
 
     void Start()
     {
@@ -32,22 +39,20 @@ public class MeatSoldierCtrl : MonsterCtrl
         InitBoss();
     }
 
-    void FixedUpdate()
+    void FixedUpdate() //충돌이 있으니깐 움직이는 것을 여기서 구현
     {
         if (!GameMgr.Inst.hasBoss) return; //깜빡일때 안움직이기
 
         if (actState == ActionState.Walk)
             base.Move();
-        //else if (actState == ActionState.Run) //TODO :
-        //{
-        //    if (runCo == null && !isRun)
-        //        runCo = StartCoroutine(RunAction());
-        //}
-        //else if (actState == ActionState.Shot)
-        // TODO : 행동 패턴 만들기
+        else if (actState == ActionState.Run)
+        {
+            if (isRun) RunToPlayer();
+        }
+        //else if (actState == ActionState.Shot) // TODO : 행동 패턴 만들기
     }
 
-    void Update()
+    void Update() //타이머 같은것들은 여기서 구현
     {
         UpdateActionState();
     }
@@ -71,7 +76,9 @@ public class MeatSoldierCtrl : MonsterCtrl
     void InitBoss()
     {
         monType = MonsterType.BossMon;
+
         curHp = bossHp;
+        moveSpeed = walkSpeed;
         capColl.enabled = false;
 
         StartCoroutine(BlinkBoss());
@@ -97,6 +104,7 @@ public class MeatSoldierCtrl : MonsterCtrl
                     if (walkTimer < 0.0f)
                     {
                         walkTimer = walkTime;
+                        runTimer = runTime;
 
                         actState = ActionState.Run;
                         animator.SetBool("Run", true);
@@ -106,14 +114,33 @@ public class MeatSoldierCtrl : MonsterCtrl
 
             case ActionState.Run:
                 {
-                    //TODO : 3번 추격 끝나고 나서 상태 바꾸기
-                    //if (runCo != null && !isRun)
-                    //{
-                    //    runCo = null;
-                    //    //actState = ActionState.Shot;
-                    //    actState = ActionState.Walk;
-                    //    animator.SetBool("Run", false);
-                    //}
+                    if (!isRun) //안달릴때(달리기 준비) 타이머 돌리기
+                    {
+                        Flip();
+
+                        runTimer -= Time.deltaTime;
+                        if (runTimer < 0.0f)
+                        {
+                            runTimer = runTime;
+                            runTarget = GameMgr.Inst.player.transform.position;
+                            moveDir = runTarget - transform.position;
+                            moveDir.Normalize();
+
+                            moveSpeed = runSpeed;
+                            curRunCount++;
+                            isRun = true;
+                        }
+                    }
+
+                    if (RunCount < curRunCount)
+                    {
+                        curRunCount = 0;
+                        isRun = false;
+                        isKnockBack = false; //run중에 Guard 맞으면 초기화 돼서 Walk 되자마자 넉백발동 됨.
+                        moveSpeed = walkSpeed;
+                        actState = ActionState.Walk;
+                        animator.SetBool("Run", false);
+                    }
                     break;
                 }
 
@@ -125,34 +152,21 @@ public class MeatSoldierCtrl : MonsterCtrl
         }
     }
 
-    //IEnumerator RunAction() //TODO 
-    //{
-    //    int dashCount = 3;
-    //    moveSpeed = 3.0f;
-    //    isRun = true;
+    void RunToPlayer()
+    {
+        rigid.MovePosition(transform.position + moveDir * moveSpeed * Time.deltaTime);
 
-    //    for (int i = 0; i < dashCount; i++)
-    //    {
-    //        yield return waitRunSec;
+        if (Vector3.Distance(transform.position, runTarget) <= TargetRange)
+            isRun = false;
+    }
 
-    //        //TODO : flip 도 해야함
-    //        Vector3 target = GameMgr.Inst.player.transform.position;
-    //        moveDir = target - transform.position;
-    //        moveDir.Normalize();
-
-    //        float lVal = 0.0f;
-    //        while (lVal <= 1.0f)
-    //        {
-    //            yield return null;
-    //            lVal += Time.deltaTime;
-    //            //rigid.MovePosition(transform.position + moveDir * moveSpeed * Time.deltaTime);
-    //            rigid.MovePosition(transform.position + moveDir * Time.deltaTime);
-    //            //transform.position = Vector3.Lerp(transform.position, target, lVal);
-    //        }
-    //    }
-
-    //    isRun = false;
-    //}
+    void Flip()
+    {
+        if (transform.position.x > GameMgr.Inst.player.transform.position.x)
+            spRenderer.flipX = false;
+        else
+            spRenderer.flipX = true;
+    }
 
     public override void TakeDamage(float damage)
     {

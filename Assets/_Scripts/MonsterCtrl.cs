@@ -21,7 +21,7 @@ public class MonsterCtrl : MonoBehaviour
     //이동 관련
 
     //넉백 관련 
-    bool isKnockBack = false;
+    protected bool isKnockBack = false;
     float kbDist = -2.0f;
     float kbSpeed = 3.0f;
     float kbTimer = 0.0f;
