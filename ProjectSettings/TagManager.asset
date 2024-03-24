@@ -16,6 +16,7 @@ TagManager:
   - Rocket
   - Guard
   - Drill
+  - BattleRing
   layers:
   - Default
   - TransparentFX
