@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ActionState { None, Walk, Run, Shot } //일단 Run까지만 구현하자
+public enum ActionState { None, Walk, Run, Shot } //TODO : Shot은 보류
 
 public class MeatSoldierCtrl : MonsterCtrl
 {
-    public ActionState actState = ActionState.None; //test 중 private으로 할 것.
+    ActionState actState = ActionState.None;
 
-    float bossHp = 1000000.0f; //test 중
+    float bossHp = 1000.0f;
     float collDmg = 30.0f;
     bool isDie = false;
 
@@ -20,7 +20,7 @@ public class MeatSoldierCtrl : MonsterCtrl
 
     //Run
     const int RunCount = 3;
-    public int curRunCount = 0;
+    int curRunCount = 0;
 
     float runTimer = 0.0f;
     float runTime = 1.0f;
@@ -57,21 +57,37 @@ public class MeatSoldierCtrl : MonsterCtrl
         UpdateActionState();
     }
 
+    //OnTrigger
     protected override void OnTriggerEnter2D(Collider2D coll)
     {
         if (!GameMgr.Inst.hasBoss) return; // 깜빡일때 안맞기
 
         base.OnTriggerEnter2D(coll);
     }
+    //OnTrigger
 
+    //OnCollision
     void OnCollisionEnter2D(Collision2D coll)
     {
         if (!GameMgr.Inst.hasBoss) return;
 
-        //Boss일때는 player collier에 isTrigger false되기 때문에 여기서 구현   
+        //보통 Boss일때는 player collier에 isTrigger.false기 때문에 여기서 구현   
+        //하지만 isTrigger.true일 경우도 있는데 base.OnTriggerEnter2D()에 구현되어 있다.
         if (coll.gameObject.CompareTag("Player"))
             GameMgr.Inst.player.TakeDamage(collDmg);
+        else if (coll.gameObject.CompareTag("BattleRing") && isRun)
+            isRun = false;
     }
+
+    void OnCollisionStay2D(Collision2D coll)
+    {
+        //Player가 Ring Collider에 계속 갇혀 있으면
+        //Enter에서 isRun=false 해주는것 만으로는
+        //RunToPlayer()에서 탈출시키기에 부족함.
+        if (coll.gameObject.CompareTag("BattleRing") && isRun)
+            isRun = false;
+    }
+    //OnCollision
 
     void InitBoss()
     {

@@ -248,12 +248,11 @@ public class PlayerCtrl : MonoBehaviour
             capColl.isTrigger = false;
             rigid.bodyType = RigidbodyType2D.Dynamic;
             rigid.gravityScale = 0.0f;
-            rigid.mass = 0; // 플레이어가 보스 못밀게 하려고 0
+            rigid.mass = 0; // 플레이어가 보스 밀지 못하게 0
         }
         else
         {
-            rigid.bodyType = RigidbodyType2D.Kinematic;
-            rigid.useFullKinematicContacts = true;
+            capColl.isTrigger = true;
         }
     }
 

@@ -77,6 +77,8 @@ public class MonsterCtrl : MonoBehaviour
             float dmg = 10;
             if (monType == MonsterType.EliteMon)
                 dmg = 20;
+            else if (monType == MonsterType.BossMon)
+                dmg = 30;
 
             GameMgr.Inst.player.TakeDamage(dmg);
         }

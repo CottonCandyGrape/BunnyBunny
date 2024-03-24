@@ -26,31 +26,54 @@ public class BattleRing : MonoBehaviour
 
     //void Update() { }
 
+    //OnCollision
     void OnCollisionEnter2D(Collision2D coll)
     {
         if (coll.gameObject.CompareTag("Player") && GameMgr.Inst.hasBoss)
-        {
-            GameMgr.Inst.player.TakeDamage(5);
-            dmgTimer = 0.0f;
-        }
+            EnterRing();
     }
 
     void OnCollisionStay2D(Collision2D coll)
     {
         if (coll.gameObject.CompareTag("Player") && GameMgr.Inst.hasBoss)
-        {
-            dmgTimer += Time.deltaTime;
-            if (dmgTime <= dmgTimer)
-            {
-                GameMgr.Inst.player.TakeDamage(5);
-                dmgTimer = 0.0f;
-            }
-        }
+            StayRing();
     }
-    void OnCollisionExit2D(Collision2D coll)
+    //OnCollision
+
+    //OnTrigger
+    private void OnTriggerEnter2D(Collider2D coll)
+    {
+        if (coll.gameObject.CompareTag("Player") && GameMgr.Inst.hasBoss)
+            EnterRing();
+    }
+
+    private void OnTriggerStay2D(Collider2D coll)
+    {
+        if (coll.gameObject.CompareTag("Player") && GameMgr.Inst.hasBoss)
+            StayRing();
+    }
+
+    void OnTriggerExit2D(Collider2D coll)
     {
         if (coll.gameObject.CompareTag("Player") && GameMgr.Inst.hasBoss)
             GameMgr.Inst.player.TrapBossRing(true);
+    }
+    //OnTrigger
+
+    void EnterRing()
+    {
+        GameMgr.Inst.player.TakeDamage(5);
+        dmgTimer = 0.0f;
+    }
+
+    void StayRing()
+    {
+        dmgTimer += Time.deltaTime;
+        if (dmgTime <= dmgTimer)
+        {
+            GameMgr.Inst.player.TakeDamage(5);
+            dmgTimer = 0.0f;
+        }
     }
 
     void EscapeInColl()
