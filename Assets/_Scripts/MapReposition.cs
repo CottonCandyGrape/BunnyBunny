@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MapReposition : MonoBehaviour
 {
-    int moveDist = 20;
+    int moveDist = 40;
 
     void OnTriggerExit2D(Collider2D coll)
     {
