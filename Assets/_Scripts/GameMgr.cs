@@ -64,10 +64,7 @@ public class GameMgr : MonoBehaviour
     public Text Gold_Txt = null;
     public Text ExpLevel_Txt = null;
     public Image ExpBar_Img = null;
-    public Image ExpPtr_Img = null; 
     public Image BossHpBar_Img = null;
-    public Image BossPtr_Img = null;
-    Vector2 rightEndPos = new Vector2(410.0f, 0.0f);
     public Canvas SubCanvas = null;
     //UI 변수
 
@@ -150,13 +147,10 @@ public class GameMgr : MonoBehaviour
         }
 
         //CurExpLevel_Txt.text = inGameExp.ToString(); //inGameExp Test용
-        ExpLevel_Txt.text = inGameLevel.ToString();
+        ExpLevel_Txt.text = "Lv. " + inGameLevel.ToString();
 
         if (inGameLevel >= maxLevel) //만랩일 때
-        {
             ExpBar_Img.fillAmount = 1;
-            ExpPtr_Img.rectTransform.anchoredPosition = rightEndPos;
-        }
         else
         {
             if (expCo != null)
@@ -164,7 +158,7 @@ public class GameMgr : MonoBehaviour
             float target = (inGameExp - expLevelArr[inGameLevel - 1]) /
                 (expLevelArr[inGameLevel] - expLevelArr[inGameLevel - 1]);
 
-            expCo = StartCoroutine(FillBarImg(ExpBar_Img, ExpPtr_Img, target));
+            expCo = StartCoroutine(FillBarImg(ExpBar_Img, target));
         }
     }
 
@@ -172,26 +166,20 @@ public class GameMgr : MonoBehaviour
     {
         if (bHpCo != null)
             StopCoroutine(bHpCo);
-        bHpCo = StartCoroutine(FillBarImg(BossHpBar_Img, BossPtr_Img, target)); //TODO : BossPtr 아직 null
+        bHpCo = StartCoroutine(FillBarImg(BossHpBar_Img, target)); //TODO : BossPtr 아직 null
     }
 
     //게이지 방향이 음, 양일 수 있어서 Lerp로 구현함.
-    IEnumerator FillBarImg(Image fImg, Image ptrImg, float target)
+    IEnumerator FillBarImg(Image fImg, float target)
     {
         float fTimer = 0.0f;
         float fTime = 1.0f;
         float speed = 5.0f;
-        float dist = 410.0f;
 
         while (fTimer <= 1.0f)
         {
             fTimer += speed * Time.deltaTime;
             fImg.fillAmount = Mathf.Lerp(fImg.fillAmount, target, (fTimer / fTime));
-
-            Vector2 pos = ptrImg.rectTransform.anchoredPosition;
-            pos.x = Mathf.Lerp(-dist, dist, fImg.fillAmount);
-            ptrImg.rectTransform.anchoredPosition = pos;
-
             yield return null;
         }
     }
@@ -226,7 +214,7 @@ public class GameMgr : MonoBehaviour
     public void GameOver()
     {
         // TODO : 이후에 게임오버 panel에 deltaTime을 이용한 효과 사용하려면 지워야 할지도
-        Time.timeScale = 0.0f; 
+        Time.timeScale = 0.0f;
 
         //이렇게 하면 플레이어 hp가 0인데도 바로 안죽고 돌아다니다가 1초뒤에 갑자기 죽는거 처럼 보인다.
         //Invoke("LoadBattleScene", 1.0f); // TODO : 임시 코드. 
