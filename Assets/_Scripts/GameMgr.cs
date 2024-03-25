@@ -66,6 +66,8 @@ public class GameMgr : MonoBehaviour
     public Image ExpBar_Img = null;
     public Image ExpPtr_Img = null; 
     public Image BossHpBar_Img = null;
+    public Image BossPtr_Img = null;
+    Vector2 rightEndPos = new Vector2(410.0f, 0.0f);
     public Canvas SubCanvas = null;
     //UI 변수
 
@@ -150,8 +152,11 @@ public class GameMgr : MonoBehaviour
         //CurExpLevel_Txt.text = inGameExp.ToString(); //inGameExp Test용
         ExpLevel_Txt.text = inGameLevel.ToString();
 
-        if (inGameLevel >= maxLevel)
+        if (inGameLevel >= maxLevel) //만랩일 때
+        {
             ExpBar_Img.fillAmount = 1;
+            ExpPtr_Img.rectTransform.anchoredPosition = rightEndPos;
+        }
         else
         {
             if (expCo != null)
@@ -159,41 +164,34 @@ public class GameMgr : MonoBehaviour
             float target = (inGameExp - expLevelArr[inGameLevel - 1]) /
                 (expLevelArr[inGameLevel] - expLevelArr[inGameLevel - 1]);
 
-            expCo = StartCoroutine(FillBarImg(ExpBar_Img, target));
+            expCo = StartCoroutine(FillBarImg(ExpBar_Img, ExpPtr_Img, target));
         }
-        //SetBarPtrPos(ExpBar_Img, ExpPtr_Img);
-    }
-
-    void SetBarPtrPos(Image barImg, Image ptrImg)
-    {
-        float exp = barImg.fillAmount;
-        float dist = 820.0f;
-        float hDist = 410.0f;
-
-        Vector3 pos = ptrImg.rectTransform.anchoredPosition;
-        pos.x = (dist * exp) - hDist;
-        ptrImg.rectTransform.anchoredPosition = pos;
     }
 
     public void UpdateBossHpBar(float target)
     {
         if (bHpCo != null)
             StopCoroutine(bHpCo);
-        bHpCo = StartCoroutine(FillBarImg(BossHpBar_Img, target));
+        bHpCo = StartCoroutine(FillBarImg(BossHpBar_Img, BossPtr_Img, target)); //TODO : BossPtr 아직 null
     }
 
     //게이지 방향이 음, 양일 수 있어서 Lerp로 구현함.
-    IEnumerator FillBarImg(Image fImg, float target)
+    IEnumerator FillBarImg(Image fImg, Image ptrImg, float target)
     {
         float fTimer = 0.0f;
         float fTime = 1.0f;
         float speed = 5.0f;
+        float dist = 410.0f;
 
         while (fTimer <= 1.0f)
         {
             fTimer += speed * Time.deltaTime;
             fImg.fillAmount = Mathf.Lerp(fImg.fillAmount, target, (fTimer / fTime));
-            SetBarPtrPos(ExpBar_Img, ExpPtr_Img); //TODO : 매개변수 확인바꿔야함.
+
+            Vector2 pos = ptrImg.rectTransform.anchoredPosition;
+            pos.x = Mathf.Lerp(-dist, dist, fImg.fillAmount);
+            ptrImg.rectTransform.anchoredPosition = pos;
+
             yield return null;
         }
     }
