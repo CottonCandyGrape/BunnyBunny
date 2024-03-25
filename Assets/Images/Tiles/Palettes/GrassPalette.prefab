@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5870682716953053966}
   - component: {fileID: 1974275855987844408}
   m_Layer: 0
-  m_Name: RectPalette
+  m_Name: GrassPalette
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

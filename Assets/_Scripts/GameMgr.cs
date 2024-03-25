@@ -64,6 +64,7 @@ public class GameMgr : MonoBehaviour
     public Text Gold_Txt = null;
     public Text ExpLevel_Txt = null;
     public Image ExpBar_Img = null;
+    public Image ExpPtr_Img = null; 
     public Image BossHpBar_Img = null;
     public Canvas SubCanvas = null;
     //UI 변수
@@ -160,6 +161,18 @@ public class GameMgr : MonoBehaviour
 
             expCo = StartCoroutine(FillBarImg(ExpBar_Img, target));
         }
+        //SetBarPtrPos(ExpBar_Img, ExpPtr_Img);
+    }
+
+    void SetBarPtrPos(Image barImg, Image ptrImg)
+    {
+        float exp = barImg.fillAmount;
+        float dist = 820.0f;
+        float hDist = 410.0f;
+
+        Vector3 pos = ptrImg.rectTransform.anchoredPosition;
+        pos.x = (dist * exp) - hDist;
+        ptrImg.rectTransform.anchoredPosition = pos;
     }
 
     public void UpdateBossHpBar(float target)
@@ -180,6 +193,7 @@ public class GameMgr : MonoBehaviour
         {
             fTimer += speed * Time.deltaTime;
             fImg.fillAmount = Mathf.Lerp(fImg.fillAmount, target, (fTimer / fTime));
+            SetBarPtrPos(ExpBar_Img, ExpPtr_Img); //TODO : 매개변수 확인바꿔야함.
             yield return null;
         }
     }
