@@ -220,6 +220,6 @@ public class GameMgr : MonoBehaviour
 
         //이렇게 하면 플레이어 hp가 0인데도 바로 안죽고 돌아다니다가 1초뒤에 갑자기 죽는거 처럼 보인다.
         //Invoke("LoadBattleScene", 1.0f); // TODO : 임시 코드. 
-        //SceneManager.LoadScene("Battle");
+        SceneManager.LoadScene("Battle");
     }
 }

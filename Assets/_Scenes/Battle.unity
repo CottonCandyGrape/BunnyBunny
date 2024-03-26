@@ -316,6 +316,63 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 3, y: -3}
   m_UseGraphicAlpha: 1
+--- !u!1 &91316343
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 91316344}
+  - component: {fileID: 91316345}
+  m_Layer: 0
+  m_Name: BattleSceneMgr
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &91316344
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 91316343}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &91316345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 91316343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d45bb7b0f0d3534aaf05db71f73a882, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Nickname_Txt: {fileID: 177681446}
+  Heart_Txt: {fileID: 81344241}
+  Gold_Txt: {fileID: 1091882186}
+  Level_Txt: {fileID: 358998492}
+  Setting_Btn: {fileID: 1585691063}
+  Left_Btn: {fileID: 1649228289}
+  Right_Btn: {fileID: 1732248327}
+  StageNum_Txt: {fileID: 1646904370}
+  Start_Btn: {fileID: 1381171067}
+  Store_Btn: {fileID: 118501602}
+  Inventory_Btn: {fileID: 1628785389}
+  Battle_Btn: {fileID: 1253271002}
+  Evolve_Btn: {fileID: 1156395191}
 --- !u!1 &118501600
 GameObject:
   m_ObjectHideFlags: 0
@@ -820,8 +877,8 @@ RectTransform:
   - {fileID: 1585691062}
   - {fileID: 1543102375}
   - {fileID: 1649228288}
-  - {fileID: 1010283966}
   - {fileID: 1732248326}
+  - {fileID: 1010283966}
   - {fileID: 1685311723}
   - {fileID: 473497679}
   - {fileID: 1381171066}
@@ -3420,7 +3477,7 @@ GameObject:
   - component: {fileID: 1646904370}
   - component: {fileID: 1646904372}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: StageNum_Txt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3998,3 +4055,4 @@ SceneRoots:
   - {fileID: 195454892}
   - {fileID: 442492164}
   - {fileID: 79342055}
+  - {fileID: 91316344}
