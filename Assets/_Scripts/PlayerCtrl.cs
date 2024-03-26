@@ -23,12 +23,11 @@ public class PlayerCtrl : MonoBehaviour
     const float OffsetY = 5.1f;
     //이동 관련
 
-    //collider 위치 재배치 관련
+    //Flip 관련
     CapsuleCollider2D capColl = null;
     Vector2 capVec = Vector2.zero;
-    float capOffsetX = 0.04f;
-    //Vector3 limitPos = Vector3.zero;
-    //collider 위치 재배치 관련
+    const float capOffsetX = 0.04f;
+    //Flip 관련
 
     //화살표 관련
     public GameObject DirArrow = null;
@@ -118,16 +117,8 @@ public class PlayerCtrl : MonoBehaviour
         v = Input.GetAxis("Vertical");
 
         //좌우 방향 바뀔때마다 flip
-        if (0.0f < h)
-        {
-            playerSpRenderer.flipX = true;
-            SetCapCollOffset(true);
-        }
-        else if (h < 0.0f)
-        {
-            playerSpRenderer.flipX = false;
-            SetCapCollOffset(false);
-        }
+        if (0.0f < h) Flip(true);
+        else if (h < 0.0f) Flip(false);
 
         moveDir = (Vector2.up * v) + (Vector2.right * h);
         if (1.0f < moveDir.magnitude)
@@ -149,13 +140,14 @@ public class PlayerCtrl : MonoBehaviour
         rigid.MovePosition(pos);
     }
 
-    void SetCapCollOffset(bool flip)
+    void Flip(bool flip)
     {
+        //player flip
+        playerSpRenderer.flipX = flip;
+
+        //collider flip
         capVec = capColl.offset;
-        if (flip)
-            capVec.x = capOffsetX;
-        else
-            capVec.x = -capOffsetX;
+        capVec.x = flip ? capOffsetX : -capOffsetX;
         capColl.offset = capVec;
     }
 
