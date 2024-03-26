@@ -200,10 +200,12 @@ public class GameMgr : MonoBehaviour
         }
         player.TrapBossRing(true); //player 링에 가두기
 
-        monGen.SpawnBossMon(spawnPos);  //Boss Monster 스폰.
+        monGen.SpawnBossMon(spawnPos); //Boss Monster 스폰.
 
         GameObject bossHpBar = BossHpBar_Img.transform.parent.gameObject;
-        bossHpBar.SetActive(true); //bossHpBar 켜기. //Expbar는 뒤에 묻혀서 안껏음.
+        bossHpBar.SetActive(true); //bossHpBar 켜기. 
+        ExpLevel_Txt.gameObject.SetActive(false); //Lv 끄기
+        ExpBar_Img.gameObject.SetActive(false); //Exp Bar 끄기
     }
 
     //void LoadBattleScene() //TODO : 임시 함수
