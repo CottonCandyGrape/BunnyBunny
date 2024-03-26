@@ -26,12 +26,23 @@ public class BattleSceneMgr : MonoBehaviour
     public Button Evolve_Btn = null;
 
     int stageNum = 1;
+    const int MinStageNum = 1;
+    const int MaxStageNum = 3;
 
     void Start()
     {
         // Top UI 
 
         // Center UI
+        if (Left_Btn)
+            Left_Btn.onClick.AddListener(LeftArrowBtn);
+
+        if (Right_Btn)
+            Right_Btn.onClick.AddListener(RightArrowBtn);
+
+        if (StageNum_Txt) //StageNum 초기화
+            StageNum_Txt.text = stageNum.ToString();
+
         if (Start_Btn)
             Start_Btn.onClick.AddListener(StartGame);
 
@@ -45,5 +56,21 @@ public class BattleSceneMgr : MonoBehaviour
     void StartGame()
     {
         SceneManager.LoadScene("InGame");
+    }
+
+    void LeftArrowBtn()
+    {
+        if (stageNum <= MinStageNum) return;
+
+        stageNum--;
+        StageNum_Txt.text = stageNum.ToString();
+    }
+
+    void RightArrowBtn()
+    {
+        if (MaxStageNum <= stageNum) return;
+
+        stageNum++;
+        StageNum_Txt.text = stageNum.ToString();
     }
 }

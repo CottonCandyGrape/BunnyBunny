@@ -140,7 +140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &79342054
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -327,7 +327,7 @@ GameObject:
   - component: {fileID: 91316344}
   - component: {fileID: 91316345}
   m_Layer: 0
-  m_Name: BattleSceneMgr
+  m_Name: UIMgr
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1794,7 +1794,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1010283966
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2592,7 +2592,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1311026281}
   m_Layer: 5
-  m_Name: ------UpUI------
+  m_Name: ------TopUI------
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2628,7 +2628,7 @@ GameObject:
   - component: {fileID: 1318271246}
   - component: {fileID: 1318271247}
   m_Layer: 5
-  m_Name: ------ LowUI ------
+  m_Name: ------ BottomUI ------
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2868,7 +2868,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1381171066
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3197,7 +3197,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1543102375}
   m_Layer: 5
-  m_Name: ------ MidUI ------
+  m_Name: ------ CenterUI ------
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3240,7 +3240,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1585691062
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3577,7 +3577,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1649228288
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3869,7 +3869,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1732248326
 RectTransform:
   m_ObjectHideFlags: 0
