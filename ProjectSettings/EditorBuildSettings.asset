@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/_Scenes/Battle.unity
     guid: 7c46d95ea55e3604e8194bf15fcc11a0
   - enabled: 1
-    path: Assets/_Scenes/Equipment.unity
+    path: Assets/_Scenes/Inventory.unity
     guid: 194e73db09b285745bd8665a5828b23f
   - enabled: 1
     path: Assets/_Scenes/Evolve.unity
@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/Store.unity
     guid: 51e5b55cff24aaa489dc96d977ffa9e0
+  - enabled: 1
+    path: Assets/_Scenes/UpLowUI.unity
+    guid: d205ff8b2f9c9784e8b7dae8d9099831
   m_configObjects: {}

@@ -6,24 +6,11 @@ using UnityEngine.UI;
 
 public class BattleSceneMgr : MonoBehaviour
 {
-    [Header("------ Top UI ------")]
-    public Text Nickname_Txt = null;
-    public Text Heart_Txt = null;
-    public Text Gold_Txt = null;
-    public Text Level_Txt = null;
-    public Button Setting_Btn = null;
-
     [Header("------ Center UI ------")]
     public Button Left_Btn = null;
     public Button Right_Btn = null;
     public Text StageNum_Txt = null;
     public Button Start_Btn = null;
-
-    [Header("------ Bottom UI ------")]
-    public Button Store_Btn = null;
-    public Button Inventory_Btn = null;
-    public Button Battle_Btn = null;
-    public Button Evolve_Btn = null;
 
     int stageNum = 1;
     const int MinStageNum = 1;
@@ -31,9 +18,8 @@ public class BattleSceneMgr : MonoBehaviour
 
     void Start()
     {
-        // Top UI 
+        Time.timeScale = 1.0f; //인게임에서 죽으면 0.0f 되기 때문에 다시 맞춰줌
 
-        // Center UI
         if (Left_Btn)
             Left_Btn.onClick.AddListener(LeftArrowBtn);
 
@@ -45,8 +31,6 @@ public class BattleSceneMgr : MonoBehaviour
 
         if (Start_Btn)
             Start_Btn.onClick.AddListener(StartGame);
-
-        // Bottom UI
     }
 
     //void Update() { }

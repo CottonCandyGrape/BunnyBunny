@@ -216,10 +216,11 @@ public class GameMgr : MonoBehaviour
     public void GameOver()
     {
         // TODO : 이후에 게임오버 panel에 deltaTime을 이용한 효과 사용하려면 지워야 할지도
-        Time.timeScale = 0.0f;
+        Time.timeScale = 0.0f; //얘 때문에 BattleSceneMgr에서 토끼 배경 움직여 주려고 다시 1.0으로 맞춰준다.
 
         //이렇게 하면 플레이어 hp가 0인데도 바로 안죽고 돌아다니다가 1초뒤에 갑자기 죽는거 처럼 보인다.
         //Invoke("LoadBattleScene", 1.0f); // TODO : 임시 코드. 
         SceneManager.LoadScene("Battle");
+        SceneManager.LoadScene("UpLowUI", LoadSceneMode.Additive);
     }
 }
