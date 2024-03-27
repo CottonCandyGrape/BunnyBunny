@@ -60,8 +60,8 @@ public class GameMgr : MonoBehaviour
     public Image BossHpBar_Img = null;
     public Canvas SubCanvas = null;
     public Canvas MainCanvas = null;
-    public Button Pause_Btn = null;
-    public GameObject PausePopUpPref = null;
+    public Button Config_Btn = null;
+    public GameObject PopUpPref = null;
     //UI 변수
 
     public static GameMgr Inst = null;
@@ -80,8 +80,8 @@ public class GameMgr : MonoBehaviour
         monGen = FindObjectOfType<MonGenerator>();
         camCtrl = FindObjectOfType<CameraCtrl>();
 
-        if (Pause_Btn)
-            Pause_Btn.onClick.AddListener(PauseBtnClick);
+        if (Config_Btn)
+            Config_Btn.onClick.AddListener(PauseBtnClick);
     }
 
     void Update()
@@ -215,7 +215,7 @@ public class GameMgr : MonoBehaviour
     void PauseBtnClick()
     {
         Time.timeScale = 0.0f;
-        Instantiate(PausePopUpPref, MainCanvas.transform);
+        Instantiate(PopUpPref, MainCanvas.transform);
     }
 
     public void GameOver()

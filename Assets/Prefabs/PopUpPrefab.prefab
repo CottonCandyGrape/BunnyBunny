@@ -150,7 +150,7 @@ GameObject:
   - component: {fileID: 3983140340229762219}
   - component: {fileID: 5610573247165239564}
   m_Layer: 5
-  m_Name: Pause_Panel
+  m_Name: PopUpPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
