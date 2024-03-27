@@ -9,12 +9,17 @@ public class BattleSceneMgr : MonoBehaviour
 {
     public Button Left_Btn = null;
     public Button Right_Btn = null;
+    public Image LockStage_Img = null;
+    public Image Lock = null;
     public Text StageNum_Txt = null;
     public Button Start_Btn = null;
 
-    int stageNum = 0;
+    Color lockColor = new Color32(120, 114, 114, 255);
+
     const int MinStageNum = 0;
     const int MaxStageNum = 2;
+    int stageNum = 0;
+    int unLockStageNum = 0;
 
     void Start()
     {
@@ -61,6 +66,8 @@ public class BattleSceneMgr : MonoBehaviour
 
         stageNum--;
         StageNum_Txt.text = (stageNum + 1).ToString();
+
+        SetLockImage();
     }
 
     void RightArrowBtn()
@@ -69,5 +76,23 @@ public class BattleSceneMgr : MonoBehaviour
 
         stageNum++;
         StageNum_Txt.text = (stageNum + 1).ToString();
+
+        SetLockImage();
+    }
+
+    void SetLockImage()
+    {
+        if (stageNum <= unLockStageNum)
+        { 
+            Lock.gameObject.SetActive(false);
+            LockStage_Img.color = Color.white;
+            StageNum_Txt.color = Color.white;
+        }
+        else
+        {
+            Lock.gameObject.SetActive(true);
+            LockStage_Img.color = lockColor;
+            StageNum_Txt.color = lockColor;
+        }
     }
 }
