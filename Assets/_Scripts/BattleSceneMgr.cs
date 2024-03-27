@@ -26,10 +26,10 @@ public class BattleSceneMgr : MonoBehaviour
         Time.timeScale = 1.0f; //인게임에서 죽으면 0.0f 되기 때문에 다시 맞춰줌
 
         if (Left_Btn)
-            Left_Btn.onClick.AddListener(LeftArrowBtn);
+            Left_Btn.onClick.AddListener(LeftArrowBtnClick);
 
         if (Right_Btn)
-            Right_Btn.onClick.AddListener(RightArrowBtn);
+            Right_Btn.onClick.AddListener(RightArrowBtnClick);
 
         if (StageNum_Txt) //StageNum 초기화
             StageNum_Txt.text = (stageNum + 1).ToString();
@@ -60,7 +60,7 @@ public class BattleSceneMgr : MonoBehaviour
         return false;
     }
 
-    void LeftArrowBtn()
+    void LeftArrowBtnClick()
     {
         if (stageNum <= MinStageNum) return;
 
@@ -70,7 +70,7 @@ public class BattleSceneMgr : MonoBehaviour
         SetLockImage();
     }
 
-    void RightArrowBtn()
+    void RightArrowBtnClick()
     {
         if (MaxStageNum <= stageNum) return;
 

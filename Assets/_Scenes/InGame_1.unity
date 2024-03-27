@@ -424,6 +424,9 @@ MonoBehaviour:
   ExpBar_Img: {fileID: 2023851566}
   BossHpBar_Img: {fileID: 52828951}
   SubCanvas: {fileID: 2012018422}
+  MainCanvas: {fileID: 1626036648}
+  Pause_Btn: {fileID: 1077136654}
+  PausePopUpPref: {fileID: 6305200933284207468, guid: e4a17af06b9c4c040bee4c0f0307df7d, type: 3}
 --- !u!4 &145007060
 Transform:
   m_ObjectHideFlags: 0

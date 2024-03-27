@@ -59,6 +59,9 @@ public class GameMgr : MonoBehaviour
     public Image ExpBar_Img = null;
     public Image BossHpBar_Img = null;
     public Canvas SubCanvas = null;
+    public Canvas MainCanvas = null;
+    public Button Pause_Btn = null;
+    public GameObject PausePopUpPref = null;
     //UI 변수
 
     public static GameMgr Inst = null;
@@ -76,6 +79,9 @@ public class GameMgr : MonoBehaviour
 
         monGen = FindObjectOfType<MonGenerator>();
         camCtrl = FindObjectOfType<CameraCtrl>();
+
+        if (Pause_Btn)
+            Pause_Btn.onClick.AddListener(PauseBtnClick);
     }
 
     void Update()
@@ -205,6 +211,12 @@ public class GameMgr : MonoBehaviour
     //{
     //    SceneManager.LoadScene("Battle");
     //}
+
+    void PauseBtnClick()
+    {
+        Time.timeScale = 0.0f;
+        Instantiate(PausePopUpPref, MainCanvas.transform);
+    }
 
     public void GameOver()
     {
