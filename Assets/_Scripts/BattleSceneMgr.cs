@@ -19,7 +19,7 @@ public class BattleSceneMgr : MonoBehaviour
     const int MinStageNum = 0;
     const int MaxStageNum = 2;
     int stageNum = 0;
-    int unLockStageNum = 0;
+    int unLockStageNum = 0; //TODO : UserInfo로 넘겨야 할듯.
 
     void Start()
     {
