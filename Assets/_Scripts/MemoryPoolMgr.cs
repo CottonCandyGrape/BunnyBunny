@@ -35,7 +35,7 @@ public class MemoryPoolMgr : MonoBehaviour
         bulletPool = GameObject.Find("BulletPool").GetComponent<Transform>();
 
         //현재 스테이지 초기화 //TODO : 안전한가?
-        curStage = GameMgr.Inst.StageNum;
+        curStage = AllSceneMgr.Instance.CurStageNum;
         norMonList = new List<GameObject[]> { NorMonPrefs1, NorMonPrefs2, NorMonPrefs3 };
 
         //norMonPool

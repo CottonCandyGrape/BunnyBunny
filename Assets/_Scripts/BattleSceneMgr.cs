@@ -1,20 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class BattleSceneMgr : MonoBehaviour
 {
-    [Header("------ Center UI ------")]
     public Button Left_Btn = null;
     public Button Right_Btn = null;
     public Text StageNum_Txt = null;
     public Button Start_Btn = null;
 
-    int stageNum = 1;
-    const int MinStageNum = 1;
-    const int MaxStageNum = 3;
+    int stageNum = 0;
+    const int MinStageNum = 0;
+    const int MaxStageNum = 2;
 
     void Start()
     {
@@ -27,7 +27,7 @@ public class BattleSceneMgr : MonoBehaviour
             Right_Btn.onClick.AddListener(RightArrowBtn);
 
         if (StageNum_Txt) //StageNum 초기화
-            StageNum_Txt.text = stageNum.ToString();
+            StageNum_Txt.text = (stageNum + 1).ToString();
 
         if (Start_Btn)
             Start_Btn.onClick.AddListener(StartGame);
@@ -35,11 +35,24 @@ public class BattleSceneMgr : MonoBehaviour
 
     //void Update() { }
 
-    //TODO : stageNum를 GameMgr에 넘겨줘서 알맞은 스테이지가 실행되어야 한다.
-    //Scene 이름에 Stage번호를 넣어야겠네...
     void StartGame()
     {
-        SceneManager.LoadScene("InGame");
+        string sceneName = "InGame_" + (stageNum + 1).ToString();
+        if (!IsExistScene(sceneName)) return;
+
+        AllSceneMgr.Instance.CurStageNum = stageNum;
+        SceneManager.LoadScene(sceneName);
+    }
+
+    bool IsExistScene(string name) //BuildSetting에 존재하는 Scene인지 확인하는 함수
+    {
+        EditorBuildSettingsScene[] scenes = EditorBuildSettings.scenes;
+        for (int i = 0; i < scenes.Length; i++)
+        {
+            if (scenes[i].path.Contains(name)) return true;
+        }
+
+        return false;
     }
 
     void LeftArrowBtn()
@@ -47,7 +60,7 @@ public class BattleSceneMgr : MonoBehaviour
         if (stageNum <= MinStageNum) return;
 
         stageNum--;
-        StageNum_Txt.text = stageNum.ToString();
+        StageNum_Txt.text = (stageNum + 1).ToString();
     }
 
     void RightArrowBtn()
@@ -55,6 +68,6 @@ public class BattleSceneMgr : MonoBehaviour
         if (MaxStageNum <= stageNum) return;
 
         stageNum++;
-        StageNum_Txt.text = stageNum.ToString();
+        StageNum_Txt.text = (stageNum + 1).ToString();
     }
 }

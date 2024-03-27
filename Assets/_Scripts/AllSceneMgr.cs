@@ -5,10 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class AllSceneMgr : G_Singleton<AllSceneMgr>
 {
+    [HideInInspector] public int CurStageNum = 0;
+
     void Start()
     {
         if (SceneManager.GetActiveScene().name != "UpLowUI" &&
-         SceneManager.GetAllScenes().Length == 1)
+         SceneManager.loadedSceneCount == 1)
             SceneManager.LoadScene("UpLowUI", LoadSceneMode.Additive);
     }
 

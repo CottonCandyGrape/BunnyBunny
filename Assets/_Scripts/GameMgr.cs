@@ -38,13 +38,6 @@ public class GameMgr : MonoBehaviour
     public GameObject DmgTxtPrefab = null;
     //데미지 표시
 
-    //현재 인게임 관련
-    //TODO : static으로 할까?
-    //Scene 시작할때 바로 초기화 돼서 MemoryPoolMgr로 안전하게 넘겨야 하는데..
-    //static 이면 awake에서 해도되나?
-    [HideInInspector] public int StageNum = 0;
-    //현재 인게임 관련
-
     //Boss전 관련
     public GameObject BattleRing = null;
     [HideInInspector] public bool hasBoss = false;

@@ -21,7 +21,7 @@ public class MonGenerator : MonoBehaviour
         eliteBossPool = GameObject.Find("EliteBossPool").GetComponent<Transform>();
 
         //현재 스테이지 초기화 //TODO : 안전한가?
-        curStage = GameMgr.Inst.StageNum;
+        curStage = AllSceneMgr.Instance.CurStageNum;
     }
 
     void Update()
