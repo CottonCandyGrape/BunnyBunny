@@ -55,25 +55,25 @@ public class UpLowUIMgr : MonoBehaviour
 
     void StoreBtnClick()
     {
-        SceneManager.LoadScene("Store");
-        SceneManager.LoadScene("UpLowUI", LoadSceneMode.Additive);
+        SceneManager.LoadScene("UpLowUI");
+        SceneManager.LoadScene("Store", LoadSceneMode.Additive);
     }
 
     void InventoryBtnClick()
     {
-        SceneManager.LoadScene("Inventory");
-        SceneManager.LoadScene("UpLowUI", LoadSceneMode.Additive);
+        SceneManager.LoadScene("UpLowUI");
+        SceneManager.LoadScene("Inventory", LoadSceneMode.Additive);
     }
 
     void BattleBtnClick()
     {
-        SceneManager.LoadScene("Battle");
-        SceneManager.LoadScene("UpLowUI", LoadSceneMode.Additive);
+        SceneManager.LoadScene("UpLowUI");
+        SceneManager.LoadScene("Battle", LoadSceneMode.Additive);
     }
 
     void EvolveBtnClick()
     {
-        SceneManager.LoadScene("Evolve");
-        SceneManager.LoadScene("UpLowUI", LoadSceneMode.Additive);
+        SceneManager.LoadScene("UpLowUI");
+        SceneManager.LoadScene("Evolve", LoadSceneMode.Additive);
     }
 }
