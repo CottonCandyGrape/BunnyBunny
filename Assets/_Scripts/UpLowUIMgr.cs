@@ -31,8 +31,6 @@ public class UpLowUIMgr : MonoBehaviour
             { "Battle", Battle_Btn },
             { "Evolve", Evolve_Btn },
         };
-
-        SceneName = SceneManager.GetActiveScene().name;
     }
 
     void Start()
@@ -49,6 +47,7 @@ public class UpLowUIMgr : MonoBehaviour
         if (Evolve_Btn)
             Evolve_Btn.onClick.AddListener(EvolveBtnClick);
 
+        SceneName = SceneManager.GetSceneAt(1).name;
         if (SceneName != "" && SceneName != "UpLowUI")
             sceneBtnDic[SceneName].image.sprite = Pressed_Sprite; //현재 씬 버튼 표시
     }
