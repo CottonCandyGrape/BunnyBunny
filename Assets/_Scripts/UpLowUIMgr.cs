@@ -6,14 +6,14 @@ using UnityEngine.SceneManagement;
 
 public class UpLowUIMgr : MonoBehaviour
 {
-    public Sprite Pressed_Sprite = null;
+    Color pressedColor = new Color32(118, 127, 136, 225);
 
     Dictionary<string, Button> sceneBtnDic;
-    string SceneName = "";
 
     [Header("------ Top UI ------")]
+    public Image Exp_Img = null;
     public Text Nickname_Txt = null;
-    public Text Heart_Txt = null;
+    public Text Dia_Txt = null;
     public Text Gold_Txt = null;
     public Text Level_Txt = null;
 
@@ -47,9 +47,24 @@ public class UpLowUIMgr : MonoBehaviour
         if (Evolve_Btn)
             Evolve_Btn.onClick.AddListener(EvolveBtnClick);
 
-        SceneName = SceneManager.GetSceneAt(1).name;
-        if (SceneName != "" && SceneName != "UpLowUI")
-            sceneBtnDic[SceneName].image.sprite = Pressed_Sprite; //현재 씬 버튼 표시
+        PressCurSceneBtn();
+
+        //RefreshTopUI();
+    }
+
+    void PressCurSceneBtn()
+    {
+        string SceneName = "";
+
+        if (SceneManager.loadedSceneCount > 1)
+            SceneName = SceneManager.GetSceneAt(1).name;
+
+        if (sceneBtnDic.ContainsKey(SceneName))
+        {
+            Image btn_Img = sceneBtnDic[SceneName].transform.GetChild(0).GetComponent<Image>();
+            if (btn_Img != null)
+                btn_Img.color = pressedColor;
+        }
     }
 
     void StoreBtnClick()
@@ -74,5 +89,14 @@ public class UpLowUIMgr : MonoBehaviour
     {
         SceneManager.LoadScene("UpLowUI");
         SceneManager.LoadScene("Evolve", LoadSceneMode.Additive);
+    }
+
+    void RefreshTopUI()
+    {
+        Exp_Img.fillAmount = 0.3f; //TODO : 바꿔야함.
+        Nickname_Txt.text = "";
+        Dia_Txt.text = " / 30";
+        Gold_Txt.text = "";
+        Level_Txt.text = "";
     }
 }
