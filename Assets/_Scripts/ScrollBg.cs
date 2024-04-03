@@ -8,11 +8,12 @@ public class ScrollBg : MonoBehaviour
     float scrollSpeed = 0.05f;
     float offset = 0.0f;
 
-    Image img = null;
+    RawImage rawImg = null;
+    Rect uvRect;
 
     void Start()
     {
-        img = GetComponent<Image>();
+        rawImg = GetComponent<RawImage>();
     }
 
     void Update()
@@ -21,6 +22,9 @@ public class ScrollBg : MonoBehaviour
         if (10000.0f <= offset)
             offset -= 10000.0f;
 
-        img.material.mainTextureOffset = new Vector2(offset, offset);
+        uvRect = rawImg.uvRect;
+        uvRect.x = offset;
+        uvRect.y = offset;
+        rawImg.uvRect = uvRect;
     }
 }
