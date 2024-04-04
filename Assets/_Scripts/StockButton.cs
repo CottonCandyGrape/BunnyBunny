@@ -32,15 +32,15 @@ public class StockButton : MonoBehaviour
         switch (StkType)
         {
             case StockType.Weapon:
-                Debug.Log("준비중입니다."); //TODO : 팝업창으로 바꾸기
+                AllSceneMgr.Instance.InitPopUpMsg("준비 중입니다.");
                 break;
             case StockType.Armor:
-                Debug.Log("준비중입니다.");
+                AllSceneMgr.Instance.InitPopUpMsg("준비 중입니다.");
                 break;
             case StockType.Dia:
                 break;
             case StockType.Gold:
-                Debug.Log("준비중입니다.");
+                AllSceneMgr.Instance.InitPopUpMsg("준비 중입니다.");
                 break;
         }
     }

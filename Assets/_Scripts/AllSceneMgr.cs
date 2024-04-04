@@ -7,14 +7,22 @@ using UnityEngine.SceneManagement;
 public class AllSceneMgr : G_Singleton<AllSceneMgr>
 {
     [HideInInspector] public int CurStageNum = 0;
-    [HideInInspector] public string PlayerInfoJson = "";
 
-    public UserInfo user;
+    //유저 정보 관련
+    [HideInInspector] public string PlayerInfoJson = "";
+    public UserInfo user = new UserInfo();
     string filePath = "Assets/UserData/";
     string[] fileList;
+    //유저 정보 관련
+
+    //팝업창 관련
+    Canvas mCanvas = null;
+    public GameObject PopUpPrefab = null;
+    //팝업창 관련
 
     void Start()
     {
+        //Scene 순서 관리
         if (SceneManager.GetActiveScene().name == "InGame_1") //바로 InGame_1 에서 시작했을때 UpLowUI 부르지 않기
             return;
 
@@ -24,7 +32,9 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
             SceneManager.LoadScene("UpLowUI");
             SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Additive);
         }
+        //Scene 순서 관리
 
+        //유저 정보 관리
         fileList = Directory.GetFiles(filePath, "*.json");
         if (fileList.Length == 0) //저장된 유저 정보가 없으면 새로 저장
         {
@@ -34,11 +44,13 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
         {
             LoadUserInfo();
         }
+        //유저 정보 관리
     }
+
+    //void Update() { }
 
     void UserInit()
     {
-        user = new UserInfo();
         user.NickName = "닉네임";
         user.level = 1;
         user.exp = 0.0f;
@@ -56,5 +68,19 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
         user = JsonUtility.FromJson<UserInfo>(fromJson);
     }
 
-    //void Update() { }
+    void WriteUserInfo()
+    {
+        string jsonStr = JsonUtility.ToJson(user);
+        File.WriteAllText(filePath + "PlayerInfo" + ".json", jsonStr);
+    }
+
+    public void InitPopUpMsg(string txt)
+    {
+        if (mCanvas == null)
+            mCanvas = FindObjectsOfType<Canvas>()[1]; //2번째 Scene의 Canvas에 올릴 것이기 때문에 [1]
+
+        GameObject pop = Instantiate(PopUpPrefab, mCanvas.transform);
+        PopUpBox box = pop.GetComponent<PopUpBox>();
+        if (box != null) box.SetMsgText(txt);
+    }
 }
