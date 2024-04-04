@@ -91,7 +91,7 @@ public class UpLowUIMgr : MonoBehaviour
         }
     }
 
-    void RefreshTopUI()
+    public void RefreshTopUI()
     {
         Exp_Img.fillAmount = 0.7f; //TODO : 바꿔야함.
         Nickname_Txt.text = AllSceneMgr.Instance.user.NickName;

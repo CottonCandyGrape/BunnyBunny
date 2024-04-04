@@ -20,6 +20,8 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
     public GameObject PopUpPrefab = null;
     //팝업창 관련
 
+    UpLowUIMgr ulMgr = null;
+
     void Start()
     {
         //Scene 순서 관리
@@ -68,7 +70,7 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
         user = JsonUtility.FromJson<UserInfo>(fromJson);
     }
 
-    void WriteUserInfo()
+    public void WriteUserInfo()
     {
         string jsonStr = JsonUtility.ToJson(user);
         File.WriteAllText(filePath + "PlayerInfo" + ".json", jsonStr);
@@ -82,5 +84,13 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
         GameObject pop = Instantiate(PopUpPrefab, mCanvas.transform);
         PopUpBox box = pop.GetComponent<PopUpBox>();
         if (box != null) box.SetMsgText(txt);
+    }
+
+    public void RefreshTopUI()
+    {
+        if (ulMgr == null)
+            ulMgr = FindObjectOfType<UpLowUIMgr>();
+
+        ulMgr.RefreshTopUI();
     }
 }
