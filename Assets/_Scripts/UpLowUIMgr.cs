@@ -49,22 +49,7 @@ public class UpLowUIMgr : MonoBehaviour
 
         PressCurSceneBtn();
 
-        //RefreshTopUI();
-    }
-
-    void PressCurSceneBtn()
-    {
-        string SceneName = "";
-
-        if (SceneManager.loadedSceneCount > 1)
-            SceneName = SceneManager.GetSceneAt(1).name;
-
-        if (sceneBtnDic.ContainsKey(SceneName))
-        {
-            Image btn_Img = sceneBtnDic[SceneName].transform.GetChild(0).GetComponent<Image>();
-            if (btn_Img != null)
-                btn_Img.color = pressedColor;
-        }
+        RefreshTopUI();
     }
 
     void StoreBtnClick()
@@ -91,12 +76,27 @@ public class UpLowUIMgr : MonoBehaviour
         SceneManager.LoadScene("Evolve", LoadSceneMode.Additive);
     }
 
+    void PressCurSceneBtn()
+    {
+        string SceneName = "";
+
+        if (SceneManager.loadedSceneCount > 1)
+            SceneName = SceneManager.GetSceneAt(1).name;
+
+        if (sceneBtnDic.ContainsKey(SceneName))
+        {
+            Image btn_Img = sceneBtnDic[SceneName].transform.GetChild(0).GetComponent<Image>();
+            if (btn_Img != null)
+                btn_Img.color = pressedColor;
+        }
+    }
+
     void RefreshTopUI()
     {
-        Exp_Img.fillAmount = 0.3f; //TODO : 바꿔야함.
-        Nickname_Txt.text = "";
-        Dia_Txt.text = " / 30";
-        Gold_Txt.text = "";
-        Level_Txt.text = "";
+        Exp_Img.fillAmount = 0.7f; //TODO : 바꿔야함.
+        Nickname_Txt.text = AllSceneMgr.Instance.user.NickName;
+        Dia_Txt.text = AllSceneMgr.Instance.user.diaNum.ToString() + " / 30";
+        Gold_Txt.text = AllSceneMgr.Instance.user.gold.ToString();
+        Level_Txt.text = AllSceneMgr.Instance.user.level.ToString();
     }
 }
