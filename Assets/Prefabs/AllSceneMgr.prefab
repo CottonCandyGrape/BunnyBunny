@@ -44,3 +44,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c41a6b8ce2c2d314289fda3b75f2a5a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurStageNum: 0
+  PlayerInfoJson: 
+  user:
+    NickName: 
+    exp: 0
+    hp: 100
+    attack: 100
+    defense: 100
+    level: 1
+    diaNum: 0
+    gold: 0
+    profile_Img: {fileID: 0}
+  PopUpPrefab: {fileID: 6083043622143535140, guid: 52041688e8463af4796553a67a167f63, type: 3}
