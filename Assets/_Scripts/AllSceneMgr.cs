@@ -56,6 +56,7 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
         user.NickName = "닉네임";
         user.level = 1;
         user.exp = 0.0f;
+        user.hp = 100.0f;
         user.attack = 100.0f;
         user.defense = 100.0f;
         user.diaNum = 10;

@@ -7,6 +7,7 @@ public class UserInfo
 {
     public string NickName = "";
     public float exp = 0.0f;
+    public float hp = 100.0f;
     public float attack = 100.0f;
     public float defense = 100.0f;
     public int level = 1;
