@@ -162,6 +162,7 @@ MonoBehaviour:
   StkType: 0
   StockNum: 0
   StockPrice: 0
+  Stk_Btn: {fileID: 9010580219523542989}
 --- !u!114 &2931509631980871006
 MonoBehaviour:
   m_ObjectHideFlags: 0

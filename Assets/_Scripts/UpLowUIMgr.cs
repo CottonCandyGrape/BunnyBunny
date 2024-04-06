@@ -21,7 +21,7 @@ public class UpLowUIMgr : MonoBehaviour
     public Button Store_Btn = null;
     public Button Inventory_Btn = null;
     public Button Battle_Btn = null;
-    public Button Evolve_Btn = null;
+    public Button Reinforce_Btn = null;
 
     void Awake()
     {
@@ -29,7 +29,7 @@ public class UpLowUIMgr : MonoBehaviour
             { "Store", Store_Btn },
             { "Inventory", Inventory_Btn },
             { "Battle", Battle_Btn },
-            { "Evolve", Evolve_Btn },
+            { "Reinforce", Reinforce_Btn },
         };
     }
 
@@ -44,8 +44,8 @@ public class UpLowUIMgr : MonoBehaviour
         if (Battle_Btn)
             Battle_Btn.onClick.AddListener(BattleBtnClick);
 
-        if (Evolve_Btn)
-            Evolve_Btn.onClick.AddListener(EvolveBtnClick);
+        if (Reinforce_Btn)
+            Reinforce_Btn.onClick.AddListener(ReinforceBtnClick);
 
         PressCurSceneBtn();
 
@@ -70,10 +70,10 @@ public class UpLowUIMgr : MonoBehaviour
         SceneManager.LoadScene("Battle", LoadSceneMode.Additive);
     }
 
-    void EvolveBtnClick()
+    void ReinforceBtnClick()
     {
         SceneManager.LoadScene("UpLowUI");
-        SceneManager.LoadScene("Evolve", LoadSceneMode.Additive);
+        SceneManager.LoadScene("Reinforce", LoadSceneMode.Additive);
     }
 
     void PressCurSceneBtn()

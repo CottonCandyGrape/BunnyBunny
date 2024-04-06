@@ -270,7 +270,7 @@ MonoBehaviour:
   Store_Btn: {fileID: 118501602}
   Inventory_Btn: {fileID: 1628785389}
   Battle_Btn: {fileID: 1253271002}
-  Evolve_Btn: {fileID: 1156395191}
+  Reinforce_Btn: {fileID: 1156395191}
 --- !u!1 &116533397
 GameObject:
   m_ObjectHideFlags: 0
@@ -905,7 +905,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC9C4\uD654"
+  m_Text: "\uAC15\uD654"
 --- !u!222 &296938235
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1864,7 +1864,7 @@ GameObject:
   - component: {fileID: 1156395192}
   - component: {fileID: 1156395191}
   m_Layer: 5
-  m_Name: Evolve_Btn
+  m_Name: Reinforce_Btn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

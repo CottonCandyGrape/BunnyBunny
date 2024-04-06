@@ -3,13 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum StockType
-{
-    Weapon,
-    Armor,
-    Dia,
-    Gold
-}
+public enum StockType { Weapon, Armor, Dia, Gold }
 
 public class StockButton : MonoBehaviour
 {
