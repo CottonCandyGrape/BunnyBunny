@@ -92,7 +92,7 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
             return null;
     }
 
-    public void InitStorePopUp(string txt)
+    public void InitMsgPopUp(string txt)
     {
         PopUpBox box = GetPopUpbox(PopUpType.Store); 
         if (box != null) box.SetMsgText(txt);

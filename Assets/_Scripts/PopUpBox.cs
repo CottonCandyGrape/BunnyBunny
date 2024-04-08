@@ -21,7 +21,7 @@ public class PopUpBox : MonoBehaviour
     public Text Gold_Txt = null;
 
     string[] reinTitles = { "힘", "체력", "인내", "회복" };
-    string[] reinMsgs = { "공격력 +", "HP +", "방어구 +", "당근 회복 +" };
+    string[] reinMsgs = { "공격력 +", "HP +", "방어력 +", "당근 회복 +" };
     int reinVal = 0;
     int GoldVal = 0;
 
@@ -82,18 +82,18 @@ public class PopUpBox : MonoBehaviour
 
                 AllSceneMgr.Instance.WriteUserInfo();
                 AllSceneMgr.Instance.RefreshTopUI();
-                AllSceneMgr.Instance.InitStorePopUp("강화 성공.");
+                AllSceneMgr.Instance.InitMsgPopUp("강화 성공.");
                 //TODO : 강화되면 다음에는 못누르게 해야한다.
             }
             else
             {
-                AllSceneMgr.Instance.InitStorePopUp("보유 골드가 부족합니다.");
+                AllSceneMgr.Instance.InitMsgPopUp("보유 골드가 부족합니다.");
                 return;
             }
         }
         else
         {
-            AllSceneMgr.Instance.InitStorePopUp("K 또는 M이 있거나 다른 문자열이 껴있슴...");
+            AllSceneMgr.Instance.InitMsgPopUp("K 또는 M이 있거나 다른 문자열이 껴있슴...");
             return;
         }
 
