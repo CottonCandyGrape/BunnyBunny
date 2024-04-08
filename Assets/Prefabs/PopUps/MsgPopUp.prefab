@@ -389,8 +389,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f75d9494850a5574fb07490888e5ad81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PopUpBoxType: 0
+  Exit_Btn: {fileID: 0}
+  Title_Txt: {fileID: 0}
   Msg_Txt: {fileID: 9218131993875410993}
   Ok_Btn: {fileID: 2348976065481263262}
+  Rein_Btn: {fileID: 0}
+  Gold_Txt: {fileID: 0}
 --- !u!1 &7800570291854521567
 GameObject:
   m_ObjectHideFlags: 0
@@ -464,7 +469,7 @@ MonoBehaviour:
     m_BestFit: 1
     m_MinSize: 35
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0

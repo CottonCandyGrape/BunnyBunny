@@ -1,17 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ReinforceMgr : MonoBehaviour
 {
     public GameObject[] ReinCellPrefab = null;
     public Transform ScrollContent = null;
+    public Image ScrollView_Img = null;
 
     const int CellPerLv = 3;
 
     void Start()
     {
         ReinCellButton.reinBtnCnt = 0; //static 변수 0으로 초기화 해줌. Scene이 반복되는 경우 Level이 높게 표시되는 버그 있음.
+        ScrollView_Img.enabled = false;
 
         InitReinCells();
     }

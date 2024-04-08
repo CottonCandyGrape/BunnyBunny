@@ -45,7 +45,7 @@ public class ReinCellButton : MonoBehaviour
             Bar_Img.SetActive(false);
     }
 
-    void ReinBtnClick() //TODO : 팝업 먼저 띄우기 -> 메세지 뭐? 나올지
+    void ReinBtnClick()
     {
         AllSceneMgr.Instance.InitReinPopUp(RfType);
     }

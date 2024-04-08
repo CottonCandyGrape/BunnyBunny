@@ -295,7 +295,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.39215687}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -529,6 +529,7 @@ MonoBehaviour:
   - {fileID: 980206990903392789, guid: 40e7a227e5ae9b041af9ee4386285867, type: 3}
   - {fileID: 7491914284061359390, guid: c307b7e4e7f92904fa1a9cf2efeb4998, type: 3}
   ScrollContent: {fileID: 2134509579}
+  ScrollView_Img: {fileID: 361511146}
 --- !u!1 &2080377498
 GameObject:
   m_ObjectHideFlags: 0
