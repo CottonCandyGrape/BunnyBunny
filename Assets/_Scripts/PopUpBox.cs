@@ -7,6 +7,9 @@ public enum PopUpType { Store, Reinforce, Setting, Pause }
 
 public class PopUpBox : MonoBehaviour
 {
+    const int Kilo = 1000;
+    const int Million = 1000000;
+
     public PopUpType PopUpBoxType = PopUpType.Store;
     ReinType RfType = ReinType.Attack;
 
@@ -20,13 +23,14 @@ public class PopUpBox : MonoBehaviour
     string[] reinTitles = { "힘", "체력", "인내", "회복" };
     string[] reinMsgs = { "공격력 +", "HP +", "방어구 +", "당근 회복 +" };
     int reinVal = 0;
+    int GoldVal = 0;
 
     void Start()
     {
-        if(Exit_Btn)
+        if (Exit_Btn)
             Exit_Btn.onClick.AddListener(ExitBtnClick);
 
-        if(Rein_Btn)
+        if (Rein_Btn)
             Rein_Btn.onClick.AddListener(ReinBtnClick);
 
         if (Ok_Btn)
@@ -37,9 +41,10 @@ public class PopUpBox : MonoBehaviour
     {
         RfType = rType;
         reinVal = 3;
+        GoldVal = 1000;
         Title_Txt.text = reinTitles[(int)rType];
         Msg_Txt.text = reinMsgs[(int)rType] + reinVal.ToString(); //TODO : cellLV에 따른 증가량
-        Gold_Txt.text = "1000"; //TODO : cellLV에 따라 다른 가격 
+        Gold_Txt.text = "x " + GoldVal.ToString(); //TODO : cellLV에 따라 다른 가격 
     }
 
     void OKBtnClick()
@@ -50,9 +55,10 @@ public class PopUpBox : MonoBehaviour
 
     void ReinBtnClick() //TODO : 가격 고려하여 유저정보에 반영. UI에도 반영
     {
-        int rGold = 0;
+        int rGold;
         //TODO : 뒤에 K or M 있는거 변환해줘야한다.
-        if (int.TryParse(Gold_Txt.text, out rGold))
+        string subGoldTxt = Gold_Txt.text.Substring(2);
+        if (int.TryParse(subGoldTxt, out rGold))
         {
             int uGold = AllSceneMgr.Instance.user.gold;
             if (rGold <= uGold)
@@ -77,6 +83,7 @@ public class PopUpBox : MonoBehaviour
                 AllSceneMgr.Instance.WriteUserInfo();
                 AllSceneMgr.Instance.RefreshTopUI();
                 AllSceneMgr.Instance.InitStorePopUp("강화 성공.");
+                //TODO : 강화되면 다음에는 못누르게 해야한다.
             }
             else
             {
