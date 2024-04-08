@@ -28,16 +28,16 @@ public class StockButton : MonoBehaviour
         switch (StkType)
         {
             case StockType.Weapon:
-                AllSceneMgr.Instance.InitPopUpMsg("준비 중입니다.");
+                AllSceneMgr.Instance.InitStorePopUp("준비 중입니다.");
                 break;
             case StockType.Armor:
-                AllSceneMgr.Instance.InitPopUpMsg("준비 중입니다.");
+                AllSceneMgr.Instance.InitStorePopUp("준비 중입니다.");
                 break;
             case StockType.Dia:
                 PurchaseDia();
                 break;
             case StockType.Gold:
-                AllSceneMgr.Instance.InitPopUpMsg("준비 중입니다.");
+                AllSceneMgr.Instance.InitStorePopUp("준비 중입니다.");
                 break;
         }
     }
@@ -49,12 +49,12 @@ public class StockButton : MonoBehaviour
 
         if (curGold < StockPrice)
         {
-            AllSceneMgr.Instance.InitPopUpMsg("보유 골드가 부족합니다.");
+            AllSceneMgr.Instance.InitStorePopUp("보유 골드가 부족합니다.");
             return;
         }
         else if (MaxDia < curDia + StockNum)
         {
-            AllSceneMgr.Instance.InitPopUpMsg("최대 보유 개수보다 더 많이 구매하실 수 없습니다.");
+            AllSceneMgr.Instance.InitStorePopUp("최대 보유 개수보다 더 많이 구매하실 수 없습니다.");
             return;
         }
         //구매 실패하면 바로 return;
@@ -63,6 +63,6 @@ public class StockButton : MonoBehaviour
         AllSceneMgr.Instance.user.gold -= StockPrice;
         AllSceneMgr.Instance.WriteUserInfo();
         AllSceneMgr.Instance.RefreshTopUI();
-        AllSceneMgr.Instance.InitPopUpMsg("구매 성공.");
+        AllSceneMgr.Instance.InitStorePopUp("구매 성공.");
     }
 }

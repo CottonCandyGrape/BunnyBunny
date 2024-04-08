@@ -10,14 +10,14 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
 
     //유저 정보 관련
     [HideInInspector] public string PlayerInfoJson = "";
-    public UserInfo user = new UserInfo();
+    [HideInInspector] public UserInfo user = new UserInfo();
     string filePath = "Assets/UserData/";
     string[] fileList;
     //유저 정보 관련
 
     //팝업창 관련
     Canvas mCanvas = null;
-    public GameObject PopUpPrefab = null;
+    public GameObject[] PopUpPrefabs = null;
     //팝업창 관련
 
     UpLowUIMgr ulMgr = null;
@@ -79,14 +79,29 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
         File.WriteAllText(filePath + "PlayerInfo" + ".json", jsonStr);
     }
 
-    public void InitPopUpMsg(string txt)
+    PopUpBox GetPopUpbox(PopUpType pType)
     {
         if (mCanvas == null)
             mCanvas = FindObjectsOfType<Canvas>()[1]; //2번째 Scene의 Canvas에 올릴 것이기 때문에 [1]
 
-        GameObject pop = Instantiate(PopUpPrefab, mCanvas.transform);
+        GameObject pop = Instantiate(PopUpPrefabs[(int)pType], mCanvas.transform);
         PopUpBox box = pop.GetComponent<PopUpBox>();
+        if (box != null)
+            return box;
+        else
+            return null;
+    }
+
+    public void InitStorePopUp(string txt)
+    {
+        PopUpBox box = GetPopUpbox(PopUpType.Store); 
         if (box != null) box.SetMsgText(txt);
+    }
+
+    public void InitReinPopUp(ReinType rType)
+    {
+        PopUpBox box = GetPopUpbox(PopUpType.Reinforce);
+        if (box != null) box.SetReinInfo(rType);
     }
 
     public void RefreshTopUI()

@@ -11,10 +11,11 @@ public class ReinCellButton : MonoBehaviour
     public GameObject Bar_Img = null;
     public Button Rein_Btn = null;
 
-    public ReinType ReinforceType = ReinType.Attack;
+    public ReinType RfType; //Inspector에서 초기화
 
     public static int reinBtnCnt = 0;
     const int CellPerLv = 3;
+    int cellLv = 0;
 
     void Start()
     {
@@ -29,6 +30,8 @@ public class ReinCellButton : MonoBehaviour
 
     void Init() //level txt, bar_img on, off
     {
+        cellLv = (reinBtnCnt / CellPerLv) + 1;
+
         reinBtnCnt++;
 
         if (reinBtnCnt % CellPerLv == 0)
@@ -44,16 +47,6 @@ public class ReinCellButton : MonoBehaviour
 
     void ReinBtnClick() //TODO : 팝업 먼저 띄우기 -> 메세지 뭐? 나올지
     {
-        switch (ReinforceType)
-        {
-            case ReinType.Attack:
-                break;
-            case ReinType.Hp:
-                break;
-            case ReinType.Defense:
-                break;
-            case ReinType.Heal:
-                break;
-        }
+        AllSceneMgr.Instance.InitReinPopUp(RfType);
     }
 }

@@ -10,6 +10,7 @@ public class UserInfo
     public float hp = 100.0f;
     public float attack = 100.0f;
     public float defense = 100.0f;
+    public float heal = 30.0f;
     public int level = 1;
     public int diaNum = 0;
     public int gold = 0;

@@ -52,7 +52,7 @@ MonoBehaviour:
   LevelText: {fileID: 3451136625155987316}
   Bar_Img: {fileID: 3394441315783780637}
   Rein_Btn: {fileID: 3164627599070213269}
-  ReinforceType: 2
+  RfType: 2
 --- !u!1001 &2548506526558375678
 PrefabInstance:
   m_ObjectHideFlags: 0

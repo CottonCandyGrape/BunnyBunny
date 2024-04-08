@@ -56,4 +56,6 @@ MonoBehaviour:
     diaNum: 0
     gold: 0
     profile_Img: {fileID: 0}
-  PopUpPrefab: {fileID: 6083043622143535140, guid: 52041688e8463af4796553a67a167f63, type: 3}
+  PopUpPrefabs:
+  - {fileID: 6083043622143535140, guid: 52041688e8463af4796553a67a167f63, type: 3}
+  - {fileID: 184144070302238411, guid: 2eed31b5970a6e64596b4a7c722e7177, type: 3}
