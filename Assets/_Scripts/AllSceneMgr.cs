@@ -21,6 +21,7 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
     //팝업창 관련
 
     UpLowUIMgr ulMgr = null;
+    ReinforceMgr reinMgr = null;
 
     void Start()
     {
@@ -94,7 +95,7 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
 
     public void InitMsgPopUp(string txt)
     {
-        PopUpBox box = GetPopUpbox(PopUpType.Store); 
+        PopUpBox box = GetPopUpbox(PopUpType.Msg); 
         if (box != null) box.SetMsgText(txt);
     }
 
@@ -119,5 +120,34 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
         WriteUserInfo();
         RefreshTopUI();
         InitMsgPopUp("구매 성공.");
+    }
+
+    public void ReinSuccess(ReinType rType, int rGold, int rVal, int cNum)
+    {
+        user.gold -= rGold;
+        switch (rType)
+        {
+            case ReinType.Attack:
+                user.attack += rVal;
+                break;
+            case ReinType.Defense:
+                user.defense += rVal;
+                break;
+            case ReinType.Heal:
+                user.heal += rVal;
+                break;
+            case ReinType.Hp:
+                user.hp += rVal;
+                break;
+        }
+
+        user.reinCursor++;
+        WriteUserInfo();
+        RefreshTopUI();
+        InitMsgPopUp("강화 성공.");
+
+        if (reinMgr == null)
+            reinMgr = FindObjectOfType<ReinforceMgr>();
+        reinMgr.ReinCellList[cNum].SetAlpha();
     }
 }

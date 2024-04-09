@@ -16,7 +16,6 @@ public class ReinCellButton : MonoBehaviour
 
     public static int reinBtnCnt = 0;
     const int CellPerLv = 3;
-    //int cellLv = 0; //cellNum을 알면 cellLv을 알수있음.
     int cellNum = 0;
 
     void Start()
@@ -54,7 +53,7 @@ public class ReinCellButton : MonoBehaviour
         AllSceneMgr.Instance.InitReinPopUp(RfType, cellNum);
     }
 
-    void SetAlpha()
+    public void SetAlpha()
     {
         if (cellNum < AllSceneMgr.Instance.user.reinCursor)
             Alpha_RImg.gameObject.SetActive(true);

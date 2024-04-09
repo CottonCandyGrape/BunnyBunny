@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class ReinforceMgr : MonoBehaviour
 {
+    [HideInInspector] public List<ReinCellButton> ReinCellList = new List<ReinCellButton>();
+
     public GameObject[] ReinCellPrefab = null;
     public Transform ScrollContent = null;
     public Image ScrollView_Img = null;
@@ -26,9 +28,9 @@ public class ReinforceMgr : MonoBehaviour
         for (int i = 0; i < genCnt; i++)
         {
             int idx = i % ReinCellPrefab.Length;
-            Instantiate(ReinCellPrefab[idx], ScrollContent);
+            GameObject cell = Instantiate(ReinCellPrefab[idx], ScrollContent);
+            ReinCellButton reinBtn = cell.GetComponent<ReinCellButton>();
+            if (reinBtn != null) ReinCellList.Add(reinBtn);
         }
     }
-
-    //void Update() { }
 }

@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum PopUpType { Store, Reinforce, Setting, Pause }
+public enum PopUpType { Msg, Reinforce, Setting, Pause }
 
 public class PopUpBox : MonoBehaviour
 {
     const int Kilo = 1000;
     const int Million = 1000000;
 
-    public PopUpType PopUpBoxType = PopUpType.Store;
+    public PopUpType PopUpBoxType = PopUpType.Msg;
     ReinType RfType = ReinType.Attack;
 
     public Button Exit_Btn = null;
@@ -19,6 +19,7 @@ public class PopUpBox : MonoBehaviour
     public Button Ok_Btn = null;
     public Button Rein_Btn = null;
     public Text Gold_Txt = null;
+    public RawImage Alpha_RImg = null;
 
     string[] reinTitles = { "힘", "체력", "인내", "회복" };
     string[] reinMsgs = { "공격력 +", "HP +", "방어력 +", "당근 회복 +" };
@@ -36,6 +37,9 @@ public class PopUpBox : MonoBehaviour
 
         if (Ok_Btn)
             Ok_Btn.onClick.AddListener(OKBtnClick);
+
+        if (PopUpBoxType == PopUpType.Reinforce)
+            SetAlpha();
     }
 
     public void SetReinInfo(ReinType rType, int cNum) //TODO : ReinBtn or OkBtn
@@ -67,55 +71,31 @@ public class PopUpBox : MonoBehaviour
         Destroy(gameObject);
     }
 
-    void ReinBtnClick()
+    void TryReinforce()
     {
         if (AllSceneMgr.Instance.user.reinCursor < cellNum)
         {
-            AllSceneMgr.Instance.InitMsgPopUp("아직 구매하실 수 없습니다.");
+            AllSceneMgr.Instance.InitMsgPopUp("아직 강화하실 수 없습니다.");
             return;
         }
 
         int rGold;
-        //TODO : 뒤에 K or M 있는거 변환해줘야한다.
-        string subGoldTxt = Gold_Txt.text.Substring(2);
+        string subGoldTxt = Gold_Txt.text.Substring(2); //TODO : 뒤에 K or M 있는거 변환해줘야한다.
         if (int.TryParse(subGoldTxt, out rGold))
         {
             int uGold = AllSceneMgr.Instance.user.gold;
             if (rGold <= uGold)
-            {
-                AllSceneMgr.Instance.user.gold -= rGold;
-                switch (RfType)
-                {
-                    case ReinType.Attack:
-                        AllSceneMgr.Instance.user.attack += reinVal;
-                        break;
-                    case ReinType.Defense:
-                        AllSceneMgr.Instance.user.defense += reinVal;
-                        break;
-                    case ReinType.Heal:
-                        AllSceneMgr.Instance.user.heal += reinVal;
-                        break;
-                    case ReinType.Hp:
-                        AllSceneMgr.Instance.user.hp += reinVal;
-                        break;
-                }
-
-                AllSceneMgr.Instance.user.reinCursor++;
-                AllSceneMgr.Instance.WriteUserInfo();
-                AllSceneMgr.Instance.RefreshTopUI();
-                AllSceneMgr.Instance.InitMsgPopUp("강화 성공.");
-            }
+                AllSceneMgr.Instance.ReinSuccess(RfType, rGold, reinVal, cellNum);
             else
-            {
                 AllSceneMgr.Instance.InitMsgPopUp("보유 골드가 부족합니다.");
-                return;
-            }
         }
         else
-        {
             AllSceneMgr.Instance.InitMsgPopUp("K 또는 M이 있거나 다른 문자열이 껴있슴...");
-            return;
-        }
+    }
+
+    void ReinBtnClick()
+    {
+        TryReinforce();
 
         Time.timeScale = 1.0f;
         Destroy(gameObject);
@@ -130,5 +110,14 @@ public class PopUpBox : MonoBehaviour
     public void SetMsgText(string msg)
     {
         Msg_Txt.text = msg;
+    }
+
+    void SetAlpha()
+    {
+        if (AllSceneMgr.Instance.user.reinCursor < cellNum
+            && Rein_Btn.gameObject.activeSelf)
+            Alpha_RImg.gameObject.SetActive(true);
+        else
+            Alpha_RImg.gameObject.SetActive(false);
     }
 }
