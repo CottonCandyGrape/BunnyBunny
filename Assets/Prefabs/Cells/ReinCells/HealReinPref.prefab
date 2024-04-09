@@ -52,6 +52,7 @@ MonoBehaviour:
   LevelText: {fileID: 7233085395789634919}
   Bar_Img: {fileID: 7250382833794654990}
   Rein_Btn: {fileID: 6948762482318130822}
+  Alpha_RImg: {fileID: 1089587270705560646}
   RfType: 3
 --- !u!1001 &7555896198991627501
 PrefabInstance:
@@ -186,6 +187,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27f8b868728f25e4a82bcfa0c2458247, type: 3}
+--- !u!114 &1089587270705560646 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7477402920832465067, guid: 27f8b868728f25e4a82bcfa0c2458247, type: 3}
+  m_PrefabInstance: {fileID: 7555896198991627501}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6948762482318130822 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 627435375156853355, guid: 27f8b868728f25e4a82bcfa0c2458247, type: 3}
