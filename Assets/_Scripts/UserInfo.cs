@@ -14,5 +14,6 @@ public class UserInfo
     public int level = 1;
     public int diaNum = 0;
     public int gold = 0;
+    public int reinCursor = 0;
     public Image profile_Img = null;
 }

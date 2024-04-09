@@ -34,7 +34,7 @@ public class StockButton : MonoBehaviour
                 AllSceneMgr.Instance.InitMsgPopUp("준비 중입니다.");
                 break;
             case StockType.Dia:
-                PurchaseDia();
+                TryBuyDia();
                 break;
             case StockType.Gold:
                 AllSceneMgr.Instance.InitMsgPopUp("준비 중입니다.");
@@ -42,7 +42,7 @@ public class StockButton : MonoBehaviour
         }
     }
 
-    void PurchaseDia()
+    void TryBuyDia()
     {
         int curDia = AllSceneMgr.Instance.user.diaNum;
         int curGold = AllSceneMgr.Instance.user.gold;
@@ -59,10 +59,6 @@ public class StockButton : MonoBehaviour
         }
         //구매 실패하면 바로 return;
 
-        AllSceneMgr.Instance.user.diaNum += StockNum;
-        AllSceneMgr.Instance.user.gold -= StockPrice;
-        AllSceneMgr.Instance.WriteUserInfo();
-        AllSceneMgr.Instance.RefreshTopUI();
-        AllSceneMgr.Instance.InitMsgPopUp("구매 성공.");
+        AllSceneMgr.Instance.GetDia(StockNum, StockPrice);
     }
 }

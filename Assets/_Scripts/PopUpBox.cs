@@ -24,6 +24,7 @@ public class PopUpBox : MonoBehaviour
     string[] reinMsgs = { "공격력 +", "HP +", "방어력 +", "당근 회복 +" };
     int reinVal = 0;
     int GoldVal = 0;
+    int cellNum = 0;
 
     void Start()
     {
@@ -37,14 +38,27 @@ public class PopUpBox : MonoBehaviour
             Ok_Btn.onClick.AddListener(OKBtnClick);
     }
 
-    public void SetReinInfo(ReinType rType) //TODO : Title, Msg, ReinBtn
+    public void SetReinInfo(ReinType rType, int cNum) //TODO : ReinBtn or OkBtn
     {
         RfType = rType;
+        cellNum = cNum;
         reinVal = 3;
         GoldVal = 1000;
         Title_Txt.text = reinTitles[(int)rType];
         Msg_Txt.text = reinMsgs[(int)rType] + reinVal.ToString(); //TODO : cellLV에 따른 증가량
-        Gold_Txt.text = "x " + GoldVal.ToString(); //TODO : cellLV에 따라 다른 가격 
+
+        if (cellNum < AllSceneMgr.Instance.user.reinCursor)
+        {
+            Rein_Btn.gameObject.SetActive(false);
+            Ok_Btn.gameObject.SetActive(true);
+        }
+        else if (AllSceneMgr.Instance.user.reinCursor <= cellNum)
+        {
+            Rein_Btn.gameObject.SetActive(true);
+            Ok_Btn.gameObject.SetActive(false);
+
+            Gold_Txt.text = "x " + GoldVal.ToString(); //TODO : cellLV에 따라 다른 가격 
+        }
     }
 
     void OKBtnClick()
@@ -53,8 +67,14 @@ public class PopUpBox : MonoBehaviour
         Destroy(gameObject);
     }
 
-    void ReinBtnClick() //TODO : 가격 고려하여 유저정보에 반영. UI에도 반영
+    void ReinBtnClick()
     {
+        if (AllSceneMgr.Instance.user.reinCursor < cellNum)
+        {
+            AllSceneMgr.Instance.InitMsgPopUp("아직 구매하실 수 없습니다.");
+            return;
+        }
+
         int rGold;
         //TODO : 뒤에 K or M 있는거 변환해줘야한다.
         string subGoldTxt = Gold_Txt.text.Substring(2);
@@ -80,10 +100,10 @@ public class PopUpBox : MonoBehaviour
                         break;
                 }
 
+                AllSceneMgr.Instance.user.reinCursor++;
                 AllSceneMgr.Instance.WriteUserInfo();
                 AllSceneMgr.Instance.RefreshTopUI();
                 AllSceneMgr.Instance.InitMsgPopUp("강화 성공.");
-                //TODO : 강화되면 다음에는 못누르게 해야한다.
             }
             else
             {

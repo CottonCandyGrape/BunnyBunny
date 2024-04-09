@@ -98,10 +98,10 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
         if (box != null) box.SetMsgText(txt);
     }
 
-    public void InitReinPopUp(ReinType rType)
+    public void InitReinPopUp(ReinType rType, int cellNum)
     {
         PopUpBox box = GetPopUpbox(PopUpType.Reinforce);
-        if (box != null) box.SetReinInfo(rType);
+        if (box != null) box.SetReinInfo(rType, cellNum);
     }
 
     public void RefreshTopUI()
@@ -110,5 +110,14 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
             ulMgr = FindObjectOfType<UpLowUIMgr>();
 
         ulMgr.RefreshTopUI();
+    }
+
+    public void GetDia(int stockNum, int stockPrice)
+    {
+        user.diaNum += stockNum;
+        user.gold -= stockPrice;
+        WriteUserInfo();
+        RefreshTopUI();
+        InitMsgPopUp("구매 성공.");
     }
 }
