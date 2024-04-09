@@ -10,6 +10,7 @@ public class ReinforceMgr : MonoBehaviour
     public GameObject[] ReinCellPrefab = null;
     public Transform ScrollContent = null;
     public Image ScrollView_Img = null;
+    public Scrollbar sclBar = null;
 
     const int CellPerLv = 3;
 
@@ -19,6 +20,9 @@ public class ReinforceMgr : MonoBehaviour
         ScrollView_Img.enabled = false;
 
         InitReinCells();
+
+        if (sclBar != null)
+            SetScrollBarValue();
     }
 
     void InitReinCells()
@@ -32,5 +36,12 @@ public class ReinforceMgr : MonoBehaviour
             ReinCellButton reinBtn = cell.GetComponent<ReinCellButton>();
             if (reinBtn != null) ReinCellList.Add(reinBtn);
         }
+    }
+
+    void SetScrollBarValue()
+    {
+        float dist = 1.0f / AllSceneMgr.Instance.user.level;
+        int cursorLv = AllSceneMgr.Instance.user.reinCursor / CellPerLv;
+        sclBar.value = dist * cursorLv;
     }
 }
