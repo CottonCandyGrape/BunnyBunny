@@ -150,4 +150,11 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
             reinMgr = FindObjectOfType<ReinforceMgr>();
         reinMgr.ReinCellList[cNum].SetAlpha();
     }
+
+    public void SubDia(int dNum)
+    {
+        user.diaNum -= dNum;
+        WriteUserInfo();
+        RefreshTopUI();
+    }
 }

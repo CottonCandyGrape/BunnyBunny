@@ -9,15 +9,13 @@ public class BattleSceneMgr : MonoBehaviour
 {
     public Button Left_Btn = null;
     public Button Right_Btn = null;
-    public Image LockStage_Img = null;
-    public Image Lock = null;
+    public GameObject Lock = null;
     public Text StageNum_Txt = null;
     public Button Start_Btn = null;
 
-    Color lockColor = new Color32(120, 114, 114, 255);
-
     const int MinStageNum = 0;
     const int MaxStageNum = 2;
+    const int GameDia = 5;
     int stageNum = 0;
     int unLockStageNum = 0; //TODO : UserInfo로 넘겨야 할듯.
 
@@ -43,8 +41,19 @@ public class BattleSceneMgr : MonoBehaviour
     void StartGame()
     {
         string sceneName = "InGame_" + (stageNum + 1).ToString();
-        if (!IsExistScene(sceneName)) return;
+        if (!IsExistScene(sceneName)) 
+        {
+            AllSceneMgr.Instance.InitMsgPopUp("아직 도전할 수 없습니다.");
+            return;
+        }
 
+        if (AllSceneMgr.Instance.user.diaNum < GameDia)
+        {
+            AllSceneMgr.Instance.InitMsgPopUp("보유 다이아가 부족합니다.");
+            return;
+        }
+
+        AllSceneMgr.Instance.SubDia(GameDia);
         AllSceneMgr.Instance.CurStageNum = stageNum;
         SceneManager.LoadScene(sceneName);
     }
@@ -83,16 +92,8 @@ public class BattleSceneMgr : MonoBehaviour
     void SetLockImage()
     {
         if (stageNum <= unLockStageNum)
-        { 
             Lock.gameObject.SetActive(false);
-            LockStage_Img.color = Color.white;
-            StageNum_Txt.color = Color.white;
-        }
         else
-        {
             Lock.gameObject.SetActive(true);
-            LockStage_Img.color = lockColor;
-            StageNum_Txt.color = lockColor;
-        }
     }
 }
