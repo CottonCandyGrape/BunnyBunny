@@ -13,10 +13,10 @@ public class ReinCellButton : MonoBehaviour
     public RawImage Alpha_RImg = null;
 
     public ReinType RfType; //Inspector에서 초기화
+    public int cellNum = 0;
 
     public static int reinBtnCnt = 0;
     const int CellPerLv = 3;
-    int cellNum = 0;
 
     void Start()
     {
@@ -50,7 +50,7 @@ public class ReinCellButton : MonoBehaviour
 
     void ReinBtnClick()
     {
-        AllSceneMgr.Instance.InitReinPopUp(RfType, cellNum);
+        AllSceneMgr.Instance.InitReinPopUp(this);
     }
 
     public void SetAlpha()

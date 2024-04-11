@@ -18,12 +18,6 @@ public class PopUpBox : MonoBehaviour
     public Text Msg_Txt = null;
     public Button Ok_Btn = null;
 
-    [Header("------ Reinforece ------")]
-    public Button Exit_Btn = null;
-    public Button Rein_Btn = null;
-    public Text Gold_Txt = null;
-    public RawImage Alpha_RImg = null;
-
     [Header("------ Inventory ------")]
     public Image Inven_Img = null;
     public Button Equip_Btn = null;
@@ -32,13 +26,20 @@ public class PopUpBox : MonoBehaviour
     Transform upper = null;
     Transform lower = null;
 
+    InventoryMgr invMgr = null;
+
+    [Header("------ Reinforece ------")]
+    public Button Exit_Btn = null;
+    public Button Rein_Btn = null;
+    public Text Gold_Txt = null;
+    public RawImage Alpha_RImg = null;
+    ReinCellButton reinCell = null;
+
     string[] reinTitles = { "힘", "체력", "인내", "회복" };
     string[] reinMsgs = { "공격력 +", "HP +", "방어력 +", "당근 회복 +" };
     int reinVal = 0;
     int GoldVal = 0;
     int cellNum = 0;
-
-    InventoryMgr invMgr = null;
 
     void Start()
     {
@@ -56,25 +57,28 @@ public class PopUpBox : MonoBehaviour
 
         if (PopUpBoxType == PopUpType.Reinforce)
             SetAlpha();
+        else if (PopUpBoxType == PopUpType.Inventory)
+        {
+            if (lower == null)
+                lower = GameObject.Find("Content").transform;
 
-        if (lower == null)
-            lower = GameObject.Find("Content").transform;
+            if (upper == null)
+                upper = GameObject.Find("Upper_Panel").transform;
 
-        if (upper == null)
-            upper = GameObject.Find("Upper_Panel").transform;
-
-        if (invMgr == null)
-            invMgr = FindObjectOfType<InventoryMgr>();
+            if (invMgr == null)
+                invMgr = FindObjectOfType<InventoryMgr>();
+        }
     }
 
-    public void SetReinInfo(ReinType rType, int cNum)
+    public void SetReinInfo(ReinCellButton rCell)
     {
-        RfType = rType;
-        cellNum = cNum;
+        reinCell = rCell;
+        RfType = rCell.RfType;
+        cellNum = rCell.cellNum;
         reinVal = 3;
         GoldVal = 1000;
-        Title_Txt.text = reinTitles[(int)rType];
-        Msg_Txt.text = reinMsgs[(int)rType] + reinVal.ToString(); //TODO : cellLV에 따른 증가량
+        Title_Txt.text = reinTitles[(int)RfType];
+        Msg_Txt.text = reinMsgs[(int)RfType] + reinVal.ToString(); //TODO : cellLV에 따른 증가량
 
         if (cellNum < AllSceneMgr.Instance.user.reinCursor)
         {
@@ -104,7 +108,7 @@ public class PopUpBox : MonoBehaviour
         {
             int uGold = AllSceneMgr.Instance.user.gold;
             if (rGold <= uGold)
-                AllSceneMgr.Instance.ReinSuccess(RfType, rGold, reinVal, cellNum);
+                AllSceneMgr.Instance.ReinSuccess(RfType, rGold, reinVal, reinCell);
             else
                 AllSceneMgr.Instance.InitMsgPopUp("보유 골드가 부족합니다.");
         }
