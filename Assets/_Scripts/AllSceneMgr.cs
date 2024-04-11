@@ -105,6 +105,12 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
         if (box != null) box.SetReinInfo(rType, cellNum);
     }
 
+    public void InitInvenPopUp(InvenButton invBtn)
+    {
+        PopUpBox box = GetPopUpbox(PopUpType.Inventory);
+        if (box != null) box.SetInvenComp(invBtn);
+    }
+
     public void RefreshTopUI()
     {
         if (ulMgr == null)

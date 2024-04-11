@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum PopUpType { Msg, Reinforce, Setting, Pause }
+public enum PopUpType { Msg, Reinforce, Inventory, Setting, Pause }
 
 public class PopUpBox : MonoBehaviour
 {
@@ -13,19 +13,32 @@ public class PopUpBox : MonoBehaviour
     public PopUpType PopUpBoxType = PopUpType.Msg;
     ReinType RfType = ReinType.Attack;
 
-    public Button Exit_Btn = null;
+    [Header("------ Message ------")]
     public Text Title_Txt = null;
     public Text Msg_Txt = null;
     public Button Ok_Btn = null;
+
+    [Header("------ Reinforece ------")]
+    public Button Exit_Btn = null;
     public Button Rein_Btn = null;
     public Text Gold_Txt = null;
     public RawImage Alpha_RImg = null;
+
+    [Header("------ Inventory ------")]
+    public Image Inven_Img = null;
+    public Button Equip_Btn = null;
+    public Text Equip_Txt = null;
+    InvenButton invBtn = null;
+    Transform upper = null;
+    Transform lower = null;
 
     string[] reinTitles = { "힘", "체력", "인내", "회복" };
     string[] reinMsgs = { "공격력 +", "HP +", "방어력 +", "당근 회복 +" };
     int reinVal = 0;
     int GoldVal = 0;
     int cellNum = 0;
+
+    InventoryMgr invMgr = null;
 
     void Start()
     {
@@ -38,11 +51,23 @@ public class PopUpBox : MonoBehaviour
         if (Ok_Btn)
             Ok_Btn.onClick.AddListener(OKBtnClick);
 
+        if (Equip_Btn)
+            Equip_Btn.onClick.AddListener(EquipBtnClick);
+
         if (PopUpBoxType == PopUpType.Reinforce)
             SetAlpha();
+
+        if (lower == null)
+            lower = GameObject.Find("Content").transform;
+
+        if (upper == null)
+            upper = GameObject.Find("Upper_Panel").transform;
+
+        if (invMgr == null)
+            invMgr = FindObjectOfType<InventoryMgr>();
     }
 
-    public void SetReinInfo(ReinType rType, int cNum) //TODO : ReinBtn or OkBtn
+    public void SetReinInfo(ReinType rType, int cNum)
     {
         RfType = rType;
         cellNum = cNum;
@@ -63,12 +88,6 @@ public class PopUpBox : MonoBehaviour
 
             Gold_Txt.text = "x " + GoldVal.ToString(); //TODO : cellLV에 따라 다른 가격 
         }
-    }
-
-    void OKBtnClick()
-    {
-        Time.timeScale = 1.0f;
-        Destroy(gameObject);
     }
 
     void TryReinforce()
@@ -93,6 +112,54 @@ public class PopUpBox : MonoBehaviour
             AllSceneMgr.Instance.InitMsgPopUp("K 또는 M이 있거나 다른 문자열이 껴있슴...");
     }
 
+    void SetAlpha()
+    {
+        if (AllSceneMgr.Instance.user.reinCursor < cellNum
+            && Rein_Btn.gameObject.activeSelf)
+            Alpha_RImg.gameObject.SetActive(true);
+        else
+            Alpha_RImg.gameObject.SetActive(false);
+    }
+
+    public void SetMsgText(string msg)
+    {
+        Msg_Txt.text = msg;
+    }
+
+    public void SetInvenComp(InvenButton iBtn)
+    {
+        invBtn = iBtn;
+
+        Inven_Img.sprite = invBtn.Inven_Img.sprite;
+        Inven_Img.rectTransform.sizeDelta = invBtn.Inven_Img.rectTransform.sizeDelta;
+        if (invBtn.isUpper)
+            Equip_Txt.text = "장착 해제";
+        else
+            Equip_Txt.text = "장착하기";
+    }
+
+    //Click Functions
+    void EquipBtnClick()
+    {
+        if (invBtn.isUpper) //아래로 내려야함.
+        {
+            if (lower != null)
+                invBtn.transform.SetParent(lower);
+        }
+        else
+        {
+            if (invMgr != null)
+            {
+                if (upper != null)
+                    invBtn.transform.SetParent(upper);
+
+                invBtn.transform.position = invMgr.UpInvenPos[(int)invBtn.InvType].transform.position;
+            }
+        }
+
+        Destroy(gameObject);
+    }
+
     void ReinBtnClick()
     {
         TryReinforce();
@@ -107,17 +174,9 @@ public class PopUpBox : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void SetMsgText(string msg)
+    void OKBtnClick()
     {
-        Msg_Txt.text = msg;
-    }
-
-    void SetAlpha()
-    {
-        if (AllSceneMgr.Instance.user.reinCursor < cellNum
-            && Rein_Btn.gameObject.activeSelf)
-            Alpha_RImg.gameObject.SetActive(true);
-        else
-            Alpha_RImg.gameObject.SetActive(false);
+        Time.timeScale = 1.0f;
+        Destroy(gameObject);
     }
 }
