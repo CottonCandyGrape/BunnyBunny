@@ -563,6 +563,7 @@ GameObject:
   - component: {fileID: 1106429634700202594}
   - component: {fileID: 1487363819496520587}
   - component: {fileID: 2974490694791074447}
+  - component: {fileID: 5289513680912262648}
   m_Layer: 5
   m_Name: InvenBg_Img
   m_TagString: Untagged
@@ -628,6 +629,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5289513680912262648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5019855258397378435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 1, b: 1, a: 1}
+  m_EffectDistance: {x: 3, y: -3}
+  m_UseGraphicAlpha: 1
 --- !u!1 &6009185451623710935
 GameObject:
   m_ObjectHideFlags: 0
@@ -1046,10 +1062,10 @@ MonoBehaviour:
   Title_Txt: {fileID: 3415691989773136100}
   Msg_Txt: {fileID: 0}
   Ok_Btn: {fileID: 0}
+  Inven_Img: {fileID: 4025289529702186302}
+  Equip_Btn: {fileID: 6285881152037426718}
+  Equip_Txt: {fileID: 3119811474854636365}
   Exit_Btn: {fileID: 18707241144444097}
   Rein_Btn: {fileID: 0}
   Gold_Txt: {fileID: 0}
   Alpha_RImg: {fileID: 0}
-  Inven_Img: {fileID: 4025289529702186302}
-  Equip_Btn: {fileID: 6285881152037426718}
-  Equip_Txt: {fileID: 3119811474854636365}
