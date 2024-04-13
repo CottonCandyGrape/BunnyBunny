@@ -66,7 +66,7 @@ public class PlayerCtrl : MonoBehaviour
     Animator animator = null;
     //Animation 관련
 
-    WeaponMgr wpMgr = null;
+    WeaponMgr wpMgr = null; //이 Script에서는 너무 많이 써서 선언하고 쓰는 중.
 
     void Start()
     {
@@ -80,8 +80,8 @@ public class PlayerCtrl : MonoBehaviour
 
         if (FullPowerTest)
         {
-            wpMgr.SetGuardians(); //가디언 test 용
             //wpMgr.SetRockets(); //로켓 test 용
+            //wpMgr.SetGuardians(); //가디언 test 용
             //wpMgr.SetDrills(); //드릴 test 용
         }
     }

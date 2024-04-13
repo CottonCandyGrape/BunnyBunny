@@ -86,11 +86,11 @@ public class MonsterCtrl : MonoBehaviour
         {
             isKnockBack = true;
             kbTarget = transform.position + moveDir * kbDist;
-            TakeDamage(10);
+            TakeDamage((WeaponMgr.Inst.GuardiansCtrlSc.CurLv + 1) * 10);
         }
         else if (coll.CompareTag("Drill"))
         {
-            TakeDamage(dftDmg);
+            TakeDamage((WeaponMgr.Inst.DrillCtrlSc.CurLv + 1) * 20);
         }
     }
 
