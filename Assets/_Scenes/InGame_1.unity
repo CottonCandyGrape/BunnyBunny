@@ -20107,7 +20107,7 @@ MonoBehaviour:
   FlashRender: {fileID: 1116137260}
   ItemPrefabs:
   - {fileID: 6835270035748935212, guid: 02a13a94f6c89f246a5e69f41552031f, type: 3}
-  - {fileID: 1299469274710315508, guid: 6dfc646c6bf1bf64ab2d3518a109bde1, type: 3}
+  - {fileID: 7332305959707446676, guid: bd5c45b1af78df34b8b8f73955ce85cf, type: 3}
   - {fileID: 576453304988518461, guid: 256400b23ff53dd4e84328f3d976aca6, type: 3}
 --- !u!4 &1957924133
 Transform:
