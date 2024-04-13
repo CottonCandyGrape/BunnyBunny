@@ -85,6 +85,11 @@ public class GuardiansCtrl : Weapon
     {
         isEvolve = true;
         for (int i = 0; i < Guardians.childCount; i++)
-            Guardians.GetChild(i).gameObject.SetActive(true);
+        {
+            GameObject guard = Guardians.GetChild(i).gameObject;
+            guard.SetActive(true);
+            GuardCtrl gCtrl = guard.GetComponent<GuardCtrl>();
+            if (gCtrl != null) gCtrl.RotSpeed = 250.0f;
+        }
     }
 }
