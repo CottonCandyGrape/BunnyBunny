@@ -6,7 +6,10 @@ public class GuardiansCtrl : Weapon
 {
     public GameObject GuardPrefab = null;
     public Transform Guardians = null;
+    public Sprite Evolved_Sprite = null;
 
+    const float EvolvedRotSpeed = 250.0f;
+    const float EvolvedCollRadius = 0.21f;
     const int GuardInitCount = 3;
 
     float lifeTimer = 0.0f;
@@ -88,8 +91,15 @@ public class GuardiansCtrl : Weapon
         {
             GameObject guard = Guardians.GetChild(i).gameObject;
             guard.SetActive(true);
+
             GuardCtrl gCtrl = guard.GetComponent<GuardCtrl>();
-            if (gCtrl != null) gCtrl.RotSpeed = 250.0f;
+            if (gCtrl != null) gCtrl.RotSpeed = EvolvedRotSpeed;
+
+            CircleCollider2D cColl = guard.GetComponent<CircleCollider2D>();
+            if (cColl != null) cColl.radius = EvolvedCollRadius;
+
+            SpriteRenderer spRend = guard.GetComponentInChildren<SpriteRenderer>();
+            if (spRend != null) spRend.sprite = Evolved_Sprite;
         }
     }
 }
