@@ -5550,7 +5550,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3040b8ec1ec5af49a0c7919eb5a1ff0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FullPowerTest: 0
+  FullPowerTest: 1
   h: 0
   v: 0
   DirArrow: {fileID: 1827385772}
@@ -20070,6 +20070,7 @@ MonoBehaviour:
   MonsterPool: {fileID: 1335071687}
   RocketPool: {fileID: 616758264}
   RocketPrefab: {fileID: 2511195429004058337, guid: 5d49b4507d7159e4a8b621e13efb2335, type: 3}
+  BombEffect: {fileID: 449840208616403153, guid: 25987fdbbbefecc4082783ba9c7c0d82, type: 3}
 --- !u!1 &1957924131
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,17 +7,15 @@ public class RocketCtrl : Weapon
     public Transform MonsterPool = null;
     public Transform RocketPool = null;
     public GameObject RocketPrefab = null;
+    public GameObject BombEffect = null;
     GameObject rocket = null;
+    GameObject bombEft = null;
 
     const float RocketOffset = 0.35f;
-    const float BombScaler = 1.1f;
-
-    float bombRadius = 0.0f;
+    const float BombScaler = 1.3f;
 
     void Start()
     {
-        bombRadius = (ScreenMgr.InitScMax.x - ScreenMgr.InitScMin.x) / 5.0f;
-
         InitRockets();
     }
 
@@ -27,6 +25,12 @@ public class RocketCtrl : Weapon
         {
             rocket = Instantiate(RocketPrefab, RocketPool);
             rocket.SetActive(false);
+        }
+
+        if(bombEft == null)
+        {
+            bombEft = Instantiate(BombEffect, RocketPool);
+            bombEft.SetActive(false);
         }
     }
 
@@ -78,8 +82,8 @@ public class RocketCtrl : Weapon
 
     public void ExploseRocket(GameObject rocketObj)
     {
-        //TODO : 폭발 이펙트 추가 (시각, 소리) 
-        Collider2D[] colls = Physics2D.OverlapCircleAll(rocketObj.transform.position, bombRadius);
+        float radius = Mathf.Max(bombEft.transform.localScale.x, bombEft.transform.localScale.y) / 2.0f;
+        Collider2D[] colls = Physics2D.OverlapCircleAll(rocketObj.transform.position, radius);
         for (int i = 0; i < colls.Length; i++)
         {
             if (colls[i].tag.Contains("Monster"))
@@ -91,18 +95,24 @@ public class RocketCtrl : Weapon
         }
 
         rocketObj.SetActive(false);
+        bombEft.SetActive(true);
+        bombEft.transform.position = rocketObj.transform.position;
     }
 
     public override void LevelUpWeapon()
     {
-        if (MaxLevel <= curLevel) return;
+        if (MaxLevel <= curLevel) 
+        {
+            EvolveWeapon();
+            return;
+        }
 
         curLevel++;
-        bombRadius *= BombScaler;
+        bombEft.transform.localScale *= BombScaler;
     }
 
     public override void EvolveWeapon()
     {
-
+        isEvolve = true;
     }
 }
