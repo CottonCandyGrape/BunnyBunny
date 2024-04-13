@@ -72,7 +72,11 @@ public class DrillCtrl : Weapon
 
     public override void LevelUpWeapon()
     {
-        if (MaxLevel <= curLevel) return;
+        if (MaxLevel <= curLevel)
+        {
+            EvolveWeapon();
+            return;
+        }
 
         GameObject drill = Instantiate(DrillPrefab, DrillPool);
         drill.SetActive(false);
@@ -82,6 +86,6 @@ public class DrillCtrl : Weapon
 
     public override void EvolveWeapon()
     {
-
+        isEvolve = true;
     }
 }

@@ -23,7 +23,8 @@ public class GuardiansCtrl : Weapon
 
     void Update()
     {
-        OnOffGuardians();
+        if (!isEvolve)
+            OnOffGuardians();
     }
 
     void InitGuardians() //3개로 시작
@@ -64,7 +65,11 @@ public class GuardiansCtrl : Weapon
 
     public override void LevelUpWeapon()
     {
-        if (MaxLevel <= curLevel) return;
+        if (MaxLevel <= curLevel)
+        {
+            EvolveWeapon();
+            return;
+        }
 
         GameObject guardObj = Instantiate(GuardPrefab, Guardians);
         if (!IsOn) guardObj.SetActive(false);
@@ -78,6 +83,8 @@ public class GuardiansCtrl : Weapon
 
     public override void EvolveWeapon()
     {
-
+        isEvolve = true;
+        for (int i = 0; i < Guardians.childCount; i++)
+            Guardians.GetChild(i).gameObject.SetActive(true);
     }
 }
