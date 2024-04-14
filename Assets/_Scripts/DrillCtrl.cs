@@ -74,7 +74,7 @@ public class DrillCtrl : Weapon
     {
         if (MaxLevel <= curLevel)
         {
-            EvolveWeapon();
+            if (!isEvolve) EvolveWeapon();
             return;
         }
 

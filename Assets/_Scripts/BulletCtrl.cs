@@ -63,7 +63,7 @@ public class BulletCtrl : MonoBehaviour
         {
             if (coll.tag.Contains("Monster"))
             {
-                WeaponMgr.Inst.RocketCtrlSc.ExploseRocket(gameObject);
+                WeaponMgr.Inst.RocketCtrlSc.ExploseRocket(WeaponMgr.Inst.RocketCtrlSc.IsEvolve, gameObject);
             }
         }
     }

@@ -220,7 +220,12 @@ public class PlayerCtrl : MonoBehaviour
         {
             rktTimer = rktTime;
             if (wpMgr.RocketCtrlSc != null)
-                wpMgr.RocketCtrlSc.FireRocket();
+            {
+                if (!WeaponMgr.Inst.RocketCtrlSc.IsEvolve)
+                    wpMgr.RocketCtrlSc.FireRocket();
+                else
+                    wpMgr.RocketCtrlSc.FireNuclear();
+            }
         }
         //로켓 타이머
 

@@ -6,13 +6,22 @@ public class RocketCtrl : Weapon
 {
     public Transform MonsterPool = null;
     public Transform RocketPool = null;
+
     public GameObject RocketPrefab = null;
     public GameObject ExpEffectPrefab = null;
     GameObject rocket = null;
     GameObject expEffect = null;
 
+    public GameObject NuclearPrefab = null;
+    public GameObject Ev_ExpEffectPrefab = null;
+    GameObject ev_ExpEffect = null;
+    GameObject nuclear = null;
+
+    Vector3 NuclearExpOffset = Vector3.up * 2.0f;
     const float RocketOffset = 0.35f;
-    const float BombScaler = 1.3f;
+    const float ExpScaler = 1.3f;
+    const float NuExpRadius = 2.5f;
+    float ExpRadius = 0.9f;
 
     void Start()
     {
@@ -27,7 +36,7 @@ public class RocketCtrl : Weapon
             rocket.SetActive(false);
         }
 
-        if(expEffect == null)
+        if (expEffect == null)
         {
             expEffect = Instantiate(ExpEffectPrefab, RocketPool);
             expEffect.SetActive(false);
@@ -80,39 +89,79 @@ public class RocketCtrl : Weapon
         }
     }
 
-    public void ExploseRocket(GameObject rocketObj)
+    public void FireNuclear()
     {
-        float radius = Mathf.Max(expEffect.transform.localScale.x, expEffect.transform.localScale.y) / 2.0f;
+        Vector3 target = GetCloseTarget();
+
+        if (!nuclear.activeSelf)
+        {
+            nuclear.SetActive(true);
+
+            BulletCtrl rocketBlt = nuclear.GetComponent<BulletCtrl>();
+            rocketBlt.MoveDir = Vector3.down;
+            nuclear.transform.position = target + Vector3.up * 5.0f;
+        }
+    }
+
+    public void ExploseRocket(bool isEvole, GameObject rocketObj)
+    {
+        float radius = isEvole ? NuExpRadius : ExpRadius;
+        int dmg = isEvole ? 50 : 30;
+
         Collider2D[] colls = Physics2D.OverlapCircleAll(rocketObj.transform.position, radius);
         for (int i = 0; i < colls.Length; i++)
         {
             if (colls[i].tag.Contains("Monster"))
             {
                 MonsterCtrl monCtrl = colls[i].GetComponent<MonsterCtrl>();
-                monCtrl.TakeDamage((curLevel + 1) * 30);
+                monCtrl.TakeDamage((curLevel + 1) * dmg);
             }
             else continue;
         }
 
+        if (isEvole)
+        {
+            ev_ExpEffect.SetActive(true);
+            ev_ExpEffect.transform.position = rocketObj.transform.position - NuclearExpOffset;
+        }
+        else
+        {
+            expEffect.SetActive(true);
+            expEffect.transform.position = rocketObj.transform.position;
+        }
+
         rocketObj.SetActive(false);
-        expEffect.SetActive(true);
-        expEffect.transform.position = rocketObj.transform.position;
     }
 
     public override void LevelUpWeapon()
     {
-        if (MaxLevel <= curLevel) 
+        if (MaxLevel <= curLevel)
         {
-            EvolveWeapon();
+            if (!isEvolve) EvolveWeapon();
             return;
         }
 
         curLevel++;
-        expEffect.transform.localScale *= BombScaler;
+        expEffect.transform.localScale *= ExpScaler;
+        ExpRadius *= ExpScaler;
     }
 
     public override void EvolveWeapon()
     {
         isEvolve = true;
+
+        //nuclaer 초기화
+        if (nuclear == null)
+        {
+            nuclear = Instantiate(NuclearPrefab, RocketPool);
+            nuclear.SetActive(false);
+        }
+
+        //ev_ExpEffect 초기화
+        if (ev_ExpEffect == null)
+        {
+            ev_ExpEffect = Instantiate(Ev_ExpEffectPrefab, RocketPool);
+            ev_ExpEffect.SetActive(false);
+        }
     }
 }

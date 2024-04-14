@@ -5469,7 +5469,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GuardPrefab: {fileID: 4455863448874826799, guid: 0f6ed09fb8820e94e99a7a9835a77b8b, type: 3}
   Guardians: {fileID: 678642573}
-  Evolved_Sprite: {fileID: 21300000, guid: 6470315c2f046e84ea88d3c23dad57f1, type: 3}
+  Ev_Sprite: {fileID: 0}
 --- !u!1 &692346001
 GameObject:
   m_ObjectHideFlags: 0
@@ -20072,6 +20072,8 @@ MonoBehaviour:
   RocketPool: {fileID: 616758264}
   RocketPrefab: {fileID: 2511195429004058337, guid: 5d49b4507d7159e4a8b621e13efb2335, type: 3}
   ExpEffectPrefab: {fileID: 449840208616403153, guid: 25987fdbbbefecc4082783ba9c7c0d82, type: 3}
+  NuclearPrefab: {fileID: 4110923581060326438, guid: 2af49574f98d6f5418f798e2f3861579, type: 3}
+  Ev_ExpEffectPrefab: {fileID: 80093899953507228, guid: 27e3c7a1e813e324cb911856bbcb00ec, type: 3}
 --- !u!1 &1957924131
 GameObject:
   m_ObjectHideFlags: 0
