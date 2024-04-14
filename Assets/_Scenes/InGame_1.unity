@@ -5469,7 +5469,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GuardPrefab: {fileID: 4455863448874826799, guid: 0f6ed09fb8820e94e99a7a9835a77b8b, type: 3}
   Guardians: {fileID: 678642573}
-  Ev_Sprite: {fileID: 0}
+  Ev_Sprite: {fileID: 21300000, guid: 6470315c2f046e84ea88d3c23dad57f1, type: 3}
 --- !u!1 &692346001
 GameObject:
   m_ObjectHideFlags: 0
