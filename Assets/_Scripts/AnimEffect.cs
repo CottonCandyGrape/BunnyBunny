@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BombEffect : MonoBehaviour
+public class AnimEffect : MonoBehaviour
 {
     Animator anim = null;
 
