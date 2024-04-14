@@ -7,9 +7,9 @@ public class RocketCtrl : Weapon
     public Transform MonsterPool = null;
     public Transform RocketPool = null;
     public GameObject RocketPrefab = null;
-    public GameObject BombEffect = null;
+    public GameObject ExpEffectPrefab = null;
     GameObject rocket = null;
-    GameObject bombEft = null;
+    GameObject expEffect = null;
 
     const float RocketOffset = 0.35f;
     const float BombScaler = 1.3f;
@@ -27,10 +27,10 @@ public class RocketCtrl : Weapon
             rocket.SetActive(false);
         }
 
-        if(bombEft == null)
+        if(expEffect == null)
         {
-            bombEft = Instantiate(BombEffect, RocketPool);
-            bombEft.SetActive(false);
+            expEffect = Instantiate(ExpEffectPrefab, RocketPool);
+            expEffect.SetActive(false);
         }
     }
 
@@ -82,7 +82,7 @@ public class RocketCtrl : Weapon
 
     public void ExploseRocket(GameObject rocketObj)
     {
-        float radius = Mathf.Max(bombEft.transform.localScale.x, bombEft.transform.localScale.y) / 2.0f;
+        float radius = Mathf.Max(expEffect.transform.localScale.x, expEffect.transform.localScale.y) / 2.0f;
         Collider2D[] colls = Physics2D.OverlapCircleAll(rocketObj.transform.position, radius);
         for (int i = 0; i < colls.Length; i++)
         {
@@ -95,8 +95,8 @@ public class RocketCtrl : Weapon
         }
 
         rocketObj.SetActive(false);
-        bombEft.SetActive(true);
-        bombEft.transform.position = rocketObj.transform.position;
+        expEffect.SetActive(true);
+        expEffect.transform.position = rocketObj.transform.position;
     }
 
     public override void LevelUpWeapon()
@@ -108,7 +108,7 @@ public class RocketCtrl : Weapon
         }
 
         curLevel++;
-        bombEft.transform.localScale *= BombScaler;
+        expEffect.transform.localScale *= BombScaler;
     }
 
     public override void EvolveWeapon()

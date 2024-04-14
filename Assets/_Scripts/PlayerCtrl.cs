@@ -80,7 +80,7 @@ public class PlayerCtrl : MonoBehaviour
 
         if (FullPowerTest)
         {
-            //wpMgr.SetRockets(); //로켓 test 용
+            wpMgr.SetRockets(); //로켓 test 용
             //wpMgr.SetGuardians(); //가디언 test 용
             //wpMgr.SetDrills(); //드릴 test 용
         }
@@ -109,16 +109,16 @@ public class PlayerCtrl : MonoBehaviour
         //    wpMgr.DrillCtrlSc.LevelUpWeapon(); //드릴 test 용
         //    wpMgr.GunCtrlSc.LevelUpWeapon();
         //}
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha1) && wpMgr.RocketCtrlSc != null)
         {
             wpMgr.RocketCtrlSc.LevelUpWeapon(); //로켓 test 용
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-        { 
+        else if (Input.GetKeyDown(KeyCode.Alpha2) && wpMgr.GuardiansCtrlSc != null)
+        {
             wpMgr.GuardiansCtrlSc.LevelUpWeapon(); //가디언 test 용
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
-        { 
+        else if (Input.GetKeyDown(KeyCode.Alpha3) && wpMgr.DrillCtrlSc != null)
+        {
             wpMgr.DrillCtrlSc.LevelUpWeapon(); //드릴 test 용
         }
     }
