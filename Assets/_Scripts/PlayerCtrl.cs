@@ -25,8 +25,11 @@ public class PlayerCtrl : MonoBehaviour
 
     //Flip 관련
     CapsuleCollider2D capColl = null;
-    Vector2 capVec = Vector2.zero;
+    GameObject gun = null;
+    Transform mainWeapon = null;
     const float capOffsetX = 0.04f;
+    const float gunOffsetX = 0.15f;
+    const float gunImgOffsetX = 0.05f;
     //Flip 관련
 
     //화살표 관련
@@ -75,13 +78,14 @@ public class PlayerCtrl : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         animator = GetComponentInChildren<Animator>();
         wpMgr = FindObjectOfType<WeaponMgr>();
+        mainWeapon = GameObject.Find("MainWeapon").transform;
 
         curHp = maxHp;
 
         if (FullPowerTest)
         {
-            //wpMgr.SetRockets(); //로켓 test 용
-            //wpMgr.SetGuardians(); //가디언 test 용
+            wpMgr.SetRockets(); //로켓 test 용
+            wpMgr.SetGuardians(); //가디언 test 용
             wpMgr.SetDrills(); //드릴 test 용
         }
     }
@@ -99,6 +103,9 @@ public class PlayerCtrl : MonoBehaviour
         DirectionArrow();
         CalcWeaponsTimer();
         PlayerStateUpdate();
+
+        if (wpMgr.MainType == MWType.Gun)
+            RotateGun();
 
         SubCanvas.transform.position = transform.position; //Move()에 있었는데 느려서 여기서 호출 
 
@@ -120,6 +127,10 @@ public class PlayerCtrl : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Alpha3) && wpMgr.DrillCtrlSc != null)
         {
             wpMgr.DrillCtrlSc.LevelUpWeapon(); //드릴 test 용
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha4) && wpMgr.GunCtrlSc != null)
+        {
+            wpMgr.GunCtrlSc.LevelUpWeapon(); //Gun test 용
         }
     }
 
@@ -154,13 +165,33 @@ public class PlayerCtrl : MonoBehaviour
 
     void Flip(bool flip)
     {
+        Vector2 tmpVec = Vector2.zero;
+
         //player flip
         playerSpRenderer.flipX = flip;
 
         //collider flip
-        capVec = capColl.offset;
-        capVec.x = flip ? capOffsetX : -capOffsetX;
-        capColl.offset = capVec;
+        tmpVec = capColl.offset;
+        tmpVec.x = flip ? capOffsetX : -capOffsetX;
+        capColl.offset = tmpVec;
+
+        if (wpMgr.MainType == MWType.Gun)
+        {
+            //gun flip
+            if (gun == null)
+                gun = mainWeapon.GetChild(0).gameObject;
+
+            tmpVec = gun.transform.localPosition;
+            tmpVec.x = flip ? gunOffsetX : -gunOffsetX;
+            gun.transform.localPosition = tmpVec;
+
+            SpriteRenderer spRend = gun.GetComponentInChildren<SpriteRenderer>();
+            spRend.flipX = flip;
+
+            tmpVec = spRend.transform.localPosition;
+            tmpVec.x = flip ? gunImgOffsetX : -gunImgOffsetX;
+            spRend.transform.localPosition = tmpVec;
+        }
     }
 
     void DirectionArrow()
@@ -171,6 +202,20 @@ public class PlayerCtrl : MonoBehaviour
         arrowAngle = Mathf.Atan2(arrowDir.normalized.y, arrowDir.normalized.x) * Mathf.Rad2Deg;
         DirArrow.transform.rotation = Quaternion.AngleAxis(arrowAngle - angleOffset, Vector3.forward);
         DirArrow.transform.position = transform.position + arrowDir.normalized * ArrowOffset;
+    }
+
+    void RotateGun()
+    {
+        if (gun == null)
+            gun = mainWeapon.GetChild(0).gameObject;
+
+        if (moveDir.normalized != Vector3.zero)
+            arrowDir = moveDir.normalized;
+
+        if (h < 0.0f)
+            gun.transform.rotation = Quaternion.AngleAxis(arrowAngle - 180f, Vector3.forward);
+        else if (0.0f < h)
+            gun.transform.rotation = Quaternion.AngleAxis(arrowAngle, Vector3.forward);
     }
 
     public void TakeDamage(float damage)

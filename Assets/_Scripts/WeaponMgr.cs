@@ -68,9 +68,6 @@ public class WeaponMgr : MonoBehaviour
     //메인 무기 관련
     void SetMainWeapon(MWType mwType) //메인 무기 세팅 및 교체 함수
     {
-        for (int i = 0; i < MainWeapon.childCount; i++) //교체를 위해 이전 오브젝트 삭제. 
-            Destroy(MainWeapon.GetChild(i)); //교체가 필요할진 모르겠네.
-
         GameObject obj = Instantiate(MWPrefabs[(int)mwType], MainWeapon);
         if (mwType == MWType.Gun)
         {
