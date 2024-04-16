@@ -58,7 +58,7 @@ public class PlayerCtrl : MonoBehaviour
     float rktTimer = 0.0f; //로켓
     float rktTime = 2.0f;
     float drlTimer = 0.0f; //드릴
-    float drlTime = 5.0f; //TODO : 드릴개수에 따라 계산하여 정하기
+    float drlTime = 4.0f;
     //Timer 관련
 
     //Animation 관련
@@ -80,9 +80,9 @@ public class PlayerCtrl : MonoBehaviour
 
         if (FullPowerTest)
         {
-            wpMgr.SetRockets(); //로켓 test 용
+            //wpMgr.SetRockets(); //로켓 test 용
             //wpMgr.SetGuardians(); //가디언 test 용
-            //wpMgr.SetDrills(); //드릴 test 용
+            wpMgr.SetDrills(); //드릴 test 용
         }
     }
 
@@ -235,7 +235,12 @@ public class PlayerCtrl : MonoBehaviour
         {
             drlTimer = drlTime;
             if (wpMgr.DrillCtrlSc != null)
-                wpMgr.DrillCtrlSc.FireDrills();
+            {
+                if(!WeaponMgr.Inst.DrillCtrlSc.IsEvolve)
+                    wpMgr.DrillCtrlSc.FireDrills();
+                else
+                    wpMgr.DrillCtrlSc.FireArrowHead();
+            }
         }
         //드릴 타이머
     }

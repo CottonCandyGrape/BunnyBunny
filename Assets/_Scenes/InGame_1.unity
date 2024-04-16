@@ -19605,6 +19605,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DrillPool: {fileID: 181716575}
   DrillPrefab: {fileID: 1169919622702201102, guid: ebb47ce8cb15dde48b99ed88d0b33499, type: 3}
+  ArrowHeadPrefab: {fileID: 7136465812261838218, guid: fb3ec5a017fb80544bfdb3145fd25881, type: 3}
 --- !u!1 &1595864535
 GameObject:
   m_ObjectHideFlags: 0

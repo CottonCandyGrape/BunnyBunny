@@ -37,9 +37,17 @@ public class BulletCtrl : MonoBehaviour
             lifeTime = 8.0f;
         }
         else if(BltType == BulletType.Drill)
-        { 
-            moveSpeed = 8.0f;
-            lifeTime = 2.0f;
+        {
+            if (!WeaponMgr.Inst.DrillCtrlSc.IsEvolve)
+            {
+                moveSpeed = 8.0f;
+                lifeTime = 2.0f;
+            }
+            else
+            {
+                moveSpeed = 15.0f;
+                lifeTime = 5.0f;
+            }
         }
     }
 
