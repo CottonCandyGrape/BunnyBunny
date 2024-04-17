@@ -17,6 +17,7 @@ TagManager:
   - Guard
   - Drill
   - BattleRing
+  - FirePos
   layers:
   - Default
   - TransparentFX

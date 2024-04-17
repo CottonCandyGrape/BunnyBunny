@@ -258,7 +258,9 @@ public class PlayerCtrl : MonoBehaviour
         {
             mAtkTimer = mAtkTime;
             if (wpMgr.GunCtrlSc != null)
-                wpMgr.GunCtrlSc.FireBullet(arrowDir);
+                //wpMgr.GunCtrlSc.FireBullet(arrowDir);
+                //wpMgr.GunCtrlSc.FireBulletOneShot(arrowDir);
+                wpMgr.GunCtrlSc.FanFire(arrowDir);
         }
         //메인 무기 타이머
 

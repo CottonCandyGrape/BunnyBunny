@@ -5558,6 +5558,7 @@ MonoBehaviour:
   SubCanvas: {fileID: 2012018422}
   HpBar_Img: {fileID: 470771535}
   AnimState: 0
+  PlayerProperty: 0
 --- !u!50 &699597826
 Rigidbody2D:
   serializedVersion: 4

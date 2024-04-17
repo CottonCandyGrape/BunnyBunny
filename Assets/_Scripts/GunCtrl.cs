@@ -9,6 +9,9 @@ public class GunCtrl : Weapon
     const int BaseShotCnt = 3;
     int curCount = 0;
 
+    const float FirePosOffsetX = 0.6f;
+    Transform fPos = null;
+
     void Start() { }
 
     //void Update() { }
@@ -37,6 +40,32 @@ public class GunCtrl : Weapon
         }
 
         curCount++;
+    }
+
+    public void FireBulletOneShot(Vector3 dir)
+    {
+        if (fPos == null)
+            fPos = GameObject.FindGameObjectWithTag("FirePos").transform;
+        SetFirePos();
+
+        BulletCtrl bltCtrl = MemoryPoolMgr.Inst.AddBulletPool();
+        bltCtrl.gameObject.SetActive(true);
+
+        dir.Normalize();
+        bltCtrl.MoveDir = dir;
+
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        bltCtrl.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        bltCtrl.transform.position = fPos.position;
+    }
+
+    void SetFirePos()
+    {
+        if (fPos == null) return;
+
+        Vector3 tmp = fPos.localPosition;
+        tmp.x = GameMgr.Inst.player.h < 0.0f ? -FirePosOffsetX : FirePosOffsetX;
+        fPos.localPosition = tmp;
     }
 
     int GetBulletCount()
@@ -73,7 +102,8 @@ public class GunCtrl : Weapon
         for (int cnt = start; cnt < end; cnt++)
         {
             Vector3 dir = Quaternion.AngleAxis(cnt * deg, Vector3.forward) * midDir;
-            FireBullet(dir);
+            //FireBullet(dir);
+            FireBulletOneShot(dir);
         }
     }
 
