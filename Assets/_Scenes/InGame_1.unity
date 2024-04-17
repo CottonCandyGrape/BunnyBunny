@@ -346,7 +346,7 @@ MonoBehaviour:
   NorMonPrefs3: []
   ActiveMonsterCount: 0
   BulletPrefabs:
-  - {fileID: 5458404892107507589, guid: d38857d8160e7e54eb24774bccc6c165, type: 3}
+  - {fileID: 3633008192389556037, guid: 782318e5b2513924e9b82ce35ec68426, type: 3}
 --- !u!4 &125638752
 Transform:
   m_ObjectHideFlags: 0
