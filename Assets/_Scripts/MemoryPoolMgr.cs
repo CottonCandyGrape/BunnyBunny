@@ -50,7 +50,7 @@ public class MemoryPoolMgr : MonoBehaviour
         //BulletPool
         for (int i = 0; i < initBltCnt; i++)
         {
-            GameObject blt = Instantiate(BulletPrefabs[0], bulletPool);
+            GameObject blt = Instantiate(BulletPrefabs[(int)GameMgr.Inst.player.PlayerProperty], bulletPool);
             blt.SetActive(false);
             BulletCtrlPool.Add(blt.GetComponent<BulletCtrl>());
         }
@@ -83,7 +83,7 @@ public class MemoryPoolMgr : MonoBehaviour
                 return BulletCtrlPool[i];
         }
 
-        GameObject blt = Instantiate(BulletPrefabs[0], bulletPool);
+        GameObject blt = Instantiate(BulletPrefabs[(int)GameMgr.Inst.player.PlayerProperty], bulletPool);
         blt.SetActive(false);
         BulletCtrl bltCtrl = blt.GetComponent<BulletCtrl>();
         BulletCtrlPool.Add(bltCtrl);

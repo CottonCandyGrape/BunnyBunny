@@ -69,7 +69,7 @@ public class PlayerCtrl : MonoBehaviour
     //Animation 관련
 
     //Player 속성(Type) 관련
-    [HideInInspector] public PlayerType PlayerProperty = PlayerType.Fire;
+    public PlayerType PlayerProperty = PlayerType.Fire;
     //Player 속성(Type) 관련
 
     WeaponMgr wpMgr = null; //이 Script에서는 너무 많이 써서 선언하고 쓰는 중.

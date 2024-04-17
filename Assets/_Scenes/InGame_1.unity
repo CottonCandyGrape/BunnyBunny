@@ -347,6 +347,7 @@ MonoBehaviour:
   ActiveMonsterCount: 0
   BulletPrefabs:
   - {fileID: 3633008192389556037, guid: 782318e5b2513924e9b82ce35ec68426, type: 3}
+  - {fileID: 5120911390119543468, guid: ee3968a99cc9e1446b3ed559f63446b9, type: 3}
 --- !u!4 &125638752
 Transform:
   m_ObjectHideFlags: 0
