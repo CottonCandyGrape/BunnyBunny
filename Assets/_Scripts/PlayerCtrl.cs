@@ -42,7 +42,7 @@ public class PlayerCtrl : MonoBehaviour
     //능력치 관련
     bool isDead = false;
     float curHp = 100.0f;
-    float maxHp = 100.0f;
+    public float maxHp = 100.0f;
     //float maxHp = float.MaxValue;
     float attack = 10.0f;
     float defense = 10.0f;
@@ -55,11 +55,11 @@ public class PlayerCtrl : MonoBehaviour
     //UI 관련
 
     //Timer 관련
-    float mAtkTimer = 0.0f; //메인 총알
+    float mAtkTimer = 0.2f; //메인 총알
     float mAtkTime = 0.2f;
-    float rktTimer = 0.0f; //로켓
+    float rktTimer = 2.0f; //로켓
     float rktTime = 2.0f;
-    float drlTimer = 0.0f; //드릴
+    float drlTimer = 4.0f; //드릴
     float drlTime = 4.0f;
     //Timer 관련
 
@@ -87,9 +87,9 @@ public class PlayerCtrl : MonoBehaviour
 
         if (FullPowerTest)
         {
-            wpMgr.SetRockets(); //로켓 test 용
-            wpMgr.SetGuardians(); //가디언 test 용
-            wpMgr.SetDrills(); //드릴 test 용
+            //wpMgr.SetRockets(); //로켓 test 용
+            //wpMgr.SetGuardians(); //가디언 test 용
+            //wpMgr.SetDrills(); //드릴 test 용
         }
     }
 
@@ -258,9 +258,12 @@ public class PlayerCtrl : MonoBehaviour
         {
             mAtkTimer = mAtkTime;
             if (wpMgr.GunCtrlSc != null)
+            {
                 //wpMgr.GunCtrlSc.FireBullet(arrowDir);
                 //wpMgr.GunCtrlSc.FireBulletOneShot(arrowDir);
                 wpMgr.GunCtrlSc.FanFire(arrowDir);
+            }
+
         }
         //메인 무기 타이머
 

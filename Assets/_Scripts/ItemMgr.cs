@@ -54,16 +54,16 @@ public class ItemMgr : MonoBehaviour
         }
     }
 
-    void SpawnCarrot(float healRate) //TODO : healRate 기준 정하기.
+    void SpawnCarrot(float healRate)
     {
         GameObject crt = Instantiate(ItemPrefabs[(int)ItemType.Heal], Carrots);
-        crt.transform.position = ScreenMgr.Inst.GetRandomPosCurScreen(); 
+        crt.transform.position = ScreenMgr.Inst.GetRandomPosCurScreen();
 
         ItemCtrl item = crt.GetComponent<ItemCtrl>();
         item.HealRate = healRate;
     }
 
-    void SpawnBomb(Vector3 pos) //TODO : 호출위치 정하기. 매개변수 pos 필요 없을 수도.
+    public void SpawnBomb(Vector3 pos)
     {
         GameObject bomb = Instantiate(ItemPrefabs[(int)ItemType.Bomb], Bombs);
         bomb.transform.position = pos;
