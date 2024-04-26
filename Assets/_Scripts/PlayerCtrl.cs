@@ -40,12 +40,12 @@ public class PlayerCtrl : MonoBehaviour
     //화살표 관련
 
     //능력치 관련
-    bool isDead = false;
-    float curHp = 100.0f;
-    public float maxHp = 100.0f;
     //float maxHp = float.MaxValue;
+    [HideInInspector] public float maxHp = 100.0f;
+    float curHp = 100.0f;
     float attack = 10.0f;
     float defense = 10.0f;
+    bool isDead = false;
     //능력치 관련
 
     //UI 관련

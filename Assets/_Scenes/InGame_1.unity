@@ -5481,6 +5481,7 @@ MonoBehaviour:
   h: 0
   v: 0
   DirArrow: {fileID: 1827385772}
+  maxHp: 100
   SubCanvas: {fileID: 2012018422}
   HpBar_Img: {fileID: 470771535}
   AnimState: 0
