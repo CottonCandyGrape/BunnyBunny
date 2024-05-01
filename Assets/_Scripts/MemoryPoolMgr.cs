@@ -6,10 +6,11 @@ public class MemoryPoolMgr : MonoBehaviour
 {
     Transform norMonPool = null;
     Transform bulletPool = null;
+    Transform bulletEffectPool = null;
 
-    public GameObject[] NorMonPrefs1 = null;
-    public GameObject[] NorMonPrefs2 = null;
-    public GameObject[] NorMonPrefs3 = null;
+    public GameObject[] NorMonPrefs1 = null; //Stage_1
+    public GameObject[] NorMonPrefs2 = null; //Stage_2
+    public GameObject[] NorMonPrefs3 = null; //Stage_3
     List<GameObject[]> norMonList;
 
     List<MonsterCtrl> MonCtrlPool = new List<MonsterCtrl>();
@@ -18,8 +19,12 @@ public class MemoryPoolMgr : MonoBehaviour
     public GameObject[] BulletPrefabs = null;
     List<BulletCtrl> BulletCtrlPool = new List<BulletCtrl>();
 
+    public GameObject[] BulletEffectPrefabs = null;
+    List<GameObject> BulletEffectCtrlPool = new List<GameObject>();
+
     int initMonCnt = 30;
     int initBltCnt = 10;
+    int initBltEftCnt = 10;
     int curStage = 0;
 
     public static MemoryPoolMgr Inst = null;
@@ -33,6 +38,7 @@ public class MemoryPoolMgr : MonoBehaviour
     {
         norMonPool = GameObject.Find("NorMonPool").GetComponent<Transform>();
         bulletPool = GameObject.Find("BulletPool").GetComponent<Transform>();
+        bulletEffectPool = GameObject.Find("BulletEffectPool").GetComponent<Transform>();
 
         //현재 스테이지 초기화 //TODO : 안전한가?
         curStage = AllSceneMgr.Instance.CurStageNum;
@@ -50,9 +56,17 @@ public class MemoryPoolMgr : MonoBehaviour
         //BulletPool
         for (int i = 0; i < initBltCnt; i++)
         {
-            GameObject blt = Instantiate(BulletPrefabs[(int)GameMgr.Inst.player.PlayerProperty], bulletPool);
+            GameObject blt = Instantiate(BulletPrefabs[(int)GameMgr.Inst.player.AttackType], bulletPool);
             blt.SetActive(false);
             BulletCtrlPool.Add(blt.GetComponent<BulletCtrl>());
+        }
+
+        //BulletEffectPool
+        for (int i = 0; i < initBltEftCnt; i++)
+        {
+            GameObject bltEft = Instantiate(BulletEffectPrefabs[(int)GameMgr.Inst.player.AttackType], bulletEffectPool);
+            bltEft.SetActive(false);
+            BulletEffectCtrlPool.Add(bltEft);
         }
     }
 
@@ -83,12 +97,27 @@ public class MemoryPoolMgr : MonoBehaviour
                 return BulletCtrlPool[i];
         }
 
-        GameObject blt = Instantiate(BulletPrefabs[(int)GameMgr.Inst.player.PlayerProperty], bulletPool);
+        GameObject blt = Instantiate(BulletPrefabs[(int)GameMgr.Inst.player.AttackType], bulletPool);
         blt.SetActive(false);
         BulletCtrl bltCtrl = blt.GetComponent<BulletCtrl>();
         BulletCtrlPool.Add(bltCtrl);
 
         return bltCtrl;
+    }
+
+    public GameObject AddBulletEffectPool() //Pool에 bulletEffect 추가 or bulletEffect return
+    {
+        for (int i = 0; i < BulletEffectCtrlPool.Count; i++)
+        {
+            if (!BulletEffectCtrlPool[i].gameObject.activeSelf)
+                return BulletEffectCtrlPool[i];
+        }
+
+        GameObject bltEft = Instantiate(BulletEffectPrefabs[(int)GameMgr.Inst.player.AttackType], bulletEffectPool);
+        bltEft.SetActive(false);
+        BulletEffectCtrlPool.Add(bltEft);
+
+        return bltEft;
     }
 
     public void OffAllNorMon()

@@ -14,7 +14,7 @@ public class WeaponMgr : MonoBehaviour
     [Header("------ Main Weapon ------")]
     public GameObject[] MWPrefabs = null;
     public Transform MainWeapon = null;
-    public MWType MainType = MWType.Gun; //TODO : public 이어야 할지 잘 모르겠네
+    public MWType MainType = MWType.Gun;
 
     //총
     GunCtrl gunCtrlSc = null;
