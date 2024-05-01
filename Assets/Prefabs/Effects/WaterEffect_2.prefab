@@ -115,6 +115,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9208914503663629877}
+  - component: {fileID: 6562460824198589702}
   m_Layer: 0
   m_Name: WaterEffect_2
   m_TagString: Untagged
@@ -138,3 +139,15 @@ Transform:
   - {fileID: 6284585243842884022}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6562460824198589702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5826318901203694587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b31fd6a9aa672674b9313d0dc1890172, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

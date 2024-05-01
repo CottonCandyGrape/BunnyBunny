@@ -18,6 +18,8 @@ public class MonsterCtrl : MonoBehaviour
     protected Vector3 moveDir = Vector3.zero;
     protected SpriteRenderer spRenderer = null;
     protected Rigidbody2D rigid = null;
+    float slowTimer = 0.0f;
+    float slowTime = 3.0f;
     //이동 관련
 
     //넉백 관련 
@@ -52,6 +54,7 @@ public class MonsterCtrl : MonoBehaviour
 
     void OnEnable()
     {
+        slowTimer = 0.0f;
         curHp = maxHp;
         SetExp();
     }
@@ -63,7 +66,16 @@ public class MonsterCtrl : MonoBehaviour
         Move();
     }
 
-    //void Update() { }
+    void Update()
+    {
+        if (0.0f <= slowTimer) SlowTimer();
+    }
+
+    void SlowTimer()
+    {
+        slowTimer -= Time.deltaTime;
+        if (slowTimer < 0.0f) moveSpeed = 1.0f;
+    }
 
     protected virtual void OnTriggerEnter2D(Collider2D coll)
     {
@@ -71,6 +83,30 @@ public class MonsterCtrl : MonoBehaviour
         {
             TakeDamage(dftDmg);
             coll.gameObject.SetActive(false);
+
+            if (monType == MonsterType.BossMon) return;
+
+            if (WeaponMgr.Inst.MainType == MWType.Gun)
+            {
+                GameObject bltEft = MemoryPoolMgr.Inst.AddBulletEffectPool();
+                bltEft.SetActive(true);
+                bltEft.transform.position = transform.position;
+
+                AnimEffect animEft = bltEft.GetComponent<AnimEffect>();
+                if (animEft != null) animEft.Target = gameObject;
+
+                if (GameMgr.Inst.player.AttackType == AtkType.Fire)
+                {
+                    //불은 추가 데미지
+                    TakeDamage(10); //TODO : 데미지 기준 세우기
+                }
+                else if (GameMgr.Inst.player.AttackType == AtkType.Water)
+                {
+                    //물은 느려지기.
+                    moveSpeed = 0.5f;
+                    slowTimer = slowTime;
+                }
+            }
         }
         else if (coll.CompareTag("Player"))
         {
