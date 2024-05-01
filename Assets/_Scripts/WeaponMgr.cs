@@ -16,11 +16,11 @@ public class WeaponMgr : MonoBehaviour
     public Transform MainWeapon = null;
     public MWType MainType = MWType.Gun; //TODO : public 이어야 할지 잘 모르겠네
 
+    //총
     GunCtrl gunCtrlSc = null;
-    public GunCtrl GunCtrlSc
-    {
-        get { return gunCtrlSc; }
-    }
+    public GunCtrl GunCtrlSc { get { return gunCtrlSc; } }
+    //총
+
     //TODO : bladeCtrl.cs 추가하기
     //메인 무기
 
@@ -28,30 +28,21 @@ public class WeaponMgr : MonoBehaviour
     [Header("------ Guardians ------")]
     public GameObject Guardians = null;
     GuardiansCtrl guardiansCtrlSc = null;
-    public GuardiansCtrl GuardiansCtrlSc
-    {
-        get { return guardiansCtrlSc; }
-    }
+    public GuardiansCtrl GuardiansCtrlSc { get { return guardiansCtrlSc; } }
     //수호자 관련
 
     //로켓 관련
     [Header("------ Rockets ------")]
     public GameObject Rockets = null;
     RocketCtrl rocketCtrlSc = null;
-    public RocketCtrl RocketCtrlSc
-    {
-        get { return rocketCtrlSc; }
-    }
+    public RocketCtrl RocketCtrlSc { get { return rocketCtrlSc; } }
     //로켓 관련
 
     //드릴 관련
     [Header("------ Drills ------")]
     public GameObject Drills = null;
     DrillCtrl drillCtrlSc = null;
-    public DrillCtrl DrillCtrlSc
-    {
-        get { return drillCtrlSc; }
-    }
+    public DrillCtrl DrillCtrlSc { get { return drillCtrlSc; } }
     //드릴 관련
 
     public static WeaponMgr Inst = null;

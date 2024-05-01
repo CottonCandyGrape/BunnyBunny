@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public enum PlayerAnim { Idle, Run, Hurt, Dead }
 
-public enum PlayerType { Fire, Water, Wind }
+public enum AtkType { Fire, Water, Wind }
 
 public class PlayerCtrl : MonoBehaviour
 {
@@ -68,9 +68,9 @@ public class PlayerCtrl : MonoBehaviour
     Animator animator = null;
     //Animation 관련
 
-    //Player 속성(Type) 관련
-    public PlayerType PlayerProperty = PlayerType.Fire;
-    //Player 속성(Type) 관련
+    //Attack Type 관련
+    public AtkType PlayerProperty = AtkType.Fire;
+    //Attack Type 관련
 
     WeaponMgr wpMgr = null; //이 Script에서는 너무 많이 써서 선언하고 쓰는 중.
 
