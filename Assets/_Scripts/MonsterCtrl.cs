@@ -203,7 +203,7 @@ public class MonsterCtrl : MonoBehaviour
         GameMgr.Inst.KillTxtUpdate(); //킬수 올리기
         GameMgr.Inst.AddExpVal(expVal); //경험치 올리기
         float exp = Random.Range(0.0f, 1.0f);
-        if (exp <= 0.05f)
+        if (exp <= 0.03f)
             ItemMgr.Inst.SpawnBomb(transform.position); //폭탄 스폰
         else
             ItemMgr.Inst.SpawnGold(transform.position, monType); //골드 스폰
