@@ -42,7 +42,23 @@ public class GunCtrl : Weapon
         curCount++;
     }
 
-    public void FireBulletOneShot(Vector3 dir)
+    public void DoubleShot(Vector3 dir)
+    {
+        for (int i = 0; i < 2; i++)
+        {
+            BulletCtrl bltCtrl = MemoryPoolMgr.Inst.AddBulletPool();
+            bltCtrl.gameObject.SetActive(true);
+
+            dir.Normalize();
+            bltCtrl.MoveDir = dir;
+
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            bltCtrl.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            bltCtrl.transform.position = GetFirePosDS(i, dir);
+        }
+    }
+
+    public void OneShot(Vector3 dir)
     {
         if (fPos == null)
             fPos = GameObject.FindGameObjectWithTag("FirePos").transform;
@@ -94,16 +110,45 @@ public class GunCtrl : Weapon
         return firePos;
     }
 
-    public void FanFire(Vector3 midDir) //부채꼴 모양 발사 스킬
+    Vector3 GetFirePosDS(int idx, Vector3 dir)
+    {
+        if (fPos == null)
+            fPos = GameObject.FindGameObjectWithTag("FirePos").transform;
+        SetFirePos();
+
+        Vector3 firePos = fPos.position;
+        Vector3 rDir = Quaternion.AngleAxis(90, Vector3.forward) * dir;
+
+        if (idx == 0)
+            firePos += rDir * (ShotOffset / 2.0f);
+        else if (idx == 1)
+            firePos -= rDir * (ShotOffset / 2.0f);
+
+        return firePos;
+    }
+
+    public void FanFire(int num, Vector3 midDir) //부채꼴 모양 발사 스킬
     {
         int deg = 20;
-        int start = -2;
-        int end = 3;
+        int start, end;
+
+        if (num == 3)
+        {
+            start = -1; end = 2;
+        }
+        else if (num == 5)
+        {
+            start = -2; end = 3;
+        }
+        else
+        {
+            Debug.Log("개수가 맞지 않습니다."); return;
+        }
+
         for (int cnt = start; cnt < end; cnt++)
         {
             Vector3 dir = Quaternion.AngleAxis(cnt * deg, Vector3.forward) * midDir;
-            //FireBullet(dir);
-            FireBulletOneShot(dir);
+            OneShot(dir);
         }
     }
 

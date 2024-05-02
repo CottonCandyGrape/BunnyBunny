@@ -250,7 +250,7 @@ public class PlayerCtrl : MonoBehaviour
         GameMgr.Inst.SpawnDmgTxt(transform.position + dmgTxtOffset, heal, Color.blue);
     }
 
-    void CalcWeaponsTimer()
+    void CalcWeaponsTimer() //TODO : 가디언만 Timer를 여기서 안쓰네. 왜지?
     {
         //메인 무기 타이머
         mAtkTimer -= Time.deltaTime;
@@ -259,11 +259,15 @@ public class PlayerCtrl : MonoBehaviour
             mAtkTimer = mAtkTime;
             if (wpMgr.GunCtrlSc != null)
             {
-                //wpMgr.GunCtrlSc.FireBullet(arrowDir);
-                //wpMgr.GunCtrlSc.FireBulletOneShot(arrowDir);
-                wpMgr.GunCtrlSc.FanFire(arrowDir);
+                if (wpMgr.GunCtrlSc.CurLv==0)
+                    wpMgr.GunCtrlSc.OneShot(arrowDir);
+                else if (wpMgr.GunCtrlSc.CurLv==1)
+                    wpMgr.GunCtrlSc.DoubleShot(arrowDir);
+                else if (wpMgr.GunCtrlSc.CurLv==2)
+                    wpMgr.GunCtrlSc.FanFire(3, arrowDir);
+                else if (wpMgr.GunCtrlSc.CurLv==3)
+                    wpMgr.GunCtrlSc.FanFire(5, arrowDir);
             }
-
         }
         //메인 무기 타이머
 
