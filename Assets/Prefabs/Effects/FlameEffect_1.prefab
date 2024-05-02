@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 4623722962451752853}
   - component: {fileID: 4679266562432899817}
   m_Layer: 0
-  m_Name: Flame1
+  m_Name: FlameEffect_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
