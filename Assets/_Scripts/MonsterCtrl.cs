@@ -39,6 +39,7 @@ public class MonsterCtrl : MonoBehaviour
 
     //UI 관련
     Vector3 dmgTxtOffset = new Vector3(0, 0.5f, 0);
+    WaitForSeconds delay = new WaitForSeconds(0.1f);
     //UI 관련
 
     //애니메이션 관련
@@ -77,6 +78,12 @@ public class MonsterCtrl : MonoBehaviour
         if (slowTimer < 0.0f) moveSpeed = 1.0f;
     }
 
+    IEnumerator DelayTakeDamage(float dmg)
+    {
+        yield return delay;
+        TakeDamage(dmg);
+    }
+
     protected virtual void OnTriggerEnter2D(Collider2D coll)
     {
         if (coll.CompareTag("P_Bullet"))
@@ -84,7 +91,9 @@ public class MonsterCtrl : MonoBehaviour
             TakeDamage(dftDmg);
             coll.gameObject.SetActive(false);
 
-            if (monType == MonsterType.BossMon) return;
+            if (monType == MonsterType.BossMon) return; //보스에겐 효과 안줌.
+
+            if (!gameObject.activeSelf) return; //몬스터 죽으면 효과 안줘도 됨.
 
             if (WeaponMgr.Inst.MainType == MWType.Gun)
             {
@@ -98,7 +107,8 @@ public class MonsterCtrl : MonoBehaviour
                 if (GameMgr.Inst.player.AttackType == AtkType.Fire)
                 {
                     //불은 추가 데미지
-                    TakeDamage(10); //TODO : 데미지 기준 세우기
+                    StopAllCoroutines();
+                    StartCoroutine(DelayTakeDamage(10)); //TODO : 데미지 기준 세우기
                 }
                 else if (GameMgr.Inst.player.AttackType == AtkType.Water)
                 {
