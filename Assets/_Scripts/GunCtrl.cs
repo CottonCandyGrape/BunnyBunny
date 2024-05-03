@@ -12,6 +12,9 @@ public class GunCtrl : Weapon
     const float FirePosOffsetX = 0.6f;
     Transform fPos = null;
 
+    public Sprite Ev_Sprite = null;
+    Vector2 ev_Scale = new Vector2(0.2f, 0.2f);
+
     void Start() { }
 
     //void Update() { }
@@ -166,5 +169,12 @@ public class GunCtrl : Weapon
     public override void EvolveWeapon()
     {
         isEvolve = true;
+
+        SpriteRenderer spRend = GetComponentInChildren<SpriteRenderer>();
+        if (spRend != null)
+        {
+            spRend.sprite = Ev_Sprite;
+            spRend.transform.localScale = ev_Scale;
+        }
     }
 }
