@@ -259,14 +259,19 @@ public class PlayerCtrl : MonoBehaviour
             mAtkTimer = mAtkTime;
             if (wpMgr.GunCtrlSc != null)
             {
-                if (wpMgr.GunCtrlSc.CurLv==0)
-                    wpMgr.GunCtrlSc.OneShot(arrowDir);
-                else if (wpMgr.GunCtrlSc.CurLv==1)
-                    wpMgr.GunCtrlSc.DoubleShot(arrowDir);
-                else if (wpMgr.GunCtrlSc.CurLv==2)
-                    wpMgr.GunCtrlSc.FanFire(3, arrowDir);
-                else if (wpMgr.GunCtrlSc.CurLv==3)
-                    wpMgr.GunCtrlSc.FanFire(5, arrowDir);
+                if (!wpMgr.GunCtrlSc.IsEvolve)
+                {
+                    if (wpMgr.GunCtrlSc.CurLv == 0)
+                        wpMgr.GunCtrlSc.OneShot(arrowDir, false);
+                    else if (wpMgr.GunCtrlSc.CurLv == 1)
+                        wpMgr.GunCtrlSc.DoubleShot(arrowDir);
+                    else if (wpMgr.GunCtrlSc.CurLv == 2)
+                        wpMgr.GunCtrlSc.FanFire(3, arrowDir);
+                    else if (wpMgr.GunCtrlSc.CurLv == 3)
+                        wpMgr.GunCtrlSc.FanFire(5, arrowDir);
+                }
+                else
+                    wpMgr.GunCtrlSc.EvolvedShot(arrowDir);
             }
         }
         //메인 무기 타이머
@@ -278,7 +283,7 @@ public class PlayerCtrl : MonoBehaviour
             rktTimer = rktTime;
             if (wpMgr.RocketCtrlSc != null)
             {
-                if (!WeaponMgr.Inst.RocketCtrlSc.IsEvolve)
+                if (!wpMgr.RocketCtrlSc.IsEvolve)
                     wpMgr.RocketCtrlSc.FireRocket();
                 else
                     wpMgr.RocketCtrlSc.FireNuclear();
@@ -293,7 +298,7 @@ public class PlayerCtrl : MonoBehaviour
             drlTimer = drlTime;
             if (wpMgr.DrillCtrlSc != null)
             {
-                if(!WeaponMgr.Inst.DrillCtrlSc.IsEvolve)
+                if(!wpMgr.DrillCtrlSc.IsEvolve)
                     wpMgr.DrillCtrlSc.FireDrills();
                 else
                     wpMgr.DrillCtrlSc.FireArrowHead();

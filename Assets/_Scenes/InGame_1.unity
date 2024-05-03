@@ -273,6 +273,9 @@ MonoBehaviour:
   BulletPrefabs:
   - {fileID: 3633008192389556037, guid: 782318e5b2513924e9b82ce35ec68426, type: 3}
   - {fileID: 5120911390119543468, guid: ee3968a99cc9e1446b3ed559f63446b9, type: 3}
+  EvBulletPrefabs:
+  - {fileID: 3968515364599908169, guid: c32690e0906f3eb4abb34e9af7674974, type: 3}
+  - {fileID: 1386140756243167824, guid: 92b06c3bb6bf0fe40a2ab24bea7fd2cc, type: 3}
   BulletEffectPrefabs:
   - {fileID: 7772591325366521403, guid: cf9ba304a30459a4bbb403bf5c583412, type: 3}
   - {fileID: 5826318901203694587, guid: ffaa5231a1ad6fe44ac862ae93ac345b, type: 3}
@@ -292,6 +295,7 @@ Transform:
   - {fileID: 1335071687}
   - {fileID: 1898118443}
   - {fileID: 692346002}
+  - {fileID: 1673955614}
   - {fileID: 944139311}
   - {fileID: 616758264}
   - {fileID: 181716575}
@@ -19755,6 +19759,37 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1673955613
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1673955614}
+  m_Layer: 0
+  m_Name: EvBulletPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1673955614
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1673955613}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 125638752}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1700377247
 GameObject:
   m_ObjectHideFlags: 0

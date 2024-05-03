@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class GunCtrl : Weapon
 {
-    const float BulletOffset = 0.3f;
-    const float ShotOffset = 0.25f;
-    const int BaseShotCnt = 3;
+    //const float BulletOffset = 0.3f;
+    const int BaseShotCnt = 4;
     int curCount = 0;
 
+    const float ShotOffset = 0.25f;
     const float FirePosOffsetX = 0.6f;
     Transform fPos = null;
 
+    public GameObject Ev_Bullet = null;
     public Sprite Ev_Sprite = null;
     Vector2 ev_Scale = new Vector2(0.2f, 0.2f);
 
@@ -19,6 +20,136 @@ public class GunCtrl : Weapon
 
     //void Update() { }
 
+    public void OneShot(Vector3 dir, bool evShot)
+    {
+        if (fPos == null)
+            fPos = GameObject.FindGameObjectWithTag("FirePos").transform;
+        SetFirePos();
+
+        BulletCtrl bltCtrl;
+        if (!evShot)
+            bltCtrl = MemoryPoolMgr.Inst.AddBulletPool();
+        else
+            bltCtrl = MemoryPoolMgr.Inst.AddEvBulletPool();
+        bltCtrl.gameObject.SetActive(true);
+
+        dir.Normalize();
+        bltCtrl.MoveDir = dir;
+
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        bltCtrl.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        bltCtrl.transform.position = fPos.position;
+    }
+
+    public void DoubleShot(Vector3 dir)
+    {
+        for (int i = 0; i < 2; i++)
+        {
+            BulletCtrl bltCtrl = MemoryPoolMgr.Inst.AddBulletPool();
+            bltCtrl.gameObject.SetActive(true);
+
+            dir.Normalize();
+            bltCtrl.MoveDir = dir;
+
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            bltCtrl.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            bltCtrl.transform.position = GetFirePosDS(i, dir);
+        }
+    }
+
+    public void FanFire(int num, Vector3 midDir) //부채꼴 모양 발사 스킬
+    {
+        int deg = 20;
+        int start, end;
+
+        if (num == 3)
+        {
+            start = -1; end = 2;
+        }
+        else if (num == 5)
+        {
+            start = -2; end = 3;
+        }
+        else
+        {
+            Debug.Log("개수가 맞지 않습니다."); return;
+        }
+
+        for (int cnt = start; cnt < end; cnt++)
+        {
+            Vector3 dir = Quaternion.AngleAxis(cnt * deg, Vector3.forward) * midDir;
+            OneShot(dir, false);
+        }
+    }
+
+    public void EvolvedShot(Vector3 dir)
+    {
+        if (!isEvolve) return;
+
+        if (curCount < BaseShotCnt)
+        {
+            FanFire(5, dir);
+            curCount++;
+        }
+        else
+        {
+            OneShot(dir, true);
+            curCount = 0;
+        }
+    }
+
+    void SetFirePos()
+    {
+        if (fPos == null) return;
+
+        Vector3 tmp = fPos.localPosition;
+        tmp.x = GameMgr.Inst.player.h < 0.0f ? -FirePosOffsetX : FirePosOffsetX;
+        fPos.localPosition = tmp;
+    }
+
+    Vector3 GetFirePosDS(int idx, Vector3 dir)
+    {
+        if (fPos == null)
+            fPos = GameObject.FindGameObjectWithTag("FirePos").transform;
+        SetFirePos();
+
+        Vector3 firePos = fPos.position;
+        Vector3 rDir = Quaternion.AngleAxis(90, Vector3.forward) * dir;
+
+        if (idx == 0)
+            firePos += rDir * (ShotOffset / 2.0f);
+        else if (idx == 1)
+            firePos -= rDir * (ShotOffset / 2.0f);
+
+        return firePos;
+    }
+
+    public override void LevelUpWeapon()
+    {
+        if (MaxLevel <= curLevel)
+        {
+            if (!isEvolve) EvolveWeapon();
+            return;
+        }
+
+        curLevel++;
+    }
+
+    public override void EvolveWeapon()
+    {
+        isEvolve = true;
+
+        SpriteRenderer spRend = GetComponentInChildren<SpriteRenderer>();
+        if (spRend != null)
+        {
+            spRend.sprite = Ev_Sprite;
+            spRend.transform.localScale = ev_Scale;
+        }
+
+        MemoryPoolMgr.Inst.InitEvBulletPool();
+    }
+
+    /*
     public void FireBullet(Vector3 bltDir) //방향, 위치, 각도 정하여 발사
     {
         if (BaseShotCnt < curCount)
@@ -43,48 +174,6 @@ public class GunCtrl : Weapon
         }
 
         curCount++;
-    }
-
-    public void DoubleShot(Vector3 dir)
-    {
-        for (int i = 0; i < 2; i++)
-        {
-            BulletCtrl bltCtrl = MemoryPoolMgr.Inst.AddBulletPool();
-            bltCtrl.gameObject.SetActive(true);
-
-            dir.Normalize();
-            bltCtrl.MoveDir = dir;
-
-            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-            bltCtrl.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-            bltCtrl.transform.position = GetFirePosDS(i, dir);
-        }
-    }
-
-    public void OneShot(Vector3 dir)
-    {
-        if (fPos == null)
-            fPos = GameObject.FindGameObjectWithTag("FirePos").transform;
-        SetFirePos();
-
-        BulletCtrl bltCtrl = MemoryPoolMgr.Inst.AddBulletPool();
-        bltCtrl.gameObject.SetActive(true);
-
-        dir.Normalize();
-        bltCtrl.MoveDir = dir;
-
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        bltCtrl.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        bltCtrl.transform.position = fPos.position;
-    }
-
-    void SetFirePos()
-    {
-        if (fPos == null) return;
-
-        Vector3 tmp = fPos.localPosition;
-        tmp.x = GameMgr.Inst.player.h < 0.0f ? -FirePosOffsetX : FirePosOffsetX;
-        fPos.localPosition = tmp;
     }
 
     int GetBulletCount()
@@ -112,69 +201,5 @@ public class GunCtrl : Weapon
 
         return firePos;
     }
-
-    Vector3 GetFirePosDS(int idx, Vector3 dir)
-    {
-        if (fPos == null)
-            fPos = GameObject.FindGameObjectWithTag("FirePos").transform;
-        SetFirePos();
-
-        Vector3 firePos = fPos.position;
-        Vector3 rDir = Quaternion.AngleAxis(90, Vector3.forward) * dir;
-
-        if (idx == 0)
-            firePos += rDir * (ShotOffset / 2.0f);
-        else if (idx == 1)
-            firePos -= rDir * (ShotOffset / 2.0f);
-
-        return firePos;
-    }
-
-    public void FanFire(int num, Vector3 midDir) //부채꼴 모양 발사 스킬
-    {
-        int deg = 20;
-        int start, end;
-
-        if (num == 3)
-        {
-            start = -1; end = 2;
-        }
-        else if (num == 5)
-        {
-            start = -2; end = 3;
-        }
-        else
-        {
-            Debug.Log("개수가 맞지 않습니다."); return;
-        }
-
-        for (int cnt = start; cnt < end; cnt++)
-        {
-            Vector3 dir = Quaternion.AngleAxis(cnt * deg, Vector3.forward) * midDir;
-            OneShot(dir);
-        }
-    }
-
-    public override void LevelUpWeapon()
-    {
-        if (MaxLevel <= curLevel)
-        {
-            if (!isEvolve) EvolveWeapon();
-            return;
-        }
-
-        curLevel++;
-    }
-
-    public override void EvolveWeapon()
-    {
-        isEvolve = true;
-
-        SpriteRenderer spRend = GetComponentInChildren<SpriteRenderer>();
-        if (spRend != null)
-        {
-            spRend.sprite = Ev_Sprite;
-            spRend.transform.localScale = ev_Scale;
-        }
-    }
+    */
 }

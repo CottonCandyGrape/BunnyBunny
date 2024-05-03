@@ -69,6 +69,8 @@ public class BulletCtrl : MonoBehaviour
     {
         if (BltType == BulletType.Rocket)
         {
+            //Rocket만 여기서 구현한 이유 : Guardian, Drill은 Tag로 충돌체크함.
+            //반면 Rocket은 bulletType이 필요한데 여기서 체크하기가 더 편함.
             if (coll.tag.Contains("Monster"))
             {
                 WeaponMgr.Inst.RocketCtrlSc.ExploseRocket(WeaponMgr.Inst.RocketCtrlSc.IsEvolve, gameObject);

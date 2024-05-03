@@ -6,6 +6,7 @@ public class MemoryPoolMgr : MonoBehaviour
 {
     Transform norMonPool = null;
     Transform bulletPool = null;
+    Transform evBulletPool = null;
     Transform bulletEffectPool = null;
 
     public GameObject[] NorMonPrefs1 = null; //Stage_1
@@ -19,11 +20,15 @@ public class MemoryPoolMgr : MonoBehaviour
     public GameObject[] BulletPrefabs = null;
     List<BulletCtrl> BulletCtrlPool = new List<BulletCtrl>();
 
+    public GameObject[] EvBulletPrefabs = null;
+    List<BulletCtrl> EvBulletCtrlPool = new List<BulletCtrl>();
+
     public GameObject[] BulletEffectPrefabs = null;
     List<GameObject> BulletEffectCtrlPool = new List<GameObject>();
 
     int initMonCnt = 30;
     int initBltCnt = 10;
+    int initEvBltCnt = 5;
     int initBltEftCnt = 10;
     int curStage = 0;
 
@@ -38,6 +43,7 @@ public class MemoryPoolMgr : MonoBehaviour
     {
         norMonPool = GameObject.Find("NorMonPool").GetComponent<Transform>();
         bulletPool = GameObject.Find("BulletPool").GetComponent<Transform>();
+        evBulletPool = GameObject.Find("EvBulletPool").GetComponent<Transform>();
         bulletEffectPool = GameObject.Find("BulletEffectPool").GetComponent<Transform>();
 
         //현재 스테이지 초기화 //TODO : 안전한가?
@@ -103,6 +109,32 @@ public class MemoryPoolMgr : MonoBehaviour
         BulletCtrlPool.Add(bltCtrl);
 
         return bltCtrl;
+    }
+
+    public void InitEvBulletPool()
+    {
+        for (int i = 0; i < initEvBltCnt; i++)
+        {
+            GameObject evBlt = Instantiate(EvBulletPrefabs[(int)GameMgr.Inst.player.AttackType], evBulletPool);
+            evBlt.SetActive(false);
+            EvBulletCtrlPool.Add(evBlt.GetComponent<BulletCtrl>());
+        }
+    }
+
+    public BulletCtrl AddEvBulletPool() //Pool에 EvBullet 추가 or EvBullet return
+    {
+        for (int i = 0; i < EvBulletCtrlPool.Count; i++)
+        {
+            if (!EvBulletCtrlPool[i].gameObject.activeSelf)
+                return EvBulletCtrlPool[i];
+        }
+
+        GameObject evBlt = Instantiate(EvBulletPrefabs[(int)GameMgr.Inst.player.AttackType], evBulletPool);
+        evBlt.SetActive(false);
+        BulletCtrl evBltCtrl = evBlt.GetComponent<BulletCtrl>();
+        EvBulletCtrlPool.Add(evBltCtrl);
+
+        return evBltCtrl;
     }
 
     public GameObject AddBulletEffectPool() //Pool에 bulletEffect 추가 or bulletEffect return
