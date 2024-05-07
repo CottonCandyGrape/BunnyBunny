@@ -88,35 +88,54 @@ public class MonsterCtrl : MonoBehaviour
     {
         if (coll.CompareTag("P_Bullet"))
         {
-            TakeDamage(dftDmg);
-            coll.gameObject.SetActive(false);
-
-            if (monType == MonsterType.BossMon) return; //보스에겐 효과 안줌.
-
-            if (!gameObject.activeSelf) return; //몬스터 죽으면 효과 안줘도 됨.
-
-            if (WeaponMgr.Inst.MainType == MWType.Gun)
+            if (!coll.gameObject.name.Contains("_Ev")) //일반 총알
             {
-                GameObject bltEft = MemoryPoolMgr.Inst.AddBulletEffectPool();
-                bltEft.SetActive(true);
-                bltEft.transform.position = transform.position;
+                TakeDamage(dftDmg);
+                coll.gameObject.SetActive(false);
 
-                AnimEffect animEft = bltEft.GetComponent<AnimEffect>();
-                if (animEft != null) animEft.Target = gameObject;
+                if (monType == MonsterType.BossMon) return; //보스에겐 효과 안줌.
 
-                if (GameMgr.Inst.player.AttackType == AtkType.Fire)
+                if (!gameObject.activeSelf) return; //몬스터 죽으면 효과 안줘도 됨.
+
+                if (WeaponMgr.Inst.MainType == MWType.Gun) //Tag가 P_Bullet(총알)이니깐 당연히 Gun인가?
                 {
-                    //불은 추가 데미지
-                    StopAllCoroutines();
-                    StartCoroutine(DelayTakeDamage(10)); //TODO : 데미지 기준 세우기
-                }
-                else if (GameMgr.Inst.player.AttackType == AtkType.Water)
-                {
-                    //물은 느려지기.
-                    moveSpeed = 0.5f;
-                    slowTimer = slowTime;
+                    GameObject bltEft = MemoryPoolMgr.Inst.AddBulletEffectPool();
+                    bltEft.SetActive(true);
+                    bltEft.transform.position = transform.position;
+
+                    AnimEffect animEft = bltEft.GetComponent<AnimEffect>();
+                    if (animEft != null) animEft.Target = gameObject;
+
+                    if (GameMgr.Inst.player.AttackType == AtkType.Fire)
+                    {
+                        //불은 추가 데미지
+                        StopAllCoroutines();
+                        StartCoroutine(DelayTakeDamage(10)); //TODO : 데미지 기준 세우기
+                    }
+                    else if (GameMgr.Inst.player.AttackType == AtkType.Water)
+                    {
+                        //물은 느려지기.
+                        moveSpeed = 0.5f;
+                        slowTimer = slowTime;
+                    }
                 }
             }
+            else if (coll.gameObject.name.Contains("_Ev"))//진화 총알
+            {
+                TakeDamage(dftDmg * 2);
+                coll.gameObject.SetActive(false);
+
+                if (WeaponMgr.Inst.MainType == MWType.Gun)
+                {
+                    GameObject bltEft = MemoryPoolMgr.Inst.AddEvSupBulletPool();
+                    bltEft.SetActive(true);
+                    bltEft.transform.position = transform.position;
+                }
+            }
+        }
+        else if (coll.CompareTag("Sup_Bullet"))
+        {
+            TakeDamage(dftDmg * 2);
         }
         else if (coll.CompareTag("Player"))
         {

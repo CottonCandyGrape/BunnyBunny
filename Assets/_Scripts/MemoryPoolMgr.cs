@@ -7,6 +7,7 @@ public class MemoryPoolMgr : MonoBehaviour
     Transform norMonPool = null;
     Transform bulletPool = null;
     Transform evBulletPool = null;
+    Transform evSupBulletPool = null;
     Transform bulletEffectPool = null;
 
     public GameObject[] NorMonPrefs1 = null; //Stage_1
@@ -14,21 +15,25 @@ public class MemoryPoolMgr : MonoBehaviour
     public GameObject[] NorMonPrefs3 = null; //Stage_3
     List<GameObject[]> norMonList;
 
-    List<MonsterCtrl> MonCtrlPool = new List<MonsterCtrl>();
+    List<MonsterCtrl> MonCtrlPool = new List<MonsterCtrl>(); //Normal Monster
     [HideInInspector] public int ActiveMonsterCount = 0;
 
-    public GameObject[] BulletPrefabs = null;
+    public GameObject[] BulletPrefabs = null; //총알
     List<BulletCtrl> BulletCtrlPool = new List<BulletCtrl>();
 
-    public GameObject[] EvBulletPrefabs = null;
+    public GameObject[] EvBulletPrefabs = null; //진화 총알
     List<BulletCtrl> EvBulletCtrlPool = new List<BulletCtrl>();
 
-    public GameObject[] BulletEffectPrefabs = null;
+    public GameObject[] EvSupBulletPrefabs = null; //진화된 총알 추가 공격 
+    List<GameObject> EvSupBulletCtrlPool = new List<GameObject>();
+
+    public GameObject[] BulletEffectPrefabs = null; //총알 이펙트
     List<GameObject> BulletEffectCtrlPool = new List<GameObject>();
 
     int initMonCnt = 30;
     int initBltCnt = 10;
     int initEvBltCnt = 5;
+    int initEvSupBltCnt = 5;
     int initBltEftCnt = 10;
     int curStage = 0;
 
@@ -44,6 +49,7 @@ public class MemoryPoolMgr : MonoBehaviour
         norMonPool = GameObject.Find("NorMonPool").GetComponent<Transform>();
         bulletPool = GameObject.Find("BulletPool").GetComponent<Transform>();
         evBulletPool = GameObject.Find("EvBulletPool").GetComponent<Transform>();
+        evSupBulletPool = GameObject.Find("EvSupBulletPool").GetComponent<Transform>();
         bulletEffectPool = GameObject.Find("BulletEffectPool").GetComponent<Transform>();
 
         //현재 스테이지 초기화 //TODO : 안전한가?
@@ -135,6 +141,31 @@ public class MemoryPoolMgr : MonoBehaviour
         EvBulletCtrlPool.Add(evBltCtrl);
 
         return evBltCtrl;
+    }
+
+    public void InitEvSupBulletPool()
+    {
+        for (int i = 0; i < initEvSupBltCnt; i++)
+        {
+            GameObject evSupBlt = Instantiate(EvSupBulletPrefabs[(int)GameMgr.Inst.player.AttackType], evSupBulletPool);
+            evSupBlt.SetActive(false);
+            EvSupBulletCtrlPool.Add(evSupBlt);
+        }
+    }
+
+    public GameObject AddEvSupBulletPool() //Pool에 EvSupBullet 추가 or EvSupBullet return
+    {
+        for (int i = 0; i < EvSupBulletCtrlPool.Count; i++)
+        {
+            if (!EvSupBulletCtrlPool[i].gameObject.activeSelf)
+                return EvSupBulletCtrlPool[i];
+        }
+
+        GameObject evSupBlt = Instantiate(EvSupBulletCtrlPool[(int)GameMgr.Inst.player.AttackType], evSupBulletPool);
+        evSupBlt.SetActive(false);
+        EvSupBulletCtrlPool.Add(evSupBlt);
+
+        return evSupBlt;
     }
 
     public GameObject AddBulletEffectPool() //Pool에 bulletEffect 추가 or bulletEffect return

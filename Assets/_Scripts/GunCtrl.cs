@@ -86,6 +86,8 @@ public class GunCtrl : Weapon
     {
         if (!isEvolve) return;
 
+        //OneShot(dir, true); return; //진화 총알 test 용
+
         if (curCount < BaseShotCnt)
         {
             FanFire(5, dir);
@@ -147,6 +149,7 @@ public class GunCtrl : Weapon
         }
 
         MemoryPoolMgr.Inst.InitEvBulletPool();
+        MemoryPoolMgr.Inst.InitEvSupBulletPool();
     }
 
     /*

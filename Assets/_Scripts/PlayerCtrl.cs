@@ -55,8 +55,8 @@ public class PlayerCtrl : MonoBehaviour
     //UI 관련
 
     //Timer 관련
-    float mAtkTimer = 0.2f; //메인 총알
-    float mAtkTime = 0.2f;
+    float mAtkTimer = 0.25f; //메인 총알
+    float mAtkTime = 0.25f;
     float rktTimer = 2.0f; //로켓
     float rktTime = 2.0f;
     float drlTimer = 4.0f; //드릴

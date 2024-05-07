@@ -18,6 +18,7 @@ TagManager:
   - Drill
   - BattleRing
   - FirePos
+  - Sup_Bullet
   layers:
   - Default
   - TransparentFX
