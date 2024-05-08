@@ -24,9 +24,19 @@ public class CameraCtrl : MonoBehaviour
     //Infinte Map 전용
     void MoveCamera()
     {
-        playerPos = player.position;
-        playerPos.z = transform.position.z;
-        transform.position = playerPos;
+        if (GameMgr.Inst.MType == MapType.Ground)
+        {
+            playerPos = player.position;
+            playerPos.z = transform.position.z;
+            transform.position = playerPos;
+        }
+        else if (GameMgr.Inst.MType == MapType.Vertical)
+        {
+            playerPos = player.position;
+            playerPos.z = transform.position.z;
+            playerPos.x = 0;
+            transform.position = playerPos;
+        }
     }
 
     public void ZoomOut()

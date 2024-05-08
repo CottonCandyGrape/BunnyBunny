@@ -20,6 +20,7 @@ public class PlayerCtrl : MonoBehaviour
     Rigidbody2D rigid = null;
     const float OffsetX = 4.7f;
     const float OffsetY = 5.1f;
+    const float LimitX = 2.6f;
     //이동 관련
 
     //Flip 관련
@@ -153,15 +154,27 @@ public class PlayerCtrl : MonoBehaviour
         Vector3 targetPos = transform.position + moveDir * moveSpeed * Time.deltaTime;
         rigid.MovePosition(targetPos);
 
-        if (GameMgr.Inst.hasRing) LimitPos(targetPos);
+        if (GameMgr.Inst.hasRing) LimitRingPos(targetPos);
+
+        if (GameMgr.Inst.MType == MapType.Vertical) LimitXPos(targetPos);
     }
 
-    void LimitPos(Vector2 pos)
+    void LimitRingPos(Vector2 pos)
     {
         pos.x = Mathf.Clamp(pos.x, GameMgr.Inst.BattleRing.transform.position.x - OffsetX,
             GameMgr.Inst.BattleRing.transform.position.x + OffsetX);
         pos.y = Mathf.Clamp(pos.y, GameMgr.Inst.BattleRing.transform.position.y - OffsetY,
             GameMgr.Inst.BattleRing.transform.position.y + OffsetY);
+
+        rigid.MovePosition(pos);
+    }
+    
+    void LimitXPos(Vector2 pos)
+    {
+        if (pos.x >= LimitX)
+            pos.x = LimitX;
+        else if (pos.x <= -LimitX)
+            pos.x = -LimitX;
 
         rigid.MovePosition(pos);
     }

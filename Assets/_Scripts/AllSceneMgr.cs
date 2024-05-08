@@ -25,7 +25,7 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
     void Start()
     {
         //Scene 순서 관리
-        if (SceneManager.GetActiveScene().name == "InGame_1") //바로 InGame_1 에서 시작했을때 UpLowUI 부르지 않기
+        if (SceneManager.GetActiveScene().name == "InGame") //바로 InGame 에서 시작했을때 UpLowUI 부르지 않기
             return;
 
         if (SceneManager.GetActiveScene().name != "UpLowUI" &&

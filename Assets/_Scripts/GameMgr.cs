@@ -63,7 +63,7 @@ public class GameMgr : MonoBehaviour
     //UI 변수
 
     //Map 관련
-    public MapType MType = MapType.Ground;
+    [HideInInspector] public MapType MType = MapType.Ground;
     public GameObject[] Maps = null; 
     //Map 관련
 

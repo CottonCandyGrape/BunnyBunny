@@ -267,7 +267,8 @@ MonoBehaviour:
   - {fileID: 5858948726359585759, guid: c8dd1641fcda8284e958cc3d4dc7ac0a, type: 3}
   - {fileID: 874490185030943205, guid: 9ddd7e4f277844046820105fb2f56e21, type: 3}
   - {fileID: 5726108731037132038, guid: 2739da2dc1f77b74cafa6cf60cc3b000, type: 3}
-  NorMonPrefs2: []
+  NorMonPrefs2:
+  - {fileID: 2508714043467447835, guid: b7e3635eb7c3c3b409f39acf93602331, type: 3}
   ActiveMonsterCount: 0
   BulletPrefabs:
   - {fileID: 3633008192389556037, guid: 782318e5b2513924e9b82ce35ec68426, type: 3}
