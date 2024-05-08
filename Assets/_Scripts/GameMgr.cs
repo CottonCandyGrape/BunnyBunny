@@ -34,10 +34,6 @@ public class GameMgr : MonoBehaviour
     Coroutine expCo = null;
     //Exp 관련
 
-    //데미지 표시
-    public GameObject DmgTxtPrefab = null;
-    //데미지 표시
-
     //Boss전 관련
     public GameObject BattleRing = null;
     [HideInInspector] public bool hasBoss = false;
@@ -62,7 +58,14 @@ public class GameMgr : MonoBehaviour
     public Canvas MainCanvas = null;
     public Button Config_Btn = null;
     public GameObject PopUpPref = null;
+
+    public GameObject DmgTxtPrefab = null; //데미지 표시 UI
     //UI 변수
+
+    //Map 관련
+    public MapType MType = MapType.Ground;
+    public GameObject[] Maps = null; 
+    //Map 관련
 
     public static GameMgr Inst = null;
 
@@ -82,6 +85,8 @@ public class GameMgr : MonoBehaviour
 
         if (Config_Btn)
             Config_Btn.onClick.AddListener(PauseBtnClick);
+
+        SetMap();
     }
 
     void Update()
@@ -92,10 +97,20 @@ public class GameMgr : MonoBehaviour
         //{
         //    mongen.SpawnEliteMon();
         //}
-        if (Input.GetKeyDown(KeyCode.Space)) //zoom out test 코드
+        if (Input.GetKeyDown(KeyCode.Space)) //zoom out Test 코드
         {
             InitBossBattle();
         }
+    }
+
+    void SetMap()
+    {
+        if (AllSceneMgr.Instance.CurStageNum == 0)
+            MType = MapType.Ground;
+        else if (AllSceneMgr.Instance.CurStageNum == 1)
+            MType = MapType.Vertical;
+
+        Instantiate(Maps[(int)MType], Vector3.zero, Quaternion.identity);
     }
 
     void UpdateGameTime()

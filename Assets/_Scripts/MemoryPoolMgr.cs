@@ -12,7 +12,7 @@ public class MemoryPoolMgr : MonoBehaviour
 
     public GameObject[] NorMonPrefs1 = null; //Stage_1
     public GameObject[] NorMonPrefs2 = null; //Stage_2
-    public GameObject[] NorMonPrefs3 = null; //Stage_3
+    //public GameObject[] NorMonPrefs3 = null; //Stage_3 //2탄까지만 할거임
     List<GameObject[]> norMonList;
 
     List<MonsterCtrl> MonCtrlPool = new List<MonsterCtrl>(); //Normal Monster
@@ -54,7 +54,8 @@ public class MemoryPoolMgr : MonoBehaviour
 
         //현재 스테이지 초기화 //TODO : 안전한가?
         curStage = AllSceneMgr.Instance.CurStageNum;
-        norMonList = new List<GameObject[]> { NorMonPrefs1, NorMonPrefs2, NorMonPrefs3 };
+        //norMonList = new List<GameObject[]> { NorMonPrefs1, NorMonPrefs2, NorMonPrefs3 };
+        norMonList = new List<GameObject[]> { NorMonPrefs1, NorMonPrefs2 };
 
         //norMonPool
         for (int i = 0; i < initMonCnt; i++)

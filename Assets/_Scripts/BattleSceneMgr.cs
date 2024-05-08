@@ -17,7 +17,7 @@ public class BattleSceneMgr : MonoBehaviour
     const int MaxStageNum = 2;
     const int GameDia = 5;
     int stageNum = 0;
-    int unLockStageNum = 0; //TODO : UserInfo로 넘겨야 할듯.
+    int unLockStageNum = 1; //TODO : UserInfo로 넘겨야 할듯.
 
     void Start()
     {
@@ -40,8 +40,10 @@ public class BattleSceneMgr : MonoBehaviour
 
     void StartGame()
     {
-        string sceneName = "InGame_" + (stageNum + 1).ToString();
-        if (!IsExistScene(sceneName)) 
+        //string sceneName = "InGame_" + (stageNum + 1).ToString();
+        //if (!IsExistScene(sceneName)) 
+
+        if (unLockStageNum < stageNum)
         {
             AllSceneMgr.Instance.InitMsgPopUp("아직 도전할 수 없습니다.");
             return;
@@ -55,7 +57,7 @@ public class BattleSceneMgr : MonoBehaviour
 
         AllSceneMgr.Instance.SubDia(GameDia);
         AllSceneMgr.Instance.CurStageNum = stageNum;
-        SceneManager.LoadScene(sceneName);
+        SceneManager.LoadScene("InGame");
     }
 
     bool IsExistScene(string name) //BuildSetting에 존재하는 Scene인지 확인하는 함수

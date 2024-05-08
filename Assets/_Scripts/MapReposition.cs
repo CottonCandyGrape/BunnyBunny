@@ -2,6 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum MapType
+{
+    Ground,
+    Vertical,
+}
+
 public class MapReposition : MonoBehaviour
 {
     int moveDist = 40;
@@ -15,6 +21,16 @@ public class MapReposition : MonoBehaviour
     void OnTriggerExit2D(Collider2D coll)
     {
         if (!coll.CompareTag("Area")) return;
+
+        if (GameMgr.Inst.MType == MapType.Ground)
+            GroundMap();
+        else if (GameMgr.Inst.MType == MapType.Vertical)
+            VerticalMap();
+    }
+
+    void GroundMap()
+    {
+        moveDist = 40;
 
         Vector3 playerPos = GameMgr.Inst.player.transform.position;
         Vector3 tilePos = this.transform.position;
@@ -38,5 +54,18 @@ public class MapReposition : MonoBehaviour
             transform.position += Vector3.right * dirX * moveDist;
         else if (distX < distY)
             transform.position += Vector3.up * dirY * moveDist;
+    }
+
+    void VerticalMap()
+    {
+        moveDist = 30;
+
+        Vector3 playerPos = GameMgr.Inst.player.transform.position;
+        Vector3 tilePos = this.transform.position;
+
+        if (playerPos.y > tilePos.y)
+            transform.position += Vector3.up * moveDist;
+        else if (playerPos.y < tilePos.y)
+            transform.position += Vector3.down * moveDist;
     }
 }
