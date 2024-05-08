@@ -168,14 +168,20 @@ public class MonsterCtrl : MonoBehaviour
 
     protected void Move()
     {
+        Vector3 target = Vector3.zero;
+
         if (!isKnockBack)
-            TracePlayer();
+            target = TracePlayer();
         else
-            KnockBack();
+            target = KnockBack();
+
+        if (GameMgr.Inst.MType == MapType.Vertical) LimitXPos(target);
     }
 
-    void TracePlayer()
+    Vector3 TracePlayer()
     {
+        Vector3 target = Vector3.zero;
+
         moveDir = GameMgr.Inst.player.transform.position - transform.position;
         moveDir.Normalize();
 
@@ -184,20 +190,39 @@ public class MonsterCtrl : MonoBehaviour
         else
             spRenderer.flipX = true;
 
-        rigid.MovePosition(transform.position + moveDir * moveSpeed * Time.deltaTime);
+        target = transform.position + moveDir * moveSpeed * Time.deltaTime;
+        rigid.MovePosition(target);
+
+        return target;
     }
 
-    void KnockBack()
+    Vector3 KnockBack()
     {
+        Vector3 target = Vector3.zero;
+
         kbTimer += kbSpeed * Time.deltaTime;
-        Vector3 lerpVec = Vector3.Lerp(transform.position, kbTarget, kbTimer);
-        rigid.MovePosition(lerpVec);
+        target = Vector3.Lerp(transform.position, kbTarget, kbTimer);
+        rigid.MovePosition(target);
 
         if (1.0f <= kbTimer)
         {
             isKnockBack = false;
             kbTimer = 0.0f;
         }
+
+        return target;
+    }
+
+    void LimitXPos(Vector2 pos)
+    {
+        float spSize = spRenderer.bounds.size.x / 2.0f;
+
+        if (pos.x >= ScreenMgr.CurScMax.x - spSize)
+            pos.x = ScreenMgr.CurScMax.x - spSize;
+        else if (pos.x <= ScreenMgr.CurScMin.x + spSize)
+            pos.x = ScreenMgr.CurScMin.x + spSize;
+
+        rigid.MovePosition(pos);
     }
 
     public virtual void TakeDamage(float damage)
