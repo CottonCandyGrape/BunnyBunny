@@ -41,13 +41,13 @@ public class BattleRing : MonoBehaviour
     //OnCollision
 
     //OnTrigger
-    private void OnTriggerEnter2D(Collider2D coll)
+    void OnTriggerEnter2D(Collider2D coll)
     {
         if (coll.gameObject.CompareTag("Player") && GameMgr.Inst.hasBoss)
             EnterRing();
     }
 
-    private void OnTriggerStay2D(Collider2D coll)
+    void OnTriggerStay2D(Collider2D coll)
     {
         if (coll.gameObject.CompareTag("Player") && GameMgr.Inst.hasBoss)
             StayRing();

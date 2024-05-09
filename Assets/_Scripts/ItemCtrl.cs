@@ -61,7 +61,7 @@ public class ItemCtrl : MonoBehaviour
                     if (colls[i].tag.Contains("Monster"))
                     {
                         MonsterCtrl monCtrl = colls[i].gameObject.GetComponent<MonsterCtrl>();
-                        monCtrl.TakeDamage(GameMgr.Inst.player.maxHp);
+                        monCtrl.TakeDamage(GameMgr.Inst.player.MaxHp);
                     }
                 }
 

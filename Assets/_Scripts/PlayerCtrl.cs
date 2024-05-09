@@ -42,7 +42,8 @@ public class PlayerCtrl : MonoBehaviour
 
     //능력치 관련
     //float maxHp = float.MaxValue;
-    [HideInInspector] public float maxHp = 100.0f;
+    float maxHp = 1000.0f;
+    public float MaxHp { get { return maxHp; } }
     float curHp = 100.0f;
     float attack = 10.0f;
     float defense = 10.0f;
