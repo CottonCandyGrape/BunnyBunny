@@ -1,0 +1,699 @@
+fileFormatVersion: 2
+guid: 3357ecb9a8c0a9149b25a14a04a54f62
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: CrawlingAlienMon_Defeated_0
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 850
+        width: 332
+        height: 197
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1bfcd689b90fde1438de0e68d45e51d8
+      internalID: -599889788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrawlingAlienMon_Defeated_1
+      rect:
+        serializedVersion: 2
+        x: 490
+        y: 848
+        width: 341
+        height: 196
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df966363541ce9143a86c5f978797653
+      internalID: 958899076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrawlingAlienMon_Defeated_2
+      rect:
+        serializedVersion: 2
+        x: 937
+        y: 848
+        width: 349
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9cb7889904e1f584eba86931ba2ef2aa
+      internalID: 1380764968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrawlingAlienMon_Defeated_3
+      rect:
+        serializedVersion: 2
+        x: 1383
+        y: 848
+        width: 358
+        height: 189
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 960d7f89f750b7e49a8f22d84d354736
+      internalID: -627253029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrawlingAlienMon_Defeated_4
+      rect:
+        serializedVersion: 2
+        x: 1830
+        y: 848
+        width: 366
+        height: 185
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ef3e46d39ee8fa468ebb7df484e1236
+      internalID: 175328957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrawlingAlienMon_Defeated_5
+      rect:
+        serializedVersion: 2
+        x: 2277
+        y: 848
+        width: 374
+        height: 182
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 904ac7c6af27c034e845269e398a5520
+      internalID: -1168251014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrawlingAlienMon_Defeated_6
+      rect:
+        serializedVersion: 2
+        x: 2712
+        y: 848
+        width: 394
+        height: 174
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fba9f32bb69833243b8dba195b3a2767
+      internalID: -745359750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrawlingAlienMon_Defeated_7
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 577
+        width: 411
+        height: 168
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03398103091b0834db7922970d75f061
+      internalID: 387749225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrawlingAlienMon_Defeated_8
+      rect:
+        serializedVersion: 2
+        x: 464
+        y: 576
+        width: 422
+        height: 161
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ab7334e9a499ea4a8332a050a20fd62
+      internalID: 1185997550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrawlingAlienMon_Defeated_9
+      rect:
+        serializedVersion: 2
+        x: 906
+        y: 577
+        width: 431
+        height: 153
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78d6cbef01396d141bd55b7018e58ec1
+      internalID: -611536025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrawlingAlienMon_Defeated_10
+      rect:
+        serializedVersion: 2
+        x: 1348
+        y: 575
+        width: 441
+        height: 149
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 232b822c145245046945e8854520ab6e
+      internalID: -184903599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrawlingAlienMon_Defeated_11
+      rect:
+        serializedVersion: 2
+        x: 1794
+        y: 575
+        width: 443
+        height: 158
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0de7a730129ffaa4cbce1e665151030f
+      internalID: -1772943528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrawlingAlienMon_Defeated_12
+      rect:
+        serializedVersion: 2
+        x: 2240
+        y: 575
+        width: 446
+        height: 168
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 602f9cb6fe8e63a48831fa36ff10f327
+      internalID: -415979106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrawlingAlienMon_Defeated_13
+      rect:
+        serializedVersion: 2
+        x: 2687
+        y: 575
+        width: 445
+        height: 165
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a31902814b9b0014d9cd0bdf185aeeed
+      internalID: 1316573686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrawlingAlienMon_Defeated_14
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 304
+        width: 443
+        height: 156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee9f6f04f0e6f9445980bd8b2270b7b9
+      internalID: -1591165646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrawlingAlienMon_Defeated_15
+      rect:
+        serializedVersion: 2
+        x: 454
+        y: 304
+        width: 444
+        height: 153
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b25d844af0ae764cab79994718a3904
+      internalID: -1503512331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrawlingAlienMon_Defeated_16
+      rect:
+        serializedVersion: 2
+        x: 901
+        y: 304
+        width: 444
+        height: 155
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 988930e4ac446874f887a90061a076c5
+      internalID: -1811013222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrawlingAlienMon_Defeated_17
+      rect:
+        serializedVersion: 2
+        x: 1348
+        y: 304
+        width: 444
+        height: 156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c5a74884a19f1347aa7589c13999336
+      internalID: 677047683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrawlingAlienMon_Defeated_18
+      rect:
+        serializedVersion: 2
+        x: 1793
+        y: 304
+        width: 446
+        height: 157
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd0a3cf903a3aed40861d44f3be40896
+      internalID: 140887220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrawlingAlienMon_Defeated_19
+      rect:
+        serializedVersion: 2
+        x: 2240
+        y: 304
+        width: 446
+        height: 156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0fb9fd754a54a054092d5d99b612640f
+      internalID: -1422287505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrawlingAlienMon_Defeated_20
+      rect:
+        serializedVersion: 2
+        x: 2687
+        y: 304
+        width: 444
+        height: 156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0db7ed6a0ca74bb49a7756a667102ec4
+      internalID: -774833261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrawlingAlienMon_Defeated_21
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 33
+        width: 444
+        height: 156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8265c560991aa7442a3986bf2eeb90f0
+      internalID: -2123360239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrawlingAlienMon_Defeated_22
+      rect:
+        serializedVersion: 2
+        x: 454
+        y: 33
+        width: 444
+        height: 156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf653962dfe60c542beaead88f2eae91
+      internalID: 1555792560
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrawlingAlienMon_Defeated_23
+      rect:
+        serializedVersion: 2
+        x: 901
+        y: 33
+        width: 444
+        height: 156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd26c286fdf220e43a3e3497f46e9e8e
+      internalID: -325757781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrawlingAlienMon_Defeated_24
+      rect:
+        serializedVersion: 2
+        x: 1348
+        y: 33
+        width: 443
+        height: 156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05b8dba9b2e6040449e58fcbd9848fa6
+      internalID: 1024585458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrawlingAlienMon_Defeated_25
+      rect:
+        serializedVersion: 2
+        x: 1793
+        y: 33
+        width: 444
+        height: 156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c957c39ce52d50841be1ae982eabcdf3
+      internalID: 1536739613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      CrawlingAlienMon_Defeated_0: -599889788
+      CrawlingAlienMon_Defeated_1: 958899076
+      CrawlingAlienMon_Defeated_10: -184903599
+      CrawlingAlienMon_Defeated_11: -1772943528
+      CrawlingAlienMon_Defeated_12: -415979106
+      CrawlingAlienMon_Defeated_13: 1316573686
+      CrawlingAlienMon_Defeated_14: -1591165646
+      CrawlingAlienMon_Defeated_15: -1503512331
+      CrawlingAlienMon_Defeated_16: -1811013222
+      CrawlingAlienMon_Defeated_17: 677047683
+      CrawlingAlienMon_Defeated_18: 140887220
+      CrawlingAlienMon_Defeated_19: -1422287505
+      CrawlingAlienMon_Defeated_2: 1380764968
+      CrawlingAlienMon_Defeated_20: -774833261
+      CrawlingAlienMon_Defeated_21: -2123360239
+      CrawlingAlienMon_Defeated_22: 1555792560
+      CrawlingAlienMon_Defeated_23: -325757781
+      CrawlingAlienMon_Defeated_24: 1024585458
+      CrawlingAlienMon_Defeated_25: 1536739613
+      CrawlingAlienMon_Defeated_3: -627253029
+      CrawlingAlienMon_Defeated_4: 175328957
+      CrawlingAlienMon_Defeated_5: -1168251014
+      CrawlingAlienMon_Defeated_6: -745359750
+      CrawlingAlienMon_Defeated_7: 387749225
+      CrawlingAlienMon_Defeated_8: 1185997550
+      CrawlingAlienMon_Defeated_9: -611536025
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

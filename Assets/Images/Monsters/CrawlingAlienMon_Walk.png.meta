@@ -1,0 +1,589 @@
+fileFormatVersion: 2
+guid: db912fe5057ffa542aeaf5a3d7702c37
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: CrawlingAlienMon_Walk_0
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 998
+        width: 358
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c2f33653b80d204697f03b5e1fcc2c0
+      internalID: -156682669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrawlingAlienMon_Walk_1
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 998
+        width: 348
+        height: 209
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6625782e6ae9d4d4b8248168aa40ef65
+      internalID: -96966867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrawlingAlienMon_Walk_2
+      rect:
+        serializedVersion: 2
+        x: 789
+        y: 998
+        width: 342
+        height: 209
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5831af2c2ef747498d18c9a0f399b1a
+      internalID: -1987043338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrawlingAlienMon_Walk_3
+      rect:
+        serializedVersion: 2
+        x: 1180
+        y: 998
+        width: 342
+        height: 208
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53f17874299345845a14f0ff15a632ed
+      internalID: -1722710357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrawlingAlienMon_Walk_4
+      rect:
+        serializedVersion: 2
+        x: 1571
+        y: 999
+        width: 342
+        height: 206
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6cdcef9a657007438977c8ce49fb22e
+      internalID: -1796310928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrawlingAlienMon_Walk_5
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 759
+        width: 344
+        height: 205
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 882a054cf67219f4994a37870da52d38
+      internalID: 770595338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrawlingAlienMon_Walk_6
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 759
+        width: 344
+        height: 204
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc3887d2e1220a34d8185bf2fede923a
+      internalID: 1438169732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrawlingAlienMon_Walk_7
+      rect:
+        serializedVersion: 2
+        x: 785
+        y: 758
+        width: 346
+        height: 204
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8472c5d236929246aaf2a433dda5ed2
+      internalID: -296863219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrawlingAlienMon_Walk_8
+      rect:
+        serializedVersion: 2
+        x: 1176
+        y: 758
+        width: 346
+        height: 204
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9773fc7a76dfb24b827c05e063c87ad
+      internalID: -1338936325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrawlingAlienMon_Walk_9
+      rect:
+        serializedVersion: 2
+        x: 1567
+        y: 762
+        width: 346
+        height: 203
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1d00aea2c488474cbc317eb2ebdb9a9
+      internalID: -571016758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrawlingAlienMon_Walk_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 532
+        width: 348
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12cf4b0378ba76a428aceae417cd8d0f
+      internalID: 2071651025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrawlingAlienMon_Walk_11
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 532
+        width: 346
+        height: 203
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d08a116540b655a47934f9a68609a36d
+      internalID: 479238318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrawlingAlienMon_Walk_12
+      rect:
+        serializedVersion: 2
+        x: 784
+        y: 532
+        width: 347
+        height: 204
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ae02671f0b1e614bbd8ea1300b7393e
+      internalID: 351448148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrawlingAlienMon_Walk_13
+      rect:
+        serializedVersion: 2
+        x: 1177
+        y: 532
+        width: 345
+        height: 204
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd0499b45d9a73742b12f0481537d952
+      internalID: 641830301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrawlingAlienMon_Walk_14
+      rect:
+        serializedVersion: 2
+        x: 1569
+        y: 532
+        width: 344
+        height: 205
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99a83f7b64248364bbce4a4b1c31503a
+      internalID: -19149907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrawlingAlienMon_Walk_15
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 287
+        width: 344
+        height: 206
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9684d0a0f110294982bf83728a90e79
+      internalID: 1872021653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrawlingAlienMon_Walk_16
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 287
+        width: 343
+        height: 207
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91096427af2a2974d91eae603f084898
+      internalID: -250954843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrawlingAlienMon_Walk_17
+      rect:
+        serializedVersion: 2
+        x: 788
+        y: 287
+        width: 347
+        height: 208
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71684b1de18bc0740aea62b8e7e1ef4a
+      internalID: -1606861021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrawlingAlienMon_Walk_18
+      rect:
+        serializedVersion: 2
+        x: 1181
+        y: 287
+        width: 349
+        height: 209
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e75600a25f431af45ab28589e899ce03
+      internalID: 422833828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrawlingAlienMon_Walk_19
+      rect:
+        serializedVersion: 2
+        x: 1573
+        y: 287
+        width: 352
+        height: 209
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e64caabffbae8d4ea42b1d3754a1a95
+      internalID: -336009522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrawlingAlienMon_Walk_20
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 22
+        width: 358
+        height: 211
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 860cc611d2abe084f97219af6aed745a
+      internalID: 1590891136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      CrawlingAlienMon_Walk_0: -156682669
+      CrawlingAlienMon_Walk_1: -96966867
+      CrawlingAlienMon_Walk_10: 2071651025
+      CrawlingAlienMon_Walk_11: 479238318
+      CrawlingAlienMon_Walk_12: 351448148
+      CrawlingAlienMon_Walk_13: 641830301
+      CrawlingAlienMon_Walk_14: -19149907
+      CrawlingAlienMon_Walk_15: 1872021653
+      CrawlingAlienMon_Walk_16: -250954843
+      CrawlingAlienMon_Walk_17: -1606861021
+      CrawlingAlienMon_Walk_18: 422833828
+      CrawlingAlienMon_Walk_19: -336009522
+      CrawlingAlienMon_Walk_2: -1987043338
+      CrawlingAlienMon_Walk_20: 1590891136
+      CrawlingAlienMon_Walk_3: -1722710357
+      CrawlingAlienMon_Walk_4: -1796310928
+      CrawlingAlienMon_Walk_5: 770595338
+      CrawlingAlienMon_Walk_6: 1438169732
+      CrawlingAlienMon_Walk_7: -296863219
+      CrawlingAlienMon_Walk_8: -1338936325
+      CrawlingAlienMon_Walk_9: -571016758
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
