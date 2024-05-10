@@ -6,6 +6,7 @@ public class MemoryPoolMgr : MonoBehaviour
 {
     Transform norMonPool = null;
     Transform bulletPool = null;
+    Transform meatBulletPool = null;
     Transform evBulletPool = null;
     Transform evSupBulletPool = null;
     Transform bulletEffectPool = null;
@@ -30,11 +31,15 @@ public class MemoryPoolMgr : MonoBehaviour
     public GameObject[] BulletEffectPrefabs = null; //총알 이펙트
     List<GameObject> BulletEffectCtrlPool = new List<GameObject>();
 
+    public GameObject MeatBulletPrefabs = null; //MeatBullet
+    List<BulletCtrl> MeatBulletCtrlPool = new List<BulletCtrl>();
+
     int initMonCnt = 30;
     int initBltCnt = 10;
     int initEvBltCnt = 5;
     int initEvSupBltCnt = 5;
     int initBltEftCnt = 10;
+    int initMeatBltCnt = 20;
     int curStage = 0;
 
     public static MemoryPoolMgr Inst = null;
@@ -48,6 +53,7 @@ public class MemoryPoolMgr : MonoBehaviour
     {
         norMonPool = GameObject.Find("NorMonPool").GetComponent<Transform>();
         bulletPool = GameObject.Find("BulletPool").GetComponent<Transform>();
+        meatBulletPool = GameObject.Find("MeatBulletPool").GetComponent<Transform>();
         evBulletPool = GameObject.Find("EvBulletPool").GetComponent<Transform>();
         evSupBulletPool = GameObject.Find("EvSupBulletPool").GetComponent<Transform>();
         bulletEffectPool = GameObject.Find("BulletEffectPool").GetComponent<Transform>();
@@ -118,6 +124,21 @@ public class MemoryPoolMgr : MonoBehaviour
         return bltCtrl;
     }
 
+    public GameObject AddBulletEffectPool() //Pool에 bulletEffect 추가 or bulletEffect return
+    {
+        for (int i = 0; i < BulletEffectCtrlPool.Count; i++)
+        {
+            if (!BulletEffectCtrlPool[i].gameObject.activeSelf)
+                return BulletEffectCtrlPool[i];
+        }
+
+        GameObject bltEft = Instantiate(BulletEffectPrefabs[(int)GameMgr.Inst.player.AttackType], bulletEffectPool);
+        bltEft.SetActive(false);
+        BulletEffectCtrlPool.Add(bltEft);
+
+        return bltEft;
+    }
+
     public void InitEvBulletPool()
     {
         for (int i = 0; i < initEvBltCnt; i++)
@@ -169,19 +190,30 @@ public class MemoryPoolMgr : MonoBehaviour
         return evSupBlt;
     }
 
-    public GameObject AddBulletEffectPool() //Pool에 bulletEffect 추가 or bulletEffect return
+    public void InitMeatBulletPool()
     {
-        for (int i = 0; i < BulletEffectCtrlPool.Count; i++)
+        for (int i = 0; i < initMeatBltCnt; i++)
         {
-            if (!BulletEffectCtrlPool[i].gameObject.activeSelf)
-                return BulletEffectCtrlPool[i];
+            GameObject meatBlt = Instantiate(MeatBulletPrefabs, meatBulletPool);
+            meatBlt.SetActive(false);
+            MeatBulletCtrlPool.Add(meatBlt.GetComponent<BulletCtrl>());
+        }
+    }
+
+    public BulletCtrl AddMeatBulletPool() //Pool에 MeatBullet 추가 or MeatBullet return
+    {
+        for (int i = 0; i < MeatBulletCtrlPool.Count; i++)
+        {
+            if (!MeatBulletCtrlPool[i].gameObject.activeSelf)
+                return MeatBulletCtrlPool[i];
         }
 
-        GameObject bltEft = Instantiate(BulletEffectPrefabs[(int)GameMgr.Inst.player.AttackType], bulletEffectPool);
-        bltEft.SetActive(false);
-        BulletEffectCtrlPool.Add(bltEft);
+        GameObject meatBlt = Instantiate(MeatBulletPrefabs, meatBulletPool);
+        meatBlt.SetActive(false);
+        BulletCtrl meatBltCtrl = meatBlt.GetComponent<BulletCtrl>();
+        MeatBulletCtrlPool.Add(meatBltCtrl);
 
-        return bltEft;
+        return meatBltCtrl;
     }
 
     public void OffAllNorMon()

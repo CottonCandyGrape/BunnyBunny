@@ -19,6 +19,7 @@ TagManager:
   - BattleRing
   - FirePos
   - Sup_Bullet
+  - E_Bullet
   layers:
   - Default
   - TransparentFX

@@ -2,39 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ActionState { None, Walk, Run, Shot } //TODO : Shot은 보류
-
-public class MeatSoldierCtrl : MonsterCtrl
+public class MeatSoldierCtrl : BossMonCtrl
 {
     ActionState actState = ActionState.None;
 
-    float bossHp = 1000.0f;
-    float collDmg = 30.0f;
-    bool isDie = false;
+    public GameObject MeatBullet = null;
+    float MeatSolHp = 1500.0f;
 
-    //Walk
-    float walkTimer = 0.0f;
-    float walkTime = 5.0f;
-    float walkSpeed = 1.5f;
-    //Walk
-
-    //Run
-    const int RunCount = 3;
-    int curRunCount = 0;
-
-    float runTimer = 0.0f;
-    float runTime = 1.0f;
-    float runSpeed = 5.0f;
-    bool isRun = false;
-    Vector3 runTarget = Vector3.zero;
-    const float TargetRange = 0.5f;
-    //Run
-
-    CapsuleCollider2D capColl = null;
+    //ShotTimer
 
     void Start()
     {
-        capColl = GetComponent<CapsuleCollider2D>();
+        if (coll == null)
+            coll = GetComponent<CapsuleCollider2D>();
 
         InitBoss();
     }
@@ -45,11 +25,10 @@ public class MeatSoldierCtrl : MonsterCtrl
 
         if (actState == ActionState.Walk)
             base.Move();
-        else if (actState == ActionState.Run)
+        else if (actState == ActionState.Shot)
         {
-            if (isRun) RunToPlayer();
+            //지금은 멈춰있기
         }
-        //else if (actState == ActionState.Shot) // TODO : 행동 패턴 만들기
     }
 
     void Update() //타이머 같은것들은 여기서 구현
@@ -57,47 +36,15 @@ public class MeatSoldierCtrl : MonsterCtrl
         UpdateActionState();
     }
 
-    //OnTrigger
-    protected override void OnTriggerEnter2D(Collider2D coll)
+    protected override void InitBoss()
     {
-        if (!GameMgr.Inst.hasBoss) return; // 깜빡일때 안맞기
-
-        base.OnTriggerEnter2D(coll);
-    }
-    //OnTrigger
-
-    //OnCollision
-    void OnCollisionEnter2D(Collision2D coll)
-    {
-        if (!GameMgr.Inst.hasBoss) return;
-
-        //보통 Boss일때는 player collier에 isTrigger.false기 때문에 여기서 구현   
-        //하지만 isTrigger.true일 경우도 있는데 base.OnTriggerEnter2D()에 구현되어 있다.
-        if (coll.gameObject.CompareTag("Player"))
-            GameMgr.Inst.player.TakeDamage(collDmg);
-        else if (coll.gameObject.CompareTag("BattleRing") && isRun)
-            isRun = false;
-    }
-
-    void OnCollisionStay2D(Collision2D coll)
-    {
-        //Player가 Ring Collider에 계속 갇혀 있으면
-        //Enter에서 isRun=false 해주는것 만으로는
-        //RunToPlayer()에서 탈출시키기에 부족함.
-        if (coll.gameObject.CompareTag("BattleRing") && isRun)
-            isRun = false;
-    }
-    //OnCollision
-
-    void InitBoss()
-    {
-        monType = MonsterType.BossMon;
-
-        curHp = bossHp;
+        bossHp = MeatSolHp;
+        curHp = MeatSolHp;
         moveSpeed = walkSpeed;
-        capColl.enabled = false;
 
-        StartCoroutine(BlinkBoss());
+        MemoryPoolMgr.Inst.InitMeatBulletPool();
+
+        base.InitBoss();
     }
 
     void UpdateActionState()
@@ -119,114 +66,52 @@ public class MeatSoldierCtrl : MonsterCtrl
                     walkTimer -= Time.deltaTime;
                     if (walkTimer < 0.0f)
                     {
-                        walkTimer = walkTime;
-                        runTimer = runTime;
-
-                        actState = ActionState.Run;
-                        animator.SetBool("Run", true);
+                        ShotTimer = ShotTime;
+                        actState = ActionState.Shot;
                     }
                     break;
                 }
 
-            case ActionState.Run:
+            case ActionState.Shot:
                 {
-                    if (!isRun) //안달릴때(달리기 준비) 타이머 돌리기
-                    {
-                        Flip();
+                    Flip();
 
-                        runTimer -= Time.deltaTime;
-                        if (runTimer < 0.0f)
+                    ShotTimer -= Time.deltaTime;
+                    if (ShotTimer < 0.0f)
+                    {
+                        curShotCount++;
+
+                        if (ShotCount < curShotCount)
                         {
-                            runTimer = runTime;
-                            runTarget = GameMgr.Inst.player.transform.position;
-                            moveDir = runTarget - transform.position;
-                            moveDir.Normalize();
-
-                            moveSpeed = runSpeed;
-                            curRunCount++;
-                            isRun = true;
+                            curShotCount = 0;
+                            walkTimer = walkTime;
+                            actState = ActionState.Walk;
+                            return;
                         }
-                    }
 
-                    if (RunCount < curRunCount)
-                    {
-                        curRunCount = 0;
-                        isRun = false;
-                        isKnockBack = false; //run중에 Guard 맞으면 초기화 돼서 Walk 되자마자 넉백발동 됨.
-                        moveSpeed = walkSpeed;
-                        actState = ActionState.Walk;
-                        animator.SetBool("Run", false);
+                        ShotMeatBullets();
+                        ShotTimer = ShotTime;
                     }
                     break;
                 }
-
-                //case ActionState.Shot: //TODO : 보류 
-                //    {
-                //        actState = ActionState.Walk;
-                //        break;
-                //    }
         }
     }
 
-    void RunToPlayer()
+    void ShotMeatBullets()
     {
-        rigid.MovePosition(transform.position + moveDir * moveSpeed * Time.deltaTime);
-
-        if (Vector3.Distance(transform.position, runTarget) <= TargetRange)
-            isRun = false;
-    }
-
-    void Flip()
-    {
-        if (transform.position.x > GameMgr.Inst.player.transform.position.x)
-            spRenderer.flipX = false;
-        else
-            spRenderer.flipX = true;
-    }
-
-    public override void TakeDamage(float damage)
-    {
-        base.TakeDamage(damage);
-        GameMgr.Inst.UpdateBossHpBar(curHp / bossHp);
-
-        if (curHp <= 0) MonsterDie();
-    }
-
-    protected override void MonsterDie()
-    {
-        isDie = true;
-        GameMgr.Inst.GameOver();
-    }
-
-    IEnumerator BlinkBoss()
-    {
-        Color clr = Color.white;
-        float speed = 2.5f;
-        int blinkTimes = 3;
-
-        for (int i = 0; i < blinkTimes; i++)
+        for (int i = 0; i < 10; i++)
         {
-            while (0.0f <= clr.a)
-            {
-                clr.a -= speed * Time.deltaTime;
-                spRenderer.color = clr;
-                yield return null;
-            }
+            BulletCtrl blt = MemoryPoolMgr.Inst.AddMeatBulletPool();
+            blt.gameObject.SetActive(true);
 
-            while (clr.a <= 1.0f)
-            {
-                clr.a += speed * Time.deltaTime;
-                spRenderer.color = clr;
-                yield return null;
-            }
+            float rad = (i * 36) * Mathf.Deg2Rad;
+            Vector3 vec = blt.MoveDir;
+            vec.x = Mathf.Cos(rad); vec.y = Mathf.Sin(rad); vec.z = 0;
+            blt.MoveDir = vec.normalized;
+
+            float angle = Mathf.Atan2(blt.MoveDir.y, blt.MoveDir.x) * Mathf.Rad2Deg;
+            blt.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            blt.transform.position = transform.position;
         }
-
-        BattleSetting();
-    }
-
-    void BattleSetting()
-    {
-        GameMgr.Inst.hasBoss = true;
-        capColl.enabled = true;
     }
 }

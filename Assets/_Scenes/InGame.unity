@@ -282,6 +282,7 @@ MonoBehaviour:
   BulletEffectPrefabs:
   - {fileID: 7772591325366521403, guid: cf9ba304a30459a4bbb403bf5c583412, type: 3}
   - {fileID: 5826318901203694587, guid: ffaa5231a1ad6fe44ac862ae93ac345b, type: 3}
+  MeatBulletPrefabs: {fileID: 6149666173993640590, guid: 2f5b8a39d874ec14382d6672894893e5, type: 3}
 --- !u!4 &125638752
 Transform:
   m_ObjectHideFlags: 0
@@ -298,6 +299,7 @@ Transform:
   - {fileID: 1335071687}
   - {fileID: 1898118443}
   - {fileID: 692346002}
+  - {fileID: 1998195839}
   - {fileID: 1673955614}
   - {fileID: 866763421}
   - {fileID: 944139311}
@@ -320,7 +322,7 @@ MonoBehaviour:
   EliteMonPrefs:
   - {fileID: 5117565301986446215, guid: 3c2bbe0b76b3fd045980c05505b8e6df, type: 3}
   BossMonPrefs:
-  - {fileID: 8544984616653943037, guid: af5973ddc6195024c8dab7e5017921a1, type: 3}
+  - {fileID: 5331838145971630213, guid: 5d596b25ca9a295438576817e13d6855, type: 3}
 --- !u!1 &145007058
 GameObject:
   m_ObjectHideFlags: 0
@@ -1139,7 +1141,6 @@ MonoBehaviour:
   h: 0
   v: 0
   DirArrow: {fileID: 1827385772}
-  maxHp: 0
   SubCanvas: {fileID: 2012018422}
   HpBar_Img: {fileID: 470771535}
   AnimState: 0
@@ -2762,6 +2763,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1970335156}
   m_CullTransparentMesh: 1
+--- !u!1 &1998195838
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1998195839}
+  m_Layer: 0
+  m_Name: MeatBulletPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1998195839
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1998195838}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 125638752}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2012018419
 GameObject:
   m_ObjectHideFlags: 0

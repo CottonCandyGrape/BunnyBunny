@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f505c70090ed9f54cbd79645b1c4a573, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MeatBullet: {fileID: 6149666173993640590, guid: 2f5b8a39d874ec14382d6672894893e5, type: 3}
 --- !u!50 &8554912670960828150
 Rigidbody2D:
   serializedVersion: 4

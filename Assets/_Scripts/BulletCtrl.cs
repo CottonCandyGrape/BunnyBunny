@@ -21,22 +21,23 @@ public class BulletCtrl : MonoBehaviour
     Vector3 moveDir = Vector3.one;
     public Vector3 MoveDir
     {
+        get { return moveDir; }
         set { moveDir = value; }
     }
 
     void OnEnable()
     {
-        if(BltType == BulletType.Gun)
+        if (BltType == BulletType.Gun)
         {
             moveSpeed = 10.0f;
             lifeTime = 5.0f;
         }
-        else if(BltType == BulletType.Rocket)
+        else if (BltType == BulletType.Rocket)
         {
             moveSpeed = 5.0f;
             lifeTime = 8.0f;
         }
-        else if(BltType == BulletType.Drill)
+        else if (BltType == BulletType.Drill)
         {
             if (!WeaponMgr.Inst.DrillCtrlSc.IsEvolve)
             {
@@ -71,9 +72,17 @@ public class BulletCtrl : MonoBehaviour
         {
             //Rocket만 여기서 구현한 이유 : Guardian, Drill은 Tag로 충돌체크함.
             //반면 Rocket은 bulletType이 필요한데 여기서 체크하기가 더 편함.
-            if (coll.tag.Contains("Monster"))
+            if (coll.tag.Contains("Monster")) //모든 타입 몬스터들 포함하기 위해 Contains
             {
                 WeaponMgr.Inst.RocketCtrlSc.ExploseRocket(WeaponMgr.Inst.RocketCtrlSc.IsEvolve, gameObject);
+            }
+        }
+
+        if (gameObject.CompareTag("E_Bullet") && coll.CompareTag("Player"))
+        {
+            if (gameObject.name.Contains("MeatBullet")) //MeatSoldier의 총알
+            {
+                GameMgr.Inst.player.TakeDamage(10.0f);
             }
         }
     }

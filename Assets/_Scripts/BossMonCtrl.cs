@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ActionState { None, Walk, Run, Shot } //TODO : Shot은 보류
+public enum ActionState { None, Walk, Run, Shot }
 
 public class BossMonCtrl : MonsterCtrl
 {
@@ -27,6 +27,13 @@ public class BossMonCtrl : MonsterCtrl
     protected Vector3 runTarget = Vector3.zero;
     const float TargetRange = 0.5f;
     //Run
+
+    //Shot
+    protected const int ShotCount = 3;
+    protected int curShotCount = 0;
+    protected float ShotTimer = 0.0f;
+    protected float ShotTime = 1.0f;
+    //Shot
 
     //OnTrigger
     protected override void OnTriggerEnter2D(Collider2D coll)
