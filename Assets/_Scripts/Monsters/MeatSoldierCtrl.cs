@@ -9,8 +9,6 @@ public class MeatSoldierCtrl : BossMonCtrl
     public GameObject MeatBullet = null;
     float MeatSolHp = 1500.0f;
 
-    //ShotTimer
-
     void Start()
     {
         if (coll == null)

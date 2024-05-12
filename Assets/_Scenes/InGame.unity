@@ -323,6 +323,7 @@ MonoBehaviour:
   - {fileID: 5117565301986446215, guid: 3c2bbe0b76b3fd045980c05505b8e6df, type: 3}
   BossMonPrefs:
   - {fileID: 8544984616653943037, guid: af5973ddc6195024c8dab7e5017921a1, type: 3}
+  - {fileID: 5331838145971630213, guid: 5d596b25ca9a295438576817e13d6855, type: 3}
 --- !u!1 &145007058
 GameObject:
   m_ObjectHideFlags: 0
@@ -353,6 +354,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 699597825}
+  Rings:
+  - {fileID: 9094358934630592945, guid: a7b01fb8701a74f41be00c5076789bb8, type: 3}
+  - {fileID: 7184866390020274846, guid: e9176a70a8f420044a4798ded2a2f069, type: 3}
   BattleRing: {fileID: 9094358934630592945, guid: a7b01fb8701a74f41be00c5076789bb8, type: 3}
   hasBoss: 0
   hasRing: 0
@@ -828,7 +832,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 5.3
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

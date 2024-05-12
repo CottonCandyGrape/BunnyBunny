@@ -8,6 +8,9 @@ public class CameraCtrl : MonoBehaviour
     Vector3 playerPos = Vector3.zero;
     Camera cam = null;
 
+    float[] BossCamSize = { 8.5f, 5.3f }; //Ground, Vertical Type 순서
+    float[] BossCamSpeed = { 3.0f, 0.5f }; 
+
     void Start()
     {
         cam = Camera.main;
@@ -46,8 +49,8 @@ public class CameraCtrl : MonoBehaviour
 
     IEnumerator ZoomOutCo()
     {
-        float tSize = 8.5f;
-        float speed = 3.0f; //TODO : 추후 조정
+        float tSize = BossCamSize[(int)GameMgr.Inst.MType];
+        float speed = BossCamSpeed[(int)GameMgr.Inst.MType];
 
         while (cam.orthographicSize < tSize)
         {

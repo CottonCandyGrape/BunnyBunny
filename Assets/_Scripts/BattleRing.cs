@@ -6,8 +6,8 @@ public class BattleRing : MonoBehaviour
 {
     SpriteRenderer[] spRenders = null;
 
-    const float OffsetX = 4.5f;
-    const float OffsetY = 5.0f;
+    float OffsetX = 4.5f; //left, right x축 거리
+    float OffsetY = 5.0f; //up, down y축 거리
 
     float dmgTime = 0.5f;
     float dmgTimer = 0.0f;
@@ -16,6 +16,7 @@ public class BattleRing : MonoBehaviour
     {
         spRenders = GetComponentsInChildren<SpriteRenderer>();
 
+        SetRingOffset();
         StartCoroutine(BlinkBattleRing());
     }
 
@@ -59,6 +60,16 @@ public class BattleRing : MonoBehaviour
             GameMgr.Inst.player.TrapBossRing(true);
     }
     //OnTrigger
+
+    void SetRingOffset()
+    {
+        if (GameMgr.Inst.MType == MapType.Ground)
+            OffsetX = 4.5f;
+        else if (GameMgr.Inst.MType == MapType.Vertical)
+            OffsetX = 2.75f;
+
+        OffsetY = 5.0f;
+    }
 
     void EnterRing()
     {

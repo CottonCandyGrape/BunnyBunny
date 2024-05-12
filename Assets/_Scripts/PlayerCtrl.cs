@@ -18,9 +18,8 @@ public class PlayerCtrl : MonoBehaviour
     Vector3 moveDir = Vector3.zero;
     SpriteRenderer playerSpRenderer = null;
     Rigidbody2D rigid = null;
-    const float OffsetX = 4.7f;
-    const float OffsetY = 5.1f;
-    const float LimitX = 2.6f;
+    float OffsetX = 4.7f;
+    float OffsetY = 5.1f;
     //이동 관련
 
     //Flip 관련
@@ -86,6 +85,8 @@ public class PlayerCtrl : MonoBehaviour
         mainWeapon = GameObject.Find("MainWeapon").transform;
 
         curHp = maxHp;
+
+        SetLimitOffset();
 
         if (FullPowerTest)
         {
@@ -160,6 +161,16 @@ public class PlayerCtrl : MonoBehaviour
         if (GameMgr.Inst.MType == MapType.Vertical) LimitXPos(targetPos);
     }
 
+    void SetLimitOffset()
+    {
+        if (GameMgr.Inst.MType == MapType.Ground)
+            OffsetX = 4.7f;
+        else if (GameMgr.Inst.MType == MapType.Vertical)
+            OffsetX = 2.85f;
+
+        OffsetY = 5.1f;
+    }
+
     void LimitRingPos(Vector2 pos)
     {
         pos.x = Mathf.Clamp(pos.x, GameMgr.Inst.BattleRing.transform.position.x - OffsetX,
@@ -172,10 +183,10 @@ public class PlayerCtrl : MonoBehaviour
     
     void LimitXPos(Vector2 pos)
     {
-        if (pos.x >= LimitX)
-            pos.x = LimitX;
-        else if (pos.x <= -LimitX)
-            pos.x = -LimitX;
+        if (pos.x >= OffsetX)
+            pos.x = OffsetX;
+        else if (pos.x <= -OffsetX)
+            pos.x = -OffsetX;
 
         rigid.MovePosition(pos);
     }
@@ -342,6 +353,7 @@ public class PlayerCtrl : MonoBehaviour
         }
         else
         {
+            Debug.Log("False 일때");
             capColl.isTrigger = true;
         }
     }

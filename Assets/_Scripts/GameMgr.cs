@@ -35,7 +35,8 @@ public class GameMgr : MonoBehaviour
     //Exp 관련
 
     //Boss전 관련
-    public GameObject BattleRing = null;
+    public GameObject[] Rings = null;
+    [HideInInspector] public GameObject BattleRing = null;
     [HideInInspector] public bool hasBoss = false;
     [HideInInspector] public bool hasRing = false;
     Coroutine bHpCo = null;
@@ -209,7 +210,7 @@ public class GameMgr : MonoBehaviour
         Vector2 spawnPos = ScreenMgr.Inst.GetCenterCurScreen();
         if (BattleRing != null) //링 스폰. 
         {
-            BattleRing = Instantiate(BattleRing);
+            BattleRing = Instantiate(Rings[(int)MType]);
             BattleRing.transform.position = spawnPos;
         }
         player.TrapBossRing(true); //player 링에 가두기
