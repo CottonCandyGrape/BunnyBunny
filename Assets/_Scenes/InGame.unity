@@ -322,7 +322,7 @@ MonoBehaviour:
   EliteMonPrefs:
   - {fileID: 5117565301986446215, guid: 3c2bbe0b76b3fd045980c05505b8e6df, type: 3}
   BossMonPrefs:
-  - {fileID: 5331838145971630213, guid: 5d596b25ca9a295438576817e13d6855, type: 3}
+  - {fileID: 8544984616653943037, guid: af5973ddc6195024c8dab7e5017921a1, type: 3}
 --- !u!1 &145007058
 GameObject:
   m_ObjectHideFlags: 0

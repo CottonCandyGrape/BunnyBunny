@@ -18,7 +18,7 @@ public class MonsterCtrl : MonoBehaviour
     protected Vector3 moveDir = Vector3.zero;
     protected SpriteRenderer spRenderer = null;
     protected Rigidbody2D rigid = null;
-    float slowTimer = 0.0f;
+    protected float slowTimer = 0.0f;
     float slowTime = 3.0f;
     //이동 관련
 
@@ -159,7 +159,7 @@ public class MonsterCtrl : MonoBehaviour
         }
     }
 
-    void SetExp() //TODO : Init()만들어서 monType으로 나뉘는 변수들 한번에 초기화 하기
+    protected void SetExp() //TODO : Init()만들어서 monType으로 나뉘는 변수들 한번에 초기화 하기
     {
         expVal = 10;
         if (monType == MonsterType.EliteMon)
@@ -185,10 +185,7 @@ public class MonsterCtrl : MonoBehaviour
         moveDir = GameMgr.Inst.player.transform.position - transform.position;
         moveDir.Normalize();
 
-        if (moveDir.x < 0)
-            spRenderer.flipX = false;
-        else
-            spRenderer.flipX = true;
+        spRenderer.flipX = moveDir.x < 0 ? false : true;
 
         target = transform.position + moveDir * moveSpeed * Time.deltaTime;
         rigid.MovePosition(target);

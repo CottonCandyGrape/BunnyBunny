@@ -119,7 +119,7 @@ public class BossMonCtrl : MonsterCtrl
             isRun = false;
     }
 
-    protected void Flip()
+    protected void Flip() // FixedUpdate - actState -> Move() 안쓰면 필요하다
     {
         if (transform.position.x > GameMgr.Inst.player.transform.position.x)
             spRenderer.flipX = false;
