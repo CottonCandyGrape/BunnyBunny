@@ -353,7 +353,6 @@ public class PlayerCtrl : MonoBehaviour
         }
         else
         {
-            Debug.Log("False 일때");
             capColl.isTrigger = true;
         }
     }
