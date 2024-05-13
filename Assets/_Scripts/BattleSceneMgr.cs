@@ -7,15 +7,28 @@ using UnityEngine.UI;
 
 public class BattleSceneMgr : MonoBehaviour
 {
-    public Button Left_Btn = null;
-    public Button Right_Btn = null;
+    [Header("------ AttackType Block ------")]
+    public Button AtkLeft_Btn = null;
+    public Button AtkRight_Btn = null;
+    public Transform AtkTypePool = null;
+    public RectTransform AtkTypePos = null;
+    public GameObject[] AtkObjects = null;
+    List<GameObject> AtkList = new List<GameObject>();
+
+    [Header("------ Stage Block ------")]
+    public Button StageLeft_Btn = null;
+    public Button StageRight_Btn = null;
     public GameObject Lock = null;
     public Text StageNum_Txt = null;
+
+    [Header("------ Start Block ------")]
     public Button Start_Btn = null;
 
     const int MinStageNum = 0;
     const int MaxStageNum = 2;
     const int GameDia = 5;
+
+    int AtkTypeNum = 0; //TODO : Player에게 알려줘야한다.
     int stageNum = 0;
     int unLockStageNum = 1; //TODO : UserInfo로 넘겨야 할듯.
 
@@ -23,17 +36,37 @@ public class BattleSceneMgr : MonoBehaviour
     {
         Time.timeScale = 1.0f; //인게임에서 죽으면 0.0f 되기 때문에 다시 맞춰줌
 
-        if (Left_Btn)
-            Left_Btn.onClick.AddListener(LeftArrowBtnClick);
+        if (AtkLeft_Btn)
+            AtkLeft_Btn.onClick.AddListener(AtkLeftBtnClick);
 
-        if (Right_Btn)
-            Right_Btn.onClick.AddListener(RightArrowBtnClick);
+        if (AtkRight_Btn)
+            AtkRight_Btn.onClick.AddListener(AtkRightBtnClick);
+
+        if (StageLeft_Btn)
+            StageLeft_Btn.onClick.AddListener(StageLeftBtnClick);
+
+        if (StageRight_Btn)
+            StageRight_Btn.onClick.AddListener(StageRightBtnClick);
 
         if (StageNum_Txt) //StageNum 초기화
             StageNum_Txt.text = (stageNum + 1).ToString();
 
         if (Start_Btn)
             Start_Btn.onClick.AddListener(StartGame);
+
+        InitAtkObjects();
+    }
+
+    void InitAtkObjects()
+    {
+        for (int i = 0; i < AtkObjects.Length; i++)
+        {
+            GameObject atk = Instantiate(AtkObjects[i], AtkTypePool);
+            AtkList.Add(atk);
+            atk.SetActive(false);
+        }
+
+        SetAtkType();
     }
 
     //void Update() { }
@@ -71,7 +104,25 @@ public class BattleSceneMgr : MonoBehaviour
         return false;
     }
 
-    void LeftArrowBtnClick()
+    void AtkLeftBtnClick()
+    {
+        AtkTypeNum--;
+        if (AtkTypeNum < 0)
+            AtkTypeNum = (int)AtkType.Count - 1;
+
+        SetAtkType();
+    }
+
+    void AtkRightBtnClick()
+    {
+        AtkTypeNum++;
+        if ((int)AtkType.Count <= AtkTypeNum)
+            AtkTypeNum = 0;
+        
+        SetAtkType();
+    }
+
+    void StageLeftBtnClick()
     {
         if (stageNum <= MinStageNum) return;
 
@@ -81,7 +132,7 @@ public class BattleSceneMgr : MonoBehaviour
         SetLockImage();
     }
 
-    void RightArrowBtnClick()
+    void StageRightBtnClick()
     {
         if (MaxStageNum <= stageNum) return;
 
@@ -97,5 +148,16 @@ public class BattleSceneMgr : MonoBehaviour
             Lock.gameObject.SetActive(false);
         else
             Lock.gameObject.SetActive(true);
+    }
+
+    void SetAtkType()
+    {
+        for (int i = 0; i < AtkList.Count; i++)
+        {
+            if (AtkList[i].activeSelf)
+                AtkList[i].SetActive(false);
+        }
+
+        AtkList[AtkTypeNum].SetActive(true);
     }
 }

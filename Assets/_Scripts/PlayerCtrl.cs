@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public enum PlayerAnim { Idle, Run, Hurt, Dead }
 
-public enum AtkType { Fire, Water, Wind }
+public enum AtkType { Fire, Water, Count }
 
 public class PlayerCtrl : MonoBehaviour
 {
