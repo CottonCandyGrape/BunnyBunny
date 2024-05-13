@@ -28,7 +28,7 @@ public class BattleSceneMgr : MonoBehaviour
     const int MaxStageNum = 2;
     const int GameDia = 5;
 
-    int AtkTypeNum = 0; //TODO : Player에게 알려줘야한다.
+    int atkTypeNum = 0;
     int stageNum = 0;
     int unLockStageNum = 1; //TODO : UserInfo로 넘겨야 할듯.
 
@@ -90,6 +90,7 @@ public class BattleSceneMgr : MonoBehaviour
 
         AllSceneMgr.Instance.SubDia(GameDia);
         AllSceneMgr.Instance.CurStageNum = stageNum;
+        AllSceneMgr.Instance.AtkTypeNum = atkTypeNum;
         SceneManager.LoadScene("InGame");
     }
 
@@ -106,19 +107,19 @@ public class BattleSceneMgr : MonoBehaviour
 
     void AtkLeftBtnClick()
     {
-        AtkTypeNum--;
-        if (AtkTypeNum < 0)
-            AtkTypeNum = (int)AtkType.Count - 1;
+        atkTypeNum--;
+        if (atkTypeNum < 0)
+            atkTypeNum = (int)AtkType.Count - 1;
 
         SetAtkType();
     }
 
     void AtkRightBtnClick()
     {
-        AtkTypeNum++;
-        if ((int)AtkType.Count <= AtkTypeNum)
-            AtkTypeNum = 0;
-        
+        atkTypeNum++;
+        if ((int)AtkType.Count <= atkTypeNum)
+            atkTypeNum = 0;
+
         SetAtkType();
     }
 
@@ -158,6 +159,6 @@ public class BattleSceneMgr : MonoBehaviour
                 AtkList[i].SetActive(false);
         }
 
-        AtkList[AtkTypeNum].SetActive(true);
+        AtkList[atkTypeNum].SetActive(true);
     }
 }

@@ -70,10 +70,16 @@ public class PlayerCtrl : MonoBehaviour
     //Animation 관련
 
     //Attack Type 관련
-    public AtkType AttackType = AtkType.Fire;
+    [HideInInspector] public AtkType AttackType = AtkType.Fire;
     //Attack Type 관련
 
     WeaponMgr wpMgr = null; //이 Script에서는 너무 많이 써서 선언하고 쓰는 중.
+
+    void Awake()
+    {
+        curHp = maxHp;
+        AttackType = (AtkType)AllSceneMgr.Instance.AtkTypeNum;
+    }
 
     void Start()
     {
@@ -83,8 +89,6 @@ public class PlayerCtrl : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         wpMgr = FindObjectOfType<WeaponMgr>();
         mainWeapon = GameObject.Find("MainWeapon").transform;
-
-        curHp = maxHp;
 
         SetLimitOffset();
 
