@@ -14,7 +14,7 @@ public class GunCtrl : Weapon
 
     public GameObject Ev_Bullet = null;
     public Sprite Ev_Sprite = null;
-    Vector2 ev_Scale = new Vector2(0.2f, 0.2f);
+    Vector2 ev_Scale = new Vector2(0.1f, 0.1f);
 
     void Start() { }
 

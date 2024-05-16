@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Ev_Bullet: {fileID: 3968515364599908169, guid: c32690e0906f3eb4abb34e9af7674974, type: 3}
-  Ev_Sprite: {fileID: 21300000, guid: c01ecfba0bb21204285e6539fcea81d4, type: 3}
+  Ev_Sprite: {fileID: 21300000, guid: 1a375e09b533dc64c84ec5e62e3f3412, type: 3}
 --- !u!1 &6207509987518916900
 GameObject:
   m_ObjectHideFlags: 0
