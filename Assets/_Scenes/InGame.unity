@@ -369,7 +369,8 @@ MonoBehaviour:
   SubCanvas: {fileID: 2012018422}
   MainCanvas: {fileID: 1626036648}
   Config_Btn: {fileID: 1077136654}
-  PopUpPref: {fileID: 6305200933284207468, guid: e4a17af06b9c4c040bee4c0f0307df7d, type: 3}
+  PopUpPref: {fileID: 0}
+  SkillUpPopUp: {fileID: 7151755046872240579, guid: 64cf40c481ccfed47993d9a4d8094ec7, type: 3}
   DmgTxtPrefab: {fileID: 9158740485534171274, guid: 7e369a2ece098ab498b78a7daead6ce7, type: 3}
   MType: 0
   Maps:

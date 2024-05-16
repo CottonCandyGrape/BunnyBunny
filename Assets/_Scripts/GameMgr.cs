@@ -28,9 +28,10 @@ public class GameMgr : MonoBehaviour
     //Exp 관련
     //public Text CurExpLevel_Txt = null; //inGameExp test 용
     float inGameExp = 0.0f;
-    float[] expLevelArr = { 0.0f, 30.0f, 60.0f, 100.0f, 150.0f, 210.0f, 280.0f, 360.0f, 450.0f, 550.0f }; //TODO : 만랩 늘리면 수식으로 바꾸기
+    float prevExp = 0.0f;
+    float nextExp = 50.0f;
+    float incRatio = 1.5f;
     int inGameLevel = 1;
-    int maxLevel = 10; // 현재 만랩 10 //TODO : 만랩 늘리기. 
     Coroutine expCo = null;
     //Exp 관련
 
@@ -59,6 +60,7 @@ public class GameMgr : MonoBehaviour
     public Canvas MainCanvas = null;
     public Button Config_Btn = null;
     public GameObject PopUpPref = null;
+    public GameObject SkillUpPopUp = null;
 
     public GameObject DmgTxtPrefab = null; //데미지 표시 UI
     //UI 변수
@@ -152,29 +154,31 @@ public class GameMgr : MonoBehaviour
 
     public void AddExpVal(float eVal)
     {
+        //Debug.Log(string.Format("Current Exp:{0}, Prev {1}, Next {2}", inGameExp, prevExp, nextExp));
         inGameExp += eVal;
-        for (int i = 0; i < expLevelArr.Length; i++)
+        if (nextExp <= inGameExp) //levelup 할 때.
         {
-            if (expLevelArr[i] <= inGameExp)
-                inGameLevel = i + 1;
-            else
-                break;
+            inGameLevel++;
+            prevExp = nextExp;
+            nextExp *= incRatio;
+            nextExp = (int)nextExp;
+
+            LevelUp();
         }
 
         //CurExpLevel_Txt.text = inGameExp.ToString(); //inGameExp Test용
         ExpLevel_Txt.text = "Lv. " + inGameLevel.ToString();
 
-        if (inGameLevel >= maxLevel) //만랩일 때
-            ExpBar_Img.fillAmount = 1;
-        else
-        {
-            if (expCo != null)
-                StopCoroutine(expCo);
-            float target = (inGameExp - expLevelArr[inGameLevel - 1]) /
-                (expLevelArr[inGameLevel] - expLevelArr[inGameLevel - 1]);
+        if (expCo != null) StopCoroutine(expCo);
+        float target = (inGameExp - prevExp) / (nextExp - prevExp);
+        expCo = StartCoroutine(FillBarImg(ExpBar_Img, target));
+    }
 
-            expCo = StartCoroutine(FillBarImg(ExpBar_Img, target));
-        }
+    void LevelUp()
+    {
+        Time.timeScale = 0.0f;
+        if (SkillUpPopUp != null)
+            Instantiate(SkillUpPopUp, MainCanvas.transform);
     }
 
     public void UpdateBossHpBar(float target)
