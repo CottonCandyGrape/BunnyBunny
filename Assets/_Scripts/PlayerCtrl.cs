@@ -184,7 +184,7 @@ public class PlayerCtrl : MonoBehaviour
 
         rigid.MovePosition(pos);
     }
-    
+
     void LimitXPos(Vector2 pos)
     {
         if (pos.x >= OffsetX)
@@ -310,7 +310,7 @@ public class PlayerCtrl : MonoBehaviour
         if (rktTimer <= 0.0f)
         {
             rktTimer = rktTime;
-            if (wpMgr.RocketCtrlSc != null)
+            if (wpMgr.Rockets.activeSelf)
             {
                 if (!wpMgr.RocketCtrlSc.IsEvolve)
                     wpMgr.RocketCtrlSc.FireRocket();
@@ -325,9 +325,9 @@ public class PlayerCtrl : MonoBehaviour
         if (drlTimer <= 0.0f)
         {
             drlTimer = drlTime;
-            if (wpMgr.DrillCtrlSc != null)
+            if (wpMgr.Drills.activeSelf)
             {
-                if(!wpMgr.DrillCtrlSc.IsEvolve)
+                if (!wpMgr.DrillCtrlSc.IsEvolve)
                     wpMgr.DrillCtrlSc.FireDrills();
                 else
                     wpMgr.DrillCtrlSc.FireArrowHead();
