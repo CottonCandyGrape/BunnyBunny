@@ -12,9 +12,11 @@ public class WeaponMgr : MonoBehaviour
 {
     //메인 무기
     [Header("------ Main Weapon ------")]
-    public GameObject[] MWPrefabs = null;
+    [HideInInspector] public MWType MainType = MWType.Gun;
+    [HideInInspector] public Weapon MainWp = null;
+    public GameObject[] MWPrefabs = null; //아이템이 많아지면 다른 저장소에서 변수 하나로 받아와야겠다.
+    public GameObject[] MWSkillUpBtns = null; //아이템이 많아지면 다른 저장소에서 변수 하나로 받아와야겠다.
     public Transform MainWeapon = null;
-    public MWType MainType = MWType.Gun;
 
     //총
     GunCtrl gunCtrlSc = null;
@@ -52,6 +54,7 @@ public class WeaponMgr : MonoBehaviour
         Inst = this;
 
         SetMainWeapon(MainType);
+        SetWeaponScripts();
     }
 
     void Start() { }
@@ -63,6 +66,7 @@ public class WeaponMgr : MonoBehaviour
         if (mwType == MWType.Gun)
         {
             gunCtrlSc = obj.GetComponent<GunCtrl>();
+            MainWp = GunCtrlSc;
         }
         else if (mwType == MWType.Blade)
         {
@@ -71,14 +75,18 @@ public class WeaponMgr : MonoBehaviour
     }
     //메인 무기 관련
 
+    void SetWeaponScripts()
+    {
+        guardiansCtrlSc = Guardians.GetComponent<GuardiansCtrl>();
+        rocketCtrlSc = Rockets.GetComponent<RocketCtrl>();
+        drillCtrlSc = Drills.GetComponent<DrillCtrl>();
+    }
+
     //수호자 관련
     public void SetGuardians()
     {
         if (!Guardians.activeSelf)
-        {
             Guardians.SetActive(true);
-            guardiansCtrlSc = Guardians.GetComponent<GuardiansCtrl>();
-        }
     }
     //수호자 관련
 
@@ -86,10 +94,7 @@ public class WeaponMgr : MonoBehaviour
     public void SetRockets()
     {
         if (!Rockets.activeSelf)
-        {
             Rockets.SetActive(true);
-            rocketCtrlSc = Rockets.GetComponent<RocketCtrl>();
-        }
     }
     //로켓 관련
 
@@ -97,10 +102,7 @@ public class WeaponMgr : MonoBehaviour
     public void SetDrills()
     {
         if (!Drills.activeSelf)
-        {
             Drills.SetActive(true);
-            drillCtrlSc = Drills.GetComponent<DrillCtrl>();
-        }
     }
     //드릴 관련
 }
