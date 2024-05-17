@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 6153998734127100166}
   - component: {fileID: 3174999380504499624}
   m_Layer: 5
-  m_Name: Inven_Btn(BasicGun)
+  m_Name: Inven_Btn(EnergyGun)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

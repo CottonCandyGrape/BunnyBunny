@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 869209775308935912}
   - component: {fileID: 1598484964594568660}
+  - component: {fileID: -3529976322918397464}
   - component: {fileID: 2415970782745331498}
   m_Layer: 5
   m_Name: SkillUpPopUp
@@ -49,6 +50,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7151755046872240579}
   m_CullTransparentMesh: 1
+--- !u!114 &-3529976322918397464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7151755046872240579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47408c68aa1eb1145b3ceae9dcac4f97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WpList:
+  - {fileID: 4991731777012409475, guid: fb531a70063f428418014258ec56a46d, type: 3}
+  - {fileID: 4991731777012409475, guid: 93cd51ad13149bd47b949af8ec05244c, type: 3}
+  - {fileID: 4991731777012409475, guid: 57fae92dcc9a38f459a5fd01d373c611, type: 3}
+  Items:
+  - {fileID: 4991731777012409475, guid: b8c48bb2681099f4cb0126222c9fdad4, type: 3}
+  - {fileID: 4991731777012409475, guid: 9f472bf24d6e98f48bc6450b3709a421, type: 3}
 --- !u!114 &2415970782745331498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,6 +191,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SkillUp_Btn_1
       objectReference: {fileID: 0}
+    - target: {fileID: 4991731777012409475, guid: 1fa1088667a611c44ad27550e3ecd479, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -272,6 +296,10 @@ PrefabInstance:
     - target: {fileID: 4991731777012409475, guid: 1fa1088667a611c44ad27550e3ecd479, type: 3}
       propertyPath: m_Name
       value: SkillUp_Btn_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4991731777012409475, guid: 1fa1088667a611c44ad27550e3ecd479, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -508,6 +536,10 @@ PrefabInstance:
     - target: {fileID: 4991731777012409475, guid: 1fa1088667a611c44ad27550e3ecd479, type: 3}
       propertyPath: m_Name
       value: SkillUp_Btn_3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4991731777012409475, guid: 1fa1088667a611c44ad27550e3ecd479, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
