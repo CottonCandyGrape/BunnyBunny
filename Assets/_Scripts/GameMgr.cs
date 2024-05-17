@@ -163,7 +163,8 @@ public class GameMgr : MonoBehaviour
             nextExp *= incRatio;
             nextExp = (int)nextExp;
 
-            LevelUp();
+            Time.timeScale = 0.0f;
+            SkillUpPopUp.SetActive(true);
         }
 
         //CurExpLevel_Txt.text = inGameExp.ToString(); //inGameExp Test용
@@ -174,11 +175,10 @@ public class GameMgr : MonoBehaviour
         expCo = StartCoroutine(FillBarImg(ExpBar_Img, target));
     }
 
-    void LevelUp()
+    public void LevelUp()
     {
-        Time.timeScale = 0.0f;
-        if (SkillUpPopUp != null)
-            Instantiate(SkillUpPopUp, MainCanvas.transform);
+        Time.timeScale = 1.0f;
+        SkillUpPopUp.SetActive(false);
     }
 
     public void UpdateBossHpBar(float target)
