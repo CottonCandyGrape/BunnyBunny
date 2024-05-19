@@ -1163,7 +1163,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &678642573
 Transform:
   m_ObjectHideFlags: 0
@@ -1516,13 +1516,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MainType: 0
+  MainWp: {fileID: 0}
   MWPrefabs:
   - {fileID: 5592649674584467475, guid: f250212330c3586448e44a8f4f34b960, type: 3}
   - {fileID: 6699362348618382821, guid: 84b0cfd6d6a77e841b765d42c6996af9, type: 3}
   MWSkillUpBtns:
   - {fileID: 4991731777012409475, guid: ea6d7601ba3a8304482519df938d3b89, type: 3}
   - {fileID: 4991731777012409475, guid: 2e8b59471ad7d644589cafe0c00e1ffb, type: 3}
-  MainWp: {fileID: 0}
   MainWeapon: {fileID: 743305141}
   Guardians: {fileID: 678642572}
   Rockets: {fileID: 1910032754}
@@ -2248,7 +2248,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1574635738
 Transform:
   m_ObjectHideFlags: 0
@@ -2746,7 +2746,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1910032755
 Transform:
   m_ObjectHideFlags: 0
