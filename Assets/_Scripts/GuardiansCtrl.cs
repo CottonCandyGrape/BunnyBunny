@@ -79,12 +79,6 @@ public class GuardiansCtrl : Weapon
 
     public override void LevelUpWeapon()
     {
-        if (MaxLevel <= curLevel)
-        {
-            if (!isEvolve) EvolveWeapon();
-            return;
-        }
-
         AddGuardian();
 
         curLevel++;

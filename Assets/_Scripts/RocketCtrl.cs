@@ -135,12 +135,6 @@ public class RocketCtrl : Weapon
 
     public override void LevelUpWeapon()
     {
-        if (MaxLevel <= curLevel)
-        {
-            if (!isEvolve) EvolveWeapon();
-            return;
-        }
-
         expEffect.transform.localScale *= ExpScaler;
         ExpRadius *= ExpScaler;
 
