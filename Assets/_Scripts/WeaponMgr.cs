@@ -81,28 +81,4 @@ public class WeaponMgr : MonoBehaviour
         rocketCtrlSc = Rockets.GetComponent<RocketCtrl>();
         drillCtrlSc = Drills.GetComponent<DrillCtrl>();
     }
-
-    //수호자 관련
-    public void SetGuardians()
-    {
-        if (!Guardians.activeSelf)
-            Guardians.SetActive(true);
-    }
-    //수호자 관련
-
-    //로켓 관련
-    public void SetRockets()
-    {
-        if (!Rockets.activeSelf)
-            Rockets.SetActive(true);
-    }
-    //로켓 관련
-
-    //드릴 관련
-    public void SetDrills()
-    {
-        if (!Drills.activeSelf)
-            Drills.SetActive(true);
-    }
-    //드릴 관련
 }

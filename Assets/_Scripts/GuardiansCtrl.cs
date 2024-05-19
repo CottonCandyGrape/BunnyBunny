@@ -10,7 +10,7 @@ public class GuardiansCtrl : Weapon
 
     const float Ev_RotSpeed = 250.0f;
     const float Ev_CollRadius = 0.21f;
-    const int GuardInitCount = 3;
+    const int GuardInitCount = 2;
 
     float lifeTimer = 0.0f;
     float lifeTime = 3.0f;
@@ -26,15 +26,16 @@ public class GuardiansCtrl : Weapon
 
     void Update()
     {
-        if (!isEvolve)
+        if (!isEvolve && curLevel > 0)
             OnOffGuardians();
     }
 
-    void InitGuardians() //3개로 시작
+    void InitGuardians() //2개로 초기화 
     {
         for (int i = 0; i < GuardInitCount; i++)
         {
             GameObject guardObj = Instantiate(GuardPrefab, Guardians);
+            guardObj.SetActive(false);
             GuardCtrl guard = guardObj.GetComponent<GuardCtrl>();
             guard.Degree = (360 / GuardInitCount) * i;
         }
@@ -66,6 +67,16 @@ public class GuardiansCtrl : Weapon
         }
     }
 
+    void AddGuardian()
+    {
+        GameObject guardObj = Instantiate(GuardPrefab, Guardians);
+        if (!IsOn) guardObj.SetActive(false);
+
+        GuardCtrl[] guards = Guardians.GetComponentsInChildren<GuardCtrl>(true);
+        for (int i = 0; i < guards.Length; i++)
+            guards[i].Degree = (360 / guards.Length) * i;
+    }
+
     public override void LevelUpWeapon()
     {
         if (MaxLevel <= curLevel)
@@ -74,12 +85,7 @@ public class GuardiansCtrl : Weapon
             return;
         }
 
-        GameObject guardObj = Instantiate(GuardPrefab, Guardians);
-        if (!IsOn) guardObj.SetActive(false);
-
-        GuardCtrl[] guards = Guardians.GetComponentsInChildren<GuardCtrl>(true);
-        for (int i = 0; i < guards.Length; i++)
-            guards[i].Degree = (360 / guards.Length) * i;
+        AddGuardian();
 
         curLevel++;
     }
@@ -87,6 +93,8 @@ public class GuardiansCtrl : Weapon
     public override void EvolveWeapon()
     {
         isEvolve = true;
+        AddGuardian();
+
         for (int i = 0; i < Guardians.childCount; i++)
         {
             GameObject guard = Guardians.GetChild(i).gameObject;

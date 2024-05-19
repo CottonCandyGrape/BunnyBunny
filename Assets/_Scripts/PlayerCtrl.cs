@@ -306,12 +306,12 @@ public class PlayerCtrl : MonoBehaviour
         //메인 무기 타이머
 
         //로켓 타이머
-        rktTimer -= Time.deltaTime;
-        if (rktTimer <= 0.0f)
+        if (wpMgr.RocketCtrlSc.CurLv > 0)
         {
-            rktTimer = rktTime;
-            if (wpMgr.Rockets.activeSelf)
+            rktTimer -= Time.deltaTime;
+            if (rktTimer <= 0.0f)
             {
+                rktTimer = rktTime;
                 if (!wpMgr.RocketCtrlSc.IsEvolve)
                     wpMgr.RocketCtrlSc.FireRocket();
                 else
@@ -321,12 +321,12 @@ public class PlayerCtrl : MonoBehaviour
         //로켓 타이머
 
         //드릴 타이머
-        drlTimer -= Time.deltaTime;
-        if (drlTimer <= 0.0f)
+        if (wpMgr.DrillCtrlSc.CurLv > 0)
         {
-            drlTimer = drlTime;
-            if (wpMgr.Drills.activeSelf)
+            drlTimer -= Time.deltaTime;
+            if (drlTimer <= 0.0f)
             {
+                drlTimer = drlTime;
                 if (!wpMgr.DrillCtrlSc.IsEvolve)
                     wpMgr.DrillCtrlSc.FireDrills();
                 else

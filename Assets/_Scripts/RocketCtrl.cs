@@ -141,9 +141,10 @@ public class RocketCtrl : Weapon
             return;
         }
 
-        curLevel++;
         expEffect.transform.localScale *= ExpScaler;
         ExpRadius *= ExpScaler;
+
+        curLevel++;
     }
 
     public override void EvolveWeapon()

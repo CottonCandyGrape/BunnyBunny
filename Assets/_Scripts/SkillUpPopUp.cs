@@ -55,7 +55,7 @@ public class SkillUpPopUp : MonoBehaviour
     {
         wpMgr = FindObjectOfType<WeaponMgr>();
 
-        wpArray = new Weapon[]
+        wpArray = new Weapon[] //순서 중요
         {
             wpMgr.GuardiansCtrlSc,
             wpMgr.RocketCtrlSc,
