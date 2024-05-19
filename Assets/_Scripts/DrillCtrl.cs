@@ -109,4 +109,15 @@ public class DrillCtrl : Weapon
     {
         isEvolve = true;
     }
+
+    public override string GetExplainText()
+    {
+        if (curLevel == 0)
+            return "드릴 2개.";
+        else if (curLevel == 1 || curLevel == 2)
+            return "드릴 추가 1개.";
+        else if (curLevel == 3)
+            return "대화살촉. 속도 증가.";
+        return string.Empty;
+    }
 }

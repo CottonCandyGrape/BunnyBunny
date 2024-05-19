@@ -16,6 +16,7 @@ public class SkillUpButton : MonoBehaviour
     public Button SkillUp_Btn = null;
     public Image Weapon_Img = null;
     public Sprite Ev_Sprite = null;
+    public Text Explain_Txt = null;
     public Image[] FStars_Img = null;
     Weapon weapon = null;
     public Weapon Skill { set { weapon = value; } }
@@ -24,7 +25,9 @@ public class SkillUpButton : MonoBehaviour
     {
         if (weapon != null)
         {
-            if (weapon.CurLv == 3)
+            Explain_Txt.text = weapon.GetExplainText(); //설명 텍스트 설정
+
+            if (weapon.CurLv == 3) //진화 직전에 이미지 교체
                 Weapon_Img.sprite = Ev_Sprite;
         }
     }

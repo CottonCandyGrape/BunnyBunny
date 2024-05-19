@@ -13,4 +13,5 @@ abstract public class Weapon : MonoBehaviour
 
     abstract public void LevelUpWeapon();
     abstract public void EvolveWeapon();
+    abstract public string GetExplainText();
 }

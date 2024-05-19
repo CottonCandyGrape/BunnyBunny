@@ -22,18 +22,15 @@ public class SkillUpPopUp : MonoBehaviour
 
     void OnEnable()
     {
-        if (wpBtns.Count == 4)
+        Debug.Log(wpBtns.Count);
+        if (wpBtns.Count == 4 || wpBtns.Count == 3)
         {
-            order = ShuffleNum(4, 3);
+            order = ShuffleNum(wpBtns.Count, 3);
             for (int i = 0; i < 3; i++)
             {
                 wpBtns[order[i]].transform.localPosition = BtnPos[i];
                 wpBtns[order[i]].gameObject.SetActive(true);
             }
-        }
-        else if (wpBtns.Count == 3)
-        {
-
         }
         else if (wpBtns.Count == 2)
         {
