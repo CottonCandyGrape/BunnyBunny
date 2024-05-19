@@ -14,16 +14,19 @@ public class SkillUpButton : MonoBehaviour
     public SkillBtnType BtnType = SkillBtnType.Skill;
 
     public Button SkillUp_Btn = null;
+    public Image Weapon_Img = null;
+    public Sprite Ev_Sprite = null;
     public Image[] FStars_Img = null;
     Weapon weapon = null;
     public Weapon Skill { set { weapon = value; } }
 
     void OnEnable()
     {
-        //if (weapon.CurLv == 3)
-        //{
-
-        //}
+        if (weapon != null)
+        {
+            if (weapon.CurLv == 3)
+                Weapon_Img.sprite = Ev_Sprite;
+        }
     }
 
     void Start()
@@ -48,7 +51,6 @@ public class SkillUpButton : MonoBehaviour
     void SetStar()
     {
         int level = weapon.CurLv;
-        Debug.Log(level);
         FStars_Img[level - 1].gameObject.SetActive(true);
     }
 }

@@ -22,8 +22,6 @@ public class SkillUpPopUp : MonoBehaviour
 
     void OnEnable()
     {
-        Debug.Log("켜짐");
-
         if (wpBtns.Count == 4)
         {
             order = ShuffleNum(4, 3);
