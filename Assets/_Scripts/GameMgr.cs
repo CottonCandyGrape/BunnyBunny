@@ -67,7 +67,7 @@ public class GameMgr : MonoBehaviour
 
     //Map 관련
     [HideInInspector] public MapType MType = MapType.Ground;
-    public GameObject[] Maps = null; 
+    public GameObject[] Maps = null;
     //Map 관련
 
     public static GameMgr Inst = null;
@@ -100,10 +100,14 @@ public class GameMgr : MonoBehaviour
         //{
         //    mongen.SpawnEliteMon();
         //}
-        if (Input.GetKeyDown(KeyCode.Space)) //zoom out Test 코드
-        {
-            InitBossBattle();
-        }
+        //if (Input.GetKeyDown(KeyCode.Space)) //zoom out Test 코드
+        //{
+        //    InitBossBattle();
+        //}
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    ShowSkillPopUp();
+        //}
     }
 
     void SetMap()
@@ -163,8 +167,7 @@ public class GameMgr : MonoBehaviour
             nextExp *= incRatio;
             nextExp = (int)nextExp;
 
-            Time.timeScale = 0.0f;
-            SkillUpPopUp.SetActive(true);
+            ShowSkillPopUp();
         }
 
         //CurExpLevel_Txt.text = inGameExp.ToString(); //inGameExp Test용
@@ -175,10 +178,10 @@ public class GameMgr : MonoBehaviour
         expCo = StartCoroutine(FillBarImg(ExpBar_Img, target));
     }
 
-    public void LevelUp()
+    void ShowSkillPopUp()
     {
-        Time.timeScale = 1.0f;
-        SkillUpPopUp.SetActive(false);
+        Time.timeScale = 0.0f;
+        SkillUpPopUp.SetActive(true);
     }
 
     public void UpdateBossHpBar(float target)

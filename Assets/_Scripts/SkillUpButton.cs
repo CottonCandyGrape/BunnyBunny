@@ -13,13 +13,16 @@ public class SkillUpButton : MonoBehaviour
 {
     public SkillBtnType BtnType = SkillBtnType.Skill;
 
+    public Weapon Skill { set { weapon = value; } }
+
     public Button SkillUp_Btn = null;
     public Image Weapon_Img = null;
     public Sprite Ev_Sprite = null;
     public Text Explain_Txt = null;
     public Image[] FStars_Img = null;
+
     Weapon weapon = null;
-    public Weapon Skill { set { weapon = value; } }
+    SkillUpPopUp skPopUp = null;
 
     void OnEnable()
     {
@@ -36,19 +39,44 @@ public class SkillUpButton : MonoBehaviour
     {
         if (SkillUp_Btn != null)
             SkillUp_Btn.onClick.AddListener(SkillUpBtnClick);
+
+        skPopUp = GetComponentInParent<SkillUpPopUp>();
+    }
+
+    void OnDisable()
+    {
+        gameObject.SetActive(false); //SkillUpPopUp 닫힐때 다 꺼져야한다.
     }
 
     void SkillUpBtnClick()
     {
-        GameMgr.Inst.LevelUp();
-        weapon.LevelUpWeapon();
         if (BtnType == SkillBtnType.Skill)
-            SetStar();
+        {
+            if (weapon.CurLv < 3)
+            {
+                weapon.LevelUpWeapon();
+                SetStar();
+            }
+            else if (3 <= weapon.CurLv) //진화 직전
+                weapon.EvolveWeapon();
 
-        if (!weapon.IsEvolve)
-            gameObject.SetActive(false);
-        //else
-        //    Destroy(gameObject); //SkillUpPopUp에 List에도 알려주고 지워야함.
+            if (weapon.IsEvolve) //진화 직후
+            {
+                if (skPopUp != null)
+                    skPopUp.WpBtns.Remove(this); //SkillUpPopUp의 List에서 삭제.
+                Destroy(gameObject); //프리팹 삭제
+            }
+        }
+        else if (BtnType == SkillBtnType.Item)
+        {
+            if (gameObject.name.Contains("Carrot"))
+                GameMgr.Inst.player.GetHp(0.3f);
+            else if (gameObject.name.Contains("Gold"))
+                GameMgr.Inst.AddGold(200);
+        }
+
+        Time.timeScale = 1.0f;
+        skPopUp.gameObject.SetActive(false);
     }
 
     void SetStar()
