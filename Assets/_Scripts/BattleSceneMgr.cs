@@ -94,16 +94,16 @@ public class BattleSceneMgr : MonoBehaviour
         SceneManager.LoadScene("InGame");
     }
 
-    bool IsExistScene(string name) //BuildSetting에 존재하는 Scene인지 확인하는 함수
-    {
-        EditorBuildSettingsScene[] scenes = EditorBuildSettings.scenes;
-        for (int i = 0; i < scenes.Length; i++)
-        {
-            if (scenes[i].path.Contains(name)) return true;
-        }
+    //bool IsExistScene(string name) //BuildSetting에 존재하는 Scene인지 확인하는 함수
+    //{
+    //    EditorBuildSettingsScene[] scenes = EditorBuildSettings.scenes; //EditorBuildSettings에서 빌드할때 에러남
+    //    for (int i = 0; i < scenes.Length; i++)
+    //    {
+    //        if (scenes[i].path.Contains(name)) return true;
+    //    }
 
-        return false;
-    }
+    //    return false;
+    //}
 
     void AtkLeftBtnClick()
     {
