@@ -167,6 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d45bb7b0f0d3534aaf05db71f73a882, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Setting_Btn: {fileID: 0}
   AtkLeft_Btn: {fileID: 1755042965}
   AtkRight_Btn: {fileID: 1989604356}
   AtkTypePool: {fileID: 372247363}

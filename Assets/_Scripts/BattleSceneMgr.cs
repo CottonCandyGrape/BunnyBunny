@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class BattleSceneMgr : MonoBehaviour
 {
+    public Button Setting_Btn = null;
+
     [Header("------ AttackType Block ------")]
     public Button AtkLeft_Btn = null;
     public Button AtkRight_Btn = null;
@@ -36,6 +38,9 @@ public class BattleSceneMgr : MonoBehaviour
     {
         Time.timeScale = 1.0f; //인게임에서 죽으면 0.0f 되기 때문에 다시 맞춰줌
 
+        if (Setting_Btn)
+            Setting_Btn.onClick.AddListener(SettingBtnClick);
+
         if (AtkLeft_Btn)
             AtkLeft_Btn.onClick.AddListener(AtkLeftBtnClick);
 
@@ -55,6 +60,11 @@ public class BattleSceneMgr : MonoBehaviour
             Start_Btn.onClick.AddListener(StartGame);
 
         InitAtkObjects();
+    }
+
+    void SettingBtnClick()
+    {
+
     }
 
     void InitAtkObjects()
