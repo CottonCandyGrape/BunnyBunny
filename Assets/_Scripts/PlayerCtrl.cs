@@ -20,6 +20,7 @@ public class PlayerCtrl : MonoBehaviour
     Rigidbody2D rigid = null;
     float OffsetX = 4.7f;
     float OffsetY = 5.1f;
+    JoyStickCtrl joyCtrl = null;
     //이동 관련
 
     //Flip 관련
@@ -89,6 +90,7 @@ public class PlayerCtrl : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         wpMgr = FindObjectOfType<WeaponMgr>();
         mainWeapon = GameObject.Find("MainWeapon").transform;
+        joyCtrl = FindObjectOfType<JoyStickCtrl>();
 
         SetLimitOffset();
 
@@ -146,8 +148,12 @@ public class PlayerCtrl : MonoBehaviour
 
     void Move()
     {
-        h = Input.GetAxis("Horizontal");
-        v = Input.GetAxis("Vertical");
+        //#if UNITY_EDITOR
+        //        h = Input.GetAxis("Horizontal");
+        //        v = Input.GetAxis("Vertical");
+        //#endif
+        h = joyCtrl.JoyDir.x;
+        v = joyCtrl.JoyDir.y;
 
         //좌우 방향 바뀔때마다 flip
         if (0.0f < h) Flip(true);
