@@ -25,6 +25,9 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
 
     void Start()
     {
+#if UNITY_ANDROID
+        filePath = Application.persistentDataPath + "/";
+#endif
         //Scene 순서 관리
         if (SceneManager.GetActiveScene().name == "InGame") //바로 InGame 에서 시작했을때 UpLowUI 부르지 않기
             return;
@@ -95,7 +98,7 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
 
     public void InitMsgPopUp(string txt)
     {
-        PopUpBox box = GetPopUpbox(PopUpType.Msg); 
+        PopUpBox box = GetPopUpbox(PopUpType.Msg);
         if (box != null) box.SetMsgText(txt);
     }
 
