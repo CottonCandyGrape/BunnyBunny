@@ -29,10 +29,10 @@ public class InventoryMgr : MonoBehaviour
     void RefreshInvenTxts()
     {
         if (Hp_Txt != null)
-            Hp_Txt.text = AllSceneMgr.Instance.user.hp.ToString();
+            Hp_Txt.text = AllSceneMgr.Instance.user.Hp.ToString();
 
         if (Atk_Txt != null)
-            Atk_Txt.text = AllSceneMgr.Instance.user.attack.ToString();
+            Atk_Txt.text = AllSceneMgr.Instance.user.Attack.ToString();
     }
 
     void InitContents()

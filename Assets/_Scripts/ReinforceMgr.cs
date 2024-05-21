@@ -25,7 +25,7 @@ public class ReinforceMgr : MonoBehaviour
 
     void InitReinCells()
     {
-        int genCnt = AllSceneMgr.Instance.user.level * CellPerLv;
+        int genCnt = AllSceneMgr.Instance.user.Level * CellPerLv;
 
         for (int i = 0; i < genCnt; i++)
         {
@@ -36,8 +36,8 @@ public class ReinforceMgr : MonoBehaviour
 
     void SetScrollBarValue()
     {
-        float dist = 1.0f / AllSceneMgr.Instance.user.level;
-        int cursorLv = AllSceneMgr.Instance.user.reinCursor / CellPerLv;
+        float dist = 1.0f / AllSceneMgr.Instance.user.Level;
+        int cursorLv = AllSceneMgr.Instance.user.ReinCursor / CellPerLv;
         sclBar.value = dist * cursorLv;
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public enum PopUpType { Msg, Inventory, Reinforce, Setting, Pause }
@@ -16,6 +17,9 @@ public class PopUpBox : MonoBehaviour
     [Header("------ Message ------")]
     public Text Title_Txt = null;
     public Text Msg_Txt = null;
+    public Text GoldMsg_Txt = null;
+    public Text KillMsg_Txt = null;
+    public Text ExpMsg_Txt = null;
     public Button Ok_Btn = null;
 
     [Header("------ Inventory ------")]
@@ -94,12 +98,12 @@ public class PopUpBox : MonoBehaviour
         Title_Txt.text = reinTitles[(int)RfType];
         Msg_Txt.text = reinMsgs[(int)RfType] + reinVal.ToString(); //TODO : cellLV에 따른 증가량
 
-        if (cellNum < AllSceneMgr.Instance.user.reinCursor)
+        if (cellNum < AllSceneMgr.Instance.user.ReinCursor)
         {
             Rein_Btn.gameObject.SetActive(false);
             Ok_Btn.gameObject.SetActive(true);
         }
-        else if (AllSceneMgr.Instance.user.reinCursor <= cellNum)
+        else if (AllSceneMgr.Instance.user.ReinCursor <= cellNum)
         {
             Rein_Btn.gameObject.SetActive(true);
             Ok_Btn.gameObject.SetActive(false);
@@ -110,7 +114,7 @@ public class PopUpBox : MonoBehaviour
 
     void TryReinforce()
     {
-        if (AllSceneMgr.Instance.user.reinCursor < cellNum)
+        if (AllSceneMgr.Instance.user.ReinCursor < cellNum)
         {
             AllSceneMgr.Instance.InitMsgPopUp("아직 강화하실 수 없습니다.");
             return;
@@ -120,7 +124,7 @@ public class PopUpBox : MonoBehaviour
         string subGoldTxt = Gold_Txt.text.Substring(2); //TODO : 뒤에 K or M 있는거 변환해줘야한다.
         if (int.TryParse(subGoldTxt, out rGold))
         {
-            int uGold = AllSceneMgr.Instance.user.gold;
+            int uGold = AllSceneMgr.Instance.user.Gold;
             if (rGold <= uGold)
                 AllSceneMgr.Instance.ReinSuccess(RfType, rGold, reinVal, reinCell);
             else
@@ -132,7 +136,7 @@ public class PopUpBox : MonoBehaviour
 
     void SetAlpha()
     {
-        if (AllSceneMgr.Instance.user.reinCursor < cellNum
+        if (AllSceneMgr.Instance.user.ReinCursor < cellNum
             && Rein_Btn.gameObject.activeSelf)
             Alpha_RImg.gameObject.SetActive(true);
         else
@@ -142,6 +146,13 @@ public class PopUpBox : MonoBehaviour
     public void SetMsgText(string msg)
     {
         Msg_Txt.text = msg;
+    }
+
+    public void SetGameOverText(float gold, int kill, float exp)
+    {
+        GoldMsg_Txt.text = gold.ToString();
+        KillMsg_Txt.text = kill.ToString();
+        ExpMsg_Txt.text = exp.ToString();
     }
 
     public void SetInvenComp(InvenButton iBtn)
@@ -204,12 +215,19 @@ public class PopUpBox : MonoBehaviour
 
     void JoyStickToggleClick(bool isOn)
     {
-        AllSceneMgr.Instance.user.joystick = isOn;
+        AllSceneMgr.Instance.user.Joystick = isOn;
     }
 
     void OKBtnClick()
     {
-        AllSceneMgr.Instance.WriteUserInfo();
+        if (PopUpBoxType == PopUpType.Setting)
+            AllSceneMgr.Instance.WriteUserInfo();
+        else if (PopUpBoxType == PopUpType.Pause) //Pasue는 Ingame에서만 나옴.
+            GameMgr.Inst.GoToBattleScene(false);
+        else if (PopUpBoxType == PopUpType.Msg && //Msg && InGame일 경우는 GameOver일 경우뿐.
+            SceneManager.GetActiveScene().name == "InGame")
+            GameMgr.Inst.GoToBattleScene(true);
+
 
         Time.timeScale = 1.0f;
         Destroy(gameObject);

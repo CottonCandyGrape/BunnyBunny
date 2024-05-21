@@ -59,8 +59,9 @@ public class GameMgr : MonoBehaviour
     public Canvas SubCanvas = null;
     public Canvas MainCanvas = null;
     public Button Pause_Btn = null;
-    public GameObject PopUpPref = null;
+    public GameObject PausePopUp = null;
     public GameObject SkillUpPopUp = null;
+    public GameObject GameOverPopUp = null;
 
     public GameObject DmgTxtPrefab = null; //데미지 표시 UI
     //UI 변수
@@ -129,11 +130,11 @@ public class GameMgr : MonoBehaviour
 
         Time_Txt.text = string.Format("{0:D2}:{1:D2}", min, sec);
 
-        if (endTime <= curTime)
-        {
-            GameOver();
-            return;
-        }
+        //if (endTime <= curTime) //TODO : 보스 나타나게 하기
+        //{
+        //    GameOver();
+        //    return;
+        //}
     }
 
     public void AddGold(float val)
@@ -230,25 +231,27 @@ public class GameMgr : MonoBehaviour
         ExpBar_Img.gameObject.SetActive(false); //Exp Bar 끄기
     }
 
-    //void LoadBattleScene() //TODO : 임시 함수
-    //{
-    //    SceneManager.LoadScene("Battle");
-    //}
-
     void PauseBtnClick()
     {
         Time.timeScale = 0.0f;
-        Instantiate(PopUpPref, MainCanvas.transform);
+        Instantiate(PausePopUp, MainCanvas.transform);
     }
 
     public void GameOver()
     {
-        // TODO : 이후에 게임오버 panel에 deltaTime을 이용한 효과 사용하려면 지워야 할지도
         Time.timeScale = 0.0f; //얘 때문에 BattleSceneMgr에서 토끼 배경 움직여 주려고 다시 1.0으로 맞춰준다.
 
-        //이렇게 하면 플레이어 hp가 0인데도 바로 안죽고 돌아다니다가 1초뒤에 갑자기 죽는거 처럼 보인다.
-        //Invoke("LoadBattleScene", 1.0f); // TODO : 임시 코드. 
-        SceneManager.LoadScene("UpLowUI");
-        SceneManager.LoadScene("Battle", LoadSceneMode.Additive);
+        GameObject goObj = Instantiate(GameOverPopUp, MainCanvas.transform);
+        PopUpBox popUp = goObj.GetComponent<PopUpBox>();
+        popUp.SetGameOverText(inGameGold, killCount, inGameExp);
+    }
+
+    public void GoToBattleScene(bool save)
+    {
+        if (save)
+            AllSceneMgr.Instance.GetGoldExpInGame((int)inGameGold, inGameExp);
+
+        SceneManager.LoadScene("Battle");
+        SceneManager.LoadScene("UpLowUI", LoadSceneMode.Additive);
     }
 }

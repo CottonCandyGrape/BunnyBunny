@@ -93,7 +93,7 @@ public class BattleSceneMgr : MonoBehaviour
             return;
         }
 
-        if (AllSceneMgr.Instance.user.diaNum < GameDia)
+        if (AllSceneMgr.Instance.user.DiaNum < GameDia)
         {
             AllSceneMgr.Instance.InitMsgPopUp("보유 다이아가 부족합니다.");
             return;

@@ -25,9 +25,9 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
 
     void Start()
     {
-#if UNITY_ANDROID
-        filePath = Application.persistentDataPath + "/";
-#endif
+//#if UNITY_ANDROID
+//        filePath = Application.persistentDataPath + "/";
+//#endif
 
 #if UNITY_EDITOR 
         //바로 InGame 에서 시작했을때 UpLowUI 부르지 않기. 
@@ -55,13 +55,13 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
     void UserInit()
     {
         user.NickName = "닉네임";
-        user.level = 1;
-        user.exp = 0.0f;
-        user.hp = 100.0f;
-        user.attack = 100.0f;
-        user.defense = 100.0f;
-        user.diaNum = 10;
-        user.gold = 10000;
+        user.Level = 1;
+        user.CurExp = 0.0f;
+        user.Hp = 100.0f; //TODO : 인게임 시작시 player에 넣어줘야한다.
+        user.Attack = 100.0f;
+        user.Defense = 100.0f;
+        user.DiaNum = 30;
+        user.Gold = 10000;
 
         string jsonStr = JsonUtility.ToJson(user);
         File.WriteAllText(filePath + "PlayerInfo" + ".json", jsonStr);
@@ -121,8 +121,8 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
 
     public void GetDia(int stockNum, int stockPrice)
     {
-        user.diaNum += stockNum;
-        user.gold -= stockPrice;
+        user.DiaNum += stockNum;
+        user.Gold -= stockPrice;
         WriteUserInfo();
         RefreshTopUI();
         InitMsgPopUp("구매 성공.");
@@ -130,24 +130,24 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
 
     public void ReinSuccess(ReinType rType, int rGold, int rVal, ReinCellButton reinCell)
     {
-        user.gold -= rGold;
+        user.Gold -= rGold;
         switch (rType)
         {
             case ReinType.Attack:
-                user.attack += rVal;
+                user.Attack += rVal;
                 break;
             case ReinType.Defense:
-                user.defense += rVal;
+                user.Defense += rVal;
                 break;
             case ReinType.Heal:
-                user.heal += rVal;
+                user.Heal += rVal;
                 break;
             case ReinType.Hp:
-                user.hp += rVal;
+                user.Hp += rVal;
                 break;
         }
 
-        user.reinCursor++;
+        user.ReinCursor++;
         WriteUserInfo();
         RefreshTopUI();
         InitMsgPopUp("강화 성공.");
@@ -157,8 +157,23 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
 
     public void SubDia(int dNum)
     {
-        user.diaNum -= dNum;
+        user.DiaNum -= dNum;
         WriteUserInfo();
         RefreshTopUI();
+    }
+
+    public void GetGoldExpInGame(int gold, float exp)
+    {
+        user.Gold += gold;
+        user.CurExp += exp;
+        while (user.NextExp <= user.CurExp)
+        {
+            user.Level++;
+            user.PrevExp = user.NextExp;
+            user.NextExp *= user.IncRatio;
+            user.NextExp = (int)user.NextExp;
+        }
+
+        WriteUserInfo();
     }
 }

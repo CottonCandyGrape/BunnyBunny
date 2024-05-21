@@ -93,10 +93,11 @@ public class UpLowUIMgr : MonoBehaviour
 
     public void RefreshTopUI()
     {
-        Exp_Img.fillAmount = 0.7f; //TODO : 바꿔야함.
+        Exp_Img.fillAmount = (AllSceneMgr.Instance.user.CurExp - AllSceneMgr.Instance.user.PrevExp) /
+            (AllSceneMgr.Instance.user.NextExp - AllSceneMgr.Instance.user.PrevExp);
         Nickname_Txt.text = AllSceneMgr.Instance.user.NickName;
-        Dia_Txt.text = AllSceneMgr.Instance.user.diaNum.ToString() + " / 30";
-        Gold_Txt.text = AllSceneMgr.Instance.user.gold.ToString();
-        Level_Txt.text = AllSceneMgr.Instance.user.level.ToString();
+        Dia_Txt.text = AllSceneMgr.Instance.user.DiaNum.ToString() + " / 30";
+        Gold_Txt.text = AllSceneMgr.Instance.user.Gold.ToString();
+        Level_Txt.text = AllSceneMgr.Instance.user.Level.ToString();
     }
 }

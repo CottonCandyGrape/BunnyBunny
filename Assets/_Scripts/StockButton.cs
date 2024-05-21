@@ -44,8 +44,8 @@ public class StockButton : MonoBehaviour
 
     void TryBuyDia()
     {
-        int curDia = AllSceneMgr.Instance.user.diaNum;
-        int curGold = AllSceneMgr.Instance.user.gold;
+        int curDia = AllSceneMgr.Instance.user.DiaNum;
+        int curGold = AllSceneMgr.Instance.user.Gold;
 
         if (curGold < StockPrice)
         {

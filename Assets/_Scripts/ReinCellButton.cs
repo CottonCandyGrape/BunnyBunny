@@ -44,7 +44,7 @@ public class ReinCellButton : MonoBehaviour
             lvTxt.text = "LEVEL " + (reinBtnCnt / CellPerLv).ToString();
         }
 
-        if (reinBtnCnt == AllSceneMgr.Instance.user.level * CellPerLv)
+        if (reinBtnCnt == AllSceneMgr.Instance.user.Level * CellPerLv)
             Bar_Img.SetActive(false);
     }
 
@@ -55,7 +55,7 @@ public class ReinCellButton : MonoBehaviour
 
     public void SetAlpha()
     {
-        if (cellNum < AllSceneMgr.Instance.user.reinCursor)
+        if (cellNum < AllSceneMgr.Instance.user.ReinCursor)
             Alpha_RImg.gameObject.SetActive(true);
         else
             Alpha_RImg.gameObject.SetActive(false);
