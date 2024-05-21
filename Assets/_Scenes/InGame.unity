@@ -369,8 +369,9 @@ MonoBehaviour:
   SubCanvas: {fileID: 2012018422}
   MainCanvas: {fileID: 1626036648}
   Pause_Btn: {fileID: 1077136654}
-  PopUpPref: {fileID: 0}
+  PausePopUp: {fileID: 6083043622143535140, guid: 179201224bea7284f85a0c1965eebd1b, type: 3}
   SkillUpPopUp: {fileID: 1205444017}
+  GameOverPopUp: {fileID: 6083043622143535140, guid: 149ae72b96d191f44bd0f53d08360b3d, type: 3}
   DmgTxtPrefab: {fileID: 9158740485534171274, guid: 7e369a2ece098ab498b78a7daead6ce7, type: 3}
   MType: 0
   Maps:
@@ -1827,7 +1828,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1077136652}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1837,7 +1838,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 430, y: 850}
-  m_SizeDelta: {x: 88, y: 88}
+  m_SizeDelta: {x: 65, y: 65}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1077136654
 MonoBehaviour:
@@ -1903,7 +1904,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -891466762, guid: dcf6ee204b8d7894792d75131ed84f85, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 30043ac010de7a74eaa60259d64d2975, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
