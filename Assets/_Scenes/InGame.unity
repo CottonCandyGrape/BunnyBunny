@@ -368,7 +368,7 @@ MonoBehaviour:
   BossHpBar_Img: {fileID: 52828951}
   SubCanvas: {fileID: 2012018422}
   MainCanvas: {fileID: 1626036648}
-  Config_Btn: {fileID: 1077136654}
+  Pause_Btn: {fileID: 1077136654}
   PopUpPref: {fileID: 0}
   SkillUpPopUp: {fileID: 1205444017}
   DmgTxtPrefab: {fileID: 9158740485534171274, guid: 7e369a2ece098ab498b78a7daead6ce7, type: 3}
@@ -1814,7 +1814,7 @@ GameObject:
   - component: {fileID: 1077136655}
   - component: {fileID: 1077136654}
   m_Layer: 5
-  m_Name: Config_Btn
+  m_Name: Pause_Btn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
