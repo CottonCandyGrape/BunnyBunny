@@ -204,10 +204,13 @@ public class PopUpBox : MonoBehaviour
 
     void JoyStickToggleClick(bool isOn)
     {
+        AllSceneMgr.Instance.user.joystick = isOn;
     }
 
     void OKBtnClick()
     {
+        AllSceneMgr.Instance.WriteUserInfo();
+
         Time.timeScale = 1.0f;
         Destroy(gameObject);
     }

@@ -7,7 +7,11 @@ using UnityEngine.UI;
 
 public class BattleSceneMgr : MonoBehaviour
 {
+    public Canvas canvas = null;
+
+    [Header("------ Setting Block ------")]
     public Button Setting_Btn = null;
+    public GameObject SettingPopUp = null;
 
     [Header("------ AttackType Block ------")]
     public Button AtkLeft_Btn = null;
@@ -64,7 +68,7 @@ public class BattleSceneMgr : MonoBehaviour
 
     void SettingBtnClick()
     {
-
+        Instantiate(SettingPopUp, canvas.transform);
     }
 
     void InitAtkObjects()
@@ -83,9 +87,6 @@ public class BattleSceneMgr : MonoBehaviour
 
     void StartGame()
     {
-        //string sceneName = "InGame_" + (stageNum + 1).ToString();
-        //if (!IsExistScene(sceneName)) 
-
         if (unLockStageNum < stageNum)
         {
             AllSceneMgr.Instance.InitMsgPopUp("아직 도전할 수 없습니다.");
@@ -103,17 +104,6 @@ public class BattleSceneMgr : MonoBehaviour
         AllSceneMgr.Instance.AtkTypeNum = atkTypeNum;
         SceneManager.LoadScene("InGame");
     }
-
-    //bool IsExistScene(string name) //BuildSetting에 존재하는 Scene인지 확인하는 함수
-    //{
-    //    EditorBuildSettingsScene[] scenes = EditorBuildSettings.scenes; //EditorBuildSettings에서 빌드할때 에러남
-    //    for (int i = 0; i < scenes.Length; i++)
-    //    {
-    //        if (scenes[i].path.Contains(name)) return true;
-    //    }
-
-    //    return false;
-    //}
 
     void AtkLeftBtnClick()
     {

@@ -38,6 +38,9 @@ public class JoyStickCtrl : MonoBehaviour
             entry.eventID = EventTriggerType.Drag;
             entry.callback.AddListener((data) => { OnPointerDrag((PointerEventData)data); });
             trigger.triggers.Add(entry);
+
+            if (!AllSceneMgr.Instance.user.joystick)
+                JoyStickBack_Img.gameObject.SetActive(false);
         }
     }
 

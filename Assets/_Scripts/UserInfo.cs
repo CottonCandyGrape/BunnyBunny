@@ -15,5 +15,6 @@ public class UserInfo
     public int diaNum = 0;
     public int gold = 0;
     public int reinCursor = 0;
+    public bool joystick = true;
     public Image profile_Img = null;
 }

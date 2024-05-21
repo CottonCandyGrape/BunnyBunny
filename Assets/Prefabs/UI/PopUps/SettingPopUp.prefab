@@ -888,8 +888,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2236023751921529395}
   - component: {fileID: 4945552948192693944}
-  - component: {fileID: 490936748261432668}
   - component: {fileID: 4767321905157432432}
+  - component: {fileID: 490936748261432668}
   m_Layer: 5
   m_Name: SettingPopUp
   m_TagString: Untagged
@@ -925,6 +925,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6065880936888137157}
   m_CullTransparentMesh: 1
+--- !u!114 &4767321905157432432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6065880936888137157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f75d9494850a5574fb07490888e5ad81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PopUpBoxType: 3
+  Title_Txt: {fileID: 0}
+  Msg_Txt: {fileID: 0}
+  Ok_Btn: {fileID: 7793831122684943357}
+  Inven_Img: {fileID: 0}
+  Equip_Btn: {fileID: 0}
+  Equip_Txt: {fileID: 0}
+  Exit_Btn: {fileID: 0}
+  Rein_Btn: {fileID: 0}
+  Gold_Txt: {fileID: 0}
+  Alpha_RImg: {fileID: 0}
+  Bgm_Sld: {fileID: 9129357320673682769}
+  Sfx_Sld: {fileID: 7702739546568073104}
+  JoyStick_Tgl: {fileID: 8030674246063238915}
 --- !u!114 &490936748261432668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -955,29 +981,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &4767321905157432432
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6065880936888137157}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f75d9494850a5574fb07490888e5ad81, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PopUpBoxType: 0
-  Title_Txt: {fileID: 0}
-  Msg_Txt: {fileID: 590202970089220731}
-  Ok_Btn: {fileID: 7793831122684943357}
-  Inven_Img: {fileID: 0}
-  Equip_Btn: {fileID: 0}
-  Equip_Txt: {fileID: 0}
-  Exit_Btn: {fileID: 0}
-  Rein_Btn: {fileID: 0}
-  Gold_Txt: {fileID: 0}
-  Alpha_RImg: {fileID: 0}
 --- !u!1 &6203360223269992608
 GameObject:
   m_ObjectHideFlags: 0
