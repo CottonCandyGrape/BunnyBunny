@@ -25,15 +25,13 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
 
     void Start()
     {
-//#if UNITY_ANDROID
-//        filePath = Application.persistentDataPath + "/";
-//#endif
+#if UNITY_ANDROID
+        filePath = Application.persistentDataPath + "/";
+#endif
 
-#if UNITY_EDITOR 
         //바로 InGame 에서 시작했을때 UpLowUI 부르지 않기. 
         if (SceneManager.GetActiveScene().name == "InGame")
             return;
-#endif
 
         SceneManager.LoadScene("UpLowUI", LoadSceneMode.Additive);
 
