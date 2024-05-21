@@ -54,26 +54,26 @@ public class UpLowUIMgr : MonoBehaviour
 
     void StoreBtnClick()
     {
-        SceneManager.LoadScene("UpLowUI");
-        SceneManager.LoadScene("Store", LoadSceneMode.Additive);
+        SceneManager.LoadScene("Store");
+        SceneManager.LoadScene("UpLowUI", LoadSceneMode.Additive);
     }
 
     void InventoryBtnClick()
     {
-        SceneManager.LoadScene("UpLowUI");
-        SceneManager.LoadScene("Inventory", LoadSceneMode.Additive);
+        SceneManager.LoadScene("Inventory");
+        SceneManager.LoadScene("UpLowUI", LoadSceneMode.Additive);
     }
 
     void BattleBtnClick()
     {
-        SceneManager.LoadScene("UpLowUI");
-        SceneManager.LoadScene("Battle", LoadSceneMode.Additive);
+        SceneManager.LoadScene("Battle");
+        SceneManager.LoadScene("UpLowUI", LoadSceneMode.Additive);
     }
 
     void ReinforceBtnClick()
     {
-        SceneManager.LoadScene("UpLowUI");
-        SceneManager.LoadScene("Reinforce", LoadSceneMode.Additive);
+        SceneManager.LoadScene("Reinforce");
+        SceneManager.LoadScene("UpLowUI", LoadSceneMode.Additive);
     }
 
     void PressCurSceneBtn()
@@ -81,7 +81,7 @@ public class UpLowUIMgr : MonoBehaviour
         string SceneName = "";
 
         if (SceneManager.loadedSceneCount > 1)
-            SceneName = SceneManager.GetSceneAt(1).name;
+            SceneName = SceneManager.GetSceneAt(0).name;
 
         if (sceneBtnDic.ContainsKey(SceneName))
         {

@@ -28,17 +28,14 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
 #if UNITY_ANDROID
         filePath = Application.persistentDataPath + "/";
 #endif
-        //Scene 순서 관리
-        if (SceneManager.GetActiveScene().name == "InGame") //바로 InGame 에서 시작했을때 UpLowUI 부르지 않기
-            return;
 
-        if (SceneManager.GetActiveScene().name != "UpLowUI" &&
-         SceneManager.loadedSceneCount == 1) //InGame이 아닌 씬에서 시작했을때 UpLowUI를 먼저 불러오기
-        {
-            SceneManager.LoadScene("UpLowUI");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Additive);
-        }
-        //Scene 순서 관리
+#if UNITY_EDITOR 
+        //바로 InGame 에서 시작했을때 UpLowUI 부르지 않기. 
+        if (SceneManager.GetActiveScene().name == "InGame")
+            return;
+#endif
+
+        SceneManager.LoadScene("UpLowUI", LoadSceneMode.Additive);
 
         //유저 정보 관리
         fileList = Directory.GetFiles(filePath, "*.json");
@@ -86,7 +83,7 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
     PopUpBox GetPopUpbox(PopUpType pType)
     {
         if (mCanvas == null)
-            mCanvas = FindObjectsOfType<Canvas>()[1]; //2번째 Scene의 Canvas에 올릴 것이기 때문에 [1]
+            mCanvas = FindObjectsOfType<Canvas>()[0]; //1번째 Scene의 Canvas에 올릴 것이기 때문에 [0]
 
         GameObject pop = Instantiate(PopUpPrefabs[(int)pType], mCanvas.transform);
         PopUpBox box = pop.GetComponent<PopUpBox>();

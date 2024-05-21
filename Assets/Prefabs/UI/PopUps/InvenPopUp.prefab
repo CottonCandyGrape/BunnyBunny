@@ -1058,7 +1058,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f75d9494850a5574fb07490888e5ad81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PopUpBoxType: 2
+  PopUpBoxType: 1
   Title_Txt: {fileID: 3415691989773136100}
   Msg_Txt: {fileID: 0}
   Ok_Btn: {fileID: 0}
@@ -1069,3 +1069,6 @@ MonoBehaviour:
   Rein_Btn: {fileID: 0}
   Gold_Txt: {fileID: 0}
   Alpha_RImg: {fileID: 0}
+  Bgm_Sld: {fileID: 0}
+  Sfx_Sld: {fileID: 0}
+  JoyStick_Tgl: {fileID: 0}

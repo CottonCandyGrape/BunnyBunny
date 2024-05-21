@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum PopUpType { Msg, Reinforce, Inventory, Setting, Pause }
+public enum PopUpType { Msg, Inventory, Reinforce, Setting, Pause }
 
 public class PopUpBox : MonoBehaviour
 {
@@ -35,6 +35,11 @@ public class PopUpBox : MonoBehaviour
     public RawImage Alpha_RImg = null;
     ReinCellButton reinCell = null;
 
+    [Header("------ Setting ------")]
+    public Slider Bgm_Sld = null;
+    public Slider Sfx_Sld = null;
+    public Toggle JoyStick_Tgl = null;
+
     string[] reinTitles = { "힘", "체력", "인내", "회복" };
     string[] reinMsgs = { "공격력 +", "HP +", "방어력 +", "당근 회복 +" };
     int reinVal = 0;
@@ -54,6 +59,15 @@ public class PopUpBox : MonoBehaviour
 
         if (Equip_Btn)
             Equip_Btn.onClick.AddListener(EquipBtnClick);
+
+        if (Bgm_Sld)
+            Bgm_Sld.onValueChanged.AddListener(BgmSliderMove);
+
+        if (Sfx_Sld)
+            Sfx_Sld.onValueChanged.AddListener(SfxSliderMove);
+
+        if (JoyStick_Tgl)
+            JoyStick_Tgl.onValueChanged.AddListener(JoyStickToggleClick);
 
         if (PopUpBoxType == PopUpType.Reinforce)
             SetAlpha();
@@ -176,6 +190,20 @@ public class PopUpBox : MonoBehaviour
     {
         Time.timeScale = 1.0f;
         Destroy(gameObject);
+    }
+
+    void BgmSliderMove(float value)
+    {
+
+    }
+
+    void SfxSliderMove(float value)
+    {
+
+    }
+
+    void JoyStickToggleClick(bool isOn)
+    {
     }
 
     void OKBtnClick()

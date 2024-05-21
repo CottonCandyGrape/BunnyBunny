@@ -286,14 +286,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f75d9494850a5574fb07490888e5ad81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PopUpBoxType: 1
-  Exit_Btn: {fileID: 1161609176273986198}
+  PopUpBoxType: 2
   Title_Txt: {fileID: 4728490502740865349}
   Msg_Txt: {fileID: 1420437871173032212}
   Ok_Btn: {fileID: 8472130604851149586}
+  Inven_Img: {fileID: 0}
+  Equip_Btn: {fileID: 0}
+  Equip_Txt: {fileID: 0}
+  Exit_Btn: {fileID: 1161609176273986198}
   Rein_Btn: {fileID: 8236361153784910885}
   Gold_Txt: {fileID: 2787521649837041515}
   Alpha_RImg: {fileID: 4511458478253029576}
+  Bgm_Sld: {fileID: 0}
+  Sfx_Sld: {fileID: 0}
+  JoyStick_Tgl: {fileID: 0}
 --- !u!1 &1354759741399458124
 GameObject:
   m_ObjectHideFlags: 0
