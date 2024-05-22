@@ -12,7 +12,7 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
     //유저 정보 관련
     [HideInInspector] public string PlayerInfoJson = "";
     [HideInInspector] public UserInfo user = new UserInfo();
-    string filePath = "Assets/UserData/";
+    string filePath;
     string[] fileList;
     //유저 정보 관련
 
@@ -21,13 +21,19 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
     public GameObject[] PopUpPrefabs = null;
     //팝업창 관련
 
+    //로딩 애니메이션 관련
+    public GameObject LoadingAnim_Canvas = null;
+    public GameObject Bunny = null;
+    const float PosX = 480.0f;
+    Vector2 bunnyPos = Vector2.zero;
+    List<Scene> CurScene = new List<Scene>();
+    //로딩 애니메이션 관련
+
     UpLowUIMgr ulMgr = null;
 
     void Start()
     {
-#if UNITY_ANDROID
-        filePath = Application.persistentDataPath + "/";
-#endif
+        filePath = Application.persistentDataPath + "/"; //에디터나 android에서나 상관없게 하려고.
 
         //바로 InGame 에서 시작했을때 UpLowUI 부르지 않기. 
         if (SceneManager.GetActiveScene().name == "InGame")
@@ -173,5 +179,52 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
         }
 
         WriteUserInfo();
+    }
+
+    IEnumerator LoadScene(string sceneName)
+    {
+        LoadingAnim_Canvas.SetActive(true);
+
+        AsyncOperation async = SceneManager.LoadSceneAsync(sceneName);
+        async.allowSceneActivation = false;
+
+        float time = 0.0f;
+        while (!async.isDone)
+        {
+            if (time < 1.0f)
+                time += Time.deltaTime;
+            else
+                time = 1.0f;
+
+            bunnyPos = Bunny.transform.localPosition;
+            bunnyPos.x = Mathf.Lerp(-PosX, PosX, time);
+            Bunny.transform.localPosition = bunnyPos;
+
+            if (1.0 <= time && 0.9f <= async.progress)
+                async.allowSceneActivation = true;
+
+            yield return null;
+        }
+    }
+
+    IEnumerator LoadUpLowUIScene()
+    {
+        AsyncOperation async = SceneManager.LoadSceneAsync("UpLowUI", LoadSceneMode.Additive);
+
+        while (!async.isDone)
+        {
+            yield return null;
+        }
+    }
+
+    public void TransitionScene(string sceneName)
+    {
+        if (sceneName == "InGame")
+            StartCoroutine(LoadScene(sceneName));
+        else if (sceneName == "Battle")
+        {
+            StartCoroutine(LoadScene(sceneName));
+            StartCoroutine(LoadUpLowUIScene());
+        }
     }
 }

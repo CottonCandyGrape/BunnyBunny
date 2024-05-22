@@ -3155,6 +3155,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AllSceneMgr
       objectReference: {fileID: 0}
+    - target: {fileID: 4805052690919465843, guid: 32e740b08c060804e8a2906df333abe1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9043331738524883515, guid: 32e740b08c060804e8a2906df333abe1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

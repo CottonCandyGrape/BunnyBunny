@@ -14,7 +14,7 @@ public class PlayerCtrl : MonoBehaviour
     //이동 관련
     [HideInInspector] public float h = 0.0f;
     [HideInInspector] public float v = 0.0f;
-    float moveSpeed = 3.0f;
+    float moveSpeed = 2.5f;
     Vector3 moveDir = Vector3.zero;
     SpriteRenderer playerSpRenderer = null;
     Rigidbody2D rigid = null;

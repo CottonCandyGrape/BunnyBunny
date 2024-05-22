@@ -91,6 +91,8 @@ public class GameMgr : MonoBehaviour
             Pause_Btn.onClick.AddListener(PauseBtnClick);
 
         SetMap();
+
+        AllSceneMgr.Instance.LoadingAnim_Canvas.SetActive(false); //로딩 화면 끄기
     }
 
     void Update()
@@ -251,7 +253,6 @@ public class GameMgr : MonoBehaviour
         if (save)
             AllSceneMgr.Instance.GetGoldExpInGame((int)inGameGold, inGameExp);
 
-        SceneManager.LoadScene("Battle");
-        SceneManager.LoadScene("UpLowUI", LoadSceneMode.Additive);
+        AllSceneMgr.Instance.TransitionScene("Battle");
     }
 }
