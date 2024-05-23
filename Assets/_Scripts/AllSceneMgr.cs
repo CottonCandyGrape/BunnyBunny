@@ -35,23 +35,15 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
     {
         filePath = Application.persistentDataPath + "/"; //에디터나 android에서나 상관없게 하려고.
 
-        //바로 InGame 에서 시작했을때 UpLowUI 부르지 않기. 
-        if (SceneManager.GetActiveScene().name == "InGame")
-            return;
-
-        SceneManager.LoadScene("UpLowUI", LoadSceneMode.Additive);
-
         //유저 정보 관리
         fileList = Directory.GetFiles(filePath, "*.json");
         if (fileList.Length == 0) //저장된 유저 정보가 없으면 새로 저장
-        {
             UserInit();
-        }
         else //있으면 불러오기
-        {
             LoadUserInfo();
-        }
         //유저 정보 관리
+
+        StartCoroutine(LoadScene("Battle"));
     }
 
     //void Update() { }
@@ -181,7 +173,7 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
         WriteUserInfo();
     }
 
-    IEnumerator LoadScene(string sceneName)
+    public IEnumerator LoadScene(string sceneName)
     {
         LoadingAnim_Canvas.SetActive(true);
 
@@ -207,7 +199,7 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
         }
     }
 
-    IEnumerator LoadUpLowUIScene()
+    public IEnumerator LoadUpLowUIScene()
     {
         AsyncOperation async = SceneManager.LoadSceneAsync("UpLowUI", LoadSceneMode.Additive);
 
@@ -215,16 +207,7 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
         {
             yield return null;
         }
-    }
 
-    public void TransitionScene(string sceneName)
-    {
-        if (sceneName == "InGame")
-            StartCoroutine(LoadScene(sceneName));
-        else if (sceneName == "Battle")
-        {
-            StartCoroutine(LoadScene(sceneName));
-            StartCoroutine(LoadUpLowUIScene());
-        }
+        LoadingAnim_Canvas.SetActive(false);
     }
 }

@@ -253,6 +253,6 @@ public class GameMgr : MonoBehaviour
         if (save)
             AllSceneMgr.Instance.GetGoldExpInGame((int)inGameGold, inGameExp);
 
-        AllSceneMgr.Instance.TransitionScene("Battle");
+        StartCoroutine(AllSceneMgr.Instance.LoadScene("Battle"));
     }
 }

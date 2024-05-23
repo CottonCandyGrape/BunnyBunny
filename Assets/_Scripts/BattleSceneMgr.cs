@@ -65,7 +65,7 @@ public class BattleSceneMgr : MonoBehaviour
 
         InitAtkObjects();
 
-        AllSceneMgr.Instance.LoadingAnim_Canvas.SetActive(false);
+        StartCoroutine(AllSceneMgr.Instance.LoadUpLowUIScene());
     }
 
     void SettingBtnClick()
@@ -104,7 +104,7 @@ public class BattleSceneMgr : MonoBehaviour
         AllSceneMgr.Instance.SubDia(GameDia);
         AllSceneMgr.Instance.CurStageNum = stageNum;
         AllSceneMgr.Instance.AtkTypeNum = atkTypeNum;
-        AllSceneMgr.Instance.TransitionScene("InGame");
+        StartCoroutine(AllSceneMgr.Instance.LoadScene("InGame"));
     }
 
     void AtkLeftBtnClick()
