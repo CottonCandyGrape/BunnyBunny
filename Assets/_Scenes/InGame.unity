@@ -297,7 +297,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1335071687}
-  - {fileID: 1898118443}
   - {fileID: 692346002}
   - {fileID: 1998195839}
   - {fileID: 1673955614}
@@ -321,6 +320,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EliteMonPrefs:
   - {fileID: 5117565301986446215, guid: 3c2bbe0b76b3fd045980c05505b8e6df, type: 3}
+  - {fileID: 6820689033427440450, guid: bc6c13978b6a05b4d92477773ca75cbd, type: 3}
   BossMonPrefs:
   - {fileID: 8544984616653943037, guid: af5973ddc6195024c8dab7e5017921a1, type: 3}
   - {fileID: 5331838145971630213, guid: 5d596b25ca9a295438576817e13d6855, type: 3}
@@ -2887,37 +2887,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1890204638}
   m_CullTransparentMesh: 1
---- !u!1 &1898118442
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1898118443}
-  m_Layer: 0
-  m_Name: EliteBossPool
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1898118443
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1898118442}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 125638752}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1910032754
 GameObject:
   m_ObjectHideFlags: 0

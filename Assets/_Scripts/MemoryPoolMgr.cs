@@ -58,7 +58,6 @@ public class MemoryPoolMgr : MonoBehaviour
         evSupBulletPool = GameObject.Find("EvSupBulletPool").GetComponent<Transform>();
         bulletEffectPool = GameObject.Find("BulletEffectPool").GetComponent<Transform>();
 
-        //현재 스테이지 초기화 //TODO : 안전한가?
         curStage = AllSceneMgr.Instance.CurStageNum;
         //norMonList = new List<GameObject[]> { NorMonPrefs1, NorMonPrefs2, NorMonPrefs3 };
         norMonList = new List<GameObject[]> { NorMonPrefs1, NorMonPrefs2 };

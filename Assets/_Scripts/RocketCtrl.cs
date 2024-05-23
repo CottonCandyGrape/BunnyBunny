@@ -64,8 +64,6 @@ public class RocketCtrl : Weapon
                 }
             }
         }
-        else //TODO : Elite, Boss는 어떻게 할까? normon없을때는 up이군.
-        { }
 
         return target;
     }
