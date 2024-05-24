@@ -36,7 +36,7 @@ public class BattleSceneMgr : MonoBehaviour
 
     int atkTypeNum = 0;
     int stageNum = 0;
-    int unLockStageNum = 1; //TODO : UserInfo로 넘겨야 할듯.
+    int unLockStageNum = 0;
 
     void Start()
     {
@@ -63,8 +63,9 @@ public class BattleSceneMgr : MonoBehaviour
         if (Start_Btn)
             Start_Btn.onClick.AddListener(StartGame);
 
-        InitAtkObjects();
+        unLockStageNum = AllSceneMgr.Instance.user.unLockStageNum;
 
+        InitAtkObjects();
         StartCoroutine(AllSceneMgr.Instance.LoadUpLowUIScene());
     }
 

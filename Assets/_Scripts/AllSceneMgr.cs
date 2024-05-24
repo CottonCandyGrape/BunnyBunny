@@ -164,7 +164,7 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
         RefreshTopUI();
     }
 
-    public void GetGoldExpInGame(int gold, float exp)
+    public void GetInGameResult(int gold, float exp, bool clear)
     {
         user.Gold += gold;
         user.CurExp += exp;
@@ -175,6 +175,9 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
             user.NextExp *= user.IncRatio;
             user.NextExp = (int)user.NextExp;
         }
+
+        if (clear)
+            user.unLockStageNum = CurStageNum + 1;
 
         WriteUserInfo();
     }

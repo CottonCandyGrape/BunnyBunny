@@ -40,6 +40,7 @@ public class GameMgr : MonoBehaviour
     [HideInInspector] public GameObject BattleRing = null;
     [HideInInspector] public bool hasBoss = false;
     [HideInInspector] public bool hasRing = false;
+    [HideInInspector] public bool stageClear = false;
     Coroutine bHpCo = null;
     //Boss전 관련
 
@@ -81,8 +82,8 @@ public class GameMgr : MonoBehaviour
     void Start()
     {
         curTime = 0.0f;
-
         Time.timeScale = 1.0f;
+        stageClear = false;
 
         monGen = FindObjectOfType<MonGenerator>();
         camCtrl = FindObjectOfType<CameraCtrl>();
@@ -251,7 +252,7 @@ public class GameMgr : MonoBehaviour
     public void GoToBattleScene(bool save)
     {
         if (save)
-            AllSceneMgr.Instance.GetGoldExpInGame((int)inGameGold, inGameExp);
+            AllSceneMgr.Instance.GetInGameResult((int)inGameGold, inGameExp, stageClear);
 
         StartCoroutine(AllSceneMgr.Instance.LoadScene("Battle"));
     }

@@ -138,6 +138,7 @@ public class BossMonCtrl : MonsterCtrl
     protected override void MonsterDie()
     {
         isDie = true;
+        GameMgr.Inst.stageClear = true;
         GameMgr.Inst.GameOver();
     }
 }

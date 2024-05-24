@@ -18,6 +18,7 @@ public class UserInfo
     public int DiaNum = 0;
     public int Gold = 0;
     public int ReinCursor = 0;
+    public int unLockStageNum = 0;
     public bool Joystick = true;
     public Image Profile_Img = null;
 }
