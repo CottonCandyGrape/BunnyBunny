@@ -73,20 +73,11 @@ public class BulletCtrl : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D coll)
     {
-        if (BltType == BulletType.Rocket)
-        {
-            //Rocket만 여기서 구현한 이유 : Guardian, Drill은 Tag로 충돌체크함.
-            //반면 Rocket은 bulletType이 필요한데 여기서 체크하기가 더 편함.
-            //if (coll.tag.Contains("Monster")) //모든 타입 몬스터들 포함하기 위해 Contains
-            if (coll.tag.Contains("Monster")) //모든 타입 몬스터들 포함하기 위해 Contains
-            {
-                WeaponMgr.Inst.RocketCtrlSc.ExploseRocket(WeaponMgr.Inst.RocketCtrlSc.IsEvolve, gameObject);
-            }
-        }
-
         if (coll.tag.Contains("Monster"))
         {
             MonsterCtrl monCtrl = coll.gameObject.GetComponent<MonsterCtrl>();
+
+            if (monCtrl.monType == MonsterType.BossMon && !GameMgr.Inst.hasBoss) return; //보스에겐 효과 안줌.
 
             if (CompareTag("P_Bullet"))
             {

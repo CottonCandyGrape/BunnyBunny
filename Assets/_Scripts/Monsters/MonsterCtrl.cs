@@ -92,7 +92,7 @@ public class MonsterCtrl : MonoBehaviour
         StartCoroutine(DelayTakeDamage(10)); //TODO : 데미지 기준 세우기
     }
 
-    protected virtual  void OnTriggerEnter2D(Collider2D coll)
+    protected virtual void OnTriggerEnter2D(Collider2D coll)
     {
         if (coll.gameObject.CompareTag("Sup_Bullet"))
         {
@@ -117,6 +117,10 @@ public class MonsterCtrl : MonoBehaviour
         else if (coll.gameObject.CompareTag("Drill"))
         {
             TakeDamage((WeaponMgr.Inst.DrillCtrlSc.CurLv + 1) * 20);
+        }
+        else if (coll.gameObject.CompareTag("Rocket"))
+        {
+            WeaponMgr.Inst.RocketCtrlSc.ExploseRocket(WeaponMgr.Inst.RocketCtrlSc.IsEvolve, coll.gameObject);
         }
     }
 
