@@ -349,16 +349,15 @@ public class PlayerCtrl : MonoBehaviour
             animator.SetBool("Moving", true);
     }
 
-    public void TrapBossRing(bool trap) //TODO : 설정 다시 보기
+    public void TrapBossRing(bool trap)
     {
         if (trap)
         {
-            //boxColl.enabled = false;
             capColl.isTrigger = false;
             rigid.bodyType = RigidbodyType2D.Dynamic;
             rigid.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
             rigid.gravityScale = 0.0f;
-            rigid.mass = 0; // 플레이어가 보스 밀지 못하게 0
+            rigid.mass = 0.0f; // 플레이어가 보스 밀지 못하게 0
         }
         else
         {
