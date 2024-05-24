@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class AllSceneMgr : G_Singleton<AllSceneMgr>
 {
+    public Text Debug_Txt = null;
+
     [HideInInspector] public int CurStageNum = 0;
     [HideInInspector] public int AtkTypeNum = 0;
 
@@ -25,8 +28,9 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
     public GameObject LoadingAnim_Canvas = null;
     public GameObject Bunny = null;
     const float PosX = 480.0f;
+    const float moveSpeed = 960.0f; //로딩 1초 걸리게 하기 위해서
     Vector2 bunnyPos = Vector2.zero;
-    List<Scene> CurScene = new List<Scene>();
+    Vector2 bunnyOriginPos = Vector2.zero;
     //로딩 애니메이션 관련
 
     UpLowUIMgr ulMgr = null;
@@ -43,6 +47,8 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
             LoadUserInfo();
         //유저 정보 관리
 
+        bunnyOriginPos = Bunny.transform.localPosition;
+
         StartCoroutine(LoadScene("Battle"));
     }
 
@@ -56,7 +62,7 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
         user.Hp = 100.0f; //TODO : 인게임 시작시 player에 넣어줘야한다.
         user.Attack = 100.0f;
         user.Defense = 100.0f;
-        user.DiaNum = 30;
+        user.DiaNum = 990;
         user.Gold = 10000;
 
         string jsonStr = JsonUtility.ToJson(user);
@@ -175,24 +181,22 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
 
     public IEnumerator LoadScene(string sceneName)
     {
+        SetDebugTxt("LoadScene: " + sceneName);
+        SetDebugTxt("TimeScale: " + Time.timeScale);
         LoadingAnim_Canvas.SetActive(true);
 
         AsyncOperation async = SceneManager.LoadSceneAsync(sceneName);
         async.allowSceneActivation = false;
 
-        float time = 0.0f;
+        Bunny.transform.localPosition = bunnyOriginPos;
         while (!async.isDone)
         {
-            if (time < 1.0f)
-                time += Time.deltaTime;
-            else
-                time = 1.0f;
-
             bunnyPos = Bunny.transform.localPosition;
-            bunnyPos.x = Mathf.Lerp(-PosX, PosX, time);
+            bunnyPos.x += moveSpeed * Time.deltaTime;
+            bunnyPos.x = PosX <= bunnyPos.x ? PosX : bunnyPos.x;
             Bunny.transform.localPosition = bunnyPos;
 
-            if (1.0 <= time && 0.9f <= async.progress)
+            if (PosX <= Bunny.transform.localPosition.x && 0.9f <= async.progress)
                 async.allowSceneActivation = true;
 
             yield return null;
@@ -201,6 +205,7 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
 
     public IEnumerator LoadUpLowUIScene()
     {
+        SetDebugTxt("UpLowUI");
         AsyncOperation async = SceneManager.LoadSceneAsync("UpLowUI", LoadSceneMode.Additive);
 
         while (!async.isDone)
@@ -209,5 +214,10 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
         }
 
         LoadingAnim_Canvas.SetActive(false);
+    }
+
+    void SetDebugTxt(string txt)
+    {
+        Debug_Txt.text += txt + '\n';
     }
 }

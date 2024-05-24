@@ -229,6 +229,7 @@ public class PopUpBox : MonoBehaviour
             GameMgr.Inst.GoToBattleScene(true);
 
 
+        Debug.Log("slkdfjsdlkfj");
         Time.timeScale = 1.0f;
         Destroy(gameObject);
     }

@@ -187,7 +187,7 @@ public class MonsterCtrl : MonoBehaviour
 
         spRenderer.flipX = moveDir.x < 0 ? false : true;
 
-        target = transform.position + moveDir * moveSpeed * Time.deltaTime;
+        target = transform.position + moveDir * moveSpeed * Time.fixedDeltaTime;
         rigid.MovePosition(target);
 
         return target;
@@ -197,7 +197,7 @@ public class MonsterCtrl : MonoBehaviour
     {
         Vector3 target = Vector3.zero;
 
-        kbTimer += kbSpeed * Time.deltaTime;
+        kbTimer += kbSpeed * Time.fixedDeltaTime;
         target = Vector3.Lerp(transform.position, kbTarget, kbTimer);
         rigid.MovePosition(target);
 

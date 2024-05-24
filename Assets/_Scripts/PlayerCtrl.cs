@@ -163,7 +163,7 @@ public class PlayerCtrl : MonoBehaviour
         if (1.0f < moveDir.magnitude)
             moveDir.Normalize();
 
-        Vector3 targetPos = transform.position + moveDir * moveSpeed * Time.deltaTime;
+        Vector3 targetPos = transform.position + moveDir * moveSpeed * Time.fixedDeltaTime;
         rigid.MovePosition(targetPos);
 
         if (GameMgr.Inst.hasRing) LimitRingPos(targetPos);
@@ -263,8 +263,6 @@ public class PlayerCtrl : MonoBehaviour
         curHp -= damage;
         //2. Hp UI 수정
         HpBar_Img.fillAmount = curHp / maxHp;
-        //3. Dmg Txt 띄우기 
-        GameMgr.Inst.SpawnDmgTxt(transform.position + dmgTxtOffset, dmgTxt, Color.red);
 
         if (curHp <= 0.0f)
         {
@@ -282,7 +280,7 @@ public class PlayerCtrl : MonoBehaviour
 
         HpBar_Img.fillAmount = curHp / maxHp;
 
-        GameMgr.Inst.SpawnDmgTxt(transform.position + dmgTxtOffset, heal, Color.blue);
+        GameMgr.Inst.SpawnDmgTxt(transform.position + dmgTxtOffset, heal, Color.green);
     }
 
     void CalcWeaponsTimer() //TODO : 가디언만 Timer를 여기서 안쓰네. 왜지?

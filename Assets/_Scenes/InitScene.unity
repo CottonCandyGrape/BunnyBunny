@@ -131,9 +131,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2350575740953838613, guid: 32e740b08c060804e8a2906df333abe1, type: 3}
+      propertyPath: m_Text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2494763376830373540, guid: 32e740b08c060804e8a2906df333abe1, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -480
+      objectReference: {fileID: 0}
     - target: {fileID: 4300865008673120047, guid: 32e740b08c060804e8a2906df333abe1, type: 3}
       propertyPath: m_Name
       value: AllSceneMgr
+      objectReference: {fileID: 0}
+    - target: {fileID: 4733817955882520963, guid: 32e740b08c060804e8a2906df333abe1, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9043331738524883515, guid: 32e740b08c060804e8a2906df333abe1, type: 3}
       propertyPath: m_LocalPosition.x

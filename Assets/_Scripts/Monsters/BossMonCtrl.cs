@@ -113,7 +113,7 @@ public class BossMonCtrl : MonsterCtrl
 
     protected void RunToPlayer()
     {
-        rigid.MovePosition(transform.position + moveDir * moveSpeed * Time.deltaTime);
+        rigid.MovePosition(transform.position + moveDir * moveSpeed * Time.fixedDeltaTime);
 
         if (Vector3.Distance(transform.position, runTarget) <= TargetRange)
             isRun = false;
