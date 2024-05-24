@@ -103,10 +103,10 @@ public class GameMgr : MonoBehaviour
         //{
         //    mongen.SpawnEliteMon();
         //}
-        //if (Input.GetKeyDown(KeyCode.Space)) //zoom out Test 코드
-        //{
-        //    InitBossBattle();
-        //}
+        if (Input.GetKeyDown(KeyCode.Space)) //zoom out Test 코드
+        {
+            InitBossBattle();
+        }
         //if (Input.GetKeyDown(KeyCode.Space))
         //{
         //    ShowSkillPopUp();
@@ -215,7 +215,7 @@ public class GameMgr : MonoBehaviour
         hasRing = true;
 
         camCtrl.ZoomOut(); //카메라 올리기
-        MemoryPoolMgr.Inst.OffAllNorMon(); //Normal Monster 다 끄기
+        MemoryPoolMgr.Inst.DestroyAllNorMon(); //Normal Monster 다 끄기
 
         Vector2 spawnPos = ScreenMgr.Inst.GetCenterCurScreen();
         if (BattleRing != null) //링 스폰. 

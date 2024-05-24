@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MonGenerator : MonoBehaviour
 {
-    Transform norMonPool = null;
+    Transform monsterPool = null;
 
     public GameObject[] EliteMonPrefs = null;
     public GameObject[] BossMonPrefs = null;
@@ -18,7 +18,7 @@ public class MonGenerator : MonoBehaviour
     {
         spawnTime = Random.Range(0.1f, 0.3f);
 
-        norMonPool = GameObject.Find("NorMonPool").GetComponent<Transform>();
+        monsterPool = GameObject.Find("MonsterPool").GetComponent<Transform>();
 
         curStage = AllSceneMgr.Instance.CurStageNum;
     }
@@ -57,14 +57,14 @@ public class MonGenerator : MonoBehaviour
 
     public void SpawnEliteMon()
     {
-        GameObject eliteMon = Instantiate(EliteMonPrefs[curStage], norMonPool);
+        GameObject eliteMon = Instantiate(EliteMonPrefs[curStage], monsterPool);
         eliteMon.transform.position = GameMgr.Inst.player.transform.position + GetMonSpawnPos();
     }
 
     public void SpawnBossMon(Vector2 spawnPos)
     {
         //Boss Mon Spawn 시키기
-        GameObject bossMon = Instantiate(BossMonPrefs[curStage], norMonPool);
+        GameObject bossMon = Instantiate(BossMonPrefs[curStage], monsterPool);
         bossMon.transform.position = spawnPos;
     }
 }

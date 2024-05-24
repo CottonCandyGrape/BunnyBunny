@@ -18,6 +18,11 @@ public class BulletCtrl : MonoBehaviour
     float outLine = 3.0f;
     float drlOffset = 0.3f;
 
+    //Monster 관련
+    float dftDmg = 30.0f;
+    WaitForSeconds delay = new WaitForSeconds(0.1f);
+    //Monster 관련
+
     Vector3 moveDir = Vector3.one;
     public Vector3 MoveDir
     {
@@ -66,20 +71,71 @@ public class BulletCtrl : MonoBehaviour
         CalcLifeTime();
     }
 
-    void OnCollisionEnter2D(Collision2D coll)
+    void OnTriggerEnter2D(Collider2D coll)
     {
         if (BltType == BulletType.Rocket)
         {
             //Rocket만 여기서 구현한 이유 : Guardian, Drill은 Tag로 충돌체크함.
             //반면 Rocket은 bulletType이 필요한데 여기서 체크하기가 더 편함.
             //if (coll.tag.Contains("Monster")) //모든 타입 몬스터들 포함하기 위해 Contains
-            if (coll.gameObject.tag.Contains("Monster")) //모든 타입 몬스터들 포함하기 위해 Contains
+            if (coll.tag.Contains("Monster")) //모든 타입 몬스터들 포함하기 위해 Contains
             {
                 WeaponMgr.Inst.RocketCtrlSc.ExploseRocket(WeaponMgr.Inst.RocketCtrlSc.IsEvolve, gameObject);
             }
         }
 
-        if (gameObject.CompareTag("E_Bullet") && coll.gameObject.CompareTag("Player"))
+        if (coll.tag.Contains("Monster"))
+        {
+            MonsterCtrl monCtrl = coll.gameObject.GetComponent<MonsterCtrl>();
+
+            if (CompareTag("P_Bullet"))
+            {
+                if (!tag.Contains("_Ev")) //일반 총알
+                {
+                    monCtrl.TakeDamage(dftDmg);
+                    gameObject.SetActive(false);
+
+                    if (monCtrl.monType == MonsterType.BossMon) return; //보스에겐 효과 안줌.
+
+                    if (!coll.gameObject.activeSelf) return; //몬스터 죽으면 효과 안줘도 됨.
+
+                    if (WeaponMgr.Inst.MainType == MWType.Gun) //Tag가 P_Bullet(총알)이니깐 당연히 Gun인가?
+                    {
+                        GameObject bltEft = MemoryPoolMgr.Inst.AddBulletEffectPool();
+                        bltEft.SetActive(true);
+                        bltEft.transform.position = coll.transform.position;
+
+                        AnimEffect animEft = bltEft.GetComponent<AnimEffect>();
+                        if (animEft != null) animEft.Target = coll.gameObject;
+
+
+                        if (GameMgr.Inst.player.AttackType == AtkType.Fire)
+                        {
+                            monCtrl.AdditiveFireDmg(); //불은 추가 데미지
+                        }
+                        else if (GameMgr.Inst.player.AttackType == AtkType.Water)
+                        {
+                            //물은 느려지기.
+                            moveSpeed = 0.5f;
+                            monCtrl.SlowTimer = monCtrl.SlowTime;
+                        }
+                    }
+                }
+                else if (coll.name.Contains("_Ev"))//진화 총알
+                {
+                    monCtrl.TakeDamage(dftDmg * 2);
+                    gameObject.SetActive(false);
+
+                    if (WeaponMgr.Inst.MainType == MWType.Gun)
+                    {
+                        GameObject bltEft = MemoryPoolMgr.Inst.AddEvSupBulletPool();
+                        bltEft.SetActive(true);
+                        bltEft.transform.position = coll.transform.position;
+                    }
+                }
+            }
+        }
+        else if (coll.CompareTag("Player") && gameObject.CompareTag("E_Bullet"))
         {
             if (gameObject.name.Contains("MeatBullet")) //MeatSoldier의 총알
             {

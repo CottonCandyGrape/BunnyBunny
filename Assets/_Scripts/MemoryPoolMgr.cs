@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MemoryPoolMgr : MonoBehaviour
 {
-    Transform norMonPool = null;
+    Transform monsterPool = null;
     Transform bulletPool = null;
     Transform meatBulletPool = null;
     Transform evBulletPool = null;
@@ -51,7 +51,7 @@ public class MemoryPoolMgr : MonoBehaviour
 
     void Start()
     {
-        norMonPool = GameObject.Find("NorMonPool").GetComponent<Transform>();
+        monsterPool = GameObject.Find("MonsterPool").GetComponent<Transform>();
         bulletPool = GameObject.Find("BulletPool").GetComponent<Transform>();
         meatBulletPool = GameObject.Find("MeatBulletPool").GetComponent<Transform>();
         evBulletPool = GameObject.Find("EvBulletPool").GetComponent<Transform>();
@@ -66,7 +66,7 @@ public class MemoryPoolMgr : MonoBehaviour
         for (int i = 0; i < initMonCnt; i++)
         {
             int idx = Random.Range(0, norMonList[curStage].Length);
-            GameObject mon = Instantiate(norMonList[curStage][idx], norMonPool);
+            GameObject mon = Instantiate(norMonList[curStage][idx], monsterPool);
             mon.SetActive(false);
             MonCtrlPool.Add(mon.GetComponent<MonsterCtrl>());
         }
@@ -99,7 +99,7 @@ public class MemoryPoolMgr : MonoBehaviour
         }
 
         int idx = Random.Range(0, norMonList[curStage].Length);
-        GameObject mon = Instantiate(norMonList[curStage][idx], norMonPool);
+        GameObject mon = Instantiate(norMonList[curStage][idx], monsterPool);
         mon.SetActive(false);
         MonsterCtrl monCtrl = mon.GetComponent<MonsterCtrl>();
         MonCtrlPool.Add(monCtrl);
@@ -215,13 +215,12 @@ public class MemoryPoolMgr : MonoBehaviour
         return meatBltCtrl;
     }
 
-    public void OffAllNorMon()
+    public void DestroyAllNorMon()
     {
-        for (int i = 0; i < norMonPool.childCount; i++)
+        for (int i = 0; i < monsterPool.childCount; i++)
         {
-            GameObject mon = norMonPool.GetChild(i).gameObject;
-            if (mon.activeSelf)
-                mon.SetActive(false);
+            GameObject mon = monsterPool.GetChild(i).gameObject;
+            Destroy(mon);
         }
 
         ActiveMonsterCount = 0;
