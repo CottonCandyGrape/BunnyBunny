@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7016035074567619667}
   - component: {fileID: 5736689354219483643}
   - component: {fileID: 5179885348766976180}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GoldPrefab
   m_TagString: Gold
   m_Icon: {fileID: 0}

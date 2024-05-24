@@ -39,9 +39,9 @@ public class ItemCtrl : MonoBehaviour
 
     //void Update() { }
 
-    void OnTriggerEnter2D(Collider2D coll)
+    void OnCollisionEnter2D(Collision2D coll)
     {
-        if (coll.CompareTag("Player"))
+        if (coll.gameObject.CompareTag("Player"))
         {
             if (itemType == ItemType.Gold)
             {

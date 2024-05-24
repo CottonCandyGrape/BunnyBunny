@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1367396585450665534}
   - component: {fileID: 7354495798063556393}
   - component: {fileID: 3761987282278005950}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: BombPrefab
   m_TagString: Bomb
   m_Icon: {fileID: 0}
