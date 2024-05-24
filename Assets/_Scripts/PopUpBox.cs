@@ -40,8 +40,8 @@ public class PopUpBox : MonoBehaviour
     ReinCellButton reinCell = null;
 
     [Header("------ Setting ------")]
-    public Slider Bgm_Sld = null;
-    public Slider Sfx_Sld = null;
+    public Toggle Bgm_Tgl = null;
+    public Toggle Sfx_Tgl = null;
     public Toggle JoyStick_Tgl = null;
 
     string[] reinTitles = { "힘", "체력", "인내", "회복" };
@@ -64,14 +64,14 @@ public class PopUpBox : MonoBehaviour
         if (Equip_Btn)
             Equip_Btn.onClick.AddListener(EquipBtnClick);
 
-        if (Bgm_Sld)
-            Bgm_Sld.onValueChanged.AddListener(BgmSliderMove);
+        if (Bgm_Tgl)
+            Bgm_Tgl.onValueChanged.AddListener((bool isOn) => AllSceneMgr.Instance.user.Bgm = isOn);
 
-        if (Sfx_Sld)
-            Sfx_Sld.onValueChanged.AddListener(SfxSliderMove);
+        if (Sfx_Tgl)
+            Sfx_Tgl.onValueChanged.AddListener((bool isOn) => AllSceneMgr.Instance.user.Sfx = isOn);
 
         if (JoyStick_Tgl)
-            JoyStick_Tgl.onValueChanged.AddListener(JoyStickToggleClick);
+            JoyStick_Tgl.onValueChanged.AddListener((bool isOn) => AllSceneMgr.Instance.user.Joystick = isOn);
 
         if (PopUpBoxType == PopUpType.Reinforce)
             SetAlpha();
@@ -86,6 +86,9 @@ public class PopUpBox : MonoBehaviour
             if (invMgr == null)
                 invMgr = FindObjectOfType<InventoryMgr>();
         }
+
+        if (AllSceneMgr.Instance.user.Sfx)
+            SoundMgr.Instance.PlayGUISound("Pop");
     }
 
     public void SetReinInfo(ReinCellButton rCell)
@@ -110,6 +113,13 @@ public class PopUpBox : MonoBehaviour
 
             Gold_Txt.text = "x " + GoldVal.ToString(); //TODO : cellLV에 따라 다른 가격 
         }
+    }
+
+    public void SetSettingInfo()
+    {
+        Bgm_Tgl.isOn = AllSceneMgr.Instance.user.Bgm;
+        Sfx_Tgl.isOn = AllSceneMgr.Instance.user.Sfx;
+        JoyStick_Tgl.isOn = AllSceneMgr.Instance.user.Joystick;
     }
 
     void TryReinforce()
@@ -203,25 +213,13 @@ public class PopUpBox : MonoBehaviour
         Destroy(gameObject);
     }
 
-    void BgmSliderMove(float value)
-    {
-
-    }
-
-    void SfxSliderMove(float value)
-    {
-
-    }
-
-    void JoyStickToggleClick(bool isOn)
-    {
-        AllSceneMgr.Instance.user.Joystick = isOn;
-    }
-
     void OKBtnClick()
     {
         if (PopUpBoxType == PopUpType.Setting)
+        {
+            SoundMgr.Instance.SoundSetting();
             AllSceneMgr.Instance.WriteUserInfo();
+        }
         else if (PopUpBoxType == PopUpType.Pause) //Pasue는 Ingame에서만 나옴.
             GameMgr.Inst.GoToBattleScene(false);
         else if (PopUpBoxType == PopUpType.Msg && //Msg && InGame일 경우는 GameOver일 경우뿐.

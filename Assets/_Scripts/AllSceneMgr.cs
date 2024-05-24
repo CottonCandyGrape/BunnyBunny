@@ -113,6 +113,12 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
         if (box != null) box.SetInvenComp(invBtn);
     }
 
+    public void InitSettingPopUp()
+    {
+        PopUpBox box = GetPopUpbox(PopUpType.Setting);
+        if (box != null) box.SetSettingInfo();
+    }
+
     public void RefreshTopUI()
     {
         if (ulMgr == null)

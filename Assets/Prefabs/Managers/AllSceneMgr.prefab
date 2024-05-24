@@ -416,12 +416,15 @@ MonoBehaviour:
     Gold: 0
     ReinCursor: 0
     unLockStageNum: 0
+    Bgm: 1
+    Sfx: 1
     Joystick: 1
     Profile_Img: {fileID: 0}
   PopUpPrefabs:
   - {fileID: 6083043622143535140, guid: 52041688e8463af4796553a67a167f63, type: 3}
   - {fileID: 8431212683310283052, guid: 62f697d74f6fd5f4ea54536567620b87, type: 3}
   - {fileID: 184144070302238411, guid: 2eed31b5970a6e64596b4a7c722e7177, type: 3}
+  - {fileID: 6065880936888137157, guid: f375b7aee44075f41ba243fe9e2b229b, type: 3}
   LoadingAnim_Canvas: {fileID: 4805052690919465843}
   Bunny: {fileID: 1000936223154015980}
 --- !u!1 &4805052690919465843

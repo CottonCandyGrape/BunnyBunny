@@ -22,7 +22,7 @@ public class SoundMgr : G_Singleton<SoundMgr>
     {
         AudioClip audioClip = null;
         object[] temp = Resources.LoadAll("Sounds");
-        for(int i=0;i <temp.Length; i++ )
+        for (int i = 0; i < temp.Length; i++)
         {
             audioClip = temp[i] as AudioClip;
             if (adClipDict.ContainsKey(audioClip.name))
@@ -31,10 +31,10 @@ public class SoundMgr : G_Singleton<SoundMgr>
         }
     }
 
-    public void PlayBGM(string fileName, float volume)
+    public void PlayBGM(string fileName)
     {
         AudioClip clip = null;
-        if(adClipDict.ContainsKey(fileName))
+        if (adClipDict.ContainsKey(fileName))
         {
             clip = adClipDict[fileName] as AudioClip;
         }
@@ -50,8 +50,42 @@ public class SoundMgr : G_Singleton<SoundMgr>
             return;
 
         AudioSrc.clip = clip;
-        AudioSrc.volume = volume;  //TODO : 비율로 적용?
+        AudioSrc.volume = 1.0f;
         AudioSrc.loop = true;
         AudioSrc.Play();
+    }
+
+    public void PlayGUISound(string fileName)
+    {
+        if (!AllSceneMgr.Instance.user.Sfx) return;
+
+        AudioClip clip = null;
+        if (adClipDict.ContainsKey(fileName))
+        {
+            clip = adClipDict[fileName] as AudioClip;
+        }
+        else
+        {
+            clip = Resources.Load("Sounds/" + fileName) as AudioClip;
+            adClipDict.Add(fileName, clip);
+        }
+
+        if (AudioSrc == null) return;
+
+        AudioSrc.PlayOneShot(clip, 1.0f);
+    }
+
+    public void SoundSetting()
+    {
+        if (AllSceneMgr.Instance.user.Bgm)
+        {
+            if (!AudioSrc.isPlaying)
+                PlayBGM("bgm_01");
+        }
+        else
+        {
+            AudioSrc.Stop();
+            AudioSrc.time = 0;
+        }
     }
 }
