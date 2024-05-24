@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 8402213250855269416}
   - component: {fileID: 4973601836163327672}
   - component: {fileID: 7766165432180842676}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MeatBullet
   m_TagString: E_Bullet
   m_Icon: {fileID: 0}
@@ -160,7 +160,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

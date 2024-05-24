@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5427495133071948001}
   - component: {fileID: 4302684581528764320}
   - component: {fileID: -3768493934177427832}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FlameEffect_3
   m_TagString: Sup_Bullet
   m_Icon: {fileID: 0}

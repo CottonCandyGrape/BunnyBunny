@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4667807632766467499}
   - component: {fileID: 4104997275975984249}
   - component: {fileID: 995425136213150295}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: WaterEffect_3
   m_TagString: Sup_Bullet
   m_Icon: {fileID: 0}

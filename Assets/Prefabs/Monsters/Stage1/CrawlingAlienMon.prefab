@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: -8513481830969849985}
   - component: {fileID: 6391890567234552901}
   - component: {fileID: 7917992836554217178}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CrawlingAlienMon
   m_TagString: BossMonster
   m_Icon: {fileID: 0}

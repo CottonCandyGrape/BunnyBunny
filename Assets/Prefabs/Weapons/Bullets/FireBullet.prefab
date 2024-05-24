@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2395710642984079823}
   - component: {fileID: -6019221524382866899}
   - component: {fileID: 2426992042531727758}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FireBullet
   m_TagString: P_Bullet
   m_Icon: {fileID: 0}
@@ -76,7 +76,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.1, y: -0.04}
