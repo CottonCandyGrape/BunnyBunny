@@ -41,8 +41,8 @@ public class PlayerCtrl : MonoBehaviour
     //화살표 관련
 
     //능력치 관련
-    //float maxHp = float.MaxValue;
-    float maxHp = 100.0f;
+    float maxHp = float.MaxValue;
+    //float maxHp = 100.0f;
     public float MaxHp { get { return maxHp; } }
     float curHp = 100.0f;
     float attack = 10.0f;
@@ -349,13 +349,14 @@ public class PlayerCtrl : MonoBehaviour
             animator.SetBool("Moving", true);
     }
 
-    public void TrapBossRing(bool trap)
+    public void TrapBossRing(bool trap) //TODO : 설정 다시 보기
     {
         if (trap)
         {
             //boxColl.enabled = false;
             capColl.isTrigger = false;
             rigid.bodyType = RigidbodyType2D.Dynamic;
+            rigid.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
             rigid.gravityScale = 0.0f;
             rigid.mass = 0; // 플레이어가 보스 밀지 못하게 0
         }

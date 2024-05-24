@@ -84,9 +84,9 @@ public class MonsterCtrl : MonoBehaviour
         TakeDamage(dmg);
     }
 
-    protected virtual void OnTriggerEnter2D(Collider2D coll)
+    protected virtual void OnCollisionEnter2D(Collision2D coll)
     {
-        if (coll.CompareTag("P_Bullet"))
+        if (coll.gameObject.CompareTag("P_Bullet"))
         {
             if (!coll.gameObject.name.Contains("_Ev")) //일반 총알
             {
@@ -133,11 +133,11 @@ public class MonsterCtrl : MonoBehaviour
                 }
             }
         }
-        else if (coll.CompareTag("Sup_Bullet"))
+        else if (coll.gameObject.CompareTag("Sup_Bullet"))
         {
             TakeDamage(dftDmg * 2);
         }
-        else if (coll.CompareTag("Player"))
+        else if (coll.gameObject.CompareTag("Player"))
         {
             float dmg = 10;
             if (monType == MonsterType.EliteMon)
@@ -147,13 +147,13 @@ public class MonsterCtrl : MonoBehaviour
 
             GameMgr.Inst.player.TakeDamage(dmg);
         }
-        else if (coll.CompareTag("Guard"))
+        else if (coll.gameObject.CompareTag("Guard"))
         {
             isKnockBack = true;
             kbTarget = transform.position + moveDir * kbDist;
             TakeDamage((WeaponMgr.Inst.GuardiansCtrlSc.CurLv + 1) * 10);
         }
-        else if (coll.CompareTag("Drill"))
+        else if (coll.gameObject.CompareTag("Drill"))
         {
             TakeDamage((WeaponMgr.Inst.DrillCtrlSc.CurLv + 1) * 20);
         }

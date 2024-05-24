@@ -66,19 +66,20 @@ public class BulletCtrl : MonoBehaviour
         CalcLifeTime();
     }
 
-    void OnTriggerEnter2D(Collider2D coll)
+    void OnCollisionEnter2D(Collision2D coll)
     {
         if (BltType == BulletType.Rocket)
         {
             //Rocket만 여기서 구현한 이유 : Guardian, Drill은 Tag로 충돌체크함.
             //반면 Rocket은 bulletType이 필요한데 여기서 체크하기가 더 편함.
-            if (coll.tag.Contains("Monster")) //모든 타입 몬스터들 포함하기 위해 Contains
+            //if (coll.tag.Contains("Monster")) //모든 타입 몬스터들 포함하기 위해 Contains
+            if (coll.gameObject.tag.Contains("Monster")) //모든 타입 몬스터들 포함하기 위해 Contains
             {
                 WeaponMgr.Inst.RocketCtrlSc.ExploseRocket(WeaponMgr.Inst.RocketCtrlSc.IsEvolve, gameObject);
             }
         }
 
-        if (gameObject.CompareTag("E_Bullet") && coll.CompareTag("Player"))
+        if (gameObject.CompareTag("E_Bullet") && coll.gameObject.CompareTag("Player"))
         {
             if (gameObject.name.Contains("MeatBullet")) //MeatSoldier의 총알
             {
