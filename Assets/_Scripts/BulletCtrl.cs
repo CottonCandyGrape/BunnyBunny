@@ -137,6 +137,7 @@ public class BulletCtrl : MonoBehaviour
             if (gameObject.name.Contains("MeatBullet")) //MeatSoldier의 총알
             {
                 GameMgr.Inst.player.TakeDamage(10.0f);
+
             }
         }
     }
@@ -159,8 +160,18 @@ public class BulletCtrl : MonoBehaviour
         }
     }
 
+    void DrillSfx(bool isEvolve)
+    {
+        if (isEvolve)
+            SoundMgr.Instance.PlaySfxSound("arrowHead");
+        else
+            SoundMgr.Instance.PlaySfxSound("drill");
+    }
+
     void WallBounding() //Drill일 경우 튕기기.
     {
+        Vector3 tmp = moveDir;
+
         if (transform.position.x - drlOffset < ScreenMgr.CurScMin.x)
             moveDir.x = Mathf.Abs(moveDir.x); //-> 양
         else if (ScreenMgr.CurScMax.x < transform.position.x + drlOffset)
@@ -172,6 +183,9 @@ public class BulletCtrl : MonoBehaviour
             moveDir.y = -Mathf.Abs(moveDir.y);
 
         moveDir.Normalize();
+
+        if (tmp.x * moveDir.x < 0 || tmp.y * moveDir.y < 0)
+            DrillSfx(WeaponMgr.Inst.DrillCtrlSc.IsEvolve);
 
         float angle = Mathf.Atan2(moveDir.y, moveDir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
