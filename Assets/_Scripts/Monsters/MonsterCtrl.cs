@@ -117,10 +117,12 @@ public class MonsterCtrl : MonoBehaviour
 
                     if (GameMgr.Inst.player.AttackType == AtkType.Fire)
                     {
+                        SoundMgr.Instance.PlaySfxSound("flame");
                         AdditiveFireDmg(); //불은 추가 데미지
                     }
                     else if (GameMgr.Inst.player.AttackType == AtkType.Water)
                     {
+                        SoundMgr.Instance.PlaySfxSound("slower");
                         //물은 느려지기.
                         moveSpeed = 0.5f;
                         slowTimer = slowTime;
@@ -167,11 +169,6 @@ public class MonsterCtrl : MonoBehaviour
         else if (coll.gameObject.CompareTag("Rocket"))
         {
             WeaponMgr.Inst.RocketCtrlSc.ExploseRocket(WeaponMgr.Inst.RocketCtrlSc.IsEvolve, coll.gameObject);
-        }
-
-        if (!coll.gameObject.CompareTag("Player"))
-        {
-            SoundMgr.Instance.PlaySfxSound("attacked");
         }
     }
 

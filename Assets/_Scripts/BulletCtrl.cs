@@ -73,65 +73,6 @@ public class BulletCtrl : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D coll)
     {
-        /*
-        if (coll.tag.Contains("Monster"))
-        {
-            MonsterCtrl monCtrl = coll.gameObject.GetComponent<MonsterCtrl>();
-
-            if (monCtrl.monType == MonsterType.BossMon && !GameMgr.Inst.hasBoss) return; //보스에겐 효과 안줌.
-
-            if (CompareTag("P_Bullet"))
-            {
-                if (!name.Contains("_Ev")) //일반 총알
-                {
-                    monCtrl.TakeDamage(dftDmg);
-                    gameObject.SetActive(false);
-
-                    if (monCtrl.monType == MonsterType.BossMon) return; //보스에겐 효과 안줌.
-
-                    if (!coll.gameObject.activeSelf) return; //몬스터 죽으면 효과 안줘도 됨.
-
-                    if (WeaponMgr.Inst.MainType == MWType.Gun) //Tag가 P_Bullet(총알)이니깐 당연히 Gun인가?
-                    {
-                        GameObject bltEft = MemoryPoolMgr.Inst.AddBulletEffectPool();
-                        bltEft.SetActive(true);
-                        bltEft.transform.position = coll.transform.position;
-
-                        AnimEffect animEft = bltEft.GetComponent<AnimEffect>();
-                        if (animEft != null) animEft.Target = coll.gameObject;
-
-
-                        if (GameMgr.Inst.player.AttackType == AtkType.Fire)
-                        {
-                            monCtrl.AdditiveFireDmg(); //불은 추가 데미지
-                        }
-                        else if (GameMgr.Inst.player.AttackType == AtkType.Water)
-                        {
-                            //물은 느려지기.
-                            moveSpeed = 0.5f;
-                            monCtrl.SlowTimer = monCtrl.SlowTime;
-                        }
-                    }
-                }
-                else if (coll.name.Contains("_Ev"))//진화 총알
-                {
-                    monCtrl.TakeDamage(dftDmg * 2);
-                    gameObject.SetActive(false);
-
-                    if (WeaponMgr.Inst.MainType == MWType.Gun)
-                    {
-                        GameObject bltEft = MemoryPoolMgr.Inst.AddEvSupBulletPool();
-                        bltEft.SetActive(true);
-                        bltEft.transform.position = coll.transform.position;
-                    }
-                }
-            }
-
-            SoundMgr.Instance.PlaySfxSound("attacked");
-        }
-        else if (coll.CompareTag("Player") && gameObject.CompareTag("E_Bullet"))
-        */
-
         if (coll.CompareTag("Player") && CompareTag("E_Bullet"))
         {
             if (gameObject.name.Contains("MeatBullet")) //MeatSoldier의 총알
