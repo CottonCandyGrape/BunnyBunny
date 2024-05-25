@@ -52,6 +52,9 @@ public class PopUpBox : MonoBehaviour
 
     void Start()
     {
+        if (AllSceneMgr.Instance.user.Sfx)
+            SoundMgr.Instance.PlayGUISound("pop");
+
         if (Exit_Btn)
             Exit_Btn.onClick.AddListener(ExitBtnClick);
 
@@ -65,13 +68,13 @@ public class PopUpBox : MonoBehaviour
             Equip_Btn.onClick.AddListener(EquipBtnClick);
 
         if (Bgm_Tgl)
-            Bgm_Tgl.onValueChanged.AddListener((bool isOn) => AllSceneMgr.Instance.user.Bgm = isOn);
+            Bgm_Tgl.onValueChanged.AddListener(BgmToggleClick);
 
         if (Sfx_Tgl)
-            Sfx_Tgl.onValueChanged.AddListener((bool isOn) => AllSceneMgr.Instance.user.Sfx = isOn);
+            Sfx_Tgl.onValueChanged.AddListener(SfxToggleClick);
 
         if (JoyStick_Tgl)
-            JoyStick_Tgl.onValueChanged.AddListener((bool isOn) => AllSceneMgr.Instance.user.Joystick = isOn);
+            JoyStick_Tgl.onValueChanged.AddListener(JoyStickToggleClick);
 
         if (PopUpBoxType == PopUpType.Reinforce)
             SetAlpha();
@@ -86,9 +89,6 @@ public class PopUpBox : MonoBehaviour
             if (invMgr == null)
                 invMgr = FindObjectOfType<InventoryMgr>();
         }
-
-        if (AllSceneMgr.Instance.user.Sfx)
-            SoundMgr.Instance.PlayGUISound("Pop");
     }
 
     public void SetReinInfo(ReinCellButton rCell)
@@ -180,6 +180,9 @@ public class PopUpBox : MonoBehaviour
     //Click Functions
     void EquipBtnClick()
     {
+        if (AllSceneMgr.Instance.user.Sfx)
+            SoundMgr.Instance.PlayGUISound("pop");
+
         if (invBtn.isUpper) //아래로 내려야함.
         {
             if (lower != null)
@@ -209,6 +212,9 @@ public class PopUpBox : MonoBehaviour
 
     void ExitBtnClick()
     {
+        if (AllSceneMgr.Instance.user.Sfx)
+            SoundMgr.Instance.PlayGUISound("pop");
+
         Time.timeScale = 1.0f;
         Destroy(gameObject);
     }
@@ -216,19 +222,51 @@ public class PopUpBox : MonoBehaviour
     void OKBtnClick()
     {
         if (PopUpBoxType == PopUpType.Setting)
-        {
-            SoundMgr.Instance.SoundSetting();
             AllSceneMgr.Instance.WriteUserInfo();
-        }
         else if (PopUpBoxType == PopUpType.Pause) //Pasue는 Ingame에서만 나옴.
             GameMgr.Inst.GoToBattleScene(false);
         else if (PopUpBoxType == PopUpType.Msg && //Msg && InGame일 경우는 GameOver일 경우뿐.
             SceneManager.GetActiveScene().name == "InGame")
             GameMgr.Inst.GoToBattleScene(true);
 
+        if (AllSceneMgr.Instance.user.Sfx) //이게 첫줄에 있으면 Setting에서 Bgm.Off일때 
+            SoundMgr.Instance.PlayGUISound("pop"); //이게 플레이가 안된다.
 
         Debug.Log("slkdfjsdlkfj");
         Time.timeScale = 1.0f;
         Destroy(gameObject);
     }
+
+    void BgmToggleClick(bool isOn)
+    {
+        if (AllSceneMgr.Instance.user.Sfx)
+            SoundMgr.Instance.PlayGUISound("btnClick");
+
+        if (isOn)
+            SoundMgr.Instance.PlayBGM("bgm_01");
+        else
+        {
+            SoundMgr.Instance.AudioSrc.Stop();
+            SoundMgr.Instance.AudioSrc.clip = null;
+        }
+
+        AllSceneMgr.Instance.user.Bgm = isOn;
+    }
+
+    void SfxToggleClick(bool isOn)
+    {
+        if (AllSceneMgr.Instance.user.Sfx)
+            SoundMgr.Instance.PlayGUISound("btnClick");
+
+        AllSceneMgr.Instance.user.Sfx = isOn;
+    }
+
+    void JoyStickToggleClick(bool isOn)
+    {
+        if (AllSceneMgr.Instance.user.Sfx)
+            SoundMgr.Instance.PlayGUISound("btnClick");
+
+        AllSceneMgr.Instance.user.Joystick = isOn;
+    }
+    //Click Functions
 }

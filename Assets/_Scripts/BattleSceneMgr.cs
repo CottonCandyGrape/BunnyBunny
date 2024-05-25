@@ -93,6 +93,9 @@ public class BattleSceneMgr : MonoBehaviour
 
     void StartGame()
     {
+        if (AllSceneMgr.Instance.user.Sfx)
+            SoundMgr.Instance.PlayGUISound("startClick");
+
         if (unLockStageNum < stageNum)
         {
             AllSceneMgr.Instance.InitMsgPopUp("아직 도전할 수 없습니다.");
@@ -113,6 +116,9 @@ public class BattleSceneMgr : MonoBehaviour
 
     void AtkLeftBtnClick()
     {
+        if (AllSceneMgr.Instance.user.Sfx)
+            SoundMgr.Instance.PlayGUISound("btnClick");
+
         atkTypeNum--;
         if (atkTypeNum < 0)
             atkTypeNum = (int)AtkType.Count - 1;
@@ -122,6 +128,9 @@ public class BattleSceneMgr : MonoBehaviour
 
     void AtkRightBtnClick()
     {
+        if (AllSceneMgr.Instance.user.Sfx)
+            SoundMgr.Instance.PlayGUISound("btnClick");
+
         atkTypeNum++;
         if ((int)AtkType.Count <= atkTypeNum)
             atkTypeNum = 0;
@@ -131,6 +140,9 @@ public class BattleSceneMgr : MonoBehaviour
 
     void StageLeftBtnClick()
     {
+        if (AllSceneMgr.Instance.user.Sfx)
+            SoundMgr.Instance.PlayGUISound("btnClick");
+
         if (stageNum <= MinStageNum) return;
 
         stageNum--;
@@ -141,6 +153,9 @@ public class BattleSceneMgr : MonoBehaviour
 
     void StageRightBtnClick()
     {
+        if (AllSceneMgr.Instance.user.Sfx)
+            SoundMgr.Instance.PlayGUISound("btnClick");
+
         if (MaxStageNum <= stageNum) return;
 
         stageNum++;

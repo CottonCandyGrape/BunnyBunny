@@ -54,24 +54,36 @@ public class UpLowUIMgr : MonoBehaviour
 
     void StoreBtnClick()
     {
+        if (AllSceneMgr.Instance.user.Sfx)
+            SoundMgr.Instance.PlayGUISound("btnClick");
+
         SceneManager.LoadScene("Store");
         SceneManager.LoadScene("UpLowUI", LoadSceneMode.Additive);
     }
 
     void InventoryBtnClick()
     {
+        if (AllSceneMgr.Instance.user.Sfx)
+            SoundMgr.Instance.PlayGUISound("btnClick");
+
         SceneManager.LoadScene("Inventory");
         SceneManager.LoadScene("UpLowUI", LoadSceneMode.Additive);
     }
 
     void BattleBtnClick()
     {
+        if (AllSceneMgr.Instance.user.Sfx)
+            SoundMgr.Instance.PlayGUISound("btnClick");
+
         SceneManager.LoadScene("Battle");
         SceneManager.LoadScene("UpLowUI", LoadSceneMode.Additive);
     }
 
     void ReinforceBtnClick()
     {
+        if (AllSceneMgr.Instance.user.Sfx)
+            SoundMgr.Instance.PlayGUISound("btnClick");
+
         SceneManager.LoadScene("Reinforce");
         SceneManager.LoadScene("UpLowUI", LoadSceneMode.Additive);
     }

@@ -35,16 +35,13 @@ public class SoundMgr : G_Singleton<SoundMgr>
     {
         AudioClip clip = null;
         if (adClipDict.ContainsKey(fileName))
-        {
             clip = adClipDict[fileName] as AudioClip;
-        }
-        else
-        {
-            clip = Resources.Load("Sounds/" + fileName) as AudioClip;
-            adClipDict.Add(fileName, clip);
-        }
 
-        if (AudioSrc == null) return;
+        if (clip == null)
+        {
+            Debug.Log("CLIP IS NULL");
+            return;
+        }
 
         if (AudioSrc.clip != null && AudioSrc.clip.name == fileName)
             return;
@@ -61,31 +58,14 @@ public class SoundMgr : G_Singleton<SoundMgr>
 
         AudioClip clip = null;
         if (adClipDict.ContainsKey(fileName))
-        {
             clip = adClipDict[fileName] as AudioClip;
-        }
-        else
-        {
-            clip = Resources.Load("Sounds/" + fileName) as AudioClip;
-            adClipDict.Add(fileName, clip);
-        }
 
-        if (AudioSrc == null) return;
+        if (clip == null)
+        {
+            Debug.Log("CLIP IS NULL");
+            return;
+        }
 
         AudioSrc.PlayOneShot(clip, 1.0f);
-    }
-
-    public void SoundSetting()
-    {
-        if (AllSceneMgr.Instance.user.Bgm)
-        {
-            if (!AudioSrc.isPlaying)
-                PlayBGM("bgm_01");
-        }
-        else
-        {
-            AudioSrc.Stop();
-            AudioSrc.time = 0;
-        }
     }
 }
