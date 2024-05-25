@@ -185,6 +185,7 @@ public class GameMgr : MonoBehaviour
 
     void ShowSkillPopUp()
     {
+        SoundMgr.Instance.PlaySfxSound("skillUp");
         Time.timeScale = 0.0f;
         SkillUpPopUp.SetActive(true);
     }

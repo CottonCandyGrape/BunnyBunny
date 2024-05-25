@@ -50,6 +50,8 @@ public class SkillUpButton : MonoBehaviour
 
     void SkillUpBtnClick()
     {
+        SoundMgr.Instance.PlaySfxSound("skillSelect");
+
         if (BtnType == SkillBtnType.Skill)
         {
             if (weapon.CurLv < 3)

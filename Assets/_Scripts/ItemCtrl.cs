@@ -45,15 +45,18 @@ public class ItemCtrl : MonoBehaviour
         {
             if (itemType == ItemType.Gold)
             {
+                SoundMgr.Instance.PlaySfxSound("gold");
                 GameMgr.Inst.AddGold(goldVal);
             }
             else if (itemType == ItemType.Heal)
             {
+                SoundMgr.Instance.PlaySfxSound("carrot");
                 PlayerCtrl player = GameMgr.Inst.player.GetComponent<PlayerCtrl>();
                 player.GetHp(healRate);
             }
             else if (itemType == ItemType.Bomb)
             {
+                SoundMgr.Instance.PlaySfxSound("nuclear");
                 Collider2D[] colls = Physics2D.OverlapCircleAll(transform.position, bombRadius);
 
                 for (int i = 0; i < colls.Length; i++)
