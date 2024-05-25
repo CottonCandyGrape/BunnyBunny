@@ -283,7 +283,7 @@ public class PlayerCtrl : MonoBehaviour
         GameMgr.Inst.SpawnDmgTxt(transform.position + dmgTxtOffset, heal, Color.green);
     }
 
-    void CalcWeaponsTimer() //TODO : 가디언만 Timer를 여기서 안쓰네. 왜지?
+    void CalcWeaponsTimer()
     {
         //메인 무기 타이머
         mAtkTimer -= Time.deltaTime;
@@ -292,6 +292,8 @@ public class PlayerCtrl : MonoBehaviour
             mAtkTimer = mAtkTime;
             if (wpMgr.GunCtrlSc != null)
             {
+                SoundMgr.Instance.PlaySfxSound("laser");
+
                 if (!wpMgr.GunCtrlSc.IsEvolve)
                 {
                     if (wpMgr.GunCtrlSc.CurLv == 0)
