@@ -125,6 +125,8 @@ public class BulletCtrl : MonoBehaviour
                     }
                 }
             }
+
+            SoundMgr.Instance.PlaySfxSound("attacked");
         }
         else if (coll.CompareTag("Player") && gameObject.CompareTag("E_Bullet"))
         {

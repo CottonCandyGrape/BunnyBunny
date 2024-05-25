@@ -122,6 +122,11 @@ public class MonsterCtrl : MonoBehaviour
         {
             WeaponMgr.Inst.RocketCtrlSc.ExploseRocket(WeaponMgr.Inst.RocketCtrlSc.IsEvolve, coll.gameObject);
         }
+
+        if (!coll.gameObject.CompareTag("Player"))
+        {
+            SoundMgr.Instance.PlaySfxSound("attacked");
+        }
     }
 
     protected void SetExp() //TODO : Init()만들어서 monType으로 나뉘는 변수들 한번에 초기화 하기
