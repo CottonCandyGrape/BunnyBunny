@@ -121,11 +121,13 @@ public class RocketCtrl : Weapon
         {
             ev_ExpEffect.SetActive(true);
             ev_ExpEffect.transform.position = rocketObj.transform.position - NuclearExpOffset;
+            SoundMgr.Instance.PlaySfxSound("nuclear");
         }
         else
         {
             expEffect.SetActive(true);
             expEffect.transform.position = rocketObj.transform.position;
+            SoundMgr.Instance.PlaySfxSound("rocket");
         }
 
         rocketObj.SetActive(false);
