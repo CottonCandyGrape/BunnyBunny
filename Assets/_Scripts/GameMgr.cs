@@ -13,8 +13,9 @@ public class GameMgr : MonoBehaviour
     float minTime = 60.0f;
     int min = 0;
     int sec = 0;
-    //float endTime = 180.0f;
-    float endTime = float.MaxValue; //Test 용. 
+    float eliteTime = 90.0f;
+    float endTime = 180.0f;
+    //float endTime = float.MaxValue; //Test 용. 
     //게임 시간 관련 변수
 
     //몬스터 킬수 표시
@@ -35,7 +36,8 @@ public class GameMgr : MonoBehaviour
     Coroutine expCo = null;
     //Exp 관련
 
-    //Boss전 관련
+    //Elite, Boss전 관련
+    bool hasSpawnElite = false;
     public GameObject[] Rings = null;
     [HideInInspector] public GameObject BattleRing = null;
     [HideInInspector] public bool hasBoss = false;
@@ -127,6 +129,8 @@ public class GameMgr : MonoBehaviour
 
     void UpdateGameTime()
     {
+        if (hasRing) return;
+
         curTime += Time.deltaTime;
 
         min = (int)(curTime / minTime);
@@ -134,10 +138,15 @@ public class GameMgr : MonoBehaviour
 
         Time_Txt.text = string.Format("{0:D2}:{1:D2}", min, sec);
 
+        if (eliteTime <= curTime && !hasSpawnElite)
+        {
+            monGen.SpawnEliteMon();
+            hasSpawnElite = true;
+        }
+
         //if (endTime <= curTime) //TODO : 보스 나타나게 하기
         //{
-        //    GameOver();
-        //    return;
+        //    InitBossBattle();
         //}
     }
 
