@@ -76,6 +76,7 @@ public class BossMonCtrl : MonsterCtrl
     {
         monType = MonsterType.BossMon;
 
+        SoundMgr.Instance.PlaySfxSound("bossAlert");
         StartCoroutine(BlinkBoss());
     }
 

@@ -73,6 +73,7 @@ public class BulletCtrl : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D coll)
     {
+        /*
         if (coll.tag.Contains("Monster"))
         {
             MonsterCtrl monCtrl = coll.gameObject.GetComponent<MonsterCtrl>();
@@ -81,7 +82,7 @@ public class BulletCtrl : MonoBehaviour
 
             if (CompareTag("P_Bullet"))
             {
-                if (!tag.Contains("_Ev")) //일반 총알
+                if (!name.Contains("_Ev")) //일반 총알
                 {
                     monCtrl.TakeDamage(dftDmg);
                     gameObject.SetActive(false);
@@ -129,6 +130,9 @@ public class BulletCtrl : MonoBehaviour
             SoundMgr.Instance.PlaySfxSound("attacked");
         }
         else if (coll.CompareTag("Player") && gameObject.CompareTag("E_Bullet"))
+        */
+
+        if (coll.CompareTag("Player") && CompareTag("E_Bullet"))
         {
             if (gameObject.name.Contains("MeatBullet")) //MeatSoldier의 총알
             {
