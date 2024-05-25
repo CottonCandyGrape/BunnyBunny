@@ -65,8 +65,7 @@ public class BattleSceneMgr : MonoBehaviour
 
         unLockStageNum = AllSceneMgr.Instance.user.unLockStageNum;
 
-        if (AllSceneMgr.Instance.user.Bgm)
-            SoundMgr.Instance.PlayBGM("bgm_01");
+        SoundMgr.Instance.PlayBGM("bgm_01");
 
         InitAtkObjects();
         StartCoroutine(AllSceneMgr.Instance.LoadUpLowUIScene());
@@ -93,8 +92,7 @@ public class BattleSceneMgr : MonoBehaviour
 
     void StartGame()
     {
-        if (AllSceneMgr.Instance.user.Sfx)
-            SoundMgr.Instance.PlayGUISound("startClick");
+        SoundMgr.Instance.PlaySfxSound("startClick");
 
         if (unLockStageNum < stageNum)
         {
@@ -116,8 +114,7 @@ public class BattleSceneMgr : MonoBehaviour
 
     void AtkLeftBtnClick()
     {
-        if (AllSceneMgr.Instance.user.Sfx)
-            SoundMgr.Instance.PlayGUISound("btnClick");
+        SoundMgr.Instance.PlaySfxSound("btnClick");
 
         atkTypeNum--;
         if (atkTypeNum < 0)
@@ -128,8 +125,7 @@ public class BattleSceneMgr : MonoBehaviour
 
     void AtkRightBtnClick()
     {
-        if (AllSceneMgr.Instance.user.Sfx)
-            SoundMgr.Instance.PlayGUISound("btnClick");
+        SoundMgr.Instance.PlaySfxSound("btnClick");
 
         atkTypeNum++;
         if ((int)AtkType.Count <= atkTypeNum)
@@ -140,8 +136,7 @@ public class BattleSceneMgr : MonoBehaviour
 
     void StageLeftBtnClick()
     {
-        if (AllSceneMgr.Instance.user.Sfx)
-            SoundMgr.Instance.PlayGUISound("btnClick");
+        SoundMgr.Instance.PlaySfxSound("btnClick");
 
         if (stageNum <= MinStageNum) return;
 
@@ -153,8 +148,7 @@ public class BattleSceneMgr : MonoBehaviour
 
     void StageRightBtnClick()
     {
-        if (AllSceneMgr.Instance.user.Sfx)
-            SoundMgr.Instance.PlayGUISound("btnClick");
+        SoundMgr.Instance.PlaySfxSound("btnClick");
 
         if (MaxStageNum <= stageNum) return;
 

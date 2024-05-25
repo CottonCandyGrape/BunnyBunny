@@ -35,8 +35,9 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
 
     UpLowUIMgr ulMgr = null;
 
-    void Start()
+    protected override void Init()
     {
+        base.Init();
         filePath = Application.persistentDataPath + "/"; //에디터나 android에서나 상관없게 하려고.
 
         //유저 정보 관리
@@ -48,7 +49,10 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
         //유저 정보 관리
 
         bunnyOriginPos = Bunny.transform.localPosition;
+    }
 
+    void Start()
+    {
         StartCoroutine(LoadScene("Battle"));
     }
 

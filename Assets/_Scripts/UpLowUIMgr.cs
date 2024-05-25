@@ -54,8 +54,7 @@ public class UpLowUIMgr : MonoBehaviour
 
     void StoreBtnClick()
     {
-        if (AllSceneMgr.Instance.user.Sfx)
-            SoundMgr.Instance.PlayGUISound("btnClick");
+        SoundMgr.Instance.PlaySfxSound("btnClick");
 
         SceneManager.LoadScene("Store");
         SceneManager.LoadScene("UpLowUI", LoadSceneMode.Additive);
@@ -63,8 +62,7 @@ public class UpLowUIMgr : MonoBehaviour
 
     void InventoryBtnClick()
     {
-        if (AllSceneMgr.Instance.user.Sfx)
-            SoundMgr.Instance.PlayGUISound("btnClick");
+        SoundMgr.Instance.PlaySfxSound("btnClick");
 
         SceneManager.LoadScene("Inventory");
         SceneManager.LoadScene("UpLowUI", LoadSceneMode.Additive);
@@ -72,8 +70,7 @@ public class UpLowUIMgr : MonoBehaviour
 
     void BattleBtnClick()
     {
-        if (AllSceneMgr.Instance.user.Sfx)
-            SoundMgr.Instance.PlayGUISound("btnClick");
+        SoundMgr.Instance.PlaySfxSound("btnClick");
 
         SceneManager.LoadScene("Battle");
         SceneManager.LoadScene("UpLowUI", LoadSceneMode.Additive);
@@ -81,8 +78,7 @@ public class UpLowUIMgr : MonoBehaviour
 
     void ReinforceBtnClick()
     {
-        if (AllSceneMgr.Instance.user.Sfx)
-            SoundMgr.Instance.PlayGUISound("btnClick");
+        SoundMgr.Instance.PlaySfxSound("btnClick");
 
         SceneManager.LoadScene("Reinforce");
         SceneManager.LoadScene("UpLowUI", LoadSceneMode.Additive);

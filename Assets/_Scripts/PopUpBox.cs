@@ -52,8 +52,7 @@ public class PopUpBox : MonoBehaviour
 
     void Start()
     {
-        if (AllSceneMgr.Instance.user.Sfx)
-            SoundMgr.Instance.PlayGUISound("pop");
+        SoundMgr.Instance.PlaySfxSound("pop");
 
         if (Exit_Btn)
             Exit_Btn.onClick.AddListener(ExitBtnClick);
@@ -180,8 +179,7 @@ public class PopUpBox : MonoBehaviour
     //Click Functions
     void EquipBtnClick()
     {
-        if (AllSceneMgr.Instance.user.Sfx)
-            SoundMgr.Instance.PlayGUISound("pop");
+        SoundMgr.Instance.PlaySfxSound("pop");
 
         if (invBtn.isUpper) //아래로 내려야함.
         {
@@ -212,8 +210,7 @@ public class PopUpBox : MonoBehaviour
 
     void ExitBtnClick()
     {
-        if (AllSceneMgr.Instance.user.Sfx)
-            SoundMgr.Instance.PlayGUISound("pop");
+        SoundMgr.Instance.PlaySfxSound("pop");
 
         Time.timeScale = 1.0f;
         Destroy(gameObject);
@@ -229,8 +226,7 @@ public class PopUpBox : MonoBehaviour
             SceneManager.GetActiveScene().name == "InGame")
             GameMgr.Inst.GoToBattleScene(true);
 
-        if (AllSceneMgr.Instance.user.Sfx) //이게 첫줄에 있으면 Setting에서 Bgm.Off일때 
-            SoundMgr.Instance.PlayGUISound("pop"); //이게 플레이가 안된다.
+        SoundMgr.Instance.PlaySfxSound("pop"); //이게 첫줄에 있으면 Setting에서 Bgm.Off일때 플레이가 안된다.
 
         Debug.Log("slkdfjsdlkfj");
         Time.timeScale = 1.0f;
@@ -239,8 +235,7 @@ public class PopUpBox : MonoBehaviour
 
     void BgmToggleClick(bool isOn)
     {
-        if (AllSceneMgr.Instance.user.Sfx)
-            SoundMgr.Instance.PlayGUISound("btnClick");
+        SoundMgr.Instance.PlaySfxSound("btnClick");
 
         if (isOn)
             SoundMgr.Instance.PlayBGM("bgm_01");
@@ -251,20 +246,22 @@ public class PopUpBox : MonoBehaviour
         }
 
         AllSceneMgr.Instance.user.Bgm = isOn;
+
+        SoundMgr.Instance.SetSoundOnOff();
     }
 
     void SfxToggleClick(bool isOn)
     {
-        if (AllSceneMgr.Instance.user.Sfx)
-            SoundMgr.Instance.PlayGUISound("btnClick");
+        SoundMgr.Instance.PlaySfxSound("btnClick");
 
         AllSceneMgr.Instance.user.Sfx = isOn;
+
+        SoundMgr.Instance.SetSoundOnOff();
     }
 
     void JoyStickToggleClick(bool isOn)
     {
-        if (AllSceneMgr.Instance.user.Sfx)
-            SoundMgr.Instance.PlayGUISound("btnClick");
+        SoundMgr.Instance.PlaySfxSound("btnClick");
 
         AllSceneMgr.Instance.user.Joystick = isOn;
     }
