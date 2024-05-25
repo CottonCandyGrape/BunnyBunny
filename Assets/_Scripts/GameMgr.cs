@@ -94,6 +94,7 @@ public class GameMgr : MonoBehaviour
         SetMap();
 
         AllSceneMgr.Instance.LoadingAnim_Canvas.SetActive(false); //로딩 화면 끄기
+        SoundMgr.Instance.PlayBGM("stage_0" + (AllSceneMgr.Instance.CurStageNum + 1).ToString()); //Stage Bgm Play
     }
 
     void Update()
