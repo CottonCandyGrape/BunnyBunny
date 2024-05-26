@@ -103,7 +103,7 @@ public class BulletCtrl : MonoBehaviour
 
     void DrillSfx(bool isEvolve)
     {
-        if (isEvolve)
+        if (isEvolve && gameObject.name.Contains("ArrowHead"))
             SoundMgr.Instance.PlaySfxSound("arrowHead");
         else
             SoundMgr.Instance.PlaySfxSound("drill");

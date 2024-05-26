@@ -82,8 +82,6 @@ public class DrillCtrl : Weapon
             arrowHead.SetActive(false);
         }
 
-        //Vector3 pos = GameMgr.Inst.player.transform.position;
-
         if (!arrowHead.activeSelf)
         {
             arrowHead.SetActive(true);
