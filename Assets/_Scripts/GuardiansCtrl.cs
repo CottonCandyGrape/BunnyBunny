@@ -39,6 +39,8 @@ public class GuardiansCtrl : Weapon
             GuardCtrl guard = guardObj.GetComponent<GuardCtrl>();
             guard.Degree = (360 / GuardInitCount) * i;
         }
+
+        ev_Name = "간장계란밥";
     }
 
     void OnOffGuardians()

@@ -13,7 +13,7 @@ public class GameMgr : MonoBehaviour
     float minTime = 60.0f;
     int min = 0;
     int sec = 0;
-    float eliteTime = 3.0f;
+    float eliteTime = 90.0f;
     float endTime = 180.0f;
     //float endTime = float.MaxValue; //Test 용. 
     //게임 시간 관련 변수
@@ -140,10 +140,10 @@ public class GameMgr : MonoBehaviour
             hasSpawnElite = true;
         }
 
-        //if (endTime <= curTime) //TODO : 보스 나타나게 하기
-        //{
-        //    InitBossBattle();
-        //}
+        if (endTime <= curTime) //TODO : 보스 나타나게 하기
+        {
+            InitBossBattle();
+        }
     }
 
     public void AddGold(float val)

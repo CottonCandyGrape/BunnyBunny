@@ -41,6 +41,8 @@ public class RocketCtrl : Weapon
             expEffect = Instantiate(ExpEffectPrefab, RocketPool);
             expEffect.SetActive(false);
         }
+
+        ev_Name = "핵폭탄";
     }
 
     Vector3 GetCloseTarget()

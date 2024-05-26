@@ -16,7 +16,7 @@ public class GunCtrl : Weapon
     public Sprite Ev_Sprite = null;
     Vector2 ev_Scale = new Vector2(0.1f, 0.1f);
 
-    void Start() { }
+    void Start() { ev_Name = "슈퍼에너지"; }
 
     //void Update() { }
 

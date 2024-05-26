@@ -29,6 +29,8 @@ public class DrillCtrl : Weapon
             GameObject drill = Instantiate(DrillPrefab, DrillPool);
             drill.SetActive(false);
         }
+
+        ev_Name = "화살촉";
     }
 
     void SetBulletTransform(BulletCtrl blt)

@@ -597,6 +597,7 @@ MonoBehaviour:
   Weapon_Img: {fileID: 6935506480035401681}
   Ev_Sprite: {fileID: 21300000, guid: 6470315c2f046e84ea88d3c23dad57f1, type: 3}
   Explain_Txt: {fileID: 5730181849507349681}
+  WpName_Txt: {fileID: 5904519987283141763}
   FStars_Img:
   - {fileID: 3336956284774886522}
   - {fileID: 3028386321693559686}
