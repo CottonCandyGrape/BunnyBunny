@@ -6,7 +6,7 @@ public class CrawlingAlienCtrl : BossMonCtrl
 {
     ActionState actState = ActionState.None;
 
-    float crawlingHp = 1000.0f;
+    float crawlingHp = 3000.0f;
 
     void Start()
     {

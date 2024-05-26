@@ -7,7 +7,7 @@ public class MeatSoldierCtrl : BossMonCtrl
     ActionState actState = ActionState.None;
 
     public GameObject MeatBullet = null;
-    float MeatSolHp = 1500.0f;
+    float MeatSolHp = 3500.0f;
 
     void Start()
     {
