@@ -18,11 +18,6 @@ public class BulletCtrl : MonoBehaviour
     float outLine = 3.0f;
     float drlOffset = 0.3f;
 
-    //Monster 관련
-    float dftDmg = 30.0f;
-    WaitForSeconds delay = new WaitForSeconds(0.1f);
-    //Monster 관련
-
     Vector3 moveDir = Vector3.one;
     public Vector3 MoveDir
     {
