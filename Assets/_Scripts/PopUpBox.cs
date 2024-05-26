@@ -204,7 +204,7 @@ public class PopUpBox : MonoBehaviour
     {
         TryReinforce();
 
-        Time.timeScale = 1.0f;
+        Time.timeScale = 1.0f; //TODO : 여기에 왜 이게 있지?
         Destroy(gameObject);
     }
 
@@ -218,18 +218,25 @@ public class PopUpBox : MonoBehaviour
 
     void OKBtnClick()
     {
+        SoundMgr.Instance.PlaySfxSound("pop");
+
         if (PopUpBoxType == PopUpType.Setting)
             AllSceneMgr.Instance.WriteUserInfo();
         else if (PopUpBoxType == PopUpType.Pause) //Pasue는 Ingame에서만 나옴.
+        {
+            SoundMgr.Instance.TurnOffSound();
             GameMgr.Inst.GoToBattleScene(false);
+            return;
+        }
         else if (PopUpBoxType == PopUpType.Msg && //Msg && InGame일 경우는 GameOver일 경우뿐.
             SceneManager.GetActiveScene().name == "InGame")
+        {
             GameMgr.Inst.GoToBattleScene(true);
+            return;
+        }
 
-        SoundMgr.Instance.PlaySfxSound("pop"); //이게 첫줄에 있으면 Setting에서 Bgm.Off일때 플레이가 안된다.
-
-        Debug.Log("slkdfjsdlkfj");
         Time.timeScale = 1.0f;
+        Debug.Log("slkdfjsdlkfj");
         Destroy(gameObject);
     }
 
@@ -247,7 +254,7 @@ public class PopUpBox : MonoBehaviour
 
         AllSceneMgr.Instance.user.Bgm = isOn;
 
-        SoundMgr.Instance.SetSoundOnOff();
+        SoundMgr.Instance.SetMuteOnOff();
     }
 
     void SfxToggleClick(bool isOn)
@@ -256,7 +263,7 @@ public class PopUpBox : MonoBehaviour
 
         AllSceneMgr.Instance.user.Sfx = isOn;
 
-        SoundMgr.Instance.SetSoundOnOff();
+        SoundMgr.Instance.SetMuteOnOff();
     }
 
     void JoyStickToggleClick(bool isOn)

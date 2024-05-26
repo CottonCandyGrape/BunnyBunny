@@ -20,7 +20,7 @@ public class SoundMgr : G_Singleton<SoundMgr>
 
     void Start()
     {
-        SetSoundOnOff();
+        SetMuteOnOff();
     }
 
     void SetClipDict()
@@ -55,7 +55,7 @@ public class SoundMgr : G_Singleton<SoundMgr>
         }
     }
 
-    public void SetSoundOnOff()
+    public void SetMuteOnOff()
     {
         bool mute = !AllSceneMgr.Instance.user.Bgm; //헷갈리니깐 거꾸로 
 
@@ -63,24 +63,26 @@ public class SoundMgr : G_Singleton<SoundMgr>
         {
             AudioSrc.mute = mute;
             if (!mute && !AudioSrc.isPlaying)
-                AudioSrc.time = 0;
+                AudioSrc.time = 0.0f;
         }
 
         mute = !AllSceneMgr.Instance.user.Sfx;
 
-        for (int i = 0; i < sfxCnt; i++)
+        for (int i = 0; i < MaxSfxCnt; i++)
         {
             if (sfxSrcList[i] != null)
             {
                 sfxSrcList[i].mute = mute;
                 if (!mute)
-                    sfxSrcList[i].time = 0;
+                    sfxSrcList[i].time = 0.0f;
             }
         }
     }
 
     public void PlayBGM(string fileName)
     {
+        if (!AllSceneMgr.Instance.user.Bgm) return;
+
         AudioClip clip = null;
         if (adClipDict.ContainsKey(fileName))
             clip = adClipDict[fileName] as AudioClip;
@@ -123,5 +125,32 @@ public class SoundMgr : G_Singleton<SoundMgr>
         sfxCnt++;
         if (MaxSfxCnt <= sfxCnt)
             sfxCnt = 0;
+    }
+
+    public void TurnOffBgm()
+    {
+        if (AudioSrc.clip != null)
+        {
+            AudioSrc.Stop();
+            AudioSrc.time = 0.0f;
+        }
+    }
+
+    public void TurnOffSfx()
+    {
+        for (int i = 0; i < MaxSfxCnt; i++)
+        {
+            if (sfxSrcList[i] != null)
+            {
+                sfxSrcList[i].Stop();
+                sfxSrcList[i].time = 0.0f;
+            }
+        }
+    }
+
+    public void TurnOffSound()
+    {
+        TurnOffBgm();
+        TurnOffSfx();
     }
 }

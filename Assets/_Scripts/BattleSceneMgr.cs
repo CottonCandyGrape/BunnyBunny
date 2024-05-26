@@ -40,7 +40,7 @@ public class BattleSceneMgr : MonoBehaviour
 
     void Start()
     {
-        Time.timeScale = 1.0f; //인게임에서 죽으면 0.0f 되기 때문에 다시 맞춰줌
+        Time.timeScale = 1.0f;
 
         if (Setting_Btn)
             Setting_Btn.onClick.AddListener(SettingBtnClick);
@@ -93,6 +93,7 @@ public class BattleSceneMgr : MonoBehaviour
     void StartGame()
     {
         SoundMgr.Instance.PlaySfxSound("startClick");
+        SoundMgr.Instance.TurnOffBgm();
 
         if (unLockStageNum < stageNum)
         {

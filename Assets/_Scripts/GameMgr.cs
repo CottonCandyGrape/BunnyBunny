@@ -13,19 +13,16 @@ public class GameMgr : MonoBehaviour
     float minTime = 60.0f;
     int min = 0;
     int sec = 0;
-    float eliteTime = 90.0f;
+    float eliteTime = 3.0f;
     float endTime = 180.0f;
     //float endTime = float.MaxValue; //Test 용. 
     //게임 시간 관련 변수
 
+    //인게임 정보
     //몬스터 킬수 표시
     int killCount = 0;
-    //몬스터 킬수 표시
-
     //Gold 관련
     float inGameGold = 0.0f;
-    //Gold 관련
-
     //Exp 관련
     //public Text CurExpLevel_Txt = null; //inGameExp test 용
     float inGameExp = 0.0f;
@@ -34,7 +31,7 @@ public class GameMgr : MonoBehaviour
     float incRatio = 1.5f;
     int inGameLevel = 1;
     Coroutine expCo = null;
-    //Exp 관련
+    //인게임 정보
 
     //Elite, Boss전 관련
     bool hasSpawnElite = false;
@@ -44,7 +41,7 @@ public class GameMgr : MonoBehaviour
     [HideInInspector] public bool hasRing = false;
     [HideInInspector] public bool stageClear = false;
     Coroutine bHpCo = null;
-    //Boss전 관련
+    //Elite, Boss전 관련
 
     //Class 변수
     MonGenerator monGen = null;
@@ -84,7 +81,6 @@ public class GameMgr : MonoBehaviour
     void Start()
     {
         curTime = 0.0f;
-        Time.timeScale = 1.0f;
         stageClear = false;
 
         monGen = FindObjectOfType<MonGenerator>();
@@ -253,7 +249,9 @@ public class GameMgr : MonoBehaviour
 
     public void GameOver()
     {
-        Time.timeScale = 0.0f; //얘 때문에 BattleSceneMgr에서 토끼 배경 움직여 주려고 다시 1.0으로 맞춰준다.
+        SoundMgr.Instance.TurnOffSound();
+
+        Time.timeScale = 0.0f;
 
         GameObject goObj = Instantiate(GameOverPopUp, MainCanvas.transform);
         PopUpBox popUp = goObj.GetComponent<PopUpBox>();

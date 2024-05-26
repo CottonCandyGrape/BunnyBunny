@@ -205,7 +205,7 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
         while (!async.isDone)
         {
             bunnyPos = Bunny.transform.localPosition;
-            bunnyPos.x += moveSpeed * Time.deltaTime;
+            bunnyPos.x += moveSpeed * Time.unscaledDeltaTime;
             bunnyPos.x = PosX <= bunnyPos.x ? PosX : bunnyPos.x;
             Bunny.transform.localPosition = bunnyPos;
 
