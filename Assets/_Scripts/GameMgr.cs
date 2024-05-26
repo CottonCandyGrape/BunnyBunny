@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameMgr : MonoBehaviour
@@ -13,6 +12,7 @@ public class GameMgr : MonoBehaviour
     float minTime = 60.0f;
     int min = 0;
     int sec = 0;
+    float nextAddTime = 30.0f;
     float eliteTime = 90.0f;
     float endTime = 180.0f;
     //float endTime = float.MaxValue; //Test 용. 
@@ -24,7 +24,6 @@ public class GameMgr : MonoBehaviour
     //Gold 관련
     float inGameGold = 0.0f;
     //Exp 관련
-    //public Text CurExpLevel_Txt = null; //inGameExp test 용
     float inGameExp = 0.0f;
     float prevExp = 0.0f;
     float nextExp = 50.0f;
@@ -103,13 +102,9 @@ public class GameMgr : MonoBehaviour
         //{
         //    mongen.SpawnEliteMon();
         //}
-        if (Input.GetKeyDown(KeyCode.Space)) //zoom out Test 코드
-        {
-            InitBossBattle();
-        }
-        //if (Input.GetKeyDown(KeyCode.Space))
+        //if (Input.GetKeyDown(KeyCode.Space)) //zoom out Test 코드
         //{
-        //    ShowSkillPopUp();
+        //    InitBossBattle();
         //}
     }
 
@@ -134,13 +129,19 @@ public class GameMgr : MonoBehaviour
 
         Time_Txt.text = string.Format("{0:D2}:{1:D2}", min, sec);
 
+        if (nextAddTime <= curTime && monGen.monLimit < MonGenerator.MaxMonCnt)
+        {
+            monGen.monLimit += 10;
+            nextAddTime += 45.0f;
+        }
+
         if (eliteTime <= curTime && !hasSpawnElite)
         {
             monGen.SpawnEliteMon();
             hasSpawnElite = true;
         }
 
-        if (endTime <= curTime) //TODO : 보스 나타나게 하기
+        if (endTime <= curTime)
         {
             InitBossBattle();
         }
@@ -168,7 +169,6 @@ public class GameMgr : MonoBehaviour
 
     public void AddExpVal(float eVal)
     {
-        //Debug.Log(string.Format("Current Exp:{0}, Prev {1}, Next {2}", inGameExp, prevExp, nextExp));
         inGameExp += eVal;
         if (nextExp <= inGameExp) //levelup 할 때.
         {
@@ -180,7 +180,6 @@ public class GameMgr : MonoBehaviour
             ShowSkillPopUp();
         }
 
-        //CurExpLevel_Txt.text = inGameExp.ToString(); //inGameExp Test용
         ExpLevel_Txt.text = "Lv. " + inGameLevel.ToString();
 
         if (expCo != null) StopCoroutine(expCo);
@@ -199,7 +198,7 @@ public class GameMgr : MonoBehaviour
     {
         if (bHpCo != null)
             StopCoroutine(bHpCo);
-        bHpCo = StartCoroutine(FillBarImg(BossHpBar_Img, target)); //TODO : BossPtr 아직 null
+        bHpCo = StartCoroutine(FillBarImg(BossHpBar_Img, target));
     }
 
     //게이지 방향이 음, 양일 수 있어서 Lerp로 구현함.

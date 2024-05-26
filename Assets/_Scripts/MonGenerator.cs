@@ -9,10 +9,10 @@ public class MonGenerator : MonoBehaviour
     public GameObject[] EliteMonPrefs = null;
     public GameObject[] BossMonPrefs = null;
 
-    float spawnTime = 0.0f;
-
-    int monLimit = 20;
+    public const int MaxMonCnt = 60;
+    [HideInInspector] public int monLimit = 30;
     int curStage = 0;
+    float spawnTime = 0.0f;
 
     void Start()
     {
@@ -63,7 +63,6 @@ public class MonGenerator : MonoBehaviour
 
     public void SpawnBossMon(Vector2 spawnPos)
     {
-        //Boss Mon Spawn 시키기
         GameObject bossMon = Instantiate(BossMonPrefs[curStage], monsterPool);
         bossMon.transform.position = spawnPos;
     }
