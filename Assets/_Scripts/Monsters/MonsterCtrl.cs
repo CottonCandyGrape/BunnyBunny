@@ -19,9 +19,7 @@ public class MonsterCtrl : MonoBehaviour
     protected SpriteRenderer spRenderer = null;
     protected Rigidbody2D rigid = null;
     protected float slowTimer = 0.0f;
-    public float SlowTimer { set { slowTimer = value; } }
     float slowTime = 3.0f;
-    public float SlowTime { get { return slowTime; } }
     //이동 관련
 
     //넉백 관련 
