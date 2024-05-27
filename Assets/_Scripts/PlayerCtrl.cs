@@ -112,6 +112,8 @@ public class PlayerCtrl : MonoBehaviour
 
     void Update()
     {
+        if (isDead) return;
+
         DirectionArrow();
         CalcWeaponsTimer();
         PlayerStateUpdate();
@@ -148,6 +150,8 @@ public class PlayerCtrl : MonoBehaviour
 
     void Move()
     {
+        if (isDead) return;
+
         //#if UNITY_EDITOR
         //        h = Input.GetAxis("Horizontal");
         //        v = Input.GetAxis("Vertical");
@@ -258,6 +262,8 @@ public class PlayerCtrl : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        if (isDead) return;
+
         //1. Hp변수 깎기
         float dmgTxt = curHp < damage ? curHp : damage;
         curHp -= damage;
@@ -266,7 +272,8 @@ public class PlayerCtrl : MonoBehaviour
 
         if (curHp <= 0.0f)
         {
-            PlayerDie();
+            isDead = true;
+            StartCoroutine(PlayerDie());
         }
     }
 
@@ -367,13 +374,19 @@ public class PlayerCtrl : MonoBehaviour
         }
     }
 
-    void PlayerDie()
+    IEnumerator PlayerDie()
     {
-        GameMgr.Inst.GameOver();
-        //isDead = true; //TODO : 어떤 상태 넣을건지?
-        //AnimState = PlayerAnim.Dead;
+        animator.SetBool("Dead", true);
+        AnimatorStateInfo animInfo = animator.GetCurrentAnimatorStateInfo(0);
+        while (!animInfo.IsName("Bunny_Dead"))
+        {
+            animInfo = animator.GetCurrentAnimatorStateInfo(0);
+            yield return null;
+        }
 
-        return;
+        yield return new WaitForSeconds(animInfo.length + 0.3f);
+
+        GameMgr.Inst.GameOver();
     }
 
     /*
