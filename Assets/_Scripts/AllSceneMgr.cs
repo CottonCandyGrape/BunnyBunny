@@ -33,6 +33,11 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
     Vector2 bunnyOriginPos = Vector2.zero;
     //로딩 애니메이션 관련
 
+    //마우스 포인터
+    public GameObject MousePtr = null;
+    public bool MousePtrOn = false;
+    //마우스 포인터
+
     UpLowUIMgr ulMgr = null;
 
     protected override void Init()
@@ -56,7 +61,7 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
         StartCoroutine(LoadScene("Battle"));
     }
 
-    //void Update() { }
+    void Update() { MousePointer(); }
 
     void UserInit()
     {
@@ -232,5 +237,22 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
     void SetDebugTxt(string txt)
     {
         Debug_Txt.text += txt + '\n';
+    }
+
+    void MousePointer()
+    {
+        if (!MousePtrOn || MousePtr == null) return;
+
+        Vector2 mousePos = Input.mousePosition;
+
+        if (Input.GetMouseButton(0) || Input.GetMouseButtonDown(0))
+        {
+            MousePtr.SetActive(true);
+            MousePtr.transform.position = mousePos;
+        }
+        else if (Input.GetMouseButtonUp(0))
+        {
+            MousePtr.SetActive(false);
+        }
     }
 }
