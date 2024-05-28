@@ -9,7 +9,7 @@ public class BossMonCtrl : MonsterCtrl
     protected Collider2D coll = null;
     protected float collDmg = 30.0f;
     protected float bossHp = 10.0f;
-    protected bool isDie = false;
+    protected bool isDead = false;
 
     //Walk
     protected float walkTimer = 0.0f;
@@ -130,16 +130,18 @@ public class BossMonCtrl : MonsterCtrl
 
     public override void TakeDamage(float damage)
     {
+        if (isDead) return;
+
         base.TakeDamage(damage);
         GameMgr.Inst.UpdateBossHpBar(curHp / bossHp);
 
-        if (curHp <= 0) MonsterDie();
+        if (curHp <= 0)
+        {
+            isDead = true;
+            GameMgr.Inst.stageClear = true;
+            StartCoroutine(BossDie());
+        }
     }
 
-    protected override void MonsterDie()
-    {
-        isDie = true;
-        GameMgr.Inst.stageClear = true;
-        GameMgr.Inst.GameOver();
-    }
+    protected virtual IEnumerator BossDie() { yield return null; }
 }

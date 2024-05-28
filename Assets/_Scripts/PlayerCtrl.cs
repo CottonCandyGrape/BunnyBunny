@@ -273,6 +273,7 @@ public class PlayerCtrl : MonoBehaviour
         if (curHp <= 0.0f)
         {
             isDead = true;
+            capColl.isTrigger = true;
             StartCoroutine(PlayerDie());
         }
     }
@@ -386,7 +387,7 @@ public class PlayerCtrl : MonoBehaviour
 
         yield return new WaitForSeconds(animInfo.length + 0.3f);
 
-        GameMgr.Inst.GameOver();
+        GameMgr.Inst.GameOver(GameMgr.Inst.stageClear);
     }
 
     /*

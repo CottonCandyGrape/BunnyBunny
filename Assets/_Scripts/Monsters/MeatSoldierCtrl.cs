@@ -19,6 +19,8 @@ public class MeatSoldierCtrl : BossMonCtrl
 
     void FixedUpdate() //충돌이 있으니깐 움직이는 것을 여기서 구현
     {
+        if (isDead) return;
+
         if (!GameMgr.Inst.hasBoss) return; //깜빡일때 안움직이기
 
         if (actState == ActionState.Walk)
@@ -45,9 +47,16 @@ public class MeatSoldierCtrl : BossMonCtrl
         base.InitBoss();
     }
 
+    protected override IEnumerator BossDie()
+    {
+        yield return new WaitForSeconds(1.0f);
+
+        GameMgr.Inst.GameOver(GameMgr.Inst.stageClear);
+    }
+
     void UpdateActionState()
     {
-        if (isDie) return; //죽으면 return
+        if (isDead) return; //죽으면 return
 
         if (!GameMgr.Inst.hasBoss) return; //깜빡일 땐 return 
 

@@ -157,8 +157,16 @@ public class PopUpBox : MonoBehaviour
         Msg_Txt.text = msg;
     }
 
-    public void SetGameOverText(float gold, int kill, float exp)
+    public void SetGameOverText(bool isClear, float gold, int kill, float exp)
     {
+        if (isClear)
+        {
+            Title_Txt.text = "Game Clear!";
+            SoundMgr.Instance.PlaySfxSound("gameClear");
+        }
+        else
+            Title_Txt.text = "Game Over";
+
         GoldMsg_Txt.text = gold.ToString();
         KillMsg_Txt.text = kill.ToString();
         ExpMsg_Txt.text = exp.ToString();
@@ -236,7 +244,6 @@ public class PopUpBox : MonoBehaviour
         }
 
         Time.timeScale = 1.0f;
-        Debug.Log("slkdfjsdlkfj");
         Destroy(gameObject);
     }
 

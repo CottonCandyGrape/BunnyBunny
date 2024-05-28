@@ -18,6 +18,8 @@ public class CrawlingAlienCtrl : BossMonCtrl
 
     void FixedUpdate()
     {
+        if (isDead) return;
+
         if (!GameMgr.Inst.hasBoss) return; //깜빡일때 안움직이기
 
         if (actState == ActionState.Walk)
@@ -42,9 +44,24 @@ public class CrawlingAlienCtrl : BossMonCtrl
         base.InitBoss();
     }
 
+    protected override IEnumerator BossDie()
+    {
+        animator.SetBool("Dead", true);
+        AnimatorStateInfo animInfo = animator.GetCurrentAnimatorStateInfo(0);
+        while (!animInfo.IsName("CrawlingAlienMon_Defeated"))
+        {
+            animInfo = animator.GetCurrentAnimatorStateInfo(0);
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(animInfo.length + 0.3f);
+
+        GameMgr.Inst.GameOver(GameMgr.Inst.stageClear);
+    }
+
     void UpdateActionState()
     {
-        if (isDie) return; //죽으면 return
+        if (isDead) return; //죽으면 return
 
         if (!GameMgr.Inst.hasBoss) return; //깜빡일 땐 return 
 

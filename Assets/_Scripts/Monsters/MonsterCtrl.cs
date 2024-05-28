@@ -249,7 +249,7 @@ public class MonsterCtrl : MonoBehaviour
         if (curHp <= 0) MonsterDie();
     }
 
-    protected virtual void MonsterDie()
+    void MonsterDie()
     {
         if (monType == MonsterType.BossMon) return;
 

@@ -102,10 +102,10 @@ public class GameMgr : MonoBehaviour
         //{
         //    mongen.SpawnEliteMon();
         //}
-        //if (Input.GetKeyDown(KeyCode.Space)) //zoom out Test 코드
-        //{
-        //    InitBossBattle();
-        //}
+        if (Input.GetKeyDown(KeyCode.Space)) //zoom out Test 코드
+        {
+            InitBossBattle();
+        }
     }
 
     void SetMap()
@@ -246,7 +246,7 @@ public class GameMgr : MonoBehaviour
         Instantiate(PausePopUp, MainCanvas.transform);
     }
 
-    public void GameOver()
+    public void GameOver(bool isClear)
     {
         SoundMgr.Instance.TurnOffSound();
 
@@ -254,7 +254,7 @@ public class GameMgr : MonoBehaviour
 
         GameObject goObj = Instantiate(GameOverPopUp, MainCanvas.transform);
         PopUpBox popUp = goObj.GetComponent<PopUpBox>();
-        popUp.SetGameOverText(inGameGold, killCount, inGameExp);
+        popUp.SetGameOverText(isClear, inGameGold, killCount, inGameExp);
     }
 
     public void GoToBattleScene(bool save)
