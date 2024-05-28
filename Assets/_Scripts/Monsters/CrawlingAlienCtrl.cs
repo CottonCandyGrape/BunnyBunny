@@ -10,9 +10,6 @@ public class CrawlingAlienCtrl : BossMonCtrl
 
     void Start()
     {
-        if (coll == null)
-            coll = GetComponent<CapsuleCollider2D>();
-
         InitBoss();
     }
 

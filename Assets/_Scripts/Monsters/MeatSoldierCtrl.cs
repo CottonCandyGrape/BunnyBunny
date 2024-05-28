@@ -11,9 +11,6 @@ public class MeatSoldierCtrl : BossMonCtrl
 
     void Start()
     {
-        if (coll == null)
-            coll = GetComponent<CapsuleCollider2D>();
-
         InitBoss();
     }
 

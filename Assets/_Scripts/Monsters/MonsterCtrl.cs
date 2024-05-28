@@ -18,6 +18,7 @@ public class MonsterCtrl : MonoBehaviour
     protected Vector3 moveDir = Vector3.zero;
     protected SpriteRenderer spRenderer = null;
     protected Rigidbody2D rigid = null;
+    protected Collider2D coll = null;
     protected float slowTimer = 0.0f;
     float slowTime = 3.0f;
     //이동 관련
@@ -51,10 +52,12 @@ public class MonsterCtrl : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         spRenderer = GetComponentInChildren<SpriteRenderer>();
         rigid = GetComponent<Rigidbody2D>();
+        coll = GetComponent<Collider2D>();
     }
 
     void OnEnable()
     {
+        isKnockBack = false; //넉백하다가 죽으면 바로 다시 태어났을때 바로 넉백이기 때문에 그 자리로 순간이동 한다.
         slowTimer = 0.0f;
         curHp = maxHp;
         SetExp();
@@ -159,6 +162,7 @@ public class MonsterCtrl : MonoBehaviour
         else if (coll.gameObject.CompareTag("Guard"))
         {
             isKnockBack = true;
+            coll.isTrigger = true;
             kbTarget = transform.position + moveDir * kbDist;
             TakeDamage((WeaponMgr.Inst.GuardiansCtrlSc.CurLv + 1) * 10);
         }
@@ -218,6 +222,7 @@ public class MonsterCtrl : MonoBehaviour
         {
             isKnockBack = false;
             kbTimer = 0.0f;
+            coll.isTrigger = false;
         }
 
         return target;

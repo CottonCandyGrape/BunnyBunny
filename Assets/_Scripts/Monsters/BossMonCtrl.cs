@@ -6,7 +6,6 @@ public enum ActionState { None, Walk, Run, Shot }
 
 public class BossMonCtrl : MonsterCtrl
 {
-    protected Collider2D coll = null;
     protected float collDmg = 30.0f;
     protected float bossHp = 10.0f;
     protected bool isDead = false;

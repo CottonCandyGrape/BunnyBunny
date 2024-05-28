@@ -9,10 +9,11 @@ public class MonGenerator : MonoBehaviour
     public GameObject[] EliteMonPrefs = null;
     public GameObject[] BossMonPrefs = null;
 
-    public const int MaxMonCnt = 60;
-    [HideInInspector] public int monLimit = 30;
     int curStage = 0;
     float spawnTime = 0.0f;
+    int monLimit = 30;
+    public int MonLimit { get { return monLimit; } set { monLimit = value; } }
+    public const int MaxMonCnt = 60;
 
     void Start()
     {

@@ -129,9 +129,9 @@ public class GameMgr : MonoBehaviour
 
         Time_Txt.text = string.Format("{0:D2}:{1:D2}", min, sec);
 
-        if (nextAddTime <= curTime && monGen.monLimit < MonGenerator.MaxMonCnt)
+        if (nextAddTime <= curTime && monGen.MonLimit < MonGenerator.MaxMonCnt)
         {
-            monGen.monLimit += 10;
+            monGen.MonLimit += 10;
             nextAddTime += 45.0f;
         }
 

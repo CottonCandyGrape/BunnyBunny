@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class LandMonCtrl : MonsterCtrl
 {
-    Collider2D coll = null;
     const float OffsetX = 0.08f;
     float landMonHp = 300.0f;
 
@@ -15,11 +14,7 @@ public class LandMonCtrl : MonsterCtrl
         base.SetExp();
     }
 
-    void Start()
-    {
-        if (coll == null)
-            coll = GetComponent<CircleCollider2D>();
-    }
+    void Start() { }
 
     void FixedUpdate()
     {
