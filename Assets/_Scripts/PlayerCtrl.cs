@@ -136,10 +136,6 @@ public class PlayerCtrl : MonoBehaviour
     {
         if (isDead) return;
 
-        //#if UNITY_EDITOR
-        //        h = Input.GetAxis("Horizontal");
-        //        v = Input.GetAxis("Vertical");
-        //#endif
         h = joyCtrl.JoyDir.x;
         v = joyCtrl.JoyDir.y;
 
