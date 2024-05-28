@@ -192,7 +192,12 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
         }
 
         if (clear)
+        {
             user.unLockStageNum = CurStageNum + 1;
+
+            //3탄까지만 막는 코드
+            user.unLockStageNum = user.unLockStageNum > 1 ? 1 : user.unLockStageNum;
+        }
 
         WriteUserInfo();
     }
