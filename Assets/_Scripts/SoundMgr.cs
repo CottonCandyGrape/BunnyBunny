@@ -81,8 +81,6 @@ public class SoundMgr : G_Singleton<SoundMgr>
 
     public void PlayBGM(string fileName)
     {
-        if (!AllSceneMgr.Instance.user.Bgm) return;
-
         AudioClip clip = null;
         if (adClipDict.ContainsKey(fileName))
             clip = adClipDict[fileName] as AudioClip;

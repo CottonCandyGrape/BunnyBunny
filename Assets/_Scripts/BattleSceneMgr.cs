@@ -93,7 +93,6 @@ public class BattleSceneMgr : MonoBehaviour
     void StartGame()
     {
         SoundMgr.Instance.PlaySfxSound("startClick");
-        SoundMgr.Instance.TurnOffBgm();
 
         if (unLockStageNum < stageNum)
         {

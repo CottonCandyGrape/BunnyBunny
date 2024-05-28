@@ -204,8 +204,7 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
 
     public IEnumerator LoadScene(string sceneName)
     {
-        SetDebugTxt("LoadScene: " + sceneName);
-        SetDebugTxt("TimeScale: " + Time.timeScale);
+        SoundMgr.Instance.TurnOffBgm();
         LoadingAnim_Canvas.SetActive(true);
 
         AsyncOperation async = SceneManager.LoadSceneAsync(sceneName);
