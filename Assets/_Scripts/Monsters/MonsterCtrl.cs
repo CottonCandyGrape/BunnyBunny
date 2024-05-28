@@ -163,6 +163,7 @@ public class MonsterCtrl : MonoBehaviour
         {
             isKnockBack = true;
             coll.isTrigger = true;
+            kbDist = GetKnockBackDist();
             kbTarget = transform.position + moveDir * kbDist;
             TakeDamage((WeaponMgr.Inst.GuardiansCtrlSc.CurLv + 1) * 10);
         }
@@ -174,6 +175,26 @@ public class MonsterCtrl : MonoBehaviour
         {
             WeaponMgr.Inst.RocketCtrlSc.ExploseRocket(WeaponMgr.Inst.RocketCtrlSc.IsEvolve, coll.gameObject);
         }
+    }
+
+    float GetKnockBackDist()
+    {
+        float dist = kbDist;
+
+        switch(monType)
+        {
+            case MonsterType.NormalMon:
+                dist = -Random.Range(1.0f, 2.0f);
+                break;
+            case MonsterType.EliteMon:
+                dist = -Random.Range(0.5f, 1.5f);
+                break;
+            case MonsterType.BossMon:
+                dist = -Random.Range(0.0f, 0.5f);
+                break;
+        }
+
+        return dist;
     }
 
     protected void SetExp() //TODO : Init()만들어서 monType으로 나뉘는 변수들 한번에 초기화 하기
