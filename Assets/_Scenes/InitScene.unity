@@ -161,7 +161,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3624528465168301870, guid: 32e740b08c060804e8a2906df333abe1, type: 3}
       propertyPath: MousePtrOn
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3624528465168301870, guid: 32e740b08c060804e8a2906df333abe1, type: 3}
       propertyPath: MousePtrOnOff
