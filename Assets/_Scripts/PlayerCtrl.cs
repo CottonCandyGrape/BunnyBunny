@@ -250,10 +250,8 @@ public class PlayerCtrl : MonoBehaviour
     {
         if (isDead) return;
 
-        //1. Hp변수 깎기
-        float dmgTxt = curHp < damage ? curHp : damage;
         curHp -= damage;
-        //2. Hp UI 수정
+        //Hp UI 수정
         HpBar_Img.fillAmount = curHp / maxHp;
 
         if (curHp <= 0.0f)
