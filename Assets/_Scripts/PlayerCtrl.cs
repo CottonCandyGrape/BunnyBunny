@@ -114,22 +114,28 @@ public class PlayerCtrl : MonoBehaviour
 
         SubCanvas.transform.position = transform.position; //Move()에 있었는데 느려서 여기서 호출 
 
-        if (Input.GetKeyDown(KeyCode.Alpha1) && wpMgr.RocketCtrlSc != null)
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            wpMgr.RocketCtrlSc.LevelUpWeapon(); //로켓 test 용
+            wpMgr.GunCtrlSc.LevelUpWeapon();
+            //wpMgr.RocketCtrlSc.LevelUpWeapon();
+            //wpMgr.GuardiansCtrlSc.LevelUpWeapon();
+            //wpMgr.DrillCtrlSc.LevelUpWeapon();
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2) && wpMgr.GuardiansCtrlSc != null)
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            wpMgr.GuardiansCtrlSc.EvolveWeapon(); //가디언 test 용
+            wpMgr.GunCtrlSc.EvolveWeapon();
+            //wpMgr.RocketCtrlSc.EvolveWeapon();
+            //wpMgr.GuardiansCtrlSc.EvolveWeapon();
+            //wpMgr.DrillCtrlSc.EvolveWeapon();
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha3) && wpMgr.DrillCtrlSc != null)
-        {
-            wpMgr.DrillCtrlSc.LevelUpWeapon(); //드릴 test 용
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha4) && wpMgr.GunCtrlSc != null)
-        {
-            wpMgr.GunCtrlSc.LevelUpWeapon(); //Gun test 용
-        }
+        //else if (Input.GetKeyDown(KeyCode.Alpha3))
+        //{
+        //    wpMgr.DrillCtrlSc.LevelUpWeapon(); 
+        //}
+        //else if (Input.GetKeyDown(KeyCode.Alpha4))
+        //{
+        //    wpMgr.GunCtrlSc.LevelUpWeapon(); 
+        //}
     }
 
     void Move()

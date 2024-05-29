@@ -128,12 +128,6 @@ public class GunCtrl : Weapon
 
     public override void LevelUpWeapon()
     {
-        if (MaxLevel <= curLevel)
-        {
-            if (!isEvolve) EvolveWeapon();
-            return;
-        }
-
         curLevel++;
     }
 
