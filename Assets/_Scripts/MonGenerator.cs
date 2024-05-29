@@ -35,11 +35,33 @@ public class MonGenerator : MonoBehaviour
 
         if (spawnTime <= 0.0f && MemoryPoolMgr.Inst.ActiveMonsterCount < monLimit)
         {
-            spawnTime = Random.Range(0.1f, 0.3f);
+            spawnTime = GetSpawnTime();
             MonsterCtrl monCtrl = MemoryPoolMgr.Inst.AddMonsterPool(curStage);
             monCtrl.gameObject.SetActive(true);
             monCtrl.transform.position = GameMgr.Inst.player.transform.position + GetMonSpawnPos();
         }
+    }
+
+    float GetSpawnTime()
+    {
+        float sTime = Random.Range(0.1f, 0.3f);
+        switch (monLimit)
+        {
+            case 30:
+                sTime = Random.Range(0.1f, 0.3f);
+                break;
+            case 40:
+                sTime = Random.Range(0.1f, 0.2f);
+                break;
+            case 50:
+                sTime = Random.Range(0.0f, 0.2f);
+                break;
+            case 60:
+                sTime = Random.Range(0.0f, 0.1f);
+                break;
+        }
+
+        return sTime;
     }
 
     Vector3 GetMonSpawnPos()
