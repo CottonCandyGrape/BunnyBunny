@@ -46,7 +46,8 @@ public class MeatSoldierCtrl : BossMonCtrl
 
     protected override IEnumerator BossDie()
     {
-        yield return new WaitForSeconds(1.0f);
+        yield return StartCoroutine(GameMgr.Inst.ExploseEffect(transform.position));
+        yield return delay;
 
         GameMgr.Inst.GameOver(GameMgr.Inst.stageClear);
     }

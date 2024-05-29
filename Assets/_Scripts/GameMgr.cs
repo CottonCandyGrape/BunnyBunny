@@ -35,6 +35,8 @@ public class GameMgr : MonoBehaviour
     //Elite, Boss전 관련
     bool hasSpawnElite = false;
     public GameObject[] Rings = null;
+    public GameObject[] ExpEffects = null;
+    int expEffectCnt = 10;
     [HideInInspector] public GameObject BattleRing = null;
     [HideInInspector] public bool hasBoss = false;
     [HideInInspector] public bool hasRing = false;
@@ -244,6 +246,33 @@ public class GameMgr : MonoBehaviour
     {
         Time.timeScale = 0.0f;
         Instantiate(PausePopUp, MainCanvas.transform);
+    }
+
+    public IEnumerator ExploseEffect(Vector3 bossPos)
+    {
+        List<GameObject> expList = new List<GameObject>();
+        for (int i = 0; i < expEffectCnt; i++)
+        {
+            SoundMgr.Instance.PlaySfxSound("rocket");
+
+            GameObject expEff = Instantiate(ExpEffects[Random.Range(0, ExpEffects.Length)]);
+            expEff.transform.position
+                = bossPos + new Vector3(Random.Range(-1.5f, 1.5f), Random.Range(-1.5f, 1.5f), 0.0f);
+            expList.Add(expEff);
+
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        while (expList.Count > 0)
+        {
+            for (int i = 0; i < expList.Count; i++)
+            {
+                if (!expList[i].activeSelf)
+                    expList.RemoveAt(i);
+            }
+
+            yield return null;
+        }
     }
 
     public void GameOver(bool isClear)

@@ -34,6 +34,8 @@ public class BossMonCtrl : MonsterCtrl
     protected float ShotTime = 1.0f;
     //Shot
 
+    protected WaitForSeconds delay = new WaitForSeconds(1.5f);
+
     //OnTrigger
     protected override void OnTriggerEnter2D(Collider2D coll)
     {
@@ -138,6 +140,7 @@ public class BossMonCtrl : MonsterCtrl
         {
             isDead = true;
             GameMgr.Inst.stageClear = true;
+            SoundMgr.Instance.PlaySfxSound("bossDead");
             StartCoroutine(BossDie());
         }
     }

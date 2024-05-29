@@ -51,7 +51,8 @@ public class CrawlingAlienCtrl : BossMonCtrl
             yield return null;
         }
 
-        yield return new WaitForSeconds(animInfo.length + 0.3f);
+        yield return StartCoroutine(GameMgr.Inst.ExploseEffect(transform.position));
+        yield return delay;
 
         GameMgr.Inst.GameOver(GameMgr.Inst.stageClear);
     }
