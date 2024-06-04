@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SkullBiteMonCtrl : MonsterCtrl
 {
-    float SkullHp = 400.0f;
+    float SkullHp = 1000.0f;
 
     void OnEnable()
     {
