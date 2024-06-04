@@ -15,12 +15,19 @@ public class SkillUpButton : MonoBehaviour
 
     public Weapon Skill { set { weapon = value; } }
 
+    [Header("------ UI ------")]
     public Button SkillUp_Btn = null;
     public Image Weapon_Img = null;
     public Sprite Ev_Sprite = null;
     public Text Explain_Txt = null;
     public Text WpName_Txt = null;
     public Image[] FStars_Img = null;
+
+    //star 관련
+    float starSize = 40.0f;
+    Vector2 curSize = Vector2.zero;
+    WaitForSecondsRealtime starDelay = new WaitForSecondsRealtime(0.1f);
+    //star 관련
 
     Weapon weapon = null;
     SkillUpPopUp skPopUp = null;
@@ -61,13 +68,13 @@ public class SkillUpButton : MonoBehaviour
             if (weapon.CurLv < 3)
             {
                 weapon.LevelUpWeapon();
-                SetStar();
+                StartCoroutine(FillStar());
+                return; //코루틴 후 사라져야하는 예외처리
             }
             else if (3 <= weapon.CurLv) //진화 직전
-                weapon.EvolveWeapon();
-
-            if (weapon.IsEvolve) //진화 직후
             {
+                weapon.EvolveWeapon(); //진화 시키고
+
                 if (skPopUp != null)
                     skPopUp.WpBtns.Remove(this); //SkillUpPopUp의 List에서 삭제.
                 Destroy(gameObject); //프리팹 삭제
@@ -85,9 +92,23 @@ public class SkillUpButton : MonoBehaviour
         skPopUp.gameObject.SetActive(false);
     }
 
-    void SetStar()
+    IEnumerator FillStar()
     {
-        int level = weapon.CurLv;
-        FStars_Img[level - 1].gameObject.SetActive(true);
+        Image star = FStars_Img[weapon.CurLv - 1];
+        star.gameObject.SetActive(true);
+        star.rectTransform.sizeDelta = curSize;
+
+        while (star.rectTransform.sizeDelta.x < starSize)
+        {
+            curSize += Vector2.Lerp(curSize, Vector2.one * starSize, Time.unscaledDeltaTime);
+            star.rectTransform.sizeDelta = curSize;
+            yield return null;
+        }
+
+        star.rectTransform.sizeDelta = Vector2.one * starSize;
+        yield return starDelay;
+
+        Time.timeScale = 1.0f;
+        skPopUp.gameObject.SetActive(false);
     }
 }
