@@ -72,7 +72,6 @@ public class BulletCtrl : MonoBehaviour
         {
             if (gameObject.name.Contains("MeatBullet")) //MeatSoldier의 총알
             {
-                SoundMgr.Instance.PlaySfxSound("attacked");
                 GameMgr.Inst.player.TakeDamage(10.0f);
             }
         }

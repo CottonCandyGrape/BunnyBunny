@@ -250,6 +250,8 @@ public class PlayerCtrl : MonoBehaviour
     {
         if (isDead) return;
 
+        SoundMgr.Instance.PlaySfxSound("attacked");
+
         curHp -= damage;
         //Hp UI 수정
         HpBar_Img.fillAmount = curHp / maxHp;

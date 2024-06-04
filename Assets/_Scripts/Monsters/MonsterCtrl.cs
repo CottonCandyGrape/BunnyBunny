@@ -149,8 +149,6 @@ public class MonsterCtrl : MonoBehaviour
         }
         else if (coll.gameObject.CompareTag("Player"))
         {
-            SoundMgr.Instance.PlaySfxSound("attacked");
-
             float dmg = 10;
             if (monType == MonsterType.EliteMon)
                 dmg = 20;
