@@ -39,7 +39,7 @@ public class BossMonCtrl : MonsterCtrl
     //OnTrigger
     protected override void OnTriggerEnter2D(Collider2D coll)
     {
-        if (!GameMgr.Inst.hasBoss) return; // 깜빡일때 안맞기
+        if (!GameMgr.Inst.hasBoss || isDead) return; // 깜빡이거나 죽으면 안맞기
 
         base.OnTriggerEnter2D(coll);
     }
