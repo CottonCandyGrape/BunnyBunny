@@ -271,8 +271,6 @@ public class PlayerCtrl : MonoBehaviour
             curHp = maxHp;
 
         HpBar_Img.fillAmount = curHp / maxHp;
-
-        GameMgr.Inst.SpawnDmgTxt(transform.position + dmgTxtOffset, heal, Color.green);
     }
 
     void CalcWeaponsTimer()
