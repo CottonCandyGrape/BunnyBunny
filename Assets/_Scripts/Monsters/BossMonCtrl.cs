@@ -10,6 +10,8 @@ public class BossMonCtrl : MonsterCtrl
     protected float bossHp = 10.0f;
     protected bool isDead = false;
 
+    protected ActionState actState = ActionState.None;
+
     //Walk
     protected float walkTimer = 0.0f;
     protected float walkTime = 5.0f;
@@ -121,7 +123,95 @@ public class BossMonCtrl : MonsterCtrl
             isRun = false;
     }
 
-    protected void Flip() // FixedUpdate - actState -> Move() 안쓰면 필요하다
+    //Action Functions
+    protected void WalkAction(ActionState nextAct)
+    {
+        walkTimer -= Time.deltaTime;
+        if (walkTimer < 0.0f)
+        {
+            walkTimer = walkTime;
+            runTimer = runTime;
+
+            actState = nextAct;
+        }
+    }
+
+    protected void RunAction()
+    {
+        if (!isRun) //안달릴때(달리기 준비) 타이머 돌리기
+        {
+            Flip();
+
+            runTimer -= Time.deltaTime;
+            if (runTimer < 0.0f)
+            {
+                runTimer = runTime;
+                runTarget = GameMgr.Inst.player.transform.position;
+                moveDir = runTarget - transform.position;
+                moveDir.Normalize();
+
+                moveSpeed = runSpeed;
+                animator.speed = 2.0f;
+                curRunCount++;
+                isRun = true;
+            }
+        }
+
+        if (RunCount < curRunCount)
+        {
+            curRunCount = 0;
+            isRun = false;
+            isKnockBack = false; //run중에 Guard 맞으면 초기화 돼서 Walk 되자마자 넉백발동 됨.
+            moveSpeed = walkSpeed;
+            animator.speed = 1.0f;
+            actState = ActionState.Walk;
+        }
+    }
+
+    protected void ShotAction()
+    {
+        Flip();
+
+        ShotTimer -= Time.deltaTime;
+        if (ShotTimer < 0.0f)
+        {
+            curShotCount++;
+
+            if (ShotCount < curShotCount)
+            {
+                curShotCount = 0;
+                walkTimer = walkTime;
+                actState = ActionState.Walk;
+                return;
+            }
+
+            ShotMeatBullets();
+            ShotTimer = ShotTime;
+        }
+
+    }
+    //Action Functions
+
+    void ShotMeatBullets()
+    {
+        float ranDeg = Random.Range(0, 360.0f);
+        for (int i = 0; i < 10; i++)
+        {
+            BulletCtrl blt = MemoryPoolMgr.Inst.AddMeatBulletPool();
+            blt.gameObject.SetActive(true);
+
+            float rad = ((i * 36) + ranDeg) * Mathf.Deg2Rad;
+            Vector3 vec = blt.MoveDir;
+            vec.x = Mathf.Cos(rad); vec.y = Mathf.Sin(rad); vec.z = 0;
+            blt.MoveDir = vec.normalized;
+
+            float angle = Mathf.Atan2(blt.MoveDir.y, blt.MoveDir.x) * Mathf.Rad2Deg;
+            blt.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            blt.transform.position = transform.position;
+        }
+    }
+
+    void Flip() // FixedUpdate - actState -> Move() 안쓰면 필요하다
     {
         if (transform.position.x > GameMgr.Inst.player.transform.position.x)
             spRenderer.flipX = false;
