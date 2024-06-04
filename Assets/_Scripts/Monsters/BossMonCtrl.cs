@@ -194,6 +194,8 @@ public class BossMonCtrl : MonsterCtrl
 
     void ShotMeatBullets()
     {
+        SoundMgr.Instance.PlaySfxSound("eBullet");
+
         float ranDeg = Random.Range(0, 360.0f);
         for (int i = 0; i < 10; i++)
         {
