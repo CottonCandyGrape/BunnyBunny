@@ -12,7 +12,7 @@ public enum ItemType
 public class ItemMgr : MonoBehaviour
 {
     public Transform Golds = null;
-    public Transform Carrots = null;
+    public Transform Cakes = null;
     public Transform Bombs = null;
 
     //섬광 관련 
@@ -24,8 +24,8 @@ public class ItemMgr : MonoBehaviour
 
     public GameObject[] ItemPrefabs = null;
 
-    float carrotTimer = 0.0f;
-    float carrotTime = 10.0f;
+    float cakeTimer = 0.0f;
+    float cakeTime = 10.0f;
 
     public static ItemMgr Inst = null;
 
@@ -36,27 +36,27 @@ public class ItemMgr : MonoBehaviour
 
     void Start()
     {
-        carrotTimer = carrotTime;
+        cakeTimer = cakeTime;
     }
 
     void Update()
     {
-        UpdateCarrotTimer();
+        UpdateCakeTimer();
     }
 
-    void UpdateCarrotTimer()
+    void UpdateCakeTimer()
     {
-        carrotTimer -= Time.deltaTime;
-        if (carrotTimer <= 0.0f)
+        cakeTimer -= Time.deltaTime;
+        if (cakeTimer <= 0.0f)
         {
-            SpawnCarrot(0.3f);
-            carrotTimer = carrotTime;
+            Spawncake(0.3f);
+            cakeTimer = cakeTime;
         }
     }
 
-    void SpawnCarrot(float healRate)
+    void Spawncake(float healRate)
     {
-        GameObject crt = Instantiate(ItemPrefabs[(int)ItemType.Heal], Carrots);
+        GameObject crt = Instantiate(ItemPrefabs[(int)ItemType.Heal], Cakes);
         crt.transform.position = ScreenMgr.Inst.GetRandomPosCurScreen();
 
         ItemCtrl item = crt.GetComponent<ItemCtrl>();

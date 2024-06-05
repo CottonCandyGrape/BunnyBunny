@@ -50,7 +50,7 @@ public class ItemCtrl : MonoBehaviour
             }
             else if (itemType == ItemType.Heal)
             {
-                SoundMgr.Instance.PlaySfxSound("carrot");
+                SoundMgr.Instance.PlaySfxSound("cake");
                 PlayerCtrl player = GameMgr.Inst.player.GetComponent<PlayerCtrl>();
                 player.GetHp(healRate);
             }
