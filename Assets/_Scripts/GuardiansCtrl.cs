@@ -9,7 +9,6 @@ public class GuardiansCtrl : Weapon
     public Sprite Ev_Sprite = null;
 
     const float Ev_RotSpeed = 250.0f;
-    const float Ev_CollRadius = 0.21f;
     const int GuardInitCount = 2;
 
     float lifeTimer = 0.0f;
@@ -98,9 +97,6 @@ public class GuardiansCtrl : Weapon
 
             GuardCtrl gCtrl = guard.GetComponent<GuardCtrl>();
             if (gCtrl != null) gCtrl.RotSpeed = Ev_RotSpeed;
-
-            CircleCollider2D cColl = guard.GetComponent<CircleCollider2D>();
-            if (cColl != null) cColl.radius = Ev_CollRadius;
 
             SpriteRenderer spRend = guard.GetComponentInChildren<SpriteRenderer>();
             if (spRend != null) spRend.sprite = Ev_Sprite;

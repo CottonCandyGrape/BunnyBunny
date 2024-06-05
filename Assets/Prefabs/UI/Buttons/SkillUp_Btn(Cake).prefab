@@ -210,7 +210,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uB2F9\uADFC"
+  m_Text: "\uCF00\uC774\uD06C"
 --- !u!114 &3338800245931411298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -316,7 +316,7 @@ GameObject:
   - component: {fileID: 8030406943689029866}
   - component: {fileID: 8020859358374397563}
   m_Layer: 5
-  m_Name: SkillUp_Btn(Carrot)
+  m_Name: SkillUp_Btn(Cake)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -370,6 +370,7 @@ MonoBehaviour:
   Weapon_Img: {fileID: 0}
   Ev_Sprite: {fileID: 0}
   Explain_Txt: {fileID: 0}
+  WpName_Txt: {fileID: 0}
   FStars_Img: []
 --- !u!114 &8030406943689029866
 MonoBehaviour:
@@ -586,7 +587,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 776177c8cdd19e64ea3b0e56dd900ae5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f1be4cbd6a31a534b97750bdbb4b12a4, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
