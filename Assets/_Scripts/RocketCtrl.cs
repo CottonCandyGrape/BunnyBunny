@@ -17,7 +17,7 @@ public class RocketCtrl : Weapon
     GameObject ev_ExpEffect = null;
     GameObject nuclear = null;
 
-    Vector3 NuclearExpOffset = Vector3.up * 2.0f;
+    Vector3 NuclearExpOffset = Vector3.up * 1.0f;
     const float RocketOffset = 0.35f;
     const float ExpScaler = 1.3f;
     const float NuExpRadius = 2.5f;

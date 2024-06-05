@@ -364,11 +364,11 @@ MonoBehaviour:
   - {fileID: 9094358934630592945, guid: a7b01fb8701a74f41be00c5076789bb8, type: 3}
   - {fileID: 7184866390020274846, guid: e9176a70a8f420044a4798ded2a2f069, type: 3}
   ExpEffects:
+  - {fileID: 2375607132499425948, guid: b4ba1096dfa62fd48b68d7fb1c441e57, type: 3}
   - {fileID: 7150423306890730211, guid: 847427c275fed0a4da7f4cabd91bea0e, type: 3}
   - {fileID: 360748890306721137, guid: 628e4ebc029ff1b4aafff12a7ea2fda9, type: 3}
   - {fileID: 9161789795527393008, guid: 659fabd95d77f044ca83053bb60d8729, type: 3}
-  - {fileID: 5346111349447601785, guid: 728b6324e13a1304ab6f6e309b1e43b6, type: 3}
-  - {fileID: 6488790807884633083, guid: 01389a2dfc1dc874eafcdf4cb960f2bd, type: 3}
+  - {fileID: 449840208616403153, guid: 25987fdbbbefecc4082783ba9c7c0d82, type: 3}
   BattleRing: {fileID: 9094358934630592945, guid: a7b01fb8701a74f41be00c5076789bb8, type: 3}
   hasBoss: 0
   hasRing: 0
