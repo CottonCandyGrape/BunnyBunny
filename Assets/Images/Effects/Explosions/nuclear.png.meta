@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a270227618135294e8d245c47864c1dc
+guid: 3865f4dc76d8cfd4da4744945bd1f5d1
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -123,13 +123,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: nuclear_0
+      name: nuclear 1_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 400
-        width: 100
-        height: 100
+        y: 1130
+        width: 256
+        height: 226
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,20 +137,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e30d13545c22dba42a86ba4266a6eb07
-      internalID: -169569401
+      spriteID: 6e70545483f3a2c4391a01dbb6d893b6
+      internalID: 2019148866
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nuclear_1
+      name: nuclear 1_1
       rect:
         serializedVersion: 2
-        x: 100
-        y: 400
-        width: 100
-        height: 100
+        x: 256
+        y: 1130
+        width: 256
+        height: 226
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -158,20 +158,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c3e77b8c3d7c5f947b1de5f26942d5ff
-      internalID: -350592126
+      spriteID: 907e202a1346a06458d9d687bcda6b82
+      internalID: -938049290
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nuclear_2
+      name: nuclear 1_2
       rect:
         serializedVersion: 2
-        x: 200
-        y: 400
-        width: 100
-        height: 100
+        x: 512
+        y: 1130
+        width: 256
+        height: 226
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,20 +179,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3cc22b3a654c5554bb3e5f805dd6b30d
-      internalID: -1291506853
+      spriteID: 370b27b9afcf0234abea2b35139944e4
+      internalID: -217293338
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nuclear_3
+      name: nuclear 1_3
       rect:
         serializedVersion: 2
-        x: 300
-        y: 400
-        width: 100
-        height: 100
+        x: 768
+        y: 1130
+        width: 256
+        height: 226
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -200,20 +200,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 922668ad457dc3341b4c6645e4d26fba
-      internalID: -2059408766
+      spriteID: 23265b0f263f58b498b6521fbaff043e
+      internalID: 263732070
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nuclear_4
+      name: nuclear 1_4
       rect:
         serializedVersion: 2
-        x: 400
-        y: 400
-        width: 100
-        height: 100
+        x: 1024
+        y: 1130
+        width: 256
+        height: 226
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -221,125 +221,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 65e8265a4e02d99429fa587e499afed3
-      internalID: 1898660596
+      spriteID: b5a68727eeec4f04ab97a60c2a37de43
+      internalID: -696460679
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nuclear_5
-      rect:
-        serializedVersion: 2
-        x: 500
-        y: 400
-        width: 100
-        height: 100
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4cf8f82188f3ccc42b01358662df9a12
-      internalID: -7498816
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: nuclear_6
-      rect:
-        serializedVersion: 2
-        x: 600
-        y: 400
-        width: 100
-        height: 100
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6fce00b0fce663640a3e18fefa115453
-      internalID: -715256554
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: nuclear_7
-      rect:
-        serializedVersion: 2
-        x: 700
-        y: 400
-        width: 100
-        height: 100
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: da4b975777fb92949912708c79d609cf
-      internalID: -634048604
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: nuclear_8
-      rect:
-        serializedVersion: 2
-        x: 800
-        y: 400
-        width: 100
-        height: 100
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9e81e63217d5b8b4fbab23a40024d361
-      internalID: -532494097
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: nuclear_9
-      rect:
-        serializedVersion: 2
-        x: 900
-        y: 400
-        width: 100
-        height: 100
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bd43fcac51a3dae4099726c3a50906f6
-      internalID: 2107662384
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: nuclear_10
+      name: nuclear 1_5
       rect:
         serializedVersion: 2
         x: 0
-        y: 300
-        width: 100
-        height: 100
+        y: 904
+        width: 256
+        height: 226
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -347,20 +242,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4743dc60a6b20e84a884c4e803258853
-      internalID: 715215292
+      spriteID: a3d32a4ac3523484db3cf9bc5174a36e
+      internalID: -1554757414
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nuclear_11
+      name: nuclear 1_6
       rect:
         serializedVersion: 2
-        x: 100
-        y: 300
-        width: 100
-        height: 100
+        x: 256
+        y: 904
+        width: 256
+        height: 226
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -368,20 +263,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d28542d26c225f54abce09d0a0081ee4
-      internalID: -1607692241
+      spriteID: 44c49ce1f1425254db9818e71d3e3e2a
+      internalID: 1320107515
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nuclear_12
+      name: nuclear 1_7
       rect:
         serializedVersion: 2
-        x: 200
-        y: 300
-        width: 100
-        height: 100
+        x: 512
+        y: 904
+        width: 256
+        height: 226
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -389,20 +284,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 113771ea69e47f94697920e1154e6bac
-      internalID: -574793644
+      spriteID: e8294a384ab21a14082ed6941754b638
+      internalID: 1230641811
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nuclear_13
+      name: nuclear 1_8
       rect:
         serializedVersion: 2
-        x: 300
-        y: 300
-        width: 100
-        height: 100
+        x: 768
+        y: 904
+        width: 256
+        height: 226
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -410,20 +305,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 08997a0a1cdba60428492cf5ef27d391
-      internalID: 2118535805
+      spriteID: c9c342d2e1650cd4ab4131e72e9a7b75
+      internalID: -764487726
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nuclear_14
+      name: nuclear 1_9
       rect:
         serializedVersion: 2
-        x: 400
-        y: 300
-        width: 100
-        height: 100
+        x: 1024
+        y: 904
+        width: 256
+        height: 226
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -431,125 +326,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 77ee4bd086c5f1e4697db31d062b87bb
-      internalID: 990604221
+      spriteID: 2007fe71832d2eb4090893843cb1998b
+      internalID: -1897826847
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nuclear_15
-      rect:
-        serializedVersion: 2
-        x: 500
-        y: 300
-        width: 100
-        height: 100
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5af156019d764254890e70c24981d1d2
-      internalID: 788383444
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: nuclear_16
-      rect:
-        serializedVersion: 2
-        x: 600
-        y: 300
-        width: 100
-        height: 100
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 00eeb9a9b950d4a4fac0d917bd1f1392
-      internalID: -65498389
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: nuclear_17
-      rect:
-        serializedVersion: 2
-        x: 700
-        y: 300
-        width: 100
-        height: 100
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e7b08576c3ebeba4aa265cdb4df56247
-      internalID: 729589772
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: nuclear_18
-      rect:
-        serializedVersion: 2
-        x: 800
-        y: 300
-        width: 100
-        height: 100
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6fe62b71d3789644080b2137210dd75a
-      internalID: 1330802345
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: nuclear_19
-      rect:
-        serializedVersion: 2
-        x: 900
-        y: 300
-        width: 100
-        height: 100
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1a16a6b8b5e3c974fa42c93250a62674
-      internalID: 316738328
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: nuclear_20
+      name: nuclear 1_10
       rect:
         serializedVersion: 2
         x: 0
-        y: 200
-        width: 100
-        height: 100
+        y: 678
+        width: 256
+        height: 226
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -557,20 +347,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9c1b7c6a2c7716a44aadfff1b3907979
-      internalID: -1332887336
+      spriteID: 3224993d205c69d4babf6b3377920676
+      internalID: -2113631275
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nuclear_21
+      name: nuclear 1_11
       rect:
         serializedVersion: 2
-        x: 100
-        y: 200
-        width: 100
-        height: 100
+        x: 256
+        y: 678
+        width: 256
+        height: 226
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -578,20 +368,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2fa5f6ec7caf6a345be0cdcb1dad3022
-      internalID: -1821080387
+      spriteID: b443e8f94c4b6df499990cd2183b40b9
+      internalID: 592648095
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nuclear_22
+      name: nuclear 1_12
       rect:
         serializedVersion: 2
-        x: 200
-        y: 200
-        width: 100
-        height: 100
+        x: 512
+        y: 678
+        width: 256
+        height: 226
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -599,20 +389,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9f006aa1d54995744a639470155a4b03
-      internalID: 657693917
+      spriteID: 35475c26fc23a1242b55607cad144bec
+      internalID: 707735928
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nuclear_23
+      name: nuclear 1_13
       rect:
         serializedVersion: 2
-        x: 300
-        y: 200
-        width: 100
-        height: 100
+        x: 768
+        y: 678
+        width: 256
+        height: 226
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -620,20 +410,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ce7300d1433249d409f7000ee315c62d
-      internalID: 1800842854
+      spriteID: 64a9259bc99facc4fa358ad7ee5cc463
+      internalID: 2038843887
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nuclear_24
+      name: nuclear 1_14
       rect:
         serializedVersion: 2
-        x: 400
-        y: 200
-        width: 100
-        height: 100
+        x: 1024
+        y: 678
+        width: 256
+        height: 226
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -641,125 +431,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3e1e19600bf5e6d4bb86cad14dd19219
-      internalID: -1523930268
+      spriteID: ee5022fe325afca4c86925aebbd705d0
+      internalID: 1969351074
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nuclear_25
-      rect:
-        serializedVersion: 2
-        x: 500
-        y: 200
-        width: 100
-        height: 100
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 774307c1bed026240b2209400af3332b
-      internalID: -1222783824
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: nuclear_26
-      rect:
-        serializedVersion: 2
-        x: 600
-        y: 200
-        width: 100
-        height: 100
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f73fa886acf2d264c92ce20117208c1d
-      internalID: 1016015444
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: nuclear_27
-      rect:
-        serializedVersion: 2
-        x: 700
-        y: 200
-        width: 100
-        height: 100
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9fb63f2f446e5384bbc0f71bcba9e1c2
-      internalID: 852733538
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: nuclear_28
-      rect:
-        serializedVersion: 2
-        x: 800
-        y: 200
-        width: 100
-        height: 100
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 00331fa2487315442907d5a5a55f9eb1
-      internalID: 436229044
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: nuclear_29
-      rect:
-        serializedVersion: 2
-        x: 900
-        y: 200
-        width: 100
-        height: 100
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c669b4f21aed93149b91f17d6743186b
-      internalID: -772372362
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: nuclear_30
+      name: nuclear 1_15
       rect:
         serializedVersion: 2
         x: 0
-        y: 100
-        width: 100
-        height: 100
+        y: 452
+        width: 256
+        height: 226
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -767,20 +452,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ae2c26d3b3238ed4e9c3a23afeaef1fa
-      internalID: -1966794448
+      spriteID: 3ce43624652c0714ca9fbdfa4294c66d
+      internalID: -446810951
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nuclear_31
+      name: nuclear 1_16
       rect:
         serializedVersion: 2
-        x: 100
-        y: 100
-        width: 100
-        height: 100
+        x: 256
+        y: 452
+        width: 256
+        height: 226
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -788,20 +473,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6bc2db0737c886f41bb17742de0756f4
-      internalID: 150718485
+      spriteID: 2107b9e2ba16be04d81c08b8ac888298
+      internalID: 1840477834
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nuclear_32
+      name: nuclear 1_17
       rect:
         serializedVersion: 2
-        x: 200
-        y: 100
-        width: 100
-        height: 100
+        x: 512
+        y: 452
+        width: 256
+        height: 226
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -809,20 +494,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b9c2ff2b4a5b3754ca6f31530f7dac62
-      internalID: -755419129
+      spriteID: e4d16242fd310994eab5d86d8bfe513c
+      internalID: 992983751
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nuclear_33
+      name: nuclear 1_18
       rect:
         serializedVersion: 2
-        x: 300
-        y: 100
-        width: 100
-        height: 100
+        x: 768
+        y: 452
+        width: 256
+        height: 226
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -830,20 +515,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c2b3819aff689124f937b5d770e10b6c
-      internalID: -1888406881
+      spriteID: 58c9fe15fbc72d6439fe51b65b64435e
+      internalID: 527993796
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nuclear_34
+      name: nuclear 1_19
       rect:
         serializedVersion: 2
-        x: 400
-        y: 100
-        width: 100
-        height: 100
+        x: 1024
+        y: 452
+        width: 256
+        height: 226
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -851,20 +536,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6ab24a2103fa285409602821713d3aba
-      internalID: -1941869495
+      spriteID: b7fe466cd00aa6a498d198b3348ffe35
+      internalID: -1625100444
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nuclear_35
+      name: nuclear 1_20
       rect:
         serializedVersion: 2
-        x: 500
-        y: 100
-        width: 100
-        height: 100
+        x: 0
+        y: 226
+        width: 256
+        height: 226
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -872,20 +557,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d3ededf9cbb17fc47a475801706cedd3
-      internalID: -857690871
+      spriteID: b3101011901741f4c855f69676ae9541
+      internalID: -1329107795
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nuclear_36
+      name: nuclear 1_21
       rect:
         serializedVersion: 2
-        x: 600
-        y: 100
-        width: 100
-        height: 100
+        x: 256
+        y: 226
+        width: 256
+        height: 226
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -893,20 +578,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9d4a2d7fa4836bb44a66e7a25755f115
-      internalID: -1634597746
+      spriteID: 7503bbc71f3798b4eb26dc4b2ee1c905
+      internalID: 1248158238
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nuclear_37
+      name: nuclear 1_22
       rect:
         serializedVersion: 2
-        x: 700
-        y: 100
-        width: 100
-        height: 100
+        x: 512
+        y: 226
+        width: 256
+        height: 226
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -914,20 +599,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 683b6636943c6174da61c7f58da22abd
-      internalID: 1275067302
+      spriteID: a58d1802210c7614ba1a647e09384d43
+      internalID: -1721017025
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nuclear_38
+      name: nuclear 1_23
       rect:
         serializedVersion: 2
-        x: 800
-        y: 100
-        width: 100
-        height: 100
+        x: 768
+        y: 226
+        width: 256
+        height: 226
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -935,20 +620,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0e339ea3ac083244894599ebf9e7edef
-      internalID: 352674925
+      spriteID: 392ced6b8667b10408ed7f32690f1c1b
+      internalID: -1144255263
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nuclear_39
+      name: nuclear 1_24
       rect:
         serializedVersion: 2
-        x: 900
-        y: 100
-        width: 100
-        height: 100
+        x: 1024
+        y: 226
+        width: 256
+        height: 226
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -956,20 +641,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 307e1bf5adf040449aa44f740486961a
-      internalID: -840956688
+      spriteID: ce9988f70aa411743b2cd25cf8f06519
+      internalID: -1979135076
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nuclear_40
+      name: nuclear 1_25
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 100
-        height: 100
+        width: 256
+        height: 226
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -977,20 +662,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 26b51361108939840ab268aa069beadb
-      internalID: -1783980045
+      spriteID: e77a1ca7211fc454b9c9f8e5ca87c053
+      internalID: -748937633
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nuclear_41
+      name: nuclear 1_26
       rect:
         serializedVersion: 2
-        x: 100
+        x: 256
         y: 0
-        width: 100
-        height: 100
+        width: 256
+        height: 226
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -998,176 +683,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 74cbfbb3daca1c945b3eccbd7c25b832
-      internalID: 2101437512
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: nuclear_42
-      rect:
-        serializedVersion: 2
-        x: 200
-        y: 0
-        width: 100
-        height: 100
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fbba6637032b3da4eb2461a28a1a8a63
-      internalID: 1362837613
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: nuclear_43
-      rect:
-        serializedVersion: 2
-        x: 300
-        y: 0
-        width: 100
-        height: 100
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d532fc7b1dd438a418634a7f424f382f
-      internalID: 1504067601
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: nuclear_44
-      rect:
-        serializedVersion: 2
-        x: 400
-        y: 0
-        width: 100
-        height: 100
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 94ce57ce8c8e06e45ac5ad55400fd92b
-      internalID: -578983992
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: nuclear_45
-      rect:
-        serializedVersion: 2
-        x: 500
-        y: 0
-        width: 100
-        height: 100
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d69578882f8e2b44181d4cb279f6929d
-      internalID: 445542193
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: nuclear_46
-      rect:
-        serializedVersion: 2
-        x: 600
-        y: 0
-        width: 100
-        height: 100
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ee588b91c6ed47447846d0460341e7c4
-      internalID: -70957695
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: nuclear_47
-      rect:
-        serializedVersion: 2
-        x: 700
-        y: 0
-        width: 100
-        height: 100
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c62f0254e5b9b154e9b4064826b80301
-      internalID: -423199818
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: nuclear_48
-      rect:
-        serializedVersion: 2
-        x: 800
-        y: 0
-        width: 100
-        height: 100
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: db209fcfd0c492c49b0d7748384ba90a
-      internalID: -1743181926
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: nuclear_49
-      rect:
-        serializedVersion: 2
-        x: 900
-        y: 0
-        width: 100
-        height: 100
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f1219f01d5722e4479f4952b2f8e2633
-      internalID: -370690913
+      spriteID: 2167eaec9ca7ca6498a3bb0205a4e8df
+      internalID: 1982189606
       vertices: []
       indices: 
       edges: []
@@ -1183,56 +700,33 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      nuclear_0: -169569401
-      nuclear_1: -350592126
-      nuclear_10: 715215292
-      nuclear_11: -1607692241
-      nuclear_12: -574793644
-      nuclear_13: 2118535805
-      nuclear_14: 990604221
-      nuclear_15: 788383444
-      nuclear_16: -65498389
-      nuclear_17: 729589772
-      nuclear_18: 1330802345
-      nuclear_19: 316738328
-      nuclear_2: -1291506853
-      nuclear_20: -1332887336
-      nuclear_21: -1821080387
-      nuclear_22: 657693917
-      nuclear_23: 1800842854
-      nuclear_24: -1523930268
-      nuclear_25: -1222783824
-      nuclear_26: 1016015444
-      nuclear_27: 852733538
-      nuclear_28: 436229044
-      nuclear_29: -772372362
-      nuclear_3: -2059408766
-      nuclear_30: -1966794448
-      nuclear_31: 150718485
-      nuclear_32: -755419129
-      nuclear_33: -1888406881
-      nuclear_34: -1941869495
-      nuclear_35: -857690871
-      nuclear_36: -1634597746
-      nuclear_37: 1275067302
-      nuclear_38: 352674925
-      nuclear_39: -840956688
-      nuclear_4: 1898660596
-      nuclear_40: -1783980045
-      nuclear_41: 2101437512
-      nuclear_42: 1362837613
-      nuclear_43: 1504067601
-      nuclear_44: -578983992
-      nuclear_45: 445542193
-      nuclear_46: -70957695
-      nuclear_47: -423199818
-      nuclear_48: -1743181926
-      nuclear_49: -370690913
-      nuclear_5: -7498816
-      nuclear_6: -715256554
-      nuclear_7: -634048604
-      nuclear_8: -532494097
-      nuclear_9: 2107662384
+      nuclear 1_0: 2019148866
+      nuclear 1_1: -938049290
+      nuclear 1_10: -2113631275
+      nuclear 1_11: 592648095
+      nuclear 1_12: 707735928
+      nuclear 1_13: 2038843887
+      nuclear 1_14: 1969351074
+      nuclear 1_15: -446810951
+      nuclear 1_16: 1840477834
+      nuclear 1_17: 992983751
+      nuclear 1_18: 527993796
+      nuclear 1_19: -1625100444
+      nuclear 1_2: -217293338
+      nuclear 1_20: -1329107795
+      nuclear 1_21: 1248158238
+      nuclear 1_22: -1721017025
+      nuclear 1_23: -1144255263
+      nuclear 1_24: -1979135076
+      nuclear 1_25: -748937633
+      nuclear 1_26: 1982189606
+      nuclear 1_3: 263732070
+      nuclear 1_4: -696460679
+      nuclear 1_5: -1554757414
+      nuclear 1_6: 1320107515
+      nuclear 1_7: 1230641811
+      nuclear 1_8: -764487726
+      nuclear 1_9: -1897826847
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
