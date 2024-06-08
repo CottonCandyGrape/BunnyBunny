@@ -252,7 +252,7 @@ public class PopUpBox : MonoBehaviour
         SoundMgr.Instance.PlaySfxSound("btnClick");
 
         if (isOn)
-            SoundMgr.Instance.PlayBGM("bgm_01");
+            SoundMgr.Instance.PlayBGM("UIScene");
         else
         {
             SoundMgr.Instance.AudioSrc.Stop();

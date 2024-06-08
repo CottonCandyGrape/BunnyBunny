@@ -65,7 +65,7 @@ public class BattleSceneMgr : MonoBehaviour
 
         unLockStageNum = AllSceneMgr.Instance.user.unLockStageNum;
 
-        SoundMgr.Instance.PlayBGM("bgm_01");
+        SoundMgr.Instance.PlayBGM("UIScene");
 
         InitAtkObjects();
         StartCoroutine(AllSceneMgr.Instance.LoadUpLowUIScene());
