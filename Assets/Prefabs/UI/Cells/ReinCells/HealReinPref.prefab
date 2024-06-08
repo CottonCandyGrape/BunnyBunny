@@ -54,6 +54,7 @@ MonoBehaviour:
   Rein_Btn: {fileID: 6948762482318130822}
   Alpha_RImg: {fileID: 1089587270705560646}
   RfType: 3
+  cellNum: 0
 --- !u!1001 &7555896198991627501
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -165,7 +166,7 @@ PrefabInstance:
     - target: {fileID: 1721130653517320214, guid: 27f8b868728f25e4a82bcfa0c2458247, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 35cf920738a403d40814dc37a85b4b6b, type: 3}
+      objectReference: {fileID: 21300000, guid: f1be4cbd6a31a534b97750bdbb4b12a4, type: 3}
     - target: {fileID: 2267179443568084256, guid: 27f8b868728f25e4a82bcfa0c2458247, type: 3}
       propertyPath: m_Color.b
       value: 0.34117648
@@ -180,15 +181,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5877458139440072998, guid: 27f8b868728f25e4a82bcfa0c2458247, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 130
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5877458139440072998, guid: 27f8b868728f25e4a82bcfa0c2458247, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 130
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5877458139440072998, guid: 27f8b868728f25e4a82bcfa0c2458247, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.92387956
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5877458139440072998, guid: 27f8b868728f25e4a82bcfa0c2458247, type: 3}
       propertyPath: m_LocalRotation.x
@@ -200,11 +201,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5877458139440072998, guid: 27f8b868728f25e4a82bcfa0c2458247, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.38268343
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5877458139440072998, guid: 27f8b868728f25e4a82bcfa0c2458247, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -45
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

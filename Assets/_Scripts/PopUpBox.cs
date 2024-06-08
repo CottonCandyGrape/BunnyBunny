@@ -45,7 +45,7 @@ public class PopUpBox : MonoBehaviour
     public Toggle JoyStick_Tgl = null;
 
     string[] reinTitles = { "힘", "체력", "인내", "회복" };
-    string[] reinMsgs = { "공격력 +", "HP +", "방어력 +", "당근 회복 +" };
+    string[] reinMsgs = { "공격력 +", "HP +", "방어력 +", "케이크 회복 +" };
     int reinVal = 0;
     int GoldVal = 0;
     int cellNum = 0;
