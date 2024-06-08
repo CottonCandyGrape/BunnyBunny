@@ -368,7 +368,8 @@ MonoBehaviour:
   - {fileID: 7150423306890730211, guid: 847427c275fed0a4da7f4cabd91bea0e, type: 3}
   - {fileID: 360748890306721137, guid: 628e4ebc029ff1b4aafff12a7ea2fda9, type: 3}
   - {fileID: 9161789795527393008, guid: 659fabd95d77f044ca83053bb60d8729, type: 3}
-  - {fileID: 449840208616403153, guid: 25987fdbbbefecc4082783ba9c7c0d82, type: 3}
+  - {fileID: 5155907074041917964, guid: 4ba4aaec80af97e408d14babbf315a75, type: 3}
+  - {fileID: 7502173108915760402, guid: 2659d5ac37c7b8844923f9a15d1a640d, type: 3}
   BattleRing: {fileID: 9094358934630592945, guid: a7b01fb8701a74f41be00c5076789bb8, type: 3}
   hasBoss: 0
   hasRing: 0
