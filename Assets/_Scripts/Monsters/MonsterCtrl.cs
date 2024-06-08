@@ -185,7 +185,7 @@ public class MonsterCtrl : MonoBehaviour
                 dist = -Random.Range(1.0f, 2.0f);
                 break;
             case MonsterType.EliteMon:
-                dist = -Random.Range(0.5f, 1.5f);
+                dist = -Random.Range(0.5f, 1.0f);
                 break;
             case MonsterType.BossMon:
                 dist = -Random.Range(0.0f, 0.5f);
