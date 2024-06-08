@@ -594,7 +594,7 @@ MonoBehaviour:
   BtnType: 0
   SkillUp_Btn: {fileID: 8020859358374397563}
   Weapon_Img: {fileID: 6935506480035401681}
-  Ev_Sprite: {fileID: 21300000, guid: 1a375e09b533dc64c84ec5e62e3f3412, type: 3}
+  Ev_Sprite: {fileID: 21300000, guid: c618ae85444ebff459d5010e0c667748, type: 3}
   Explain_Txt: {fileID: 5730181849507349681}
   WpName_Txt: {fileID: 5904519987283141763}
   FStars_Img:
@@ -1016,7 +1016,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 639658547, guid: c322cfc72b8442b479dbffff75fe5d40, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 94972bc81531d064e9382199744f8a00, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1

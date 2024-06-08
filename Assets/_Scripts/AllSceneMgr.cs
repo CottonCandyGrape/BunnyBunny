@@ -94,7 +94,7 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
     PopUpBox GetPopUpbox(PopUpType pType)
     {
         if (mCanvas == null)
-            mCanvas = FindObjectsOfType<Canvas>()[0]; //1번째 Scene의 Canvas에 올릴 것이기 때문에 [0]
+            mCanvas = FindObjectsOfType<Canvas>()[0]; //맨위에있는 Mask Canvas임
 
         GameObject pop = Instantiate(PopUpPrefabs[(int)pType], mCanvas.transform);
         PopUpBox box = pop.GetComponent<PopUpBox>();
