@@ -26,6 +26,15 @@ public class InventoryMgr : MonoBehaviour
         InitContents();
     }
 
+    void RefreshInvenTxts()
+    {
+        if (Hp_Txt != null)
+            Hp_Txt.text = AllSceneMgr.Instance.user.Hp.ToString();
+
+        if (Atk_Txt != null)
+            Atk_Txt.text = AllSceneMgr.Instance.user.Attack.ToString();
+    }
+
     void InitContents()
     {
         string filePath = Application.persistentDataPath + "/";
@@ -54,18 +63,10 @@ public class InventoryMgr : MonoBehaviour
             {
                 invBtn.InvType = InvenType.Weapon;
                 invBtn.Inven_Img.sprite = Resources.Load<Sprite>("Images/gun");
+                invBtn.InvName = bGun.Name;
                 inven.transform.localScale = Vector3.one;
             }
         }
-    }
-
-    void RefreshInvenTxts()
-    {
-        if (Hp_Txt != null)
-            Hp_Txt.text = AllSceneMgr.Instance.user.Hp.ToString();
-
-        if (Atk_Txt != null)
-            Atk_Txt.text = AllSceneMgr.Instance.user.Attack.ToString();
     }
 
     void RefreshInvenBtns()
