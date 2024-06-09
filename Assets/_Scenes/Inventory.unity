@@ -1153,8 +1153,8 @@ MonoBehaviour:
   Hp_Txt: {fileID: 1440261332}
   Atk_Txt: {fileID: 31470216}
   Scroll_Image: {fileID: 670840424}
-  Content: {fileID: 1287088420}
   UpPnl: {fileID: 1207413177}
+  LowPnl: {fileID: 1287088420}
   UpInvenPos:
   - {fileID: 693506158}
   - {fileID: 985074943}

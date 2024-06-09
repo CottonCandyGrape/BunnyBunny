@@ -192,18 +192,26 @@ public class PopUpBox : MonoBehaviour
         if (invBtn.isUpper) //아래로 내려야함.
         {
             if (lower != null)
+            {
                 invBtn.transform.SetParent(lower);
+                AllSceneMgr.Instance.user.IsEquiped[(int)invBtn.InvType] = false;
+            }
         }
         else
         {
             if (invMgr != null)
             {
                 if (upper != null)
+                {
                     invBtn.transform.SetParent(upper);
+                    AllSceneMgr.Instance.user.IsEquiped[(int)invBtn.InvType] = true;
+                }
 
                 invBtn.transform.position = invMgr.UpInvenPos[(int)invBtn.InvType].transform.position;
             }
         }
+
+        AllSceneMgr.Instance.WriteUserInfo();
 
         Destroy(gameObject);
     }

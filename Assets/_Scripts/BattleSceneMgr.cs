@@ -106,6 +106,12 @@ public class BattleSceneMgr : MonoBehaviour
             return;
         }
 
+        if (!AllSceneMgr.Instance.user.IsEquiped[0])
+        {
+            AllSceneMgr.Instance.InitMsgPopUp("메인 무기를 장착하지 않았습니다.\n 장비탭에서 장착해주세요.");
+            return;
+        }
+
         AllSceneMgr.Instance.SubDia(GameDia);
         AllSceneMgr.Instance.CurStageNum = stageNum;
         AllSceneMgr.Instance.AtkTypeNum = atkTypeNum;
