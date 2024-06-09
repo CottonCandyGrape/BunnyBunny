@@ -35,7 +35,10 @@ public class MonsterCtrl : MonoBehaviour
     protected float curHp = 100;
     float maxHp = 100;
     float dftDmg = 30;
-    float expVal = 0;
+    float bumpDmg = 10;
+    float expVal = 10;
+    int goldVal = 10;
+    float sRan = 1.0f, eRan = 2.0f;
     //능력치 관련
 
     //UI 관련
@@ -60,7 +63,7 @@ public class MonsterCtrl : MonoBehaviour
         isKnockBack = false; //넉백하다가 죽으면 바로 다시 태어났을때 바로 넉백이기 때문에 그 자리로 순간이동 한다.
         slowTimer = 0.0f;
         curHp = maxHp;
-        SetExp();
+        Init();
     }
 
     void Start() { }
@@ -74,6 +77,34 @@ public class MonsterCtrl : MonoBehaviour
     {
         if (0.0f <= slowTimer) SpeedSlowTimer();
     }
+
+    protected void Init()
+    {
+        if (monType == MonsterType.NormalMon)
+        { 
+            bumpDmg = 10;
+            expVal = 10;
+            goldVal = 10;
+            sRan = 1.0f;
+            eRan = 2.0f;
+        }
+        else if (monType == MonsterType.EliteMon)
+        {
+            bumpDmg = 20;
+            expVal = 20;
+            goldVal = 50;
+            sRan = 0.5f;
+            eRan = 1.0f;
+        }
+        else if (monType == MonsterType.BossMon)
+        {
+            bumpDmg = 30;
+            expVal = 50;
+            goldVal = 100;
+            sRan = 0.0f;
+            eRan = 0.5f;
+        }
+    }    
 
     void SpeedSlowTimer()
     {
@@ -149,19 +180,13 @@ public class MonsterCtrl : MonoBehaviour
         }
         else if (coll.gameObject.CompareTag("Player"))
         {
-            float dmg = 10;
-            if (monType == MonsterType.EliteMon)
-                dmg = 20;
-            else if (monType == MonsterType.BossMon)
-                dmg = 30;
-
-            GameMgr.Inst.player.TakeDamage(dmg);
+            GameMgr.Inst.player.TakeDamage(bumpDmg);
         }
         else if (coll.gameObject.CompareTag("Guard"))
         {
             isKnockBack = true;
             coll.isTrigger = true;
-            kbDist = GetKnockBackDist();
+            kbDist = -Random.Range(sRan, eRan);
             kbTarget = transform.position + moveDir * kbDist;
             TakeDamage((WeaponMgr.Inst.GuardiansCtrlSc.CurLv + 1) * 10);
         }
@@ -173,33 +198,6 @@ public class MonsterCtrl : MonoBehaviour
         {
             WeaponMgr.Inst.RocketCtrlSc.ExploseRocket(WeaponMgr.Inst.RocketCtrlSc.IsEvolve, coll.gameObject);
         }
-    }
-
-    float GetKnockBackDist()
-    {
-        float dist = kbDist;
-
-        switch(monType)
-        {
-            case MonsterType.NormalMon:
-                dist = -Random.Range(1.0f, 2.0f);
-                break;
-            case MonsterType.EliteMon:
-                dist = -Random.Range(0.5f, 1.0f);
-                break;
-            case MonsterType.BossMon:
-                dist = -Random.Range(0.0f, 0.5f);
-                break;
-        }
-
-        return dist;
-    }
-
-    protected void SetExp() //TODO : Init()만들어서 monType으로 나뉘는 변수들 한번에 초기화 하기
-    {
-        expVal = 10;
-        if (monType == MonsterType.EliteMon)
-            expVal = 20;
     }
 
     protected void Move()
@@ -284,7 +282,7 @@ public class MonsterCtrl : MonoBehaviour
         if (exp <= 0.01f)
             ItemMgr.Inst.SpawnBomb(transform.position); //폭탄 스폰
         else
-            ItemMgr.Inst.SpawnGold(transform.position, monType); //골드 스폰
+            ItemMgr.Inst.SpawnGold(transform.position, goldVal); //골드 스폰
 
         gameObject.SetActive(false);
     }

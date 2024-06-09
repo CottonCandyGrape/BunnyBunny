@@ -34,10 +34,8 @@ public class ItemCtrl : MonoBehaviour
     {
         bombRadius = (ScreenMgr.InitScMax.x - ScreenMgr.InitScMin.x) / 2.0f;
 
-        Destroy(gameObject, 10.0f); //TODO : 나중에는 안먹으면 안사라지게 할거임
+        Destroy(gameObject, 10.0f);
     }
-
-    //void Update() { }
 
     void OnTriggerEnter2D(Collider2D coll)
     {

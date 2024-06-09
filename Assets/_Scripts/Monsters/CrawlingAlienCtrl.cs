@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CrawlingAlienCtrl : BossMonCtrl
 {
-    float crawlingHp = 3000.0f;
+    float crawlingHp = 4500.0f;
 
     void Start()
     {

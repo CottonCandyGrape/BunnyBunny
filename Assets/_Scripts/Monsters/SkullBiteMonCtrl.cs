@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class SkullBiteMonCtrl : MonsterCtrl
 {
-    float SkullHp = 1000.0f;
+    float SkullHp = 2500.0f;
 
     void OnEnable()
     {
         slowTimer = 0.0f;
         curHp = SkullHp;
-        base.SetExp();
+        base.Init();
     }
 
     void Start() { }

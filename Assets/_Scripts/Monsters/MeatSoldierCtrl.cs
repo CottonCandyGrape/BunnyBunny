@@ -5,7 +5,7 @@ using UnityEngine;
 public class MeatSoldierCtrl : BossMonCtrl
 {
     public GameObject MeatBullet = null;
-    float MeatSolHp = 3500.0f;
+    float MeatSolHp = 5000.0f;
 
     void Start()
     {

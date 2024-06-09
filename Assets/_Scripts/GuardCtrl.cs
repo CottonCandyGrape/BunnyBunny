@@ -40,6 +40,6 @@ public class GuardCtrl : MonoBehaviour
 
         transform.position = center + guardPos * radius;
 
-        transform.Rotate(Vector3.forward, spinSpeed * Time.deltaTime); //TODO : 없어도 될수도
+        transform.Rotate(Vector3.forward, spinSpeed * Time.deltaTime);
     }
 }

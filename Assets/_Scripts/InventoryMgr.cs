@@ -20,10 +20,6 @@ public class InventoryMgr : MonoBehaviour
         RefreshInvenTxts();
 
         InitContents();
-
-        //if (Scroll_Image != null) //TODO : 배경색을 바꿀까?...
-        //    Scroll_Image.enabled = false;
-
     }
 
     void RefreshInvenTxts()

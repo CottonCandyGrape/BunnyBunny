@@ -69,17 +69,13 @@ public class ItemMgr : MonoBehaviour
         bomb.transform.position = pos;
     }
 
-    public void SpawnGold(Vector3 pos, MonsterType monType)
+    public void SpawnGold(Vector3 pos, int goldVal)
     {
         GameObject gold = Instantiate(ItemPrefabs[(int)ItemType.Gold], Golds);
         gold.transform.position = pos;
 
         ItemCtrl item = gold.GetComponent<ItemCtrl>();
-        item.GoldVal = 10;
-        if (monType == MonsterType.EliteMon)
-            item.GoldVal = 50;
-        else if (monType == MonsterType.BossMon)
-            item.GoldVal = 100;
+        item.GoldVal = goldVal;
     }
 
     public void FlashEffect()

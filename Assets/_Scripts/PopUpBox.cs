@@ -212,7 +212,6 @@ public class PopUpBox : MonoBehaviour
     {
         TryReinforce();
 
-        Time.timeScale = 1.0f; //TODO : 여기에 왜 이게 있지?
         Destroy(gameObject);
     }
 

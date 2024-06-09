@@ -26,7 +26,7 @@ public class DmgTxtCtrl : MonoBehaviour
         }
     }
 
-    public void Init(Vector3 pos, float damage, Color txt_color) //TODO : Alpha 값 추가될 수도 있음
+    public void Init(Vector3 pos, float damage, Color txt_color)
     {
         transform.position = pos;
         if (dmg_Txt != null)

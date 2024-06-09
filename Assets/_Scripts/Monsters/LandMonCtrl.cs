@@ -5,13 +5,13 @@ using UnityEngine;
 public class LandMonCtrl : MonsterCtrl
 {
     const float OffsetX = 0.08f;
-    float landMonHp = 800.0f;
+    float landMonHp = 2000.0f;
 
     void OnEnable()
     {
         slowTimer = 0.0f;
         curHp = landMonHp;
-        base.SetExp();
+        base.Init();
     }
 
     void Start() { }
