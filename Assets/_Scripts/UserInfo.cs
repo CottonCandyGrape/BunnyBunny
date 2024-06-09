@@ -15,6 +15,7 @@ public class UserInfo
     public float Defense = 100.0f;
     public float Heal = 30.0f;
     public int Level = 1;
+    public const int MaxLevel = 30;
     public int DiaNum = 0;
     public int Gold = 0;
     public int ReinCursor = 0;
