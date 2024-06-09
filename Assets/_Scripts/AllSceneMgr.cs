@@ -16,7 +16,7 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
     [HideInInspector] public string PlayerInfoJson = "";
     [HideInInspector] public UserInfo user = new UserInfo();
     string filePath;
-    string[] fileList;
+    string fileName;
     //유저 정보 관련
 
     //팝업창 관련
@@ -46,8 +46,8 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
         filePath = Application.persistentDataPath + "/"; //에디터나 android에서나 상관없게 하려고.
 
         //유저 정보 관리
-        fileList = Directory.GetFiles(filePath, "*.json");
-        if (fileList.Length == 0) //저장된 유저 정보가 없으면 새로 저장
+        fileName = "PlayerInfo" + ".json";
+        if (!File.Exists(filePath + fileName)) //저장된 유저 정보가 없으면 새로 저장
             UserInit();
         else //있으면 불러오기
             LoadUserInfo();
@@ -69,20 +69,19 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
         user.Gold = 10000;
 
         string jsonStr = JsonUtility.ToJson(user);
-        File.WriteAllText(filePath + "PlayerInfo" + ".json", jsonStr);
+        File.WriteAllText(filePath + fileName, jsonStr);
     }
 
     void LoadUserInfo()
     {
-        string fileName = fileList[0]; //일단 첫번째 user 정보만 활용할 것임
-        string fromJson = File.ReadAllText(fileName);
+        string fromJson = File.ReadAllText(filePath + fileName);
         user = JsonUtility.FromJson<UserInfo>(fromJson);
     }
 
     public void WriteUserInfo()
     {
         string jsonStr = JsonUtility.ToJson(user);
-        File.WriteAllText(filePath + "PlayerInfo" + ".json", jsonStr);
+        File.WriteAllText(filePath + fileName, jsonStr);
     }
 
     PopUpBox GetPopUpbox(PopUpType pType)

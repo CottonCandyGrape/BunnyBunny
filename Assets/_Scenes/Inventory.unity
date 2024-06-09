@@ -1162,6 +1162,7 @@ MonoBehaviour:
   - {fileID: 1450679996}
   InvenPrefabs:
   - {fileID: 6170088143034223073, guid: 3f3a40c371105294eacd83398c1bd575, type: 3}
+  Inven_Btn: {fileID: 6170088143034223073, guid: 16ef898fc72138048b15a1feaf725071, type: 3}
 --- !u!1 &1207413176
 GameObject:
   m_ObjectHideFlags: 0

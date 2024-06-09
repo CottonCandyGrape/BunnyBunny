@@ -33,5 +33,5 @@ public class UserInfo
 
     public Image Profile_Img = null; //적용될지?... UI 정보가 Json 안먹히는듯
 
-    public bool[] IsEquiped = new bool[4];
+    public string[] IsEquiped = new string[4];
 }

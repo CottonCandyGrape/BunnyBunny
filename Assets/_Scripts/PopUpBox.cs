@@ -194,7 +194,7 @@ public class PopUpBox : MonoBehaviour
             if (lower != null)
             {
                 invBtn.transform.SetParent(lower);
-                AllSceneMgr.Instance.user.IsEquiped[(int)invBtn.InvType] = false;
+                AllSceneMgr.Instance.user.IsEquiped[(int)invBtn.InvType] = string.Empty;
             }
         }
         else
@@ -204,7 +204,7 @@ public class PopUpBox : MonoBehaviour
                 if (upper != null)
                 {
                     invBtn.transform.SetParent(upper);
-                    AllSceneMgr.Instance.user.IsEquiped[(int)invBtn.InvType] = true;
+                    AllSceneMgr.Instance.user.IsEquiped[(int)invBtn.InvType] = invBtn.InvName;
                 }
 
                 invBtn.transform.position = invMgr.UpInvenPos[(int)invBtn.InvType].transform.position;

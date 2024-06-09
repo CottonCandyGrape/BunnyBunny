@@ -7,7 +7,8 @@ public class InvenButton : MonoBehaviour
 {
     public InvenType InvType = InvenType.Weapon;
     public Image Inven_Img = null;
-    public bool isUpper = false;
+    [HideInInspector] public bool isUpper = false;
+    [HideInInspector] public string InvName = "";
     Button Inven_Btn = null;
 
     void Start()
