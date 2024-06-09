@@ -49,18 +49,15 @@ public class ItemMgr : MonoBehaviour
         cakeTimer -= Time.deltaTime;
         if (cakeTimer <= 0.0f)
         {
-            Spawncake(0.3f);
+            SpawnCake();
             cakeTimer = cakeTime;
         }
     }
 
-    void Spawncake(float healRate)
+    void SpawnCake()
     {
         GameObject crt = Instantiate(ItemPrefabs[(int)ItemType.Heal], Cakes);
         crt.transform.position = ScreenMgr.Inst.GetRandomPosCurScreen();
-
-        ItemCtrl item = crt.GetComponent<ItemCtrl>();
-        item.HealRate = healRate;
     }
 
     public void SpawnBomb(Vector3 pos)

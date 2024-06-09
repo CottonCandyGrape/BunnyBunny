@@ -17,17 +17,6 @@ public class ItemCtrl : MonoBehaviour
         }
     }
 
-    float healRate = 0.0f;
-    public float HealRate
-    {
-        get { return HealRate; }
-        set
-        {
-            if (itemType == ItemType.Heal)
-                healRate = value;
-        }
-    }
-
     float bombRadius = 0.0f;
 
     void Start()
@@ -50,7 +39,7 @@ public class ItemCtrl : MonoBehaviour
             {
                 SoundMgr.Instance.PlaySfxSound("cake");
                 PlayerCtrl player = GameMgr.Inst.player.GetComponent<PlayerCtrl>();
-                player.GetHp(healRate);
+                player.GetHp();
             }
             else if (itemType == ItemType.Bomb)
             {

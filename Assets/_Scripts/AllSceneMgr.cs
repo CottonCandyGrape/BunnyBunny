@@ -68,7 +68,7 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
         user.NickName = "닉네임";
         user.Level = 1;
         user.CurExp = 0.0f;
-        user.Hp = 100.0f; //TODO : 인게임 시작시 player에 넣어줘야한다.
+        user.Hp = 150.0f;
         user.Attack = 100.0f;
         user.Defense = 100.0f;
         user.DiaNum = 990;
@@ -158,6 +158,7 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
                 break;
             case ReinType.Heal:
                 user.Heal += rVal;
+                user.Heal = user.Heal > 100 ? 100 : user.Heal;
                 break;
             case ReinType.Hp:
                 user.Hp += rVal;
@@ -183,7 +184,7 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
     {
         user.Gold += gold;
         user.CurExp += exp;
-        while (user.NextExp <= user.CurExp)
+        while (user.NextExp <= user.CurExp && user.Level < UserInfo.MaxLevel)
         {
             user.Level++;
             user.PrevExp = user.NextExp;

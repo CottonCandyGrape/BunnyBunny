@@ -265,7 +265,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC801\uC5D0\uAC8C \uB0A0\uC544\uAC00 \uD3ED\uBC1C."
+  m_Text: "\uC801\uC5D0\uAC8C \uB0A0\uC544\uAC00 \uD3ED\uBC1C"
 --- !u!114 &2093679871828004548
 MonoBehaviour:
   m_ObjectHideFlags: 0

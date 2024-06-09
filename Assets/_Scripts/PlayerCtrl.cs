@@ -76,6 +76,7 @@ public class PlayerCtrl : MonoBehaviour
 
     void Awake()
     {
+        maxHp = AllSceneMgr.Instance.user.Hp;
         curHp = maxHp;
         AttackType = (AtkType)AllSceneMgr.Instance.AtkTypeNum;
     }
@@ -264,9 +265,10 @@ public class PlayerCtrl : MonoBehaviour
         }
     }
 
-    public void GetHp(float healRate)
+    public void GetHp()
     {
-        float heal = maxHp * healRate;
+        float hRate = AllSceneMgr.Instance.user.Heal / 100;
+        float heal = maxHp * hRate;
 
         curHp += heal;
         if (maxHp <= curHp)

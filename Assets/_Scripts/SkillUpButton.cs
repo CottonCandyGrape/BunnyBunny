@@ -83,7 +83,7 @@ public class SkillUpButton : MonoBehaviour
         else if (BtnType == SkillBtnType.Item)
         {
             if (gameObject.name.Contains("Cake"))
-                GameMgr.Inst.player.GetHp(0.3f);
+                GameMgr.Inst.player.GetHp();
             else if (gameObject.name.Contains("Gold"))
                 GameMgr.Inst.AddGold(200);
         }

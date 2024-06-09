@@ -115,7 +115,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "HP 30% \uD68C\uBCF5"
+  m_Text: "HP \uD68C\uBCF5"
 --- !u!114 &2093679871828004548
 MonoBehaviour:
   m_ObjectHideFlags: 0

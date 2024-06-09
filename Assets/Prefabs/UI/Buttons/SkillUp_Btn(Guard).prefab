@@ -266,7 +266,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\uAC00\uB514\uC5B8 3\uAC1C. \uBAAC\uC2A4\uD130 \uB109\uBC31 \uD6A8\uACFC
-    \uCD94\uAC00."
+    \uCD94\uAC00"
 --- !u!114 &2093679871828004548
 MonoBehaviour:
   m_ObjectHideFlags: 0
