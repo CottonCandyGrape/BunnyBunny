@@ -5,14 +5,14 @@ using UnityEngine.UI;
 [Serializable]
 public class UserInfo
 {
-    public string NickName = "";
+    public string NickName = "닉네임";
     public float IncRatio = 1.7f;
     public float PrevExp = 0.0f;
     public float CurExp = 0.0f;
     public float NextExp = 50.0f;
-    public float Hp = 100.0f;
+    public float Hp = 150.0f;
     public float Attack = 100.0f;
-    public float Defense = 100.0f;
+    public float Defense = 0.0f;
     public float Heal = 30.0f;
     public int Level = 1;
     public const int MaxLevel = 30;

@@ -43,8 +43,9 @@ public class PlayerCtrl : MonoBehaviour
     float maxHp = 200.0f;
     public float MaxHp { get { return maxHp; } }
     float curHp = 100.0f;
-    float attack = 10.0f;
-    float defense = 10.0f;
+    float defense;
+    float attack;
+    public float Atk { get { return attack / 100; } }
     bool isDead = false;
     //능력치 관련
 
@@ -78,6 +79,8 @@ public class PlayerCtrl : MonoBehaviour
     {
         maxHp = AllSceneMgr.Instance.user.Hp;
         curHp = maxHp;
+        attack = AllSceneMgr.Instance.user.Attack;
+        defense = AllSceneMgr.Instance.user.Defense;
         AttackType = (AtkType)AllSceneMgr.Instance.AtkTypeNum;
     }
 
@@ -253,6 +256,7 @@ public class PlayerCtrl : MonoBehaviour
 
         SoundMgr.Instance.PlaySfxSound("attacked");
 
+        damage *= (100.0f - defense) / 100.0f;
         curHp -= damage;
         //Hp UI 수정
         HpBar_Img.fillAmount = curHp / maxHp;

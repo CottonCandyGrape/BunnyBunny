@@ -262,6 +262,7 @@ public class MonsterCtrl : MonoBehaviour
         if (curHp <= 0) return; //이미 0이하인 경우에도 들어오는 경우가 있어서 추가함.
         //boss일때만 그런건가?
 
+        damage *= GameMgr.Inst.player.Atk;
         //1. Hp변수 깎기
         float dmgTxt = curHp < damage ? curHp : damage;
         curHp -= damage;
