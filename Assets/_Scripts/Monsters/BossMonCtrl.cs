@@ -50,7 +50,7 @@ public class BossMonCtrl : MonsterCtrl
     //OnCollision
     void OnCollisionEnter2D(Collision2D coll)
     {
-        if (!GameMgr.Inst.hasBoss) return;
+        if (!GameMgr.Inst.hasBoss || isDead) return;
 
         //보통 보스전일때 player의 collier는 isTrigger.false기 때문에 여기서(Collsion) 구현하지만
         //isTrigger.true일 경우도 있는데 base.OnTriggerEnter2D()에 구현되어 있다.
