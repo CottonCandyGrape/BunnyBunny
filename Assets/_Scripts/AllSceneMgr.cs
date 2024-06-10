@@ -65,7 +65,7 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
 
     void UserInit()
     {
-        user.DiaNum = 990;
+        user.DiaNum = 30;
         user.Gold = 10000;
 
         string jsonStr = JsonUtility.ToJson(user);
