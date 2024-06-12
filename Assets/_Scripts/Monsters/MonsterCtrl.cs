@@ -78,6 +78,15 @@ public class MonsterCtrl : MonoBehaviour
         if (0.0f <= slowTimer) SpeedSlowTimer();
     }
 
+    void OnTriggerExit2D(Collider2D coll)
+    {
+        if(coll.CompareTag("Area"))
+        {
+            transform.position = GameMgr.Inst.player.transform.position +
+                                    GameMgr.Inst.MonGen.GetMonSpawnPos();
+        }
+    }
+
     protected void Init()
     {
         if (monType == MonsterType.NormalMon)

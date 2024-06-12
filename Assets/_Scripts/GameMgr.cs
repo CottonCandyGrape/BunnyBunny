@@ -46,6 +46,14 @@ public class GameMgr : MonoBehaviour
 
     //Class 변수
     MonGenerator monGen = null;
+    public MonGenerator MonGen
+    {
+        get
+        {
+            if (monGen != null) return monGen;
+            else return null;
+        }
+    }
     CameraCtrl camCtrl = null;
     //Class 변수
 

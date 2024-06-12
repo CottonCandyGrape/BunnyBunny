@@ -64,7 +64,7 @@ public class MonGenerator : MonoBehaviour
         return sTime;
     }
 
-    Vector3 GetMonSpawnPos()
+    public Vector3 GetMonSpawnPos() //MonsterCtrl 에서 쓸거라서 public
     {
         Vector3 pos = Vector3.zero;
         float radius = Random.Range(5.0f, 7.0f);
