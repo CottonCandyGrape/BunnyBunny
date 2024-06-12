@@ -86,15 +86,15 @@ public class MonsterCtrl : MonoBehaviour
             expVal = 10;
             goldVal = 10;
             sRan = 1.0f;
-            eRan = 2.0f;
+            eRan = 1.5f;
         }
         else if (monType == MonsterType.EliteMon)
         {
             bumpDmg = 20;
             expVal = 20;
             goldVal = 50;
-            sRan = 0.5f;
-            eRan = 1.0f;
+            sRan = 0.2f;
+            eRan = 1.6f;
         }
         else if (monType == MonsterType.BossMon)
         {
@@ -102,7 +102,7 @@ public class MonsterCtrl : MonoBehaviour
             expVal = 50;
             goldVal = 100;
             sRan = 0.0f;
-            eRan = 0.5f;
+            eRan = 0.2f;
         }
     }    
 
@@ -187,7 +187,7 @@ public class MonsterCtrl : MonoBehaviour
             isKnockBack = true;
             coll.isTrigger = true;
             kbDist = -Random.Range(sRan, eRan);
-            kbTarget = transform.position + moveDir * kbDist;
+            kbTarget = transform.position + moveDir.normalized * kbDist;
             TakeDamage((WeaponMgr.Inst.GuardiansCtrlSc.CurLv + 1) * 10);
         }
         else if (coll.gameObject.CompareTag("Drill"))
@@ -210,6 +210,8 @@ public class MonsterCtrl : MonoBehaviour
             target = KnockBack();
 
         if (GameMgr.Inst.MType == MapType.Vertical) LimitXPos(target);
+
+        if (GameMgr.Inst.hasBoss) TrapRing(target);
     }
 
     Vector3 TracePlayer()
@@ -253,6 +255,28 @@ public class MonsterCtrl : MonoBehaviour
             pos.x = ScreenMgr.CurScMax.x - spSize;
         else if (pos.x <= ScreenMgr.CurScMin.x + spSize)
             pos.x = ScreenMgr.CurScMin.x + spSize;
+
+        rigid.MovePosition(pos);
+    }
+
+    void TrapRing(Vector2 pos)
+    {
+        float spSizeX = spRenderer.bounds.size.x / 2.0f;
+        float spSizeY = spRenderer.bounds.size.y / 2.0f;
+
+        Transform ring = GameMgr.Inst.BattleRing.transform;
+        float offsetX = GameMgr.Inst.MType == MapType.Ground ? 4.75f : 2.6f; //5-0.25, 2.85-0.25
+        float offsetY = 4.75f;
+
+        if (pos.x >= ring.position.x + offsetX - spSizeX)
+            pos.x = ring.position.x + offsetX - spSizeX;
+        else if (pos.x <= ring.position.x - offsetX + spSizeX)
+            pos.x = ring.position.x - offsetX + spSizeX;
+
+        if (pos.y >= ring.position.y + offsetY - spSizeY)
+            pos.y = ring.position.y + offsetY - spSizeY;
+        else if (pos.y <= ring.position.y - offsetY + spSizeY)
+            pos.y = ring.position.y - offsetY + spSizeY;
 
         rigid.MovePosition(pos);
     }

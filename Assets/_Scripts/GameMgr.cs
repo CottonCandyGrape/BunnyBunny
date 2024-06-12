@@ -104,9 +104,13 @@ public class GameMgr : MonoBehaviour
         //{
         //    mongen.SpawnEliteMon();
         //}
-        if (Input.GetKeyDown(KeyCode.Space)) //zoom out Test 코드
+        if (Input.GetKeyDown(KeyCode.Alpha1)) //zoom out Test 코드
         {
             InitBossBattle();
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            monGen.SpawnEliteMon();
         }
     }
 
