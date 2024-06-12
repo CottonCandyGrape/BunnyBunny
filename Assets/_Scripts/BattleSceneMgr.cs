@@ -68,8 +68,20 @@ public class BattleSceneMgr : MonoBehaviour
         SoundMgr.Instance.PlayBGM("UIScene");
 
         InitAtkObjects();
+        SetUpLowScene();
+    }
+
+    void SetUpLowScene()
+    {
+        for (int i = 0; i < SceneManager.sceneCount; i++)
+        {
+            Scene scn = SceneManager.GetSceneAt(i);
+            if (scn.name == "UpLowUI") return;
+        }
+
         StartCoroutine(AllSceneMgr.Instance.LoadUpLowUIScene());
     }
+
 
     void SettingBtnClick()
     {
