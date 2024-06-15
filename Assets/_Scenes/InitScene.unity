@@ -131,6 +131,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1273402066668182150, guid: 32e740b08c060804e8a2906df333abe1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4300865008673120047, guid: 32e740b08c060804e8a2906df333abe1, type: 3}
       propertyPath: m_Name
       value: AllSceneMgr

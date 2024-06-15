@@ -1,0 +1,219 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using GoogleMobileAds.Api;
+
+public class AdsMgr : MonoBehaviour
+{
+#if UNITY_IPHONE 
+    string _bnrAdUnitId = "ca-app-pub-3142924323482085/8563076528";
+    string _interAdUnitId = "ca-app-pub-3142924323482085/1303711219";
+    string _rewardAdUnitId = "ca-app-pub-3142924323482085/3554292428";
+
+    //test
+    //string _bnrAdUnitId = "ca-app-pub-3940256099942544/2934735716";
+    //string _interAdUnitId = "ca-app-pub-3940256099942544/4411468910";
+    //string _rewardAdUnitId = "ca-app-pub-3940256099942544/1712485313";
+    //test
+#else
+    string _bnrAdUnitId = "unused";
+    string _interAdUnitId = "unused";
+    string _rewardAdUnitId = "unused";
+#endif
+
+    const float MaxWaitTime = 3.0f;
+
+    BannerView _bannerView;
+    InterstitialAd _interstitialAd;
+    RewardedAd _rewardedAd;
+
+    void Start()
+    {
+        // Initialize the Google Mobile Ads SDK.
+        MobileAds.Initialize((InitializationStatus initStatus) =>
+        { }); // This callback is called once the MobileAds SDK is initialized.
+    }
+
+    //Banner Ad
+    public void CreateBannerView()
+    {
+        Debug.Log("Creating banner view");
+
+        if (_bannerView != null)
+            _bannerView.Destroy();
+
+        AdSize adaptiveSize =
+                AdSize.GetCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth(AdSize.FullWidth);
+
+        _bannerView = new BannerView(_bnrAdUnitId, adaptiveSize, AdPosition.Bottom);
+
+        LoadAd();
+    }
+
+    public void OffBannerView()
+    { 
+        if (_bannerView != null)
+            _bannerView.Destroy();
+    }
+
+    void LoadAd()
+    {
+        // create an instance of a banner view first.
+        if (_bannerView == null)
+        {
+            CreateBannerView();
+        }
+
+        // create our request used to load the ad.
+        var adRequest = new AdRequest();
+
+        // send the request to load the ad.
+        Debug.Log("Loading banner ad.");
+        _bannerView.LoadAd(adRequest);
+    }
+    //Banner Ad
+
+    //InterstitialAd
+    public void LoadInterstitialAd()
+    {
+        // Clean up the old ad before loading a new one.
+        if (_interstitialAd != null)
+        {
+            _interstitialAd.Destroy();
+            _interstitialAd = null;
+        }
+
+        Debug.Log("Loading the interstitial ad.");
+
+        // create our request used to load the ad.
+        var adRequest = new AdRequest();
+
+        // send the request to load the ad.
+        InterstitialAd.Load(_interAdUnitId, adRequest,
+            (InterstitialAd ad, LoadAdError error) =>
+            {
+              // if error is not null, the load request failed.
+              if (error != null || ad == null)
+                {
+                    Debug.LogError("interstitial ad failed to load an ad " + "with error : " + error);
+                    return;
+                }
+
+                Debug.Log("Interstitial ad loaded with response : " + ad.GetResponseInfo());
+
+                _interstitialAd = ad;
+                RegisterEventHandlers(_interstitialAd);
+            });
+    }
+
+    void RegisterEventHandlers(InterstitialAd interstitialAd)
+    {
+        // Raised when the ad closed full screen content.
+        interstitialAd.OnAdFullScreenContentClosed += () =>
+        {
+            Debug.Log("Interstitial ad full screen content closed.");
+
+            if (GameMgr.Inst.stageClear) //clear시 다이아 +3
+            {
+                AllSceneMgr.Instance.user.DiaNum += 3;
+                AllSceneMgr.Instance.WriteUserInfo();
+            }
+
+            LoadInterstitialAd();
+
+            GameMgr.Inst.GoToBattleScene(true);
+        };
+        // Raised when the ad failed to open full screen content.
+        interstitialAd.OnAdFullScreenContentFailed += (AdError error) =>
+        {
+            Debug.LogError("Interstitial ad failed to open full screen content " + "with error : " + error);
+
+            LoadInterstitialAd();
+        };
+    }
+
+    public IEnumerator ShowInterstitialAd()
+    {
+        float startTime = Time.time;
+
+        while (_interstitialAd == null || !_interstitialAd.CanShowAd())
+        {
+            if (Time.time - startTime >= MaxWaitTime)
+            {
+                GameMgr.Inst.GoToBattleScene(true);
+                yield break;
+            }
+            yield return null;
+        }
+
+        Debug.Log("Showing interstitial ad.");
+        _interstitialAd.Show();
+    }
+    //InterstitialAd
+
+    //RewardedAd
+    public void LoadRewardedAd()
+    {
+        // Clean up the old ad before loading a new one.
+        if (_rewardedAd != null)
+        {
+            _rewardedAd.Destroy();
+            _rewardedAd = null;
+        }
+
+        Debug.Log("Loading the rewarded ad.");
+
+        // create our request used to load the ad.
+        var adRequest = new AdRequest();
+
+        // send the request to load the ad.
+        RewardedAd.Load(_rewardAdUnitId, adRequest,
+            (RewardedAd ad, LoadAdError error) =>
+            {
+              // if error is not null, the load request failed.
+              if (error != null || ad == null)
+                {
+                    Debug.LogError("Rewarded ad failed to load an ad " + "with error : " + error);
+                    return;
+                }
+
+                Debug.Log("Rewarded ad loaded with response : " + ad.GetResponseInfo());
+
+                _rewardedAd = ad;
+                RegisterEventHandlers(_rewardedAd);
+            });
+    }
+
+    public void ShowRewardedAd()
+    {
+        const string rewardMsg =
+            "Rewarded ad rewarded the user. Type: {0}, amount: {1}.";
+
+        if (_rewardedAd != null && _rewardedAd.CanShowAd())
+        {
+            _rewardedAd.Show((Reward reward) =>
+            {
+            // TODO: Reward the user.
+            Debug.Log(string.Format(rewardMsg, reward.Type, reward.Amount));
+            });
+        }
+    }
+
+    private void RegisterEventHandlers(RewardedAd ad)
+    {
+        // Raised when the ad closed full screen content.
+        ad.OnAdFullScreenContentClosed += () =>
+        {
+            Debug.Log("Rewarded ad full screen content closed.");
+        };
+        // Raised when the ad failed to open full screen content.
+        ad.OnAdFullScreenContentFailed += (AdError error) =>
+        {
+            Debug.LogError("Rewarded ad failed to open full screen content " + "with error : " + error);
+
+            LoadRewardedAd();
+        };
+    }
+    //RewardedAd
+}

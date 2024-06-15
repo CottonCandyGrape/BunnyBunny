@@ -38,6 +38,10 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
     public bool MousePtrOn = false;
     //마우스 포인터
 
+    //광고 관련
+    public AdsMgr adsMgr = null;
+    //광고 관련
+
     UpLowUIMgr ulMgr = null;
 
     protected override void Init()
@@ -66,7 +70,7 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
     void UserInit()
     {
         user.DiaNum = 30;
-        user.Gold = 10000;
+        user.Gold = 30000;
 
         string jsonStr = JsonUtility.ToJson(user);
         File.WriteAllText(filePath + fileName, jsonStr);
@@ -221,7 +225,6 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
 
     public IEnumerator LoadUpLowUIScene()
     {
-        SetDebugTxt("UpLowUI");
         AsyncOperation async = SceneManager.LoadSceneAsync("UpLowUI", LoadSceneMode.Additive);
 
         while (!async.isDone)
@@ -232,7 +235,7 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
         LoadingAnim_Canvas.SetActive(false);
     }
 
-    void SetDebugTxt(string txt)
+    public void SetDebugTxt(string txt)
     {
         Debug_Txt.text += txt + '\n';
     }

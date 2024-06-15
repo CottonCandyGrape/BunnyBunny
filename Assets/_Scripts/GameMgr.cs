@@ -289,6 +289,8 @@ public class GameMgr : MonoBehaviour
 
     public void GameOver(bool isClear)
     {
+        AllSceneMgr.Instance.adsMgr.CreateBannerView();
+
         SoundMgr.Instance.TurnOffSound();
 
         Time.timeScale = 0.0f;

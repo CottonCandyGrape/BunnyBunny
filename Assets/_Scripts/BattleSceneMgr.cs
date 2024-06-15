@@ -69,6 +69,7 @@ public class BattleSceneMgr : MonoBehaviour
 
         InitAtkObjects();
         SetUpLowScene();
+        AllSceneMgr.Instance.adsMgr.OffBannerView();
     }
 
     void SetUpLowScene()

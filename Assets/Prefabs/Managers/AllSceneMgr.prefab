@@ -350,6 +350,50 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!1 &2805964547726039945
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7523469651815249217}
+  - component: {fileID: 8668238798973276619}
+  m_Layer: 0
+  m_Name: AdsMgr
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7523469651815249217
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2805964547726039945}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9043331738524883515}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8668238798973276619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2805964547726039945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a101b503af3e84e02ad29ad057cc5074, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3510052376526042212
 GameObject:
   m_ObjectHideFlags: 0
@@ -568,6 +612,7 @@ Transform:
   - {fileID: 5315535966197336153}
   - {fileID: 4273420247001655946}
   - {fileID: 5705924616878257994}
+  - {fileID: 7523469651815249217}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3624528465168301870
@@ -605,6 +650,11 @@ MonoBehaviour:
     Sfx: 1
     Joystick: 1
     Profile_Img: {fileID: 0}
+    IsEquiped:
+    - 
+    - 
+    - 
+    - 
   PopUpPrefabs:
   - {fileID: 6083043622143535140, guid: 52041688e8463af4796553a67a167f63, type: 3}
   - {fileID: 8431212683310283052, guid: 62f697d74f6fd5f4ea54536567620b87, type: 3}
@@ -615,6 +665,7 @@ MonoBehaviour:
   Bunny: {fileID: 1000936223154015980}
   MousePtr: {fileID: 8579193792219716572}
   MousePtrOn: 0
+  adsMgr: {fileID: 8668238798973276619}
 --- !u!1 &4805052690919465843
 GameObject:
   m_ObjectHideFlags: 0

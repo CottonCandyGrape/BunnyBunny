@@ -21,6 +21,9 @@ public class PopUpBox : MonoBehaviour
     public Text KillMsg_Txt = null;
     public Text ExpMsg_Txt = null;
     public Button Ok_Btn = null;
+    //public Button Reward_Btn = null;
+    //const float posX = 120.0f;
+    //Vector2 btnPos = Vector2.zero;
 
     [Header("------ Inventory ------")]
     public Image Inven_Img = null;
@@ -62,6 +65,9 @@ public class PopUpBox : MonoBehaviour
 
         if (Ok_Btn)
             Ok_Btn.onClick.AddListener(OKBtnClick);
+
+        //if (Reward_Btn)
+        //    Reward_Btn.onClick.AddListener(RewardBtnClick);
 
         if (Equip_Btn)
             Equip_Btn.onClick.AddListener(EquipBtnClick);
@@ -184,6 +190,16 @@ public class PopUpBox : MonoBehaviour
             Equip_Txt.text = "장착하기";
     }
 
+    //public void SetRewardBtnPos()
+    //{
+    //    Reward_Btn.gameObject.SetActive(true);
+    //    btnPos = Reward_Btn.transform.localPosition;
+    //    btnPos.x = posX;
+    //    Reward_Btn.transform.localPosition = btnPos;
+    //    btnPos.x = -posX;
+    //    Ok_Btn.transform.localPosition = btnPos;
+    //}
+
     //Click Functions
     void EquipBtnClick()
     {
@@ -246,13 +262,22 @@ public class PopUpBox : MonoBehaviour
         else if (PopUpBoxType == PopUpType.Msg && //Msg && InGame일 경우는 GameOver일 경우뿐.
             SceneManager.GetActiveScene().name == "InGame")
         {
-            GameMgr.Inst.GoToBattleScene(true);
+            AllSceneMgr.Instance.adsMgr.LoadInterstitialAd();
+            StartCoroutine(AllSceneMgr.Instance.adsMgr.ShowInterstitialAd());
             return;
         }
 
         Time.timeScale = 1.0f;
         Destroy(gameObject);
     }
+
+    //void RewardBtnClick()
+    //{
+    //    AllSceneMgr.Instance.adsMgr.LoadInterstitialAd();
+    //    StartCoroutine(AllSceneMgr.Instance.adsMgr.ShowInterstitialAd());
+
+    //    Destroy(gameObject);
+    //}
 
     void BgmToggleClick(bool isOn)
     {
