@@ -18,14 +18,14 @@
 <blockquote>  
   <details>
    <summary><b> &nbsp Class와 Json을 이용한 정보 저장 </b></summary>
+   
+</details>
+</blockquote>
    <p>
        <a href="https://github.com/JeongHo16/BunnyBunny/blob/main/Assets/_Scripts/UserInfo.cs">UserInfo.cs</a>
     유저 정보 관리 json 으로
     인게임과 json 연동 경험치, 골드
-  </p>    
-</details>
-</blockquote>
-
+  </p> 
 #
 <blockquote>  
   <details>
