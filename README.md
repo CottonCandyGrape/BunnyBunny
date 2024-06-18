@@ -117,3 +117,13 @@
     </p>    
   </details>
 </blockquote>
+
+#
+<blockquote>  
+  <details>
+   <summary><b> &nbsp 화면 비율 고정하기 </summary>
+     <p>
+      9:16으로 고정하기
+    </p>    
+  </details>
+</blockquote>
