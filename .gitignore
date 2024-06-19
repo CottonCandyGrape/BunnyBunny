@@ -74,6 +74,7 @@ Assets/Materials/BunnyPattern.mat
 *.mat
 Assets/UserData/PlayerInfo.json
 Assets/UserData/PlayerInfo.json
+Assets/ExternalDependencyManager/*
 Assets/ExternalDependencyManager/Editor/1.2.179/Google.IOSResolver.dll
 Assets/ExternalDependencyManager/Editor/1.2.179/Google.IOSResolver.dll.meta
 Assets/Plugins/Android/gradleTemplate.properties
