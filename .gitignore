@@ -91,3 +91,6 @@ ProjectSettings/GvhProjectSettings.xml
 ProjectSettings/ProjectSettings.asset
 Assets/ExternalDependencyManager/Editor/1.2.179/Google.IOSResolver.dll
 ProjectSettings/GvhProjectSettings.xml
+Assets/GoogleMobileAds/Resources/GoogleMobileAdsSettings.asset
+Assets/ExternalDependencyManager/Editor/1.2.179/Google.IOSResolver.dll.meta
+ProjectSettings/GvhProjectSettings.xml
