@@ -9,7 +9,10 @@ public class CameraCtrl : MonoBehaviour
     Camera cam = null;
 
     float[] BossCamSize = { 8.5f, 5.3f }; //Ground, Vertical Type 순서
-    float[] BossCamSpeed = { 3.0f, 0.5f }; 
+    float[] BossCamSpeed = { 3.0f, 0.5f };
+
+    const float LimitPosX = 3.7f;
+    const float LimitPosY = 3.0f;
 
     void Start()
     {
@@ -38,6 +41,19 @@ public class CameraCtrl : MonoBehaviour
             playerPos = player.position;
             playerPos.z = transform.position.z;
             playerPos.x = 0;
+            transform.position = playerPos;
+        }
+        else if (GameMgr.Inst.MType == MapType.FixedGround)
+        {
+            playerPos = player.position;
+            playerPos.z = transform.position.z;
+
+            if (playerPos.x <= -LimitPosX) playerPos.x = -LimitPosX;
+            else if (playerPos.x >= LimitPosX) playerPos.x = LimitPosX;
+
+            if (playerPos.y <= -LimitPosY) playerPos.y = -LimitPosY;
+            else if (playerPos.y >= LimitPosY) playerPos.y = LimitPosY;
+
             transform.position = playerPos;
         }
     }
