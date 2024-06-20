@@ -11,7 +11,7 @@ public enum MonsterType
 
 public class MonsterCtrl : MonoBehaviour
 {
-    public MonsterType monType = MonsterType.NormalMon;
+    [HideInInspector] public MonsterType monType = MonsterType.NormalMon;
 
     //이동 관련
     protected float moveSpeed = 1.0f;
@@ -21,6 +21,7 @@ public class MonsterCtrl : MonoBehaviour
     protected Collider2D coll = null;
     protected float slowTimer = 0.0f;
     float slowTime = 3.0f;
+    float flightSpeed = 5.0f;
     //이동 관련
 
     //넉백 관련 
@@ -70,7 +71,10 @@ public class MonsterCtrl : MonoBehaviour
 
     void FixedUpdate()
     {
-        Move();
+        if (gameObject.name.Contains("Spaceship"))
+            Flight();
+        else
+            Move();
     }
 
     void Update()
@@ -80,8 +84,14 @@ public class MonsterCtrl : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D coll)
     {
-        if(coll.CompareTag("Area"))
+        if (coll.CompareTag("Area"))
         {
+            if (gameObject.name.Contains("Spaceship"))
+            {
+                gameObject.SetActive(false);
+                return;
+            }
+
             transform.position = GameMgr.Inst.player.transform.position +
                                     GameMgr.Inst.MonGen.GetMonSpawnPos();
         }
@@ -113,7 +123,23 @@ public class MonsterCtrl : MonoBehaviour
             sRan = 0.0f;
             eRan = 0.2f;
         }
-    }    
+    }
+
+    public void SpaceshipInit(Vector2 pos, Vector2 dir)
+    {
+        moveDir = dir;
+        spRenderer.flipX = false;
+        transform.rotation = Quaternion.identity;
+
+        if (dir == Vector2.up)
+            transform.rotation = Quaternion.AngleAxis(90.0f, Vector3.forward);
+        else if (dir == Vector2.down)
+            transform.rotation = Quaternion.AngleAxis(-90.0f, Vector3.forward);
+        else if (dir == Vector2.left)
+            spRenderer.flipX = true;
+
+        transform.position = pos;
+    }
 
     void SpeedSlowTimer()
     {
@@ -207,6 +233,12 @@ public class MonsterCtrl : MonoBehaviour
         {
             WeaponMgr.Inst.RocketCtrlSc.ExploseRocket(WeaponMgr.Inst.RocketCtrlSc.IsEvolve, coll.gameObject);
         }
+    }
+
+    void Flight()
+    {
+        Vector3 target = transform.position + moveDir * flightSpeed * Time.fixedDeltaTime;
+        rigid.MovePosition(target);
     }
 
     protected void Move()
@@ -319,5 +351,12 @@ public class MonsterCtrl : MonoBehaviour
             ItemMgr.Inst.SpawnGold(transform.position, goldVal); //골드 스폰
 
         gameObject.SetActive(false);
+    }
+
+    protected void RotateMonster()
+    {
+        moveDir.Normalize();
+        float angle = Mathf.Atan(moveDir.y / moveDir.x) * Mathf.Rad2Deg;
+        spRenderer.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 }

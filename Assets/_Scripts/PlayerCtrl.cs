@@ -16,8 +16,8 @@ public class PlayerCtrl : MonoBehaviour
     Vector3 moveDir = Vector3.zero;
     SpriteRenderer playerSpRenderer = null;
     Rigidbody2D rigid = null;
-    float OffsetX = 4.7f;
-    float OffsetY = 5.1f;
+    [HideInInspector] public float OffsetX = 4.7f;
+    [HideInInspector] public float OffsetY = 5.1f;
     JoyStickCtrl joyCtrl = null;
     //이동 관련
 

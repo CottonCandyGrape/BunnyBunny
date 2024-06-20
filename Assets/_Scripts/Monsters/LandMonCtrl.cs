@@ -14,7 +14,7 @@ public class LandMonCtrl : MonsterCtrl
         base.Init();
     }
 
-    void Start() { }
+    void Start() { monType = MonsterType.EliteMon; }
 
     void FixedUpdate()
     {

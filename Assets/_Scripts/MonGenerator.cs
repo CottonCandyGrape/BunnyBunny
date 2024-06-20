@@ -15,6 +15,12 @@ public class MonGenerator : MonoBehaviour
     public int MonLimit { get { return monLimit; } set { monLimit = value; } }
     public const int MaxMonCnt = 60;
 
+    float shipSpawnTime = 5.0f;
+    float shipSpawnTimer = 0.0f;
+    Vector2[] shipDir = { Vector2.up, Vector2.down, Vector2.left, Vector2.right };
+    const float shipPosX = 7.5f;
+    const float shipPosY = 8.5f;
+
     void Start()
     {
         spawnTime = Random.Range(0.1f, 0.3f);
@@ -32,13 +38,26 @@ public class MonGenerator : MonoBehaviour
     void SpawnNormalMon()
     {
         spawnTime -= Time.deltaTime;
+        shipSpawnTimer -= Time.deltaTime;
 
         if (spawnTime <= 0.0f && MemoryPoolMgr.Inst.ActiveMonsterCount < monLimit)
         {
             spawnTime = GetSpawnTime();
-            MonsterCtrl monCtrl = MemoryPoolMgr.Inst.AddMonsterPool(curStage);
+            MonsterCtrl monCtrl = MemoryPoolMgr.Inst.AddMonsterPool();
             monCtrl.gameObject.SetActive(true);
             monCtrl.transform.position = GameMgr.Inst.player.transform.position + GetMonSpawnPos();
+        }
+
+        if (shipSpawnTimer <= 0.0f && MemoryPoolMgr.Inst.ActiveMonsterCount < monLimit)
+        {
+            shipSpawnTimer = shipSpawnTime;
+            Vector2 pos = Vector2.zero;
+            Vector2 dir = Vector2.zero;
+            GetShipSpawnPos(ref pos, ref dir);
+
+            MonsterCtrl monCtrl = MemoryPoolMgr.Inst.AddSpaceshipPool();
+            monCtrl.gameObject.SetActive(true);
+            monCtrl.SpaceshipInit(pos, dir);
         }
     }
 
@@ -62,6 +81,34 @@ public class MonGenerator : MonoBehaviour
         }
 
         return sTime;
+    }
+
+    void GetShipSpawnPos(ref Vector2 pos, ref Vector2 dir)
+    {
+        int idx = Random.Range(0, shipDir.Length);
+
+        if (idx == 0)
+        {
+            pos.x = Random.Range(-6.0f, 6.0f);
+            pos.y = -shipPosY;
+        }
+        else if (idx == 1)
+        { 
+            pos.x = Random.Range(-6.0f, 6.0f);
+            pos.y = shipPosY;
+        }
+        else if(idx == 2)
+        {
+            pos.x = shipPosX;
+            pos.y = Random.Range(-7.0f, 7.0f);
+        }
+        else if(idx == 3)
+        {
+            pos.x = -shipPosX;
+            pos.y = Random.Range(-7.0f, 7.0f);
+        }
+
+        dir = shipDir[idx];
     }
 
     public Vector3 GetMonSpawnPos() //MonsterCtrl 에서 쓸거라서 public

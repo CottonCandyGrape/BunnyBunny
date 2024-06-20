@@ -2,18 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkullBiteMonCtrl : MonsterCtrl
+public class AngryEggMonCtrl : MonsterCtrl
 {
-    float SkullHp = 2500.0f;
+    float EggHp = 3500.0f;
 
     void OnEnable()
     {
         slowTimer = 0.0f;
-        curHp = SkullHp;
+        curHp = EggHp;
         base.Init();
     }
 
-    void Start() { monType = MonsterType.EliteMon; }
+    void Start() { }
 
     void FixedUpdate()
     {
