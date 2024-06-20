@@ -128,6 +128,8 @@ public class GameMgr : MonoBehaviour
             MType = MapType.Ground;
         else if (AllSceneMgr.Instance.CurStageNum == 1)
             MType = MapType.Vertical;
+        else if (AllSceneMgr.Instance.CurStageNum == 2)
+            MType = MapType.FixedGround;
 
         Instantiate(Maps[(int)MType], Vector3.zero, Quaternion.identity);
     }
