@@ -47,6 +47,7 @@ public class PlayerCtrl : MonoBehaviour
     float attack;
     public float Atk { get { return attack / 100; } }
     bool isDead = false;
+    public bool IsDead { get { return isDead; } }
     //능력치 관련
 
     //UI 관련

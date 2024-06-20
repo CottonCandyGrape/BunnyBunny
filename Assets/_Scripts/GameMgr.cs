@@ -205,6 +205,8 @@ public class GameMgr : MonoBehaviour
 
     void ShowSkillPopUp()
     {
+        if (player.IsDead || stageClear) return;
+
         SoundMgr.Instance.PlaySfxSound("skillUp");
         Time.timeScale = 0.0f;
         SkillUpPopUp.SetActive(true);
