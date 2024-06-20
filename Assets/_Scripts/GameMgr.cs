@@ -26,8 +26,8 @@ public class GameMgr : MonoBehaviour
     //Exp 관련
     float inGameExp = 0.0f;
     float prevExp = 0.0f;
-    float nextExp = 50.0f;
-    float incRatio = 1.5f;
+    float nextExp = 100.0f;
+    float incRatio = 1.6f;
     int inGameLevel = 1;
     Coroutine expCo = null;
     //인게임 정보

@@ -74,7 +74,7 @@ public class SlimeMonCtrl : BossMonCtrl
             case ActionState.Walk:
                 {
                     animator.SetBool("Run", false);
-                    WalkAction(ActionState.Run);
+                    WalkAction(ActionState.Run, Random.Range(3, 7));
                     break;
                 }
 

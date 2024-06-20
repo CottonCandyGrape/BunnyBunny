@@ -124,7 +124,7 @@ public class BossMonCtrl : MonsterCtrl
     }
 
     //Action Functions
-    protected void WalkAction(ActionState nextAct)
+    protected void WalkAction(ActionState nextAct, int runCnt = 3)
     {
         walkTimer -= Time.deltaTime;
         if (walkTimer < 0.0f)
@@ -134,7 +134,7 @@ public class BossMonCtrl : MonsterCtrl
 
             actState = nextAct;
             if (nextAct == ActionState.Run)
-                RunCount = Random.Range(3, 7);
+                RunCount = runCnt;
         }
     }
 
