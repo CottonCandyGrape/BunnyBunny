@@ -243,7 +243,7 @@ public class GameMgr : MonoBehaviour
         MemoryPoolMgr.Inst.DestroyAllNorMon(); //Normal Monster 다 끄기
 
         Vector2 spawnPos = ScreenMgr.Inst.GetCenterCurScreen();
-        if (BattleRing != null) //링 스폰. 
+        if (BattleRing != null && MType != MapType.FixedGround) //링 스폰. 
         {
             BattleRing = Instantiate(Rings[(int)MType]);
             BattleRing.transform.position = spawnPos;

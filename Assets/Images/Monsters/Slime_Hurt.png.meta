@@ -123,127 +123,127 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Slime_Hurt_0
+      name: slime_hurt_0
       rect:
         serializedVersion: 2
-        x: 66
-        y: 202
-        width: 91
-        height: 71
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 90
+        y: 336
+        width: 254
+        height: 205
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ba926b57be036c243b892a2e270155c3
-      internalID: 320993129
+      spriteID: 7e79a1263d9921f43b93c92496c8a970
+      internalID: 1902162134
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Slime_Hurt_1
+      name: slime_hurt_1
       rect:
         serializedVersion: 2
-        x: 234
-        y: 198
-        width: 92
-        height: 72
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 420
+        y: 336
+        width: 260
+        height: 192
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3fc7b03717597f547bc41b7c7b655bdd
-      internalID: -1755599822
+      spriteID: abd847608903da441bc53180e87e2258
+      internalID: 244273209
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Slime_Hurt_2
+      name: slime_hurt_2
       rect:
         serializedVersion: 2
-        x: 405
-        y: 198
-        width: 93
-        height: 73
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 762
+        y: 336
+        width: 260
+        height: 200
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8091cbc29887e424c91c7b461c118f55
-      internalID: 1709018876
+      spriteID: 70d7e8b9e431ef543a7ce6d916b9d882
+      internalID: -403030165
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Slime_Hurt_3
+      name: slime_hurt_3
       rect:
         serializedVersion: 2
-        x: 69
-        y: 78
-        width: 89
-        height: 84
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 90
+        y: 34
+        width: 254
+        height: 224
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bf6055729f6b91a4b99565108577a683
-      internalID: 2086856521
+      spriteID: a0bde09d9e6b7ec4893b869bdba608a1
+      internalID: -1008589770
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Slime_Hurt_4
+      name: slime_hurt_4
       rect:
         serializedVersion: 2
-        x: 237
-        y: 78
-        width: 89
-        height: 81
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 426
+        y: 30
+        width: 252
+        height: 222
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1d4107901b78eb947b1fccb893731591
-      internalID: -455349706
+      spriteID: 87497e26187ff9441b2c75a84bb1bac5
+      internalID: -1281343024
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Slime_Hurt_5
+      name: slime_hurt_5
       rect:
         serializedVersion: 2
-        x: 407
-        y: 82
-        width: 91
-        height: 74
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 768
+        y: 30
+        width: 252
+        height: 216
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a6b6fbe416f0c4e4eb6c965f7d3b2f93
-      internalID: -156215534
+      spriteID: d78af9cbbfa339345a20c8a2e1dbf8e6
+      internalID: -642639859
       vertices: []
       indices: 
       edges: []
@@ -259,12 +259,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Slime_Hurt_0: 320993129
-      Slime_Hurt_1: -1755599822
-      Slime_Hurt_2: 1709018876
-      Slime_Hurt_3: 2086856521
-      Slime_Hurt_4: -455349706
-      Slime_Hurt_5: -156215534
+      slime_hurt_0: 1902162134
+      slime_hurt_1: 244273209
+      slime_hurt_2: -403030165
+      slime_hurt_3: -1008589770
+      slime_hurt_4: -1281343024
+      slime_hurt_5: -642639859
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

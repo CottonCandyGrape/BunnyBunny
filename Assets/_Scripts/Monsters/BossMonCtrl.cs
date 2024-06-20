@@ -19,7 +19,7 @@ public class BossMonCtrl : MonsterCtrl
     //Walk
 
     //Run
-    protected const int RunCount = 3;
+    protected int RunCount = 3;
     protected int curRunCount = 0;
     protected float runTimer = 0.0f;
     protected float runTime = 1.0f;
@@ -133,6 +133,8 @@ public class BossMonCtrl : MonsterCtrl
             runTimer = runTime;
 
             actState = nextAct;
+            if (nextAct == ActionState.Run)
+                RunCount = Random.Range(3, 7);
         }
     }
 

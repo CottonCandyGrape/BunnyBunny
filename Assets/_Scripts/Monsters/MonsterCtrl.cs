@@ -252,7 +252,8 @@ public class MonsterCtrl : MonoBehaviour
 
         if (GameMgr.Inst.MType == MapType.Vertical) LimitXPos(target);
 
-        if (GameMgr.Inst.hasBoss) TrapRing(target);
+        if (GameMgr.Inst.MType != MapType.FixedGround &&
+            GameMgr.Inst.hasBoss) TrapRing(target);
     }
 
     Vector3 TracePlayer()

@@ -60,7 +60,8 @@ public class CameraCtrl : MonoBehaviour
 
     public void ZoomOut()
     {
-        StartCoroutine(ZoomOutCo());
+        if (GameMgr.Inst.MType != MapType.FixedGround)
+            StartCoroutine(ZoomOutCo());
     }
 
     IEnumerator ZoomOutCo()
