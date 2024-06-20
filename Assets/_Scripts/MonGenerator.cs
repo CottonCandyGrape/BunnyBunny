@@ -16,7 +16,7 @@ public class MonGenerator : MonoBehaviour
     public const int MaxMonCnt = 60;
 
     float shipSpawnTime = 5.0f;
-    float shipSpawnTimer = 0.0f;
+    float shipSpawnTimer = 5.0f;
     Vector2[] shipDir = { Vector2.up, Vector2.down, Vector2.left, Vector2.right };
     const float shipPosX = 7.5f;
     const float shipPosY = 8.5f;
