@@ -134,6 +134,12 @@ public class SoundMgr : G_Singleton<SoundMgr>
         }
     }
 
+    public void ResumeBgm()
+    { 
+        if (AudioSrc.clip != null)
+            AudioSrc.Play();
+    }
+
     public void TurnOffSfx()
     {
         for (int i = 0; i < MaxSfxCnt; i++)

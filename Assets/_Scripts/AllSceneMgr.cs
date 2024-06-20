@@ -104,7 +104,12 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
     public void InitMsgPopUp(string txt)
     {
         PopUpBox box = GetPopUpbox(PopUpType.Msg);
-        if (box != null) box.SetMsgText(txt);
+        if (box != null)
+        {
+            box.SetMsgText(txt);
+            if (txt == "보유 다이아가 부족합니다.")//나중에 좀 더 general하게 짜자
+                box.SetRewardBtnPos();
+        }
     }
 
     public void InitReinPopUp(ReinCellButton reinCell)

@@ -38,7 +38,6 @@ public class MonGenerator : MonoBehaviour
     void SpawnNormalMon()
     {
         spawnTime -= Time.deltaTime;
-        shipSpawnTimer -= Time.deltaTime;
 
         if (spawnTime <= 0.0f && MemoryPoolMgr.Inst.ActiveMonsterCount < monLimit)
         {
@@ -48,16 +47,21 @@ public class MonGenerator : MonoBehaviour
             monCtrl.transform.position = GameMgr.Inst.player.transform.position + GetMonSpawnPos();
         }
 
-        if (shipSpawnTimer <= 0.0f && MemoryPoolMgr.Inst.ActiveMonsterCount < monLimit)
+        if (AllSceneMgr.Instance.CurStageNum == 2)
         {
-            shipSpawnTimer = shipSpawnTime;
-            Vector2 pos = Vector2.zero;
-            Vector2 dir = Vector2.zero;
-            GetShipSpawnPos(ref pos, ref dir);
+            shipSpawnTimer -= Time.deltaTime;
 
-            MonsterCtrl monCtrl = MemoryPoolMgr.Inst.AddSpaceshipPool();
-            monCtrl.gameObject.SetActive(true);
-            monCtrl.SpaceshipInit(pos, dir);
+            if (shipSpawnTimer <= 0.0f && MemoryPoolMgr.Inst.ActiveMonsterCount < monLimit)
+            {
+                shipSpawnTimer = shipSpawnTime;
+                Vector2 pos = Vector2.zero;
+                Vector2 dir = Vector2.zero;
+                GetShipSpawnPos(ref pos, ref dir);
+
+                MonsterCtrl monCtrl = MemoryPoolMgr.Inst.AddSpaceshipPool();
+                monCtrl.gameObject.SetActive(true);
+                monCtrl.SpaceshipInit(pos, dir);
+            }
         }
     }
 

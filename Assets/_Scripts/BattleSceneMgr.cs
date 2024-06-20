@@ -69,7 +69,15 @@ public class BattleSceneMgr : MonoBehaviour
 
         InitAtkObjects();
         SetUpLowScene();
+
         AllSceneMgr.Instance.adsMgr.OffBannerView();
+        PrepareRewardAd();
+    }
+
+    void PrepareRewardAd()
+    {
+        if (AllSceneMgr.Instance.user.DiaNum < 5)
+            AllSceneMgr.Instance.adsMgr.LoadRewardedAd();
     }
 
     void SetUpLowScene()

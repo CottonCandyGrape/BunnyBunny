@@ -21,9 +21,9 @@ public class PopUpBox : MonoBehaviour
     public Text KillMsg_Txt = null;
     public Text ExpMsg_Txt = null;
     public Button Ok_Btn = null;
-    //public Button Reward_Btn = null;
-    //const float posX = 120.0f;
-    //Vector2 btnPos = Vector2.zero;
+    public Button Reward_Btn = null;
+    const float posX = 120.0f;
+    Vector2 btnPos = Vector2.zero;
 
     [Header("------ Inventory ------")]
     public Image Inven_Img = null;
@@ -66,8 +66,8 @@ public class PopUpBox : MonoBehaviour
         if (Ok_Btn)
             Ok_Btn.onClick.AddListener(OKBtnClick);
 
-        //if (Reward_Btn)
-        //    Reward_Btn.onClick.AddListener(RewardBtnClick);
+        if (Reward_Btn)
+            Reward_Btn.onClick.AddListener(RewardBtnClick);
 
         if (Equip_Btn)
             Equip_Btn.onClick.AddListener(EquipBtnClick);
@@ -190,15 +190,15 @@ public class PopUpBox : MonoBehaviour
             Equip_Txt.text = "장착하기";
     }
 
-    //public void SetRewardBtnPos()
-    //{
-    //    Reward_Btn.gameObject.SetActive(true);
-    //    btnPos = Reward_Btn.transform.localPosition;
-    //    btnPos.x = posX;
-    //    Reward_Btn.transform.localPosition = btnPos;
-    //    btnPos.x = -posX;
-    //    Ok_Btn.transform.localPosition = btnPos;
-    //}
+    public void SetRewardBtnPos()
+    {
+        Reward_Btn.gameObject.SetActive(true);
+        btnPos = Reward_Btn.transform.localPosition;
+        btnPos.x = posX;
+        Reward_Btn.transform.localPosition = btnPos;
+        btnPos.x = -posX;
+        Ok_Btn.transform.localPosition = btnPos;
+    }
 
     //Click Functions
     void EquipBtnClick()
@@ -271,13 +271,12 @@ public class PopUpBox : MonoBehaviour
         Destroy(gameObject);
     }
 
-    //void RewardBtnClick()
-    //{
-    //    AllSceneMgr.Instance.adsMgr.LoadInterstitialAd();
-    //    StartCoroutine(AllSceneMgr.Instance.adsMgr.ShowInterstitialAd());
+    void RewardBtnClick()
+    {
+        AllSceneMgr.Instance.adsMgr.ShowRewardedAd();
 
-    //    Destroy(gameObject);
-    //}
+        Destroy(gameObject);
+    }
 
     void BgmToggleClick(bool isOn)
     {

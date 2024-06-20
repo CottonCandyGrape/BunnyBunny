@@ -9,7 +9,7 @@ public class AdsMgr : MonoBehaviour
 #if UNITY_IPHONE 
     string _bnrAdUnitId = "ca-app-pub-3142924323482085/8563076528";
     string _interAdUnitId = "ca-app-pub-3142924323482085/1303711219";
-    string _rewardAdUnitId = "ca-app-pub-3142924323482085/3554292428";
+    string _rewardAdUnitId = "ca-app-pub-3142924323482085/7544775808";
 
     //test
     //string _bnrAdUnitId = "ca-app-pub-3940256099942544/2934735716";
@@ -187,6 +187,8 @@ public class AdsMgr : MonoBehaviour
 
     public void ShowRewardedAd()
     {
+        SoundMgr.Instance.TurnOffBgm();
+
         const string rewardMsg =
             "Rewarded ad rewarded the user. Type: {0}, amount: {1}.";
 
@@ -194,8 +196,13 @@ public class AdsMgr : MonoBehaviour
         {
             _rewardedAd.Show((Reward reward) =>
             {
-            // TODO: Reward the user.
-            Debug.Log(string.Format(rewardMsg, reward.Type, reward.Amount));
+                reward.Amount = 5;
+                AllSceneMgr.Instance.user.DiaNum += (int)reward.Amount;
+                AllSceneMgr.Instance.WriteUserInfo();
+                AllSceneMgr.Instance.RefreshTopUI();
+
+                // TODO: Reward the user.
+                Debug.Log(string.Format(rewardMsg, reward.Type, reward.Amount));
             });
         }
     }
@@ -205,6 +212,8 @@ public class AdsMgr : MonoBehaviour
         // Raised when the ad closed full screen content.
         ad.OnAdFullScreenContentClosed += () =>
         {
+            SoundMgr.Instance.ResumeBgm();
+
             Debug.Log("Rewarded ad full screen content closed.");
         };
         // Raised when the ad failed to open full screen content.

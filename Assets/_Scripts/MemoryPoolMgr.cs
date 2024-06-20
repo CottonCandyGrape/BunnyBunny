@@ -115,8 +115,8 @@ public class MemoryPoolMgr : MonoBehaviour
                 return SpaceshipPool[i];
         }
 
-        int idx = Random.Range(0, curNorMonArr.Length);
-        GameObject mon = Instantiate(curNorMonArr[idx], monsterPool);
+        int idx = Random.Range(0, NorMonPrefs3.Length);
+        GameObject mon = Instantiate(NorMonPrefs3[idx], spaceshipPool);
         mon.SetActive(false);
         MonsterCtrl monCtrl = mon.GetComponent<MonsterCtrl>();
         SpaceshipPool.Add(monCtrl);
