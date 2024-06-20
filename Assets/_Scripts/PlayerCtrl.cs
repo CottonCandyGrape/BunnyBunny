@@ -162,7 +162,8 @@ public class PlayerCtrl : MonoBehaviour
 
         if (GameMgr.Inst.hasRing) LimitRingPos(targetPos);
 
-        if (GameMgr.Inst.MType == MapType.Vertical) LimitXPos(targetPos);
+        if (GameMgr.Inst.MType != MapType.Ground)
+            LimitPos(targetPos);
     }
 
     void SetLimitOffset()
@@ -171,8 +172,13 @@ public class PlayerCtrl : MonoBehaviour
             OffsetX = 4.7f;
         else if (GameMgr.Inst.MType == MapType.Vertical)
             OffsetX = 2.85f;
+        else if (GameMgr.Inst.MType == MapType.FixedGround)
+            OffsetX = 6.3f;
 
-        OffsetY = 5.1f;
+        if (GameMgr.Inst.MType == MapType.FixedGround)
+            OffsetY = 7.4f;
+        else
+            OffsetY = 5.1f;
     }
 
     void LimitRingPos(Vector2 pos)
@@ -185,12 +191,40 @@ public class PlayerCtrl : MonoBehaviour
         rigid.MovePosition(pos);
     }
 
-    void LimitXPos(Vector2 pos)
+    //void LimitXPos(Vector2 pos)
+    //{
+    //    if (pos.x >= OffsetX)
+    //        pos.x = OffsetX;
+    //    else if (pos.x <= -OffsetX)
+    //        pos.x = -OffsetX;
+
+    //    rigid.MovePosition(pos);
+    //}
+
+    //void LimitYPos(Vector2 pos)
+    //{
+    //    if (pos.y >= OffsetY)
+    //        pos.y = OffsetY;
+    //    else if (pos.y <= -OffsetY)
+    //        pos.y = -OffsetY;
+
+    //    rigid.MovePosition(pos);
+    //}
+
+    void LimitPos(Vector2 pos)
     {
         if (pos.x >= OffsetX)
             pos.x = OffsetX;
         else if (pos.x <= -OffsetX)
             pos.x = -OffsetX;
+
+        if (GameMgr.Inst.MType == MapType.FixedGround)
+        {
+            if (pos.y >= OffsetY)
+                pos.y = OffsetY;
+            else if (pos.y <= -OffsetY)
+                pos.y = -OffsetY;
+        }
 
         rigid.MovePosition(pos);
     }

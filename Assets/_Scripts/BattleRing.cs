@@ -17,7 +17,8 @@ public class BattleRing : MonoBehaviour
         spRenders = GetComponentsInChildren<SpriteRenderer>();
 
         SetRingOffset();
-        StartCoroutine(BlinkBattleRing());
+        if (GameMgr.Inst.MType != MapType.FixedGround)
+            StartCoroutine(BlinkBattleRing());
     }
 
     void FixedUpdate()
@@ -71,8 +72,13 @@ public class BattleRing : MonoBehaviour
             OffsetX = 4.5f;
         else if (GameMgr.Inst.MType == MapType.Vertical)
             OffsetX = 2.75f;
+        else if (GameMgr.Inst.MType == MapType.FixedGround)
+            OffsetX = 6.5f;
 
-        OffsetY = 5.0f;
+        if (GameMgr.Inst.MType == MapType.FixedGround)
+            OffsetY = 8.0f;
+        else
+            OffsetY = 5.0f;
     }
 
     void EnterRing()
