@@ -97,3 +97,5 @@ Assets/ExternalDependencyManager/Editor/1.2.179/Google.IOSResolver.dll.meta
 ProjectSettings/GvhProjectSettings.xml
 .DS_Store
 Assets/Plugins/Android/GoogleMobileAdsPlugin.androidlib/AndroidManifest.xml
+Assets/Materials/BunnyPattern.mat.meta
+Assets/Materials/CarPattern.mat.meta

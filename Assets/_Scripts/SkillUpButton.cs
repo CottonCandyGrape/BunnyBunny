@@ -34,6 +34,8 @@ public class SkillUpButton : MonoBehaviour
 
     void OnEnable()
     {
+        SkillUp_Btn.interactable = true;
+
         if (weapon != null)
         {
             Explain_Txt.text = weapon.GetExplainText(); //설명 텍스트 설정
@@ -62,6 +64,8 @@ public class SkillUpButton : MonoBehaviour
     void SkillUpBtnClick()
     {
         SoundMgr.Instance.PlaySfxSound("skillSelect");
+
+        SkillUp_Btn.interactable = false;
 
         if (BtnType == SkillBtnType.Skill)
         {
