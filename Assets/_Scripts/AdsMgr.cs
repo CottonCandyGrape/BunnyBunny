@@ -17,9 +17,14 @@ public class AdsMgr : MonoBehaviour
     string _rewardAdUnitId = "ca-app-pub-3940256099942544/1712485313";
     //test
 #else
-    string _bnrAdUnitId = "unused";
-    string _interAdUnitId = "unused";
-    string _rewardAdUnitId = "unused";
+    //test
+    string _bnrAdUnitId = "ca-app-pub-3940256099942544/2934735716";
+    string _interAdUnitId = "ca-app-pub-3940256099942544/4411468910";
+    string _rewardAdUnitId = "ca-app-pub-3940256099942544/1712485313";
+    //test
+    //string _bnrAdUnitId = "unused";
+    //string _interAdUnitId = "unused";
+    //string _rewardAdUnitId = "unused";
 #endif
 
     const float MaxWaitTime = 3.0f;
