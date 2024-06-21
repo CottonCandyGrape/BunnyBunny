@@ -96,3 +96,4 @@ Assets/GoogleMobileAds/Resources/GoogleMobileAdsSettings.asset
 Assets/ExternalDependencyManager/Editor/1.2.179/Google.IOSResolver.dll.meta
 ProjectSettings/GvhProjectSettings.xml
 .DS_Store
+Assets/Plugins/Android/GoogleMobileAdsPlugin.androidlib/AndroidManifest.xml
