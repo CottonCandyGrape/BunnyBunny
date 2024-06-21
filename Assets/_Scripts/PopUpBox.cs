@@ -21,9 +21,9 @@ public class PopUpBox : MonoBehaviour
     public Text KillMsg_Txt = null;
     public Text ExpMsg_Txt = null;
     public Button Ok_Btn = null;
-    public Button Reward_Btn = null;
-    const float posX = 120.0f;
-    Vector2 btnPos = Vector2.zero;
+    //public Button Reward_Btn = null;
+    //const float posX = 120.0f;
+    //Vector2 btnPos = Vector2.zero;
 
     [Header("------ Inventory ------")]
     public Image Inven_Img = null;
@@ -66,8 +66,8 @@ public class PopUpBox : MonoBehaviour
         if (Ok_Btn)
             Ok_Btn.onClick.AddListener(OKBtnClick);
 
-        if (Reward_Btn)
-            Reward_Btn.onClick.AddListener(RewardBtnClick);
+        //if (Reward_Btn)
+        //    Reward_Btn.onClick.AddListener(RewardBtnClick);
 
         if (Equip_Btn)
             Equip_Btn.onClick.AddListener(EquipBtnClick);
@@ -101,10 +101,11 @@ public class PopUpBox : MonoBehaviour
         reinCell = rCell;
         RfType = rCell.RfType;
         cellNum = rCell.cellNum;
-        reinVal = 3;
-        GoldVal = 1000;
+        int lv = (rCell.cellNum / 3) + 1;
+        reinVal = lv * 3;
+        GoldVal = 1000 + (lv - 1) * 1500;
         Title_Txt.text = reinTitles[(int)RfType];
-        Msg_Txt.text = reinMsgs[(int)RfType] + reinVal.ToString(); //TODO : cellLV에 따른 증가량
+        Msg_Txt.text = reinMsgs[(int)RfType] + reinVal.ToString();
 
         if (cellNum < AllSceneMgr.Instance.user.ReinCursor)
         {
@@ -116,15 +117,8 @@ public class PopUpBox : MonoBehaviour
             Rein_Btn.gameObject.SetActive(true);
             Ok_Btn.gameObject.SetActive(false);
 
-            Gold_Txt.text = "x " + GoldVal.ToString(); //TODO : cellLV에 따라 다른 가격 
+            Gold_Txt.text = "x " + GoldVal.ToString();
         }
-    }
-
-    public void SetSettingInfo()
-    {
-        Bgm_Tgl.isOn = AllSceneMgr.Instance.user.Bgm;
-        Sfx_Tgl.isOn = AllSceneMgr.Instance.user.Sfx;
-        JoyStick_Tgl.isOn = AllSceneMgr.Instance.user.Joystick;
     }
 
     void TryReinforce()
@@ -147,6 +141,13 @@ public class PopUpBox : MonoBehaviour
         }
         else
             AllSceneMgr.Instance.InitMsgPopUp("K 또는 M이 있거나 다른 문자열이 껴있슴...");
+    }
+
+    public void SetSettingInfo()
+    {
+        Bgm_Tgl.isOn = AllSceneMgr.Instance.user.Bgm;
+        Sfx_Tgl.isOn = AllSceneMgr.Instance.user.Sfx;
+        JoyStick_Tgl.isOn = AllSceneMgr.Instance.user.Joystick;
     }
 
     void SetAlpha()
@@ -190,15 +191,15 @@ public class PopUpBox : MonoBehaviour
             Equip_Txt.text = "장착하기";
     }
 
-    public void SetRewardBtnPos()
-    {
-        Reward_Btn.gameObject.SetActive(true);
-        btnPos = Reward_Btn.transform.localPosition;
-        btnPos.x = posX;
-        Reward_Btn.transform.localPosition = btnPos;
-        btnPos.x = -posX;
-        Ok_Btn.transform.localPosition = btnPos;
-    }
+    //public void SetRewardBtnPos()
+    //{
+    //    Reward_Btn.gameObject.SetActive(true);
+    //    btnPos = Reward_Btn.transform.localPosition;
+    //    btnPos.x = posX;
+    //    Reward_Btn.transform.localPosition = btnPos;
+    //    btnPos.x = -posX;
+    //    Ok_Btn.transform.localPosition = btnPos;
+    //}
 
     //Click Functions
     void EquipBtnClick()
@@ -271,12 +272,12 @@ public class PopUpBox : MonoBehaviour
         Destroy(gameObject);
     }
 
-    void RewardBtnClick()
-    {
-        AllSceneMgr.Instance.adsMgr.ShowRewardedAd();
+    //void RewardBtnClick()
+    //{
+    //    AllSceneMgr.Instance.adsMgr.ShowRewardedAd();
 
-        Destroy(gameObject);
-    }
+    //    Destroy(gameObject);
+    //}
 
     void BgmToggleClick(bool isOn)
     {

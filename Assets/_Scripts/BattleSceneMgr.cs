@@ -29,6 +29,9 @@ public class BattleSceneMgr : MonoBehaviour
 
     [Header("------ Start Block ------")]
     public Button Start_Btn = null;
+    public Text Start_Txt = null;
+    public Image Ad_Img = null;
+    public Text Ad_Txt = null;
 
     const int MinStageNum = 0;
     const int MaxStageNum = 2;
@@ -69,9 +72,25 @@ public class BattleSceneMgr : MonoBehaviour
 
         InitAtkObjects();
         SetUpLowScene();
+        SetStartBtn();
 
         AllSceneMgr.Instance.adsMgr.OffBannerView();
         PrepareRewardAd();
+    }
+
+    public void SetStartBtn()
+    {
+        if (AllSceneMgr.Instance.user.DiaNum < 5)
+            ToggleStartBtnAd(false);
+        else
+            ToggleStartBtnAd(true);
+    }
+
+    void ToggleStartBtnAd(bool onOff)
+    {
+        Start_Txt.gameObject.SetActive(onOff);
+        Ad_Img.gameObject.SetActive(!onOff);
+        Ad_Txt.gameObject.SetActive(!onOff);
     }
 
     void PrepareRewardAd()
@@ -90,7 +109,6 @@ public class BattleSceneMgr : MonoBehaviour
 
         StartCoroutine(AllSceneMgr.Instance.LoadUpLowUIScene());
     }
-
 
     void SettingBtnClick()
     {
@@ -115,6 +133,17 @@ public class BattleSceneMgr : MonoBehaviour
     {
         SoundMgr.Instance.PlaySfxSound("startClick");
 
+        if (!Start_Txt.gameObject.activeSelf) //Dia 부족시
+        {
+            if (AllSceneMgr.Instance.adsMgr.RewardAd == null ||
+                !AllSceneMgr.Instance.adsMgr.RewardAd.CanShowAd())
+                AllSceneMgr.Instance.InitMsgPopUp("광고가 로드되고 있습니다. 잠시 후 다시 시도해 주세요.");
+            else
+                AllSceneMgr.Instance.adsMgr.ShowRewardedAd();
+
+            return;
+        }
+
         if (unLockStageNum < stageNum)
         {
             AllSceneMgr.Instance.InitMsgPopUp("아직 도전할 수 없습니다.");
@@ -136,6 +165,9 @@ public class BattleSceneMgr : MonoBehaviour
         AllSceneMgr.Instance.SubDia(GameDia);
         AllSceneMgr.Instance.CurStageNum = stageNum;
         AllSceneMgr.Instance.AtkTypeNum = atkTypeNum;
+
+        PrepareRewardAd();
+
         StartCoroutine(AllSceneMgr.Instance.LoadScene("InGame"));
     }
 

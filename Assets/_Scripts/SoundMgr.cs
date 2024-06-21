@@ -134,6 +134,12 @@ public class SoundMgr : G_Singleton<SoundMgr>
         }
     }
 
+    public void PauseBgm()
+    {
+        if (AudioSrc.clip != null)
+            AudioSrc.Pause();
+    }
+
     public void ResumeBgm()
     { 
         if (AudioSrc.clip != null)

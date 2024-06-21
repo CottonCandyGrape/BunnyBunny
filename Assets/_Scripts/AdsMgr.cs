@@ -6,15 +6,15 @@ using GoogleMobileAds.Api;
 
 public class AdsMgr : MonoBehaviour
 {
-#if UNITY_IPHONE 
-    string _bnrAdUnitId = "ca-app-pub-3142924323482085/8563076528";
-    string _interAdUnitId = "ca-app-pub-3142924323482085/1303711219";
-    string _rewardAdUnitId = "ca-app-pub-3142924323482085/7544775808";
+#if UNITY_IOS 
+    //string _bnrAdUnitId = "ca-app-pub-3142924323482085/8563076528";
+    //string _interAdUnitId = "ca-app-pub-3142924323482085/1303711219";
+    //string _rewardAdUnitId = "ca-app-pub-3142924323482085/7544775808";
 
     //test
-    //string _bnrAdUnitId = "ca-app-pub-3940256099942544/2934735716";
-    //string _interAdUnitId = "ca-app-pub-3940256099942544/4411468910";
-    //string _rewardAdUnitId = "ca-app-pub-3940256099942544/1712485313";
+    string _bnrAdUnitId = "ca-app-pub-3940256099942544/2934735716";
+    string _interAdUnitId = "ca-app-pub-3940256099942544/4411468910";
+    string _rewardAdUnitId = "ca-app-pub-3940256099942544/1712485313";
     //test
 #else
     string _bnrAdUnitId = "unused";
@@ -27,6 +27,7 @@ public class AdsMgr : MonoBehaviour
     BannerView _bannerView;
     InterstitialAd _interstitialAd;
     RewardedAd _rewardedAd;
+    public RewardedAd RewardAd { get { return _rewardedAd; } }
 
     void Start()
     {
@@ -69,7 +70,7 @@ public class AdsMgr : MonoBehaviour
         var adRequest = new AdRequest();
 
         // send the request to load the ad.
-        Debug.Log("Loading banner ad.");
+        //Debug.Log("Loading banner ad.");
         _bannerView.LoadAd(adRequest);
     }
     //Banner Ad
@@ -96,11 +97,11 @@ public class AdsMgr : MonoBehaviour
               // if error is not null, the load request failed.
               if (error != null || ad == null)
                 {
-                    Debug.LogError("interstitial ad failed to load an ad " + "with error : " + error);
+                    //Debug.LogError("interstitial ad failed to load an ad " + "with error : " + error);
                     return;
                 }
 
-                Debug.Log("Interstitial ad loaded with response : " + ad.GetResponseInfo());
+                //Debug.Log("Interstitial ad loaded with response : " + ad.GetResponseInfo());
 
                 _interstitialAd = ad;
                 RegisterEventHandlers(_interstitialAd);
@@ -112,7 +113,7 @@ public class AdsMgr : MonoBehaviour
         // Raised when the ad closed full screen content.
         interstitialAd.OnAdFullScreenContentClosed += () =>
         {
-            Debug.Log("Interstitial ad full screen content closed.");
+            //Debug.Log("Interstitial ad full screen content closed.");
 
             if (GameMgr.Inst.stageClear) //clear시 다이아 +3
             {
@@ -127,7 +128,7 @@ public class AdsMgr : MonoBehaviour
         // Raised when the ad failed to open full screen content.
         interstitialAd.OnAdFullScreenContentFailed += (AdError error) =>
         {
-            Debug.LogError("Interstitial ad failed to open full screen content " + "with error : " + error);
+            //Debug.LogError("Interstitial ad failed to open full screen content " + "with error : " + error);
 
             LoadInterstitialAd();
         };
@@ -147,7 +148,7 @@ public class AdsMgr : MonoBehaviour
             yield return null;
         }
 
-        Debug.Log("Showing interstitial ad.");
+        //Debug.Log("Showing interstitial ad.");
         _interstitialAd.Show();
     }
     //InterstitialAd
@@ -162,7 +163,7 @@ public class AdsMgr : MonoBehaviour
             _rewardedAd = null;
         }
 
-        Debug.Log("Loading the rewarded ad.");
+        //Debug.Log("Loading the rewarded ad.");
 
         // create our request used to load the ad.
         var adRequest = new AdRequest();
@@ -174,11 +175,11 @@ public class AdsMgr : MonoBehaviour
               // if error is not null, the load request failed.
               if (error != null || ad == null)
                 {
-                    Debug.LogError("Rewarded ad failed to load an ad " + "with error : " + error);
+                    //Debug.LogError("Rewarded ad failed to load an ad " + "with error : " + error);
                     return;
                 }
 
-                Debug.Log("Rewarded ad loaded with response : " + ad.GetResponseInfo());
+                //Debug.Log("Rewarded ad loaded with response : " + ad.GetResponseInfo());
 
                 _rewardedAd = ad;
                 RegisterEventHandlers(_rewardedAd);
@@ -187,7 +188,7 @@ public class AdsMgr : MonoBehaviour
 
     public void ShowRewardedAd()
     {
-        SoundMgr.Instance.TurnOffBgm();
+        SoundMgr.Instance.PauseBgm();
 
         const string rewardMsg =
             "Rewarded ad rewarded the user. Type: {0}, amount: {1}.";
@@ -200,9 +201,10 @@ public class AdsMgr : MonoBehaviour
                 AllSceneMgr.Instance.user.DiaNum += (int)reward.Amount;
                 AllSceneMgr.Instance.WriteUserInfo();
                 AllSceneMgr.Instance.RefreshTopUI();
+                FindObjectOfType<BattleSceneMgr>().SetStartBtn();
 
                 // TODO: Reward the user.
-                Debug.Log(string.Format(rewardMsg, reward.Type, reward.Amount));
+                //Debug.Log(string.Format(rewardMsg, reward.Type, reward.Amount));
             });
         }
     }
@@ -214,12 +216,14 @@ public class AdsMgr : MonoBehaviour
         {
             SoundMgr.Instance.ResumeBgm();
 
-            Debug.Log("Rewarded ad full screen content closed.");
+            LoadRewardedAd();
+
+            //Debug.Log("Rewarded ad full screen content closed.");
         };
         // Raised when the ad failed to open full screen content.
         ad.OnAdFullScreenContentFailed += (AdError error) =>
         {
-            Debug.LogError("Rewarded ad failed to open full screen content " + "with error : " + error);
+            //Debug.LogError("Rewarded ad failed to open full screen content " + "with error : " + error);
 
             LoadRewardedAd();
         };
