@@ -77,6 +77,8 @@ Assets/UserData/PlayerInfo.json
 Assets/ExternalDependencyManager/*
 Assets/ExternalDependencyManager/Editor/1.2.179/Google.IOSResolver.dll
 Assets/ExternalDependencyManager/Editor/1.2.179/Google.IOSResolver.dll.meta
+Assets/GoogleMobileAds/*
+Assets/Plugins/*
 Assets/Plugins/Android/gradleTemplate.properties
 Assets/Plugins/Android/gradleTemplate.properties.meta
 Assets/Plugins/Android/mainTemplate.gradle
