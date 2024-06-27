@@ -75,7 +75,7 @@ public class BattleSceneMgr : MonoBehaviour
         SetStartBtn();
 
         AllSceneMgr.Instance.adsMgr.OffBannerView();
-        PrepareRewardAd();
+        PreparedAds();
     }
 
     public void SetStartBtn()
@@ -93,8 +93,9 @@ public class BattleSceneMgr : MonoBehaviour
         Ad_Txt.gameObject.SetActive(!onOff);
     }
 
-    void PrepareRewardAd()
+    void PreparedAds()
     {
+        AllSceneMgr.Instance.adsMgr.LoadInterstitialAd();
         if (AllSceneMgr.Instance.user.DiaNum < 5)
             AllSceneMgr.Instance.adsMgr.LoadRewardedAd();
     }
@@ -166,7 +167,7 @@ public class BattleSceneMgr : MonoBehaviour
         AllSceneMgr.Instance.CurStageNum = stageNum;
         AllSceneMgr.Instance.AtkTypeNum = atkTypeNum;
 
-        PrepareRewardAd();
+        PreparedAds();
 
         StartCoroutine(AllSceneMgr.Instance.LoadScene("InGame"));
     }

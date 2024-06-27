@@ -7,14 +7,14 @@ using GoogleMobileAds.Api;
 public class AdsMgr : MonoBehaviour
 {
 #if UNITY_IOS 
-    //string _bnrAdUnitId = "ca-app-pub-3142924323482085/8563076528";
-    //string _interAdUnitId = "ca-app-pub-3142924323482085/1303711219";
-    //string _rewardAdUnitId = "ca-app-pub-3142924323482085/7544775808";
+    string _bnrAdUnitId = "ca-app-pub-3142924323482085/8563076528";
+    string _interAdUnitId = "ca-app-pub-3142924323482085/1303711219";
+    string _rewardAdUnitId = "ca-app-pub-3142924323482085/7544775808";
 
     //test
-    string _bnrAdUnitId = "ca-app-pub-3940256099942544/2934735716";
-    string _interAdUnitId = "ca-app-pub-3940256099942544/4411468910";
-    string _rewardAdUnitId = "ca-app-pub-3940256099942544/1712485313";
+    //string _bnrAdUnitId = "ca-app-pub-3940256099942544/2934735716";
+    //string _interAdUnitId = "ca-app-pub-3940256099942544/4411468910";
+    //string _rewardAdUnitId = "ca-app-pub-3940256099942544/1712485313";
     //test
 #else
     string _bnrAdUnitId = "unused";
@@ -37,7 +37,7 @@ public class AdsMgr : MonoBehaviour
     }
 
     //Banner Ad
-    public void CreateBannerView()
+    void CreateBannerView()
     {
         Debug.Log("Creating banner view");
 
@@ -48,8 +48,7 @@ public class AdsMgr : MonoBehaviour
                 AdSize.GetCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth(AdSize.FullWidth);
 
         _bannerView = new BannerView(_bnrAdUnitId, adaptiveSize, AdPosition.Bottom);
-
-        LoadAd();
+        ListenToAdEvents();
     }
 
     public void OffBannerView()
@@ -58,7 +57,7 @@ public class AdsMgr : MonoBehaviour
             _bannerView.Destroy();
     }
 
-    void LoadAd()
+    public void LoadBannerAd()
     {
         // create an instance of a banner view first.
         if (_bannerView == null)
@@ -72,6 +71,16 @@ public class AdsMgr : MonoBehaviour
         // send the request to load the ad.
         //Debug.Log("Loading banner ad.");
         _bannerView.LoadAd(adRequest);
+    }
+
+    void ListenToAdEvents()
+    {
+        // Raised when an ad fails to load into the banner view.
+        _bannerView.OnBannerAdLoadFailed += (LoadAdError error) =>
+        {
+            //Debug.LogError("Banner view failed to load an ad with error : " + error);
+            LoadBannerAd();
+        };
     }
     //Banner Ad
 
@@ -131,16 +140,18 @@ public class AdsMgr : MonoBehaviour
             //Debug.LogError("Interstitial ad failed to open full screen content " + "with error : " + error);
 
             LoadInterstitialAd();
+            
+            GameMgr.Inst.GoToBattleScene(true);
         };
     }
 
     public IEnumerator ShowInterstitialAd()
     {
-        float startTime = Time.time;
+        float startTime = Time.unscaledTime;
 
         while (_interstitialAd == null || !_interstitialAd.CanShowAd())
         {
-            if (Time.time - startTime >= MaxWaitTime)
+            if (Time.unscaledTime - startTime >= MaxWaitTime)
             {
                 GameMgr.Inst.GoToBattleScene(true);
                 yield break;

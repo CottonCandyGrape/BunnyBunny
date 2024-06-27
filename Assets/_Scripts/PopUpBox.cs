@@ -263,7 +263,7 @@ public class PopUpBox : MonoBehaviour
         else if (PopUpBoxType == PopUpType.Msg && //Msg && InGame일 경우는 GameOver일 경우뿐.
             SceneManager.GetActiveScene().name == "InGame")
         {
-            AllSceneMgr.Instance.adsMgr.LoadInterstitialAd();
+            Ok_Btn.interactable = false;
             StartCoroutine(AllSceneMgr.Instance.adsMgr.ShowInterstitialAd());
             return;
         }
