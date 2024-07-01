@@ -14,17 +14,22 @@ public class AdsMgr : MonoBehaviour
     //test
     //string _bnrAdUnitId = "ca-app-pub-3940256099942544/2934735716";
     //string _interAdUnitId = "ca-app-pub-3940256099942544/4411468910";
-    //string _rewardAdUnitId = "ca-app-pub-3940256099942544/1712485313";
+    //string _rewardAdUnitId = "ca-app-pub-3940256099942544/1712485313";
+    //test
+#elif UNITY_ANDROID 
+    //string _bnrAdUnitId = "ca-app-pub-3142924323482085/5870340284";
+    //string _interAdUnitId = "ca-app-pub-3142924323482085/4921603583";
+    //string _rewardAdUnitId = "ca-app-pub-3142924323482085/7434703398";
+
+    //test
+    string _bnrAdUnitId = "ca-app-pub-3940256099942544/6300978111";
+    string _interAdUnitId = "ca-app-pub-3940256099942544/1033173712";
+    string _rewardAdUnitId = "ca-app-pub-3940256099942544/5224354917";
     //test
 #else
-    //test
-    string _bnrAdUnitId = "ca-app-pub-3940256099942544/2934735716";
-    string _interAdUnitId = "ca-app-pub-3940256099942544/4411468910";
-    string _rewardAdUnitId = "ca-app-pub-3940256099942544/1712485313";
-    //test
-    //string _bnrAdUnitId = "unused";
-    //string _interAdUnitId = "unused";
-    //string _rewardAdUnitId = "unused";
+    string _bnrAdUnitId = "unused";
+    string _interAdUnitId = "unused";
+    string _rewardAdUnitId = "unused";
 #endif
 
     const float MaxWaitTime = 3.0f;
