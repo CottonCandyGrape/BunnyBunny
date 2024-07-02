@@ -40,6 +40,7 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
 
     //광고 관련
     public AdsMgr adsMgr = null;
+    public bool adOn = true;
     //광고 관련
 
     UpLowUIMgr ulMgr = null;

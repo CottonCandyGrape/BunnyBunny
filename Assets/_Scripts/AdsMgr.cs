@@ -69,6 +69,8 @@ public class AdsMgr : MonoBehaviour
 
     public void LoadBannerAd()
     {
+        if (!AllSceneMgr.Instance.adOn) return;
+
         // create an instance of a banner view first.
         if (_bannerView == null)
         {
@@ -157,6 +159,12 @@ public class AdsMgr : MonoBehaviour
 
     public IEnumerator ShowInterstitialAd()
     {
+        if (!AllSceneMgr.Instance.adOn)
+        {
+            GameMgr.Inst.GoToBattleScene(true);
+            yield break;
+        }
+
         float startTime = Time.unscaledTime;
 
         while (_interstitialAd == null || !_interstitialAd.CanShowAd())
