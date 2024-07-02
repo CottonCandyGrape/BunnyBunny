@@ -10,4 +10,4 @@
 
 ## [Download App Store](https://apps.apple.com/ca/app/bunnybunny/id6504274647)
 
-## [기술소개서](https://jeongho16.github.io/BunnyBunny/)
+## [기술소개서](https://cottoncandygrape.github.io/BunnyBunny/)
