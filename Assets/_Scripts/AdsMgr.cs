@@ -99,6 +99,8 @@ public class AdsMgr : MonoBehaviour
     //InterstitialAd
     public void LoadInterstitialAd()
     {
+        if (!AllSceneMgr.Instance.adOn) return;
+
         // Clean up the old ad before loading a new one.
         if (_interstitialAd != null)
         {
