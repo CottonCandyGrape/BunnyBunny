@@ -10,4 +10,4 @@
 
 ## [Download App Store](https://apps.apple.com/ca/app/bunnybunny/id6504274647)
 
-## [기술소개서](https://cottoncandygrape.github.io/BunnyBunny/)
+## [프로젝트 소개서](https://ccgrape.gitbook.io/cottoncandygrape/portfolio/game-bunnybunny)
