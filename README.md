@@ -4,7 +4,7 @@
 ## 개발 기간
 - 2024.02 ~ 2024.05
 
-## [YouTube Video](https://www.youtube.com/watch?v=ccTnCZxCkPs)
+## [YouTube Video](https://youtu.be/jscOmU-EWzI)
 
 ## [Download the lastest version .apk](https://github.com/CottonCandyGrape/BunnyBunny/releases/download/v.1.2.0/BunnyBunny_240702.apk)
 
