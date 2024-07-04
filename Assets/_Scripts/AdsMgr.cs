@@ -221,8 +221,8 @@ public class AdsMgr : MonoBehaviour
     {
         SoundMgr.Instance.PauseBgm();
 
-        const string rewardMsg =
-            "Rewarded ad rewarded the user. Type: {0}, amount: {1}.";
+        //const string rewardMsg =
+        //    "Rewarded ad rewarded the user. Type: {0}, amount: {1}.";
 
         if (_rewardedAd != null && _rewardedAd.CanShowAd())
         {

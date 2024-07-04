@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoundMgr : G_Singleton<SoundMgr>
+public class SoundMgr : MonoBehaviour
 {
     [HideInInspector] public AudioSource AudioSrc = null;
     Dictionary<string, AudioClip> adClipDict = new Dictionary<string, AudioClip>();
@@ -11,9 +11,11 @@ public class SoundMgr : G_Singleton<SoundMgr>
     const int MaxSfxCnt = 5;
     int sfxCnt = 0;
 
-    protected override void Init()
+    public static SoundMgr Instance = null;
+
+    void Awake()
     {
-        base.Init();
+        Instance = this;
         SetSfxSrc();
         SetClipDict();
     }
