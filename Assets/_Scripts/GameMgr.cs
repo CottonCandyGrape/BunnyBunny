@@ -122,7 +122,7 @@ public class GameMgr : MonoBehaviour
         }
 
 #if UNITY_ANDROID
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && Time.timeScale != 0.0f)
             PauseBtnClick();
 #endif
     }
