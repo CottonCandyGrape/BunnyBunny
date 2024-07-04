@@ -165,11 +165,11 @@ public class RocketCtrl : Weapon
     public override string GetExplainText()
     {
         if (curLevel == 0)
-            return "적에게 날아가 폭발.";
+            return "적에게 날아가 폭발";
         else if (curLevel == 1 || curLevel == 2)
-            return "폭발 범위 30% 증가.";
+            return "폭발 범위 30% 증가";
         else if (curLevel == 3)
-            return "핵폭발. 폭발 범위 대폭 증가.";
+            return "핵폭탄 폭발 범위 대폭 증가";
         return string.Empty;
     }
 }

@@ -149,13 +149,13 @@ public class GunCtrl : Weapon
     public override string GetExplainText()
     {
         if (curLevel == 0)
-            return "더블샷.";
+            return "더블샷";
         else if (curLevel == 1)
-            return "트리플샷.";
+            return "트리플샷";
         else if (curLevel == 2)
-            return "반달샷.";
+            return "반달샷";
         else if (curLevel == 3)
-            return "거대 에너지 추가 발사.";
+            return "거대 에너지 추가 발사";
         return string.Empty;
     }
 
