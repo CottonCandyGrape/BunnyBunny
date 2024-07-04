@@ -120,6 +120,11 @@ public class GameMgr : MonoBehaviour
         {
             monGen.SpawnEliteMon();
         }
+
+#if UNITY_ANDROID
+        if (Input.GetKeyDown(KeyCode.Escape))
+            PauseBtnClick();
+#endif
     }
 
     void SetMap()
