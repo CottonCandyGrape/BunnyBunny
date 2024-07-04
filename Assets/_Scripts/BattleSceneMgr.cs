@@ -89,12 +89,14 @@ public class BattleSceneMgr : MonoBehaviour
     void ToggleStartBtnAd(bool onOff)
     {
         Start_Txt.gameObject.SetActive(onOff);
-        Ad_Img.gameObject.SetActive(!onOff);
+        //Ad_Img.gameObject.SetActive(!onOff); //TODO : 광고 넣으면 다시 살리기
         Ad_Txt.gameObject.SetActive(!onOff);
     }
 
     void PreparedAds()
     {
+        if (!AllSceneMgr.Instance.adOn) return;
+
         AllSceneMgr.Instance.adsMgr.LoadInterstitialAd();
         if (AllSceneMgr.Instance.user.DiaNum < 5)
             AllSceneMgr.Instance.adsMgr.LoadRewardedAd();
@@ -136,11 +138,18 @@ public class BattleSceneMgr : MonoBehaviour
 
         if (!Start_Txt.gameObject.activeSelf) //Dia 부족시
         {
+            /* TODO : 광고 넣으면 다시 살리기
             if (AllSceneMgr.Instance.adsMgr.RewardAd == null ||
                 !AllSceneMgr.Instance.adsMgr.RewardAd.CanShowAd())
                 AllSceneMgr.Instance.InitMsgPopUp("광고가 로드되고 있습니다. 잠시 후 다시 시도해 주세요.");
             else
                 AllSceneMgr.Instance.adsMgr.ShowRewardedAd();
+            */
+
+            AllSceneMgr.Instance.user.DiaNum += 5;
+            AllSceneMgr.Instance.WriteUserInfo();
+            AllSceneMgr.Instance.RefreshTopUI();
+            SetStartBtn();
 
             return;
         }
