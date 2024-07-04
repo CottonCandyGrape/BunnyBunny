@@ -38,8 +38,8 @@ public class BattleSceneMgr : MonoBehaviour
     const int GameDia = 5;
 
     int atkTypeNum = 0;
-    int stageNum = 0;
     int unLockStageNum = 0;
+    int stageNum;
 
     void Start()
     {
@@ -61,12 +61,13 @@ public class BattleSceneMgr : MonoBehaviour
             StageRight_Btn.onClick.AddListener(StageRightBtnClick);
 
         if (StageNum_Txt) //StageNum 초기화
-            StageNum_Txt.text = (stageNum + 1).ToString();
+            StageNum_Txt.text = (AllSceneMgr.Instance.user.StageNumCursor + 1).ToString();
 
         if (Start_Btn)
             Start_Btn.onClick.AddListener(StartGame);
 
         unLockStageNum = AllSceneMgr.Instance.user.unLockStageNum;
+        stageNum = AllSceneMgr.Instance.user.StageNumCursor;
 
         SoundMgr.Instance.PlayBGM("UIScene");
 
@@ -173,8 +174,10 @@ public class BattleSceneMgr : MonoBehaviour
         }
 
         AllSceneMgr.Instance.SubDia(GameDia);
-        AllSceneMgr.Instance.CurStageNum = stageNum;
         AllSceneMgr.Instance.AtkTypeNum = atkTypeNum;
+        AllSceneMgr.Instance.CurStageNum = stageNum;
+        AllSceneMgr.Instance.user.StageNumCursor = stageNum;
+        AllSceneMgr.Instance.WriteUserInfo();
 
         PreparedAds();
 
