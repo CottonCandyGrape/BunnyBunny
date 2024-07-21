@@ -107,9 +107,9 @@ public class GuardiansCtrl : Weapon
     public override string GetExplainText()
     {
         if (curLevel == 0)
-            return "가디언 3개 몬스터 넉백 효과";
+            return "후라이 3개 몬스터 넉백 효과";
         else if (curLevel == 1 || curLevel == 2)
-            return "가디언 추가 1개";
+            return "후라이 추가 1개";
         else if (curLevel == 3)
             //return "회전 속도 증가. 사라지지 않음.";
             return "사라지지 않음";
