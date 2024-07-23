@@ -26,7 +26,6 @@ public class UserInfo
     public int ReinCursor = 0;
 
     public int unLockStageNum = 0;
-    public int StageNumCursor = 0;
 
     public bool Bgm = true;
     public bool Sfx = true;

@@ -61,13 +61,14 @@ public class BattleSceneMgr : MonoBehaviour
             StageRight_Btn.onClick.AddListener(StageRightBtnClick);
 
         if (StageNum_Txt) //StageNum 초기화
-            StageNum_Txt.text = (AllSceneMgr.Instance.user.StageNumCursor + 1).ToString();
+            StageNum_Txt.text = (PlayerPrefs.GetInt("StageNumCursor", 0) + 1).ToString();
 
         if (Start_Btn)
             Start_Btn.onClick.AddListener(StartGame);
 
         unLockStageNum = AllSceneMgr.Instance.user.unLockStageNum;
-        stageNum = AllSceneMgr.Instance.user.StageNumCursor;
+        stageNum = PlayerPrefs.GetInt("StageNumCursor", 0);
+
 
         SoundMgr.Instance.PlayBGM("UIScene");
 
@@ -176,8 +177,8 @@ public class BattleSceneMgr : MonoBehaviour
         AllSceneMgr.Instance.SubDia(GameDia);
         AllSceneMgr.Instance.AtkTypeNum = atkTypeNum;
         AllSceneMgr.Instance.CurStageNum = stageNum;
-        AllSceneMgr.Instance.user.StageNumCursor = stageNum;
-        AllSceneMgr.Instance.WriteUserInfo();
+
+        PlayerPrefs.SetInt("StageNumCursor", stageNum);
 
         PreparedAds();
 
