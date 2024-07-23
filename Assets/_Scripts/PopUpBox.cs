@@ -46,6 +46,7 @@ public class PopUpBox : MonoBehaviour
     public Toggle Bgm_Tgl = null;
     public Toggle Sfx_Tgl = null;
     public Toggle JoyStick_Tgl = null;
+    public Dropdown Language_Drop = null;
 
     string[] reinTitles = { "힘", "체력", "인내", "회복" };
     string[] reinMsgs = { "공격력 +", "HP +", "방어력 +", "케이크 회복 +" };
@@ -81,6 +82,13 @@ public class PopUpBox : MonoBehaviour
         if (JoyStick_Tgl)
             JoyStick_Tgl.onValueChanged.AddListener(JoyStickToggleClick);
 
+        if (Language_Drop)
+        {
+            InitLangDropDown();
+
+            Language_Drop.onValueChanged.AddListener(LangChange);
+        }
+
         if (PopUpBoxType == PopUpType.Reinforce)
             SetAlpha();
         else if (PopUpBoxType == PopUpType.Inventory)
@@ -94,6 +102,42 @@ public class PopUpBox : MonoBehaviour
             if (invMgr == null)
                 invMgr = FindObjectOfType<InventoryMgr>();
         }
+    }
+
+    void InitLangDropDown()
+    {
+        Language_Drop.ClearOptions();
+        List<string> options = new List<string> { "한국어", "English" };
+        Language_Drop.AddOptions(options);
+
+        int idx = -1;
+        if (PlayerPrefs.HasKey("LangNum"))
+            idx = PlayerPrefs.GetInt("LangNum");
+        else
+        {
+            idx = GetLangIndex();
+            PlayerPrefs.SetInt("LangNum", idx);
+        }
+
+        Language_Drop.value = idx;
+        Language_Drop.RefreshShownValue();
+    }
+
+    int GetLangIndex()
+    {
+        SystemLanguage systemLan = Application.systemLanguage;
+        if (systemLan == SystemLanguage.Korean)
+            return 0;
+        else if (systemLan == SystemLanguage.English)
+            return 1;
+        return 1;
+    }
+
+    void LangChange(int value)
+    {
+        PlayerPrefs.SetInt("LangNum", value);
+        Language_Drop.value = value;
+        Language_Drop.RefreshShownValue();
     }
 
     public void SetReinInfo(ReinCellButton rCell)
