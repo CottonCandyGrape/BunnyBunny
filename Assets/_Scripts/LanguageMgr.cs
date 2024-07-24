@@ -8,10 +8,10 @@ public class LanguageMgr : MonoBehaviour
 {
     Dictionary<string, string> langDict;
 
-    void Start()
+    void Start() 
     {
-
-    }
+        InitLangDict();
+    } 
 
     public void InitLangDict()
     {
@@ -24,10 +24,19 @@ public class LanguageMgr : MonoBehaviour
             langDict.Add(langPack.lang_pack[i].key, langPack.lang_pack[i].value);
     }
 
-    public void CheckLangDict()
+    public string GetLangValue(string key)
     {
-        foreach(KeyValuePair<string, string> kvp in langDict)
-            Debug.Log(kvp.Key + " / " + kvp.Value);
+        string value = "missing";
+        if (langDict.ContainsKey(key))
+            value = langDict[key];
+        return value;
+    }
+
+    public void UpdateLangValue()
+    {
+        TextSetter[] texts = FindObjectsOfType<TextSetter>();
+        for (int i = 0; i < texts.Length; i++)
+            texts[i].SetText();
     }
 
     string GetLangFileName()
@@ -38,6 +47,12 @@ public class LanguageMgr : MonoBehaviour
         else if (idx == 1)
             return "English";
         return "English";
+    }
+
+    public void CheckLangDict()
+    {
+        foreach(KeyValuePair<string, string> kvp in langDict)
+            Debug.Log(kvp.Key + " / " + kvp.Value);
     }
 }
 

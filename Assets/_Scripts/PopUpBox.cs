@@ -48,8 +48,14 @@ public class PopUpBox : MonoBehaviour
     public Toggle JoyStick_Tgl = null;
     public Dropdown Language_Drop = null;
 
-    string[] reinTitles = { "힘", "체력", "인내", "회복" };
-    string[] reinMsgs = { "공격력 +", "HP +", "방어력 +", "케이크 회복 +" };
+    string[,] reinTitles = {
+        { "힘", "체력", "인내", "회복" },
+        { "Force", "Stamina", "Endure", "Recover"}
+    };
+    string[,] reinMsgs = {
+        {"공격력 +", "HP +", "방어력 +", "케이크 회복 +"},
+        {"Attack +", "HP +", "Defense +", "Heal +"}
+    };
     int reinVal = 0;
     int GoldVal = 0;
     int cellNum = 0;
@@ -138,6 +144,12 @@ public class PopUpBox : MonoBehaviour
         PlayerPrefs.SetInt("LangNum", value);
         Language_Drop.value = value;
         Language_Drop.RefreshShownValue();
+
+        if (AllSceneMgr.Instance.langMgr != null)
+        {
+            AllSceneMgr.Instance.langMgr.InitLangDict();
+            AllSceneMgr.Instance.langMgr.UpdateLangValue();
+        }
     }
 
     public void SetReinInfo(ReinCellButton rCell)
@@ -148,8 +160,9 @@ public class PopUpBox : MonoBehaviour
         int lv = (rCell.cellNum / 3) + 1;
         reinVal = lv * 3;
         GoldVal = 1000 + (lv - 1) * 1500;
-        Title_Txt.text = reinTitles[(int)RfType];
-        Msg_Txt.text = reinMsgs[(int)RfType] + reinVal.ToString();
+        int langIdx = PlayerPrefs.GetInt("LangNum");
+        Title_Txt.text = reinTitles[langIdx, (int)RfType];
+        Msg_Txt.text = reinMsgs[langIdx, (int)RfType] + reinVal.ToString();
 
         if (cellNum < AllSceneMgr.Instance.user.ReinCursor)
         {
@@ -169,7 +182,7 @@ public class PopUpBox : MonoBehaviour
     {
         if (AllSceneMgr.Instance.user.ReinCursor < cellNum)
         {
-            AllSceneMgr.Instance.InitMsgPopUp("아직 강화하실 수 없습니다.");
+            AllSceneMgr.Instance.InitMsgPopUp("notYetRein");
             return;
         }
 
@@ -181,7 +194,7 @@ public class PopUpBox : MonoBehaviour
             if (rGold <= uGold)
                 AllSceneMgr.Instance.ReinSuccess(RfType, rGold, reinVal, reinCell);
             else
-                AllSceneMgr.Instance.InitMsgPopUp("보유 골드가 부족합니다.");
+                AllSceneMgr.Instance.InitMsgPopUp("notEnoughGold");
         }
         else
             AllSceneMgr.Instance.InitMsgPopUp("K 또는 M이 있거나 다른 문자열이 껴있슴...");
@@ -203,9 +216,15 @@ public class PopUpBox : MonoBehaviour
             Alpha_RImg.gameObject.SetActive(false);
     }
 
-    public void SetMsgText(string msg)
+    //public void SetMsgText(string msg)
+    //{
+    //    Msg_Txt.text = msg;
+    //}
+
+    public void SetMsgText(string key)
     {
-        Msg_Txt.text = msg;
+        if (AllSceneMgr.Instance.langMgr != null)
+            Msg_Txt.text = AllSceneMgr.Instance.langMgr.GetLangValue(key);
     }
 
     public void SetGameOverText(bool isClear, float gold, int kill, float exp)
@@ -230,9 +249,9 @@ public class PopUpBox : MonoBehaviour
         Inven_Img.sprite = invBtn.Inven_Img.sprite;
         Inven_Img.rectTransform.sizeDelta = invBtn.Inven_Img.rectTransform.sizeDelta;
         if (invBtn.isUpper)
-            Equip_Txt.text = "장착 해제";
+            Equip_Txt.text = AllSceneMgr.Instance.langMgr.GetLangValue("unequip");
         else
-            Equip_Txt.text = "장착하기";
+            Equip_Txt.text = AllSceneMgr.Instance.langMgr.GetLangValue("equip");
     }
 
     //public void SetRewardBtnPos()

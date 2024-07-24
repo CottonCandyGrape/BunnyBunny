@@ -15,6 +15,7 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
     //유저 정보 관련
     [HideInInspector] public string PlayerInfoJson = "";
     [HideInInspector] public UserInfo user = new UserInfo();
+    [HideInInspector] public LanguageMgr langMgr = null;
     string filePath;
     string fileName;
     //유저 정보 관련
@@ -59,6 +60,8 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
         //유저 정보 관리
 
         bunnyOriginPos = Bunny.transform.localPosition;
+
+        langMgr = GetComponentInChildren<LanguageMgr>();
     }
 
     void Start()
@@ -146,7 +149,7 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
         user.Gold -= stockPrice;
         WriteUserInfo();
         RefreshTopUI();
-        InitMsgPopUp("구매 성공.");
+        InitMsgPopUp("purchaseSuccess");
     }
 
     public void ReinSuccess(ReinType rType, int rGold, int rVal, ReinCellButton reinCell)
@@ -172,7 +175,7 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
         user.ReinCursor++;
         WriteUserInfo();
         RefreshTopUI();
-        InitMsgPopUp("강화 성공.");
+        InitMsgPopUp("reinSuccess");
 
         reinCell.SetAlpha();
     }

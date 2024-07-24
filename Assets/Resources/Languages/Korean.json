@@ -1,0 +1,140 @@
+{
+    "lang_pack": [
+        {
+            "key": "store",
+            "value": "상점"
+        },
+        {
+            "key": "equipment",
+            "value": "장비"
+        },
+        {
+            "key": "battle",
+            "value": "전투"
+        },
+        {
+            "key": "evolve",
+            "value": "강화"
+        },
+        {
+            "key": "diaBanner",
+            "value": "다이아"
+        },
+        {
+            "key": "tempCell",
+            "value": "Comming Soon...!"
+        },
+        {
+            "key": "tempMsg",
+            "value": "조금만 기다려 주세요!"
+        },
+        {
+            "key": "dia5",
+            "value": "다이아 5개"
+        },
+        {
+            "key": "dia10",
+            "value": "다이아 10개"
+        },
+        {
+            "key": "dia20",
+            "value": "다이아 20개"
+        },
+        {
+            "key": "invenTitle",
+            "value": "나의 장비"
+        },
+        {
+            "key": "atkType",
+            "value": "공격 타입"
+        },
+        {
+            "key": "stageTitle",
+            "value": "스테이지"
+        },
+        {
+            "key": "startBtnTxt",
+            "value": "게임시작"
+        },
+        {
+            "key": "startAdTxt",
+            "value": "무료"
+        },
+        {
+            "key": "notice",
+            "value": "알림"
+        },
+        {
+            "key": "pause",
+            "value": "일시정지"
+        },
+        {
+            "key": "pauseMsg",
+            "value": "지금 종료하시면 보상을 받을 수 없게 됩니다.\n\n종료하시겠습니까?"
+        },
+        {
+            "key": "exit",
+            "value": "나가기"
+        },
+        {
+            "key": "bgm",
+            "value": "배경음 On / Off"
+        },
+        {
+            "key": "sfx",
+            "value": "효과음 On / Off"
+        },
+        {
+            "key": "joystick",
+            "value": "조이스틱 보이기"
+        },
+        {
+            "key": "purchaseSuccess",
+            "value": "구매 성공"
+        },
+        {
+            "key": "reinSuccess",
+            "value": "강화 성공"
+        },
+        {
+            "key": "notYetStart",
+            "value": "아직 도전할 수 없습니다."
+        },
+        {
+            "key": "notEnoughDia",
+            "value": "보유 다이아가 부족합니다."
+        },
+        {
+            "key": "notEquiped",
+            "value": "메인 무기를 장착하지 않았습니다.\n 장비탭에서 장착해주세요."
+        },
+        {
+            "key": "notYetRein",
+            "value": "아래칸부터 차례대로 강화해주세요."
+        },
+        {
+            "key": "notEnoughGold",
+            "value": "보유 골드가 부족합니다."
+        },
+        {
+            "key": "tooMuchDia",
+            "value": "최대 보유 개수보다 더 많이 구매하실 수 없습니다."
+        },
+        {
+            "key": "preparing",
+            "value": "준비 중입니다."
+        },
+        {
+            "key": "equipTitle",
+            "value": "무기 및 장비"
+        },
+        {
+            "key": "equip",
+            "value": "장착하기"
+        },
+        {
+            "key": "unequip",
+            "value": "장착 해제"
+        }
+    ]
+}

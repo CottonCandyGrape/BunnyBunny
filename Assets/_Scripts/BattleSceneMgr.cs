@@ -157,19 +157,19 @@ public class BattleSceneMgr : MonoBehaviour
 
         if (unLockStageNum < stageNum)
         {
-            AllSceneMgr.Instance.InitMsgPopUp("아직 도전할 수 없습니다.");
+            AllSceneMgr.Instance.InitMsgPopUp("notYetStart");
             return;
         }
 
         if (AllSceneMgr.Instance.user.DiaNum < GameDia)
         {
-            AllSceneMgr.Instance.InitMsgPopUp("보유 다이아가 부족합니다.");
+            AllSceneMgr.Instance.InitMsgPopUp("notEnoughDia");
             return;
         }
 
         if (AllSceneMgr.Instance.user.IsEquiped[(int)InvenType.Weapon] == string.Empty)
         {
-            AllSceneMgr.Instance.InitMsgPopUp("메인 무기를 장착하지 않았습니다.\n 장비탭에서 장착해주세요.");
+            AllSceneMgr.Instance.InitMsgPopUp("notEquiped");
             return;
         }
 

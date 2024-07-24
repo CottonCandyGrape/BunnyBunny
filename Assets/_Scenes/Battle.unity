@@ -536,6 +536,7 @@ GameObject:
   m_Component:
   - component: {fileID: 384177341}
   - component: {fileID: 384177344}
+  - component: {fileID: 384177345}
   - component: {fileID: 384177343}
   - component: {fileID: 384177342}
   m_Layer: 5
@@ -621,6 +622,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 384177340}
   m_CullTransparentMesh: 1
+--- !u!114 &384177345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 384177340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01c854962cfbbba44b9411e41d7b499c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: startAdTxt
 --- !u!1 &442492161
 GameObject:
   m_ObjectHideFlags: 0
@@ -1031,6 +1045,7 @@ GameObject:
   m_Component:
   - component: {fileID: 788661989}
   - component: {fileID: 788661991}
+  - component: {fileID: 788661993}
   - component: {fileID: 788661990}
   - component: {fileID: 788661992}
   m_Layer: 5
@@ -1116,6 +1131,19 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 3, y: -3}
   m_UseGraphicAlpha: 1
+--- !u!114 &788661993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 788661988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01c854962cfbbba44b9411e41d7b499c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: startBtnTxt
 --- !u!1001 &855634277
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1124,6 +1152,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 195454892}
     m_Modifications:
+    - target: {fileID: 5631406494024023934, guid: 7d688e34a356dc14faa701173172fdb6, type: 3}
+      propertyPath: key
+      value: atkType
+      objectReference: {fileID: 0}
     - target: {fileID: 6305457877992789781, guid: 7d688e34a356dc14faa701173172fdb6, type: 3}
       propertyPath: m_Name
       value: BannerPrefab
@@ -1471,6 +1503,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 195454892}
     m_Modifications:
+    - target: {fileID: 5631406494024023934, guid: 7d688e34a356dc14faa701173172fdb6, type: 3}
+      propertyPath: key
+      value: stageTitle
+      objectReference: {fileID: 0}
     - target: {fileID: 6305457877992789781, guid: 7d688e34a356dc14faa701173172fdb6, type: 3}
       propertyPath: m_Name
       value: BannerPrefab
@@ -3243,50 +3279,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1989604354}
   m_CullTransparentMesh: 1
---- !u!1 &2013686831
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2013686833}
-  - component: {fileID: 2013686832}
-  m_Layer: 0
-  m_Name: LanguageMgr
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2013686832
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2013686831}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5edc87f503e99745b6a3b020688a2c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &2013686833
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2013686831}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2098402498
 GameObject:
   m_ObjectHideFlags: 0
@@ -3369,4 +3361,3 @@ SceneRoots:
   - {fileID: 195454892}
   - {fileID: 442492164}
   - {fileID: 91316344}
-  - {fileID: 2013686833}

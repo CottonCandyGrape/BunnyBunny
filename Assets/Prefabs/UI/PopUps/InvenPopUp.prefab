@@ -807,6 +807,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6967616593948595914}
   - component: {fileID: 6436669438068203843}
+  - component: {fileID: 2109547922906079949}
   - component: {fileID: 3415691989773136100}
   - component: {fileID: 4909752154725179756}
   m_Layer: 5
@@ -843,6 +844,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6298398942998519750}
   m_CullTransparentMesh: 1
+--- !u!114 &2109547922906079949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6298398942998519750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01c854962cfbbba44b9411e41d7b499c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: equipTitle
 --- !u!114 &3415691989773136100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1061,6 +1075,9 @@ MonoBehaviour:
   PopUpBoxType: 1
   Title_Txt: {fileID: 3415691989773136100}
   Msg_Txt: {fileID: 0}
+  GoldMsg_Txt: {fileID: 0}
+  KillMsg_Txt: {fileID: 0}
+  ExpMsg_Txt: {fileID: 0}
   Ok_Btn: {fileID: 0}
   Inven_Img: {fileID: 4025289529702186302}
   Equip_Btn: {fileID: 6285881152037426718}
@@ -1069,6 +1086,7 @@ MonoBehaviour:
   Rein_Btn: {fileID: 0}
   Gold_Txt: {fileID: 0}
   Alpha_RImg: {fileID: 0}
-  Bgm_Sld: {fileID: 0}
-  Sfx_Sld: {fileID: 0}
+  Bgm_Tgl: {fileID: 0}
+  Sfx_Tgl: {fileID: 0}
   JoyStick_Tgl: {fileID: 0}
+  Language_Drop: {fileID: 0}

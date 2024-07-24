@@ -942,7 +942,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01c854962cfbbba44b9411e41d7b499c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: 
+  key: evolve
 --- !u!1 &358998490
 GameObject:
   m_ObjectHideFlags: 0
@@ -2217,7 +2217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01c854962cfbbba44b9411e41d7b499c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: 
+  key: equipment
 --- !u!1 &1311026280
 GameObject:
   m_ObjectHideFlags: 0
@@ -2499,7 +2499,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01c854962cfbbba44b9411e41d7b499c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: 
+  key: battle
 --- !u!1 &1457263174
 GameObject:
   m_ObjectHideFlags: 0
@@ -2608,7 +2608,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01c854962cfbbba44b9411e41d7b499c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: 
+  key: store
 --- !u!1 &1504084233
 GameObject:
   m_ObjectHideFlags: 0

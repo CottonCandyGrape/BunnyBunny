@@ -478,6 +478,7 @@ GameObject:
   m_Component:
   - component: {fileID: 495746399}
   - component: {fileID: 495746401}
+  - component: {fileID: 495746402}
   - component: {fileID: 495746400}
   m_Layer: 5
   m_Name: Title_Txt
@@ -547,6 +548,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 495746398}
   m_CullTransparentMesh: 1
+--- !u!114 &495746402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 495746398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01c854962cfbbba44b9411e41d7b499c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: invenTitle
 --- !u!1 &670840421
 GameObject:
   m_ObjectHideFlags: 0
@@ -1160,9 +1174,9 @@ MonoBehaviour:
   - {fileID: 985074943}
   - {fileID: 1487305276}
   - {fileID: 1450679996}
-  InvenPrefabs:
-  - {fileID: 6170088143034223073, guid: 3f3a40c371105294eacd83398c1bd575, type: 3}
   Inven_Btn: {fileID: 6170088143034223073, guid: 16ef898fc72138048b15a1feaf725071, type: 3}
+  userInven:
+    ItemList: []
 --- !u!1 &1207413176
 GameObject:
   m_ObjectHideFlags: 0

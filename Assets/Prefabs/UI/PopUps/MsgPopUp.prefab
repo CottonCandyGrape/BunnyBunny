@@ -414,6 +414,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1024624064511911616}
   - component: {fileID: 4406475256717100260}
+  - component: {fileID: 6708511612410221255}
   - component: {fileID: 850361447339985444}
   - component: {fileID: 1531331554835864391}
   m_Layer: 5
@@ -450,6 +451,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4008062006434682480}
   m_CullTransparentMesh: 1
+--- !u!114 &6708511612410221255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4008062006434682480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01c854962cfbbba44b9411e41d7b499c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: notice
 --- !u!114 &850361447339985444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -670,7 +684,6 @@ MonoBehaviour:
   KillMsg_Txt: {fileID: 0}
   ExpMsg_Txt: {fileID: 0}
   Ok_Btn: {fileID: 2348976065481263262}
-  Reward_Btn: {fileID: 8546206847452209418}
   Inven_Img: {fileID: 0}
   Equip_Btn: {fileID: 0}
   Equip_Txt: {fileID: 0}
@@ -681,6 +694,7 @@ MonoBehaviour:
   Bgm_Tgl: {fileID: 0}
   Sfx_Tgl: {fileID: 0}
   JoyStick_Tgl: {fileID: 0}
+  Language_Drop: {fileID: 0}
 --- !u!1 &7747625154301886842
 GameObject:
   m_ObjectHideFlags: 0

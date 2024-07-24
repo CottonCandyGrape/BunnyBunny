@@ -1,0 +1,140 @@
+{
+    "lang_pack": [
+        {
+            "key": "store",
+            "value": "Store"
+        },
+        {
+            "key": "equipment",
+            "value": "Equipment"
+        },
+        {
+            "key": "battle",
+            "value": "Battle"
+        },
+        {
+            "key": "evolve",
+            "value": "Evolve"
+        },
+        {
+            "key": "diaBanner",
+            "value": "Diamond"
+        },
+        {
+            "key": "tempCell",
+            "value": "Comming Soon...!"
+        },
+        {
+            "key": "tempMsg",
+            "value": "Please wait a moment!"
+        },
+        {
+            "key": "dia5",
+            "value": "5 Diamond"
+        },
+        {
+            "key": "dia10",
+            "value": "10 Diamond"
+        },
+        {
+            "key": "dia20",
+            "value": "20 Diamond"
+        },
+        {
+            "key": "invenTitle",
+            "value": "Inventory"
+        },
+        {
+            "key": "atkType",
+            "value": "Attack Type"
+        },
+        {
+            "key": "stageTitle",
+            "value": "Stage"
+        },
+        {
+            "key": "startBtnTxt",
+            "value": "Start"
+        },
+        {
+            "key": "startAdTxt",
+            "value": "Free"
+        },
+        {
+            "key": "notice",
+            "value": "Notice"
+        },
+        {
+            "key": "pause",
+            "value": "Pause"
+        },
+        {
+            "key": "pauseMsg",
+            "value": "If you exit now, you will not be able to receive the reward.\n\nAre you sure you want to exit?"
+        },
+        {
+            "key": "exit",
+            "value": "Exit"
+        },
+        {
+            "key": "bgm",
+            "value": "BGM On / Off"
+        },
+        {
+            "key": "sfx",
+            "value": "SFX On / Off"
+        },
+        {
+            "key": "joystick",
+            "value": "Joystick"
+        },
+        {
+            "key": "purchaseSuccess",
+            "value": "Purchase Success"
+        },
+        {
+            "key": "reinSuccess",
+            "value": "Reinforce Success"
+        },
+        {
+            "key": "notYetStart",
+            "value": "You can't challenge this yet."
+        },
+        {
+            "key": "notEnoughDia",
+            "value": "You don't have enough diamonds."
+        },
+        {
+            "key": "notEquiped",
+            "value": "You have not equipped a main weapon.\n Please equip one in the equipment tab."
+        },
+        {
+            "key": "notYetRein",
+            "value": "Please reinforce it in order from the bottom block."
+        },
+        {
+            "key": "notEnoughGold",
+            "value": "You don't have enough golds."
+        },
+        {
+            "key": "tooMuchDia",
+            "value": "You can't buy more than the maximum holding number."
+        },
+        {
+            "key": "preparing",
+            "value": "We are preparing."
+        },
+        {
+            "key": "equipTitle",
+            "value": "Equipment"
+        },
+        {
+            "key": "equip",
+            "value": "Equip"
+        },
+        {
+            "key": "unequip",
+            "value": "Unequip"
+        }
+    ]
+}
