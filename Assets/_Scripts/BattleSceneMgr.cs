@@ -69,7 +69,6 @@ public class BattleSceneMgr : MonoBehaviour
         unLockStageNum = AllSceneMgr.Instance.user.unLockStageNum;
         stageNum = PlayerPrefs.GetInt("StageNumCursor", 0);
 
-
         SoundMgr.Instance.PlayBGM("UIScene");
 
         InitAtkObjects();
