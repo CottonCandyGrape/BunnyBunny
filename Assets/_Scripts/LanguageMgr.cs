@@ -8,10 +8,29 @@ public class LanguageMgr : MonoBehaviour
 {
     Dictionary<string, string> langDict;
 
-    void Start() 
+    void Awake()
     {
+        int idx = -1;
+        if (!PlayerPrefs.HasKey("LangNum"))
+        {
+            idx = GetLangIndex();
+            PlayerPrefs.SetInt("LangNum", idx);
+        }
+
         InitLangDict();
-    } 
+    }
+
+    void Start() { } 
+
+    public int GetLangIndex()
+    {
+        SystemLanguage systemLan = Application.systemLanguage;
+        if (systemLan == SystemLanguage.Korean)
+            return 0;
+        else if (systemLan == SystemLanguage.English)
+            return 1;
+        return 1;
+    }
 
     public void InitLangDict()
     {

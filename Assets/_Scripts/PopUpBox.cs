@@ -121,22 +121,12 @@ public class PopUpBox : MonoBehaviour
             idx = PlayerPrefs.GetInt("LangNum");
         else
         {
-            idx = GetLangIndex();
+            idx = AllSceneMgr.Instance.langMgr.GetLangIndex();
             PlayerPrefs.SetInt("LangNum", idx);
         }
 
         Language_Drop.value = idx;
         Language_Drop.RefreshShownValue();
-    }
-
-    int GetLangIndex()
-    {
-        SystemLanguage systemLan = Application.systemLanguage;
-        if (systemLan == SystemLanguage.Korean)
-            return 0;
-        else if (systemLan == SystemLanguage.English)
-            return 1;
-        return 1;
     }
 
     void LangChange(int value)
