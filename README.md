@@ -6,7 +6,7 @@
 
 ## [YouTube Video](https://youtu.be/jscOmU-EWzI)
 
-## [Download the lastest version .apk](https://github.com/CottonCandyGrape/BunnyBunny/releases/download/v.1.2.1/BunnyBunny_240705.apk)
+## [Download Google Play Store](https://play.google.com/store/apps/details?id=com.ccGrape.BunnyBunny&hl=ko)
 
 ## [Download App Store](https://apps.apple.com/ca/app/bunnybunny/id6504274647)
 
