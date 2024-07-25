@@ -25,7 +25,8 @@ public class GuardiansCtrl : Weapon
 
     void Update()
     {
-        if (!isEvolve && curLevel > 0)
+        //if (!isEvolve && curLevel > 0) //밸런스 패치. 진화해도 사라짐.
+        if (curLevel > 0) //밸런스 패치. 진화해도 사라짐.
             OnOffGuardians();
     }
 
@@ -88,7 +89,8 @@ public class GuardiansCtrl : Weapon
     public override void EvolveWeapon()
     {
         isEvolve = true;
-        //AddGuardian(); //최종 5개. 밸런스 패치
+        AddGuardian(); //사라지는 대신 최종 6개. 밸런스 패치.
+        lifeTime = 5.0f; //살아있는 타임 늘려주기
 
         for (int i = 0; i < Guardians.childCount; i++)
         {
@@ -111,7 +113,6 @@ public class GuardiansCtrl : Weapon
         else if (curLevel == 1 || curLevel == 2)
             return "fryLv1";
         else if (curLevel == 3)
-            //return "회전 속도 증가. 사라지지 않음.";
             return "fryLv3";
         return string.Empty;
     }
