@@ -196,6 +196,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6597708035360114028}
   - component: {fileID: 3935479602403328013}
+  - component: {fileID: 5787470018575608719}
   - component: {fileID: 5730181849507349681}
   - component: {fileID: 2093679871828004548}
   m_Layer: 5
@@ -232,6 +233,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2441678212366038315}
   m_CullTransparentMesh: 1
+--- !u!114 &5787470018575608719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2441678212366038315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01c854962cfbbba44b9411e41d7b499c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: gunLv0
 --- !u!114 &5730181849507349681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -291,6 +305,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7352074158857674936}
   - component: {fileID: 1037928503496778974}
+  - component: {fileID: 3452928221689977140}
   - component: {fileID: 5904519987283141763}
   - component: {fileID: 3338800245931411298}
   m_Layer: 5
@@ -327,6 +342,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2541868160198026981}
   m_CullTransparentMesh: 1
+--- !u!114 &3452928221689977140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2541868160198026981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01c854962cfbbba44b9411e41d7b499c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: gunName
 --- !u!114 &5904519987283141763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -351,13 +379,13 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: fc336d5e63bc8b54ca3ce733d890033b, type: 3}
     m_FontSize: 40
     m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 3
+    m_BestFit: 1
+    m_MinSize: 35
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 1
+    m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\uC5D0\uB108\uC9C0\uAC74"

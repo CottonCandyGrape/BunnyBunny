@@ -42,7 +42,7 @@ public class RocketCtrl : Weapon
             expEffect.SetActive(false);
         }
 
-        ev_Name = "핵폭탄";
+        ev_Name = AllSceneMgr.Instance.langMgr.GetLangValue("rocketEvName"); 
     }
 
     Vector3 GetCloseTarget()
@@ -165,11 +165,11 @@ public class RocketCtrl : Weapon
     public override string GetExplainText()
     {
         if (curLevel == 0)
-            return "적에게 날아가 폭발";
+            return "rocketLv0";
         else if (curLevel == 1 || curLevel == 2)
-            return "폭발 범위 30% 증가";
+            return "rocketLv1";
         else if (curLevel == 3)
-            return "핵폭탄 폭발 범위 대폭 증가";
+            return "rocketLv3";
         return string.Empty;
     }
 }

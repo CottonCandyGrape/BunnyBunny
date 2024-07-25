@@ -38,7 +38,8 @@ public class SkillUpButton : MonoBehaviour
 
         if (weapon != null)
         {
-            Explain_Txt.text = weapon.GetExplainText(); //설명 텍스트 설정
+            string key = weapon.GetExplainText();
+            Explain_Txt.text = AllSceneMgr.Instance.langMgr.GetLangValue(key); //설명 텍스트 설정
 
             if (weapon.CurLv == 3) //진화 직전에 이미지 교체
             {

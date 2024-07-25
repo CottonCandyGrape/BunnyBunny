@@ -135,6 +135,110 @@
         {
             "key": "unequip",
             "value": "Unequip"
+        },
+        {
+            "key": "skillupBanner",
+            "value": "Skill Up"
+        },
+        {
+            "key": "cakeName",
+            "value": "Cake"
+        },
+        {
+            "key": "cakeTxt",
+            "value": "Heal HP"
+        },
+        {
+            "key": "goldName",
+            "value": "Gold"
+        },
+        {
+            "key": "goldTxt",
+            "value": "Get 200 Gold"
+        },
+        {
+            "key": "gunName",
+            "value": "EnergyGun"
+        },
+        {
+            "key": "drillName",
+            "value": "Drill"
+        },
+        {
+            "key": "fryName",
+            "value": "Fried Egg"
+        },
+        {
+            "key": "rocketName",
+            "value": "Rocket"
+        },
+        {
+            "key": "gunLv0",
+            "value": "Double Shots"
+        },
+        {
+            "key": "gunLv1",
+            "value": "Triple Shots"
+        },
+        {
+            "key": "gunLv2",
+            "value": "Half Moon Shot"
+        },
+        {
+            "key": "gunLv3",
+            "value": "Additional launch of giant energy"
+        },
+        {
+            "key": "gunEvName",
+            "value": "Super Energy"
+        },
+        {
+            "key": "drillLv0",
+            "value": "Add 2 drills"
+        },
+        {
+            "key": "drillLv1",
+            "value": "Add 1 drill"
+        },
+        {
+            "key": "drillLv3",
+            "value": "Big Arrowhead Speed Up"
+        },
+        {
+            "key": "drillEvName",
+            "value": "Arrowhead"
+        },
+        {
+            "key": "fryLv0",
+            "value": "3 Fried Eggs. Add knockback effect to monsters"
+        },
+        {
+            "key": "fryLv1",
+            "value": "Add 1 Fried Egg"
+        },
+        {
+            "key": "fryLv3",
+            "value": "Don't disappear"
+        },
+        {
+            "key": "fryEvName",
+            "value": "Egg Fried Rice"
+        },
+        {
+            "key": "rocketLv0",
+            "value": "Fly towards the enemy and explode"
+        },
+        {
+            "key": "rocketLv1",
+            "value": "Increase 30% explosion range"
+        },
+        {
+            "key": "rocketLv3",
+            "value": "Significantly increase the nuclear bomb explosion range"
+        },
+        {
+            "key": "rocketEvName",
+            "value": "Nuclear"
         }
     ]
 }

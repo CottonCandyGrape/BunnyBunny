@@ -339,6 +339,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5631406494024023934, guid: 7d688e34a356dc14faa701173172fdb6, type: 3}
+      propertyPath: key
+      value: skillupBanner
+      objectReference: {fileID: 0}
     - target: {fileID: 6305457877992789781, guid: 7d688e34a356dc14faa701173172fdb6, type: 3}
       propertyPath: m_Name
       value: BannerPrefab

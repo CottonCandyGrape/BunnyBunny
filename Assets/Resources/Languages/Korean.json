@@ -135,6 +135,110 @@
         {
             "key": "unequip",
             "value": "장착 해제"
+        },
+        {
+            "key": "skillupBanner",
+            "value": "스킬 선택"
+        },
+        {
+            "key": "cakeName",
+            "value": "케이크"
+        },
+        {
+            "key": "cakeTxt",
+            "value": "HP 회복"
+        },
+        {
+            "key": "goldName",
+            "value": "골드"
+        },
+        {
+            "key": "goldTxt",
+            "value": "200 골드 획득"
+        },
+        {
+            "key": "gunName",
+            "value": "에너지건"
+        },
+        {
+            "key": "drillName",
+            "value": "드릴"
+        },
+        {
+            "key": "fryName",
+            "value": "계란후라이"
+        },
+        {
+            "key": "rocketName",
+            "value": "로켓"
+        },
+        {
+            "key": "gunLv0",
+            "value": "더블샷"
+        },
+        {
+            "key": "gunLv1",
+            "value": "트리플샷"
+        },
+        {
+            "key": "gunLv2",
+            "value": "반달샷"
+        },
+        {
+            "key": "gunLv3",
+            "value": "거대 에너지 추가 발사"
+        },
+        {
+            "key": "gunEvName",
+            "value": "슈퍼에너지"
+        },
+        {
+            "key": "drillLv0",
+            "value": "드릴 2개"
+        },
+        {
+            "key": "drillLv1",
+            "value": "드릴 추가 1개"
+        },
+        {
+            "key": "drillLv3",
+            "value": "대화살촉 속도 증가"
+        },
+        {
+            "key": "drillEvName",
+            "value": "화살촉"
+        },
+        {
+            "key": "fryLv0",
+            "value": "후라이 3개 몬스터 넉백 효과"
+        },
+        {
+            "key": "fryLv1",
+            "value": "후라이 1개 추가"
+        },
+        {
+            "key": "fryLv3",
+            "value": "사라지지 않음"
+        },
+        {
+            "key": "fryEvName",
+            "value": "간장계란밥"
+        },
+        {
+            "key": "rocketLv0",
+            "value": "적에게 날아가 폭발"
+        },
+        {
+            "key": "rocketLv1",
+            "value": "폭발 범위 30% 증가"
+        },
+        {
+            "key": "rocketLv3",
+            "value": "핵폭탄 폭발 범위 대폭 증가"
+        },
+        {
+            "key": "rocketEvName",
+            "value": "핵폭탄"
         }
     ]
 }

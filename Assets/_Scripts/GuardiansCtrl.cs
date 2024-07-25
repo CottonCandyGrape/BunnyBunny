@@ -39,7 +39,7 @@ public class GuardiansCtrl : Weapon
             guard.Degree = (360 / GuardInitCount) * i;
         }
 
-        ev_Name = "간장계란밥";
+        ev_Name = AllSceneMgr.Instance.langMgr.GetLangValue("fryEvName"); 
     }
 
     void OnOffGuardians()
@@ -107,12 +107,12 @@ public class GuardiansCtrl : Weapon
     public override string GetExplainText()
     {
         if (curLevel == 0)
-            return "후라이 3개 몬스터 넉백 효과";
+            return "fryLv0";
         else if (curLevel == 1 || curLevel == 2)
-            return "후라이 추가 1개";
+            return "fryLv1";
         else if (curLevel == 3)
             //return "회전 속도 증가. 사라지지 않음.";
-            return "사라지지 않음";
+            return "fryLv3";
         return string.Empty;
     }
 }

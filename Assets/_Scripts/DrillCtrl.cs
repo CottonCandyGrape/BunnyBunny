@@ -30,7 +30,7 @@ public class DrillCtrl : Weapon
             drill.SetActive(false);
         }
 
-        ev_Name = "화살촉";
+        ev_Name = AllSceneMgr.Instance.langMgr.GetLangValue("drillEvName"); 
     }
 
     void SetBulletTransform(BulletCtrl blt)
@@ -107,11 +107,11 @@ public class DrillCtrl : Weapon
     public override string GetExplainText()
     {
         if (curLevel == 0)
-            return "드릴 2개";
+            return "drillLv0";
         else if (curLevel == 1 || curLevel == 2)
-            return "드릴 추가 1개";
+            return "drillLv1";
         else if (curLevel == 3)
-            return "대화살촉 속도 증가";
+            return "drillLv3";
         return string.Empty;
     }
 }
