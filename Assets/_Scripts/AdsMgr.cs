@@ -17,9 +17,9 @@ public class AdsMgr : MonoBehaviour
     //string _rewardAdUnitId = "ca-app-pub-3940256099942544/1712485313";
     //test
 #elif UNITY_ANDROID 
-    //string _bnrAdUnitId = "ca-app-pub-3142924323482085/5870340284";
-    //string _interAdUnitId = "ca-app-pub-3142924323482085/4921603583";
-    //string _rewardAdUnitId = "ca-app-pub-3142924323482085/7434703398";
+    //string _bnrAdUnitId = "ca-app-pub-3142924323482085/4115677973";
+    //string _interAdUnitId = "ca-app-pub-3142924323482085/7759672840";
+    //string _rewardAdUnitId = "ca-app-pub-3142924323482085/2259934158";
 
     //test
     string _bnrAdUnitId = "ca-app-pub-3940256099942544/6300978111";
