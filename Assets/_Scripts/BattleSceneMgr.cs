@@ -21,6 +21,14 @@ public class BattleSceneMgr : MonoBehaviour
     public GameObject[] AtkObjects = null;
     List<GameObject> AtkList = new List<GameObject>();
 
+    [Header("------ Difficulty Block ------")]
+    public Button FirstStar_Btn = null;
+    public Button SecondStar_Btn = null;
+    public Button ThirdStar_Btn = null;
+    public Sprite FillStar_Img = null;
+    public Sprite EmptyStar_Img = null;
+    int difficulty = 1;
+
     [Header("------ Stage Block ------")]
     public Button StageLeft_Btn = null;
     public Button StageRight_Btn = null;
@@ -54,6 +62,15 @@ public class BattleSceneMgr : MonoBehaviour
         if (AtkRight_Btn)
             AtkRight_Btn.onClick.AddListener(AtkRightBtnClick);
 
+        if (FirstStar_Btn)
+            FirstStar_Btn.onClick.AddListener(FirstStarBtnClick);
+
+        if (SecondStar_Btn)
+            SecondStar_Btn.onClick.AddListener(SecondStarBtnClick);
+
+        if (ThirdStar_Btn)
+            ThirdStar_Btn.onClick.AddListener(ThirdStarBtnClick);
+
         if (StageLeft_Btn)
             StageLeft_Btn.onClick.AddListener(StageLeftBtnClick);
 
@@ -77,6 +94,55 @@ public class BattleSceneMgr : MonoBehaviour
 
         AllSceneMgr.Instance.adsMgr.OffBannerView();
         PreparedAds();
+    }
+
+    void FirstStarBtnClick()
+    {
+        difficulty = 1;
+
+        ToggleStarImgs();
+    }
+
+    void SecondStarBtnClick()
+    {
+        if (difficulty == 1 || difficulty == 3)
+            difficulty = 2;
+        else if (difficulty == 2)
+            difficulty = 1;
+
+        ToggleStarImgs();
+    }
+
+    void ThirdStarBtnClick()
+    {
+        if (difficulty == 1 || difficulty == 2)
+            difficulty = 3;
+        else if (difficulty == 3)
+            difficulty = 2;
+
+        ToggleStarImgs();
+    }
+
+    void ToggleStarImgs()
+    {
+        Image secImg = SecondStar_Btn.GetComponent<Image>();
+        Image thdImg = ThirdStar_Btn.GetComponent<Image>();
+
+        if (difficulty == 1)
+        {
+            secImg.sprite = EmptyStar_Img;
+            thdImg.sprite = EmptyStar_Img;
+        }
+        else if (difficulty == 2)
+        {
+            secImg.sprite = FillStar_Img;
+            thdImg.sprite = EmptyStar_Img;
+        }
+        else if (difficulty == 3)
+        {
+            secImg.sprite = FillStar_Img;
+            thdImg.sprite = FillStar_Img;
+        }
     }
 
     public void SetStartBtn()
