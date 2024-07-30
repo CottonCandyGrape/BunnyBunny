@@ -8,8 +8,13 @@ public class SkullBiteMonCtrl : MonsterCtrl
 
     void OnEnable()
     {
-        slowTimer = 0.0f;
+        if (AllSceneMgr.Instance.Difficulty == 1)
+            SkullHp = 1500.0f;
+        else if (AllSceneMgr.Instance.Difficulty == 3)
+            SkullHp = 3500.0f;
+
         curHp = SkullHp;
+        slowTimer = 0.0f;
         base.Init();
     }
 

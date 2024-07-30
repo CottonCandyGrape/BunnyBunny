@@ -11,6 +11,7 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
 
     [HideInInspector] public int CurStageNum = 0;
     [HideInInspector] public int AtkTypeNum = 0;
+    [HideInInspector] public int Difficulty = 1;
 
     //유저 정보 관련
     [HideInInspector] public string PlayerInfoJson = "";

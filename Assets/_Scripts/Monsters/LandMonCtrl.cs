@@ -9,8 +9,13 @@ public class LandMonCtrl : MonsterCtrl
 
     void OnEnable()
     {
-        slowTimer = 0.0f;
+        if (AllSceneMgr.Instance.Difficulty == 1)
+            landMonHp = 1000.0f;
+        else if (AllSceneMgr.Instance.Difficulty == 3)
+            landMonHp = 3000.0f;
+
         curHp = landMonHp;
+        slowTimer = 0.0f;
         base.Init();
     }
 

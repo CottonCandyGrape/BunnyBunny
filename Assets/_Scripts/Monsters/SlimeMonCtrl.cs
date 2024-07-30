@@ -33,6 +33,11 @@ public class SlimeMonCtrl : BossMonCtrl
 
     protected override void InitBoss()
     {
+        if (AllSceneMgr.Instance.Difficulty == 1)
+            slimeHp = 5500.0f;
+        else if (AllSceneMgr.Instance.Difficulty == 3)
+            slimeHp = 8000.0f;
+
         bossHp = slimeHp;
         curHp = slimeHp;
         moveSpeed = walkSpeed;

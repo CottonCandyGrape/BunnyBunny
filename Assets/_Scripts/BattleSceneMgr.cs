@@ -242,6 +242,7 @@ public class BattleSceneMgr : MonoBehaviour
         AllSceneMgr.Instance.SubDia(GameDia);
         AllSceneMgr.Instance.AtkTypeNum = atkTypeNum;
         AllSceneMgr.Instance.CurStageNum = stageNum;
+        AllSceneMgr.Instance.Difficulty = difficulty;
 
         PlayerPrefs.SetInt("StageNumCursor", stageNum);
 

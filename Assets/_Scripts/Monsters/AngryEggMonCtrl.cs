@@ -8,8 +8,13 @@ public class AngryEggMonCtrl : MonsterCtrl
 
     void OnEnable()
     {
-        slowTimer = 0.0f;
+        if (AllSceneMgr.Instance.Difficulty == 1)
+            EggHp = 2500.0f;
+        else if (AllSceneMgr.Instance.Difficulty == 3)
+            EggHp = 4500.0f;
+
         curHp = EggHp;
+        slowTimer = 0.0f;
         base.Init();
     }
 

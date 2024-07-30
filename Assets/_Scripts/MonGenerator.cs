@@ -84,6 +84,9 @@ public class MonGenerator : MonoBehaviour
                 break;
         }
 
+        if (AllSceneMgr.Instance.Difficulty == 1)
+            return sTime + 0.15f;
+
         return sTime;
     }
 

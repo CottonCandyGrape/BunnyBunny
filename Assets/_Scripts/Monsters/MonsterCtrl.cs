@@ -63,7 +63,7 @@ public class MonsterCtrl : MonoBehaviour
     {
         isKnockBack = false; //넉백하다가 죽으면 바로 다시 태어났을때 바로 넉백이기 때문에 그 자리로 순간이동 한다.
         slowTimer = 0.0f;
-        curHp = maxHp;
+        SetMaxHp();
         Init();
     }
 
@@ -95,6 +95,16 @@ public class MonsterCtrl : MonoBehaviour
             transform.position = GameMgr.Inst.player.transform.position +
                                     GameMgr.Inst.MonGen.GetMonSpawnPos();
         }
+    }
+
+    void SetMaxHp()
+    {
+        if (AllSceneMgr.Instance.Difficulty == 1)
+            maxHp = 70;
+        else if (AllSceneMgr.Instance.Difficulty == 3)
+            maxHp = 125;
+
+        curHp = maxHp;
     }
 
     protected void Init()
