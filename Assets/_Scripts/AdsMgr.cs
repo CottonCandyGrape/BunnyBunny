@@ -7,14 +7,14 @@ using GoogleMobileAds.Api;
 public class AdsMgr : MonoBehaviour
 {
 #if UNITY_IOS 
-    string _bnrAdUnitId = "ca-app-pub-3142924323482085/8563076528";
-    string _interAdUnitId = "ca-app-pub-3142924323482085/1303711219";
-    string _rewardAdUnitId = "ca-app-pub-3142924323482085/7544775808";
+    //string _bnrAdUnitId = "ca-app-pub-3142924323482085/8563076528";
+    //string _interAdUnitId = "ca-app-pub-3142924323482085/1303711219";
+    //string _rewardAdUnitId = "ca-app-pub-3142924323482085/7544775808";
 
     //test
-    //string _bnrAdUnitId = "ca-app-pub-3940256099942544/2934735716";
-    //string _interAdUnitId = "ca-app-pub-3940256099942544/4411468910";
-    //string _rewardAdUnitId = "ca-app-pub-3940256099942544/1712485313";
+    string _bnrAdUnitId = "ca-app-pub-3940256099942544/2934735716";
+    string _interAdUnitId = "ca-app-pub-3940256099942544/4411468910";
+    string _rewardAdUnitId = "ca-app-pub-3940256099942544/1712485313";
     //test
 #elif UNITY_ANDROID 
     //string _bnrAdUnitId = "ca-app-pub-3142924323482085/4115677973";
@@ -69,8 +69,6 @@ public class AdsMgr : MonoBehaviour
 
     public void LoadBannerAd()
     {
-        if (!AllSceneMgr.Instance.adOn) return;
-
         // create an instance of a banner view first.
         if (_bannerView == null)
         {
@@ -99,8 +97,6 @@ public class AdsMgr : MonoBehaviour
     //InterstitialAd
     public void LoadInterstitialAd()
     {
-        if (!AllSceneMgr.Instance.adOn) return;
-
         // Clean up the old ad before loading a new one.
         if (_interstitialAd != null)
         {
@@ -161,12 +157,6 @@ public class AdsMgr : MonoBehaviour
 
     public IEnumerator ShowInterstitialAd()
     {
-        if (!AllSceneMgr.Instance.adOn)
-        {
-            GameMgr.Inst.GoToBattleScene(true);
-            yield break;
-        }
-
         float startTime = Time.unscaledTime;
 
         while (_interstitialAd == null || !_interstitialAd.CanShowAd())

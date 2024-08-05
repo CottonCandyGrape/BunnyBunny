@@ -11,7 +11,7 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
 
     [HideInInspector] public int CurStageNum = 0;
     [HideInInspector] public int AtkTypeNum = 0;
-    [HideInInspector] public int Difficulty = 1;
+    [HideInInspector] public int Difficulty = 0;
 
     //유저 정보 관련
     [HideInInspector] public string PlayerInfoJson = "";
@@ -42,10 +42,10 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
 
     //광고 관련
     public AdsMgr adsMgr = null;
-    public bool adOn = true;
     //광고 관련
 
     UpLowUIMgr ulMgr = null;
+    BattleSceneMgr battleMgr = null;
 
     protected override void Init()
     {
@@ -203,6 +203,12 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
         if (clear)
         {
             user.unLockStageNum = CurStageNum + 1;
+
+            if (battleMgr == null)
+                battleMgr = FindObjectOfType<BattleSceneMgr>();
+
+            if (!user.StageStars[CurStageNum].Stars[Difficulty])
+                user.StageStars[CurStageNum].Stars[Difficulty] = true;
 
             //3탄까지만 가능 
             user.unLockStageNum = user.unLockStageNum > 2 ? 2 : user.unLockStageNum;

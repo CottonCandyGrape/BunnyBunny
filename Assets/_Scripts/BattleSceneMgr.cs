@@ -22,12 +22,16 @@ public class BattleSceneMgr : MonoBehaviour
     List<GameObject> AtkList = new List<GameObject>();
 
     [Header("------ Difficulty Block ------")]
-    public Button FirstStar_Btn = null;
-    public Button SecondStar_Btn = null;
-    public Button ThirdStar_Btn = null;
+    public Image Cursor_Img = null;
+    public Button[] Stars_Btn = null;
     public Sprite FillStar_Img = null;
     public Sprite EmptyStar_Img = null;
-    int difficulty = 1;
+    int difficulty = 0;
+    Vector2[] cursorPos = {
+        new Vector2(-170.0f, 40.0f),
+        new Vector2(10.0f, 40.0f),
+        new Vector2(190.0f, 40.0f)
+    };
 
     [Header("------ Stage Block ------")]
     public Button StageLeft_Btn = null;
@@ -62,14 +66,11 @@ public class BattleSceneMgr : MonoBehaviour
         if (AtkRight_Btn)
             AtkRight_Btn.onClick.AddListener(AtkRightBtnClick);
 
-        if (FirstStar_Btn)
-            FirstStar_Btn.onClick.AddListener(FirstStarBtnClick);
-
-        if (SecondStar_Btn)
-            SecondStar_Btn.onClick.AddListener(SecondStarBtnClick);
-
-        if (ThirdStar_Btn)
-            ThirdStar_Btn.onClick.AddListener(ThirdStarBtnClick);
+        for (int i = 0; i < Stars_Btn.Length; i++)
+        {
+            int idx = i;
+            Stars_Btn[idx].onClick.AddListener(() => StarBtnClick(Stars_Btn[idx]));
+        }
 
         if (StageLeft_Btn)
             StageLeft_Btn.onClick.AddListener(StageLeftBtnClick);
@@ -90,59 +91,46 @@ public class BattleSceneMgr : MonoBehaviour
 
         InitAtkObjects();
         SetUpLowScene();
+        RefreshStars();
         SetStartBtn();
 
         AllSceneMgr.Instance.adsMgr.OffBannerView();
         PreparedAds();
     }
 
-    void FirstStarBtnClick()
+    void StarBtnClick(Button btn)
     {
-        difficulty = 1;
+        float posX = btn.transform.localPosition.x;
+        int idx = 0;
+        if (posX < -10.0f)
+            idx = 0;
+        else if (-1.0f < posX && posX < 1.0f)
+            idx = 1;
+        else if (10.0f < posX)
+            idx = 2;
 
-        ToggleStarImgs();
+        difficulty = idx;
+        Cursor_Img.transform.localPosition = cursorPos[idx];
     }
 
-    void SecondStarBtnClick()
+    void RefreshStars()
     {
-        if (difficulty == 1 || difficulty == 3)
-            difficulty = 2;
-        else if (difficulty == 2)
-            difficulty = 1;
+        bool[] curStar;
+        if (AllSceneMgr.Instance.user.StageStars[stageNum] == null)
+            curStar = new bool[3];
+        else
+            curStar = AllSceneMgr.Instance.user.StageStars[stageNum].Stars;
 
-        ToggleStarImgs();
-    }
-
-    void ThirdStarBtnClick()
-    {
-        if (difficulty == 1 || difficulty == 2)
-            difficulty = 3;
-        else if (difficulty == 3)
-            difficulty = 2;
-
-        ToggleStarImgs();
-    }
-
-    void ToggleStarImgs()
-    {
-        Image secImg = SecondStar_Btn.GetComponent<Image>();
-        Image thdImg = ThirdStar_Btn.GetComponent<Image>();
-
-        if (difficulty == 1)
+        for (int i = 0; i < curStar.Length; i++)
         {
-            secImg.sprite = EmptyStar_Img;
-            thdImg.sprite = EmptyStar_Img;
+            Image img = Stars_Btn[i].GetComponent<Image>();
+            if (curStar[i])
+                img.sprite = FillStar_Img;
+            else
+                img.sprite = EmptyStar_Img;
         }
-        else if (difficulty == 2)
-        {
-            secImg.sprite = FillStar_Img;
-            thdImg.sprite = EmptyStar_Img;
-        }
-        else if (difficulty == 3)
-        {
-            secImg.sprite = FillStar_Img;
-            thdImg.sprite = FillStar_Img;
-        }
+
+        Cursor_Img.transform.localPosition = cursorPos[0];
     }
 
     public void SetStartBtn()
@@ -156,14 +144,12 @@ public class BattleSceneMgr : MonoBehaviour
     void ToggleStartBtnAd(bool onOff)
     {
         Start_Txt.gameObject.SetActive(onOff);
-        //Ad_Img.gameObject.SetActive(!onOff); //TODO : 광고 넣으면 다시 살리기
+        Ad_Img.gameObject.SetActive(!onOff);
         Ad_Txt.gameObject.SetActive(!onOff);
     }
 
     void PreparedAds()
     {
-        if (!AllSceneMgr.Instance.adOn) return;
-
         AllSceneMgr.Instance.adsMgr.LoadInterstitialAd();
         if (AllSceneMgr.Instance.user.DiaNum < 5)
             AllSceneMgr.Instance.adsMgr.LoadRewardedAd();
@@ -205,18 +191,11 @@ public class BattleSceneMgr : MonoBehaviour
 
         if (!Start_Txt.gameObject.activeSelf) //Dia 부족시
         {
-            /* TODO : 광고 넣으면 다시 살리기
             if (AllSceneMgr.Instance.adsMgr.RewardAd == null ||
                 !AllSceneMgr.Instance.adsMgr.RewardAd.CanShowAd())
-                AllSceneMgr.Instance.InitMsgPopUp("광고가 로드되고 있습니다. 잠시 후 다시 시도해 주세요.");
+                AllSceneMgr.Instance.InitMsgPopUp("adLoading");
             else
                 AllSceneMgr.Instance.adsMgr.ShowRewardedAd();
-            */
-
-            AllSceneMgr.Instance.user.DiaNum += 5;
-            AllSceneMgr.Instance.WriteUserInfo();
-            AllSceneMgr.Instance.RefreshTopUI();
-            SetStartBtn();
 
             return;
         }
@@ -283,6 +262,7 @@ public class BattleSceneMgr : MonoBehaviour
         StageNum_Txt.text = (stageNum + 1).ToString();
 
         SetLockImage();
+        RefreshStars();
     }
 
     void StageRightBtnClick()
@@ -295,6 +275,7 @@ public class BattleSceneMgr : MonoBehaviour
         StageNum_Txt.text = (stageNum + 1).ToString();
 
         SetLockImage();
+        RefreshStars();
     }
 
     void SetLockImage()

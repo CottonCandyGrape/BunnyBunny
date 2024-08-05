@@ -32,9 +32,9 @@ public class CrawlingAlienCtrl : BossMonCtrl
 
     protected override void InitBoss()
     {
-        if (AllSceneMgr.Instance.Difficulty == 1)
+        if (AllSceneMgr.Instance.Difficulty == 0)
             crawlingHp = 3500.0f;
-        else if (AllSceneMgr.Instance.Difficulty == 3)
+        else if (AllSceneMgr.Instance.Difficulty == 2)
             crawlingHp = 5500.0f;
 
         bossHp = crawlingHp;

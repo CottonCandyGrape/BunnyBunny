@@ -8,9 +8,9 @@ public class AngryEggMonCtrl : MonsterCtrl
 
     void OnEnable()
     {
-        if (AllSceneMgr.Instance.Difficulty == 1)
+        if (AllSceneMgr.Instance.Difficulty == 0)
             EggHp = 2500.0f;
-        else if (AllSceneMgr.Instance.Difficulty == 3)
+        else if (AllSceneMgr.Instance.Difficulty == 2)
             EggHp = 4500.0f;
 
         curHp = EggHp;

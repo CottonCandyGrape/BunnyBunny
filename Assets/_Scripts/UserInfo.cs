@@ -31,7 +31,13 @@ public class UserInfo
     public bool Sfx = true;
     public bool Joystick = true;
 
-    public Image Profile_Img = null; //적용될지?... UI 정보가 Json 안먹히는듯
-
     public string[] IsEquiped = new string[4];
+
+    public StarArr[] StageStars = new StarArr[3];
+}
+
+[Serializable]
+public class StarArr
+{
+    public bool[] Stars = new bool[3];
 }

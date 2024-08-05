@@ -99,9 +99,9 @@ public class MonsterCtrl : MonoBehaviour
 
     void SetMaxHp()
     {
-        if (AllSceneMgr.Instance.Difficulty == 1)
+        if (AllSceneMgr.Instance.Difficulty == 0)
             maxHp = 70;
-        else if (AllSceneMgr.Instance.Difficulty == 3)
+        else if (AllSceneMgr.Instance.Difficulty == 2)
             maxHp = 125;
 
         curHp = maxHp;

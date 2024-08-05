@@ -37,9 +37,9 @@ public class MeatSoldierCtrl : BossMonCtrl
 
     protected override void InitBoss()
     {
-        if (AllSceneMgr.Instance.Difficulty == 1)
+        if (AllSceneMgr.Instance.Difficulty == 0)
             MeatSolHp = 4000.0f;
-        else if (AllSceneMgr.Instance.Difficulty == 3)
+        else if (AllSceneMgr.Instance.Difficulty == 2)
             MeatSolHp = 7500.0f;
 
         bossHp = MeatSolHp;
