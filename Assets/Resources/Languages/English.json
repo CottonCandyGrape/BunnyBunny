@@ -239,6 +239,10 @@
         {
             "key": "rocketEvName",
             "value": "Nuclear"
+        },
+        {
+            "key": "adLoading",
+            "value": "An ad is loading. Please try again in a moment."
         }
     ]
 }

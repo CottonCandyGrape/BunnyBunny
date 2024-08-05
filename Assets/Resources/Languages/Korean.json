@@ -239,6 +239,10 @@
         {
             "key": "rocketEvName",
             "value": "핵폭탄"
+        },
+        {
+            "key": "adLoading",
+            "value": "광고가 로드되고 있습니다. 잠시 후 다시 시도해 주세요."
         }
     ]
 }
