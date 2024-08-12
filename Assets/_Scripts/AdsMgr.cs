@@ -52,7 +52,10 @@ public class AdsMgr : MonoBehaviour
         Debug.Log("Creating banner view");
 
         if (_bannerView != null)
+        {
             _bannerView.Destroy();
+            _bannerView = null;
+        }
 
         AdSize adaptiveSize =
                 AdSize.GetCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth(AdSize.FullWidth);
@@ -64,7 +67,10 @@ public class AdsMgr : MonoBehaviour
     public void OffBannerView()
     { 
         if (_bannerView != null)
+        {
             _bannerView.Destroy();
+            _bannerView = null;
+        }
     }
 
     public void LoadBannerAd()
