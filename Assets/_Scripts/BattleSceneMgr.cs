@@ -150,6 +150,7 @@ public class BattleSceneMgr : MonoBehaviour
 
     void PreparedAds()
     {
+        AllSceneMgr.Instance.adsMgr.LoadBannerAd();
         AllSceneMgr.Instance.adsMgr.LoadInterstitialAd();
         if (AllSceneMgr.Instance.user.DiaNum < 5)
             AllSceneMgr.Instance.adsMgr.LoadRewardedAd();

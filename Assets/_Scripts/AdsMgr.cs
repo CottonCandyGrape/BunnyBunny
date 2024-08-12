@@ -32,11 +32,12 @@ public class AdsMgr : MonoBehaviour
     string _rewardAdUnitId = "unused";
 #endif
 
-    const float MaxWaitTime = 3.0f;
+    const float MaxWaitTime = 4.0f;
 
-    BannerView _bannerView;
-    InterstitialAd _interstitialAd;
-    RewardedAd _rewardedAd;
+    BannerView _bannerView = null;
+    AdRequest BanAdReq = null;
+    InterstitialAd _interstitialAd = null;
+    RewardedAd _rewardedAd = null;
     public RewardedAd RewardAd { get { return _rewardedAd; } }
 
     void Start()
@@ -77,16 +78,21 @@ public class AdsMgr : MonoBehaviour
     {
         // create an instance of a banner view first.
         if (_bannerView == null)
-        {
             CreateBannerView();
-        }
 
         // create our request used to load the ad.
-        var adRequest = new AdRequest();
+        //var adRequest = new AdRequest();
+        BanAdReq = new AdRequest();
 
         // send the request to load the ad.
         //Debug.Log("Loading banner ad.");
-        _bannerView.LoadAd(adRequest);
+        //_bannerView.LoadAd(adRequest);
+    }
+
+    public void ShowBannerAd()
+    {
+        if (BanAdReq != null)
+            _bannerView.LoadAd(BanAdReq);
     }
 
     void ListenToAdEvents()
@@ -110,7 +116,7 @@ public class AdsMgr : MonoBehaviour
             _interstitialAd = null;
         }
 
-        Debug.Log("Loading the interstitial ad.");
+        //Debug.Log("Loading the interstitial ad.");
 
         // create our request used to load the ad.
         var adRequest = new AdRequest();
@@ -129,7 +135,7 @@ public class AdsMgr : MonoBehaviour
                 //Debug.Log("Interstitial ad loaded with response : " + ad.GetResponseInfo());
 
                 _interstitialAd = ad;
-                RegisterEventHandlers(_interstitialAd);
+                RegisterEventHandlers(_interstitialAd); //null로 초기화하고 다시 new로 받기 때문에 중복 안됨.
             });
     }
 
@@ -157,7 +163,7 @@ public class AdsMgr : MonoBehaviour
 
             LoadInterstitialAd();
             
-            GameMgr.Inst.GoToBattleScene(true);
+            //GameMgr.Inst.GoToBattleScene(true);
         };
     }
 
@@ -167,7 +173,7 @@ public class AdsMgr : MonoBehaviour
 
         while (_interstitialAd == null || !_interstitialAd.CanShowAd())
         {
-            if (Time.unscaledTime - startTime >= MaxWaitTime)
+            if (Time.unscaledTime - startTime > MaxWaitTime)
             {
                 GameMgr.Inst.GoToBattleScene(true);
                 yield break;

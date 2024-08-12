@@ -298,7 +298,7 @@ public class GameMgr : MonoBehaviour
 
     public void GameOver(bool isClear)
     {
-        AllSceneMgr.Instance.adsMgr.LoadBannerAd();
+        AllSceneMgr.Instance.adsMgr.ShowBannerAd();
 
         SoundMgr.Instance.TurnOffSound();
 
