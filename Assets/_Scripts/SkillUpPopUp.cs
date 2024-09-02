@@ -8,13 +8,15 @@ public class SkillUpPopUp : MonoBehaviour
     WeaponMgr wpMgr = null;
 
     public List<GameObject> WpList = new List<GameObject>(); //G, R, D, M 순서
+    public List<GameObject> SkList = new List<GameObject>(); //Ma, ... 순서
     public List<GameObject> Items = new List<GameObject>();
 
-    List<SkillUpButton> wpBtns = new List<SkillUpButton>();
-    public List<SkillUpButton> WpBtns { get { return wpBtns; } }
+    List<SkillUpButton> suBtns = new List<SkillUpButton>();
+    public List<SkillUpButton> SuBtns { get { return suBtns; } }
     List<SkillUpButton> itBtns = new List<SkillUpButton>();
 
     Weapon[] wpArray;
+    Skill[] skArray;
 
     List<int> order = new List<int>();
     Vector2[] BtnPos =
@@ -32,19 +34,19 @@ public class SkillUpPopUp : MonoBehaviour
         //첫 Start 이후에 실행되어야 함.
         if (wpMgr == null) return;
 
-        if (wpBtns.Count == 4 || wpBtns.Count == 3)
+        if (suBtns.Count >= 3)
         {
-            order = ShuffleNum(wpBtns.Count, 3);
+            order = ShuffleNum(suBtns.Count, 3);
             for (int i = 0; i < 3; i++)
             {
-                wpBtns[order[i]].transform.localPosition = BtnPos[i];
-                wpBtns[order[i]].gameObject.SetActive(true);
+                suBtns[order[i]].transform.localPosition = BtnPos[i];
+                suBtns[order[i]].gameObject.SetActive(true);
             }
         }
-        else if (wpBtns.Count == 2)
+        else if (suBtns.Count == 2)
         {
             order = ShuffleNum(3, 3);
-            List<SkillUpButton> tmp = wpBtns.ToList(); //깊은 복사
+            List<SkillUpButton> tmp = suBtns.ToList(); //깊은 복사
             tmp.Add(itBtns[Random.Range(0, itBtns.Count)]);
 
             for (int i = 0; i < 3; i++)
@@ -53,11 +55,11 @@ public class SkillUpPopUp : MonoBehaviour
                 tmp[order[i]].gameObject.SetActive(true);
             }
         }
-        else if (wpBtns.Count == 1)
+        else if (suBtns.Count == 1)
         {
             order = ShuffleNum(3, 3);
             List<SkillUpButton> tmp = itBtns.ToList(); //깊은 복사
-            tmp.Add(wpBtns[0]);
+            tmp.Add(suBtns[0]);
 
             for (int i = 0; i < 3; i++)
             {
@@ -65,7 +67,7 @@ public class SkillUpPopUp : MonoBehaviour
                 tmp[order[i]].gameObject.SetActive(true);
             }
         }
-        else if (wpBtns.Count == 0)
+        else if (suBtns.Count == 0)
         {
             order = ShuffleNum(2, 2);
 
@@ -90,6 +92,11 @@ public class SkillUpPopUp : MonoBehaviour
             wpMgr.MainWp
         };
 
+        skArray = new Skill[]
+        {
+            SkillMgr.Inst.MagentCtrlSc
+        };
+
         WpList.Add(wpMgr.MWSkillUpBtns[(int)wpMgr.MainType]); //메인 무기까지 추가
 
         //무기 Btn Pref List 초기화
@@ -97,8 +104,18 @@ public class SkillUpPopUp : MonoBehaviour
         {
             GameObject weapon = Instantiate(WpList[i], transform);
             SkillUpButton skBtn = weapon.GetComponent<SkillUpButton>();
-            skBtn.Skill = wpArray[i];
-            if (skBtn != null) wpBtns.Add(skBtn);
+            skBtn.Weapon = wpArray[i];
+            if (skBtn != null) suBtns.Add(skBtn);
+            skBtn.gameObject.SetActive(false);
+        }
+
+        //패시브 스킬 Btn Pref List 초기화
+        for (int i = 0; i < SkList.Count; i++)
+        {
+            GameObject skill = Instantiate(SkList[i], transform);
+            SkillUpButton skBtn = skill.GetComponent<SkillUpButton>();
+            skBtn.Skill = skArray[i];
+            if (skBtn != null) suBtns.Add(skBtn);
             skBtn.gameObject.SetActive(false);
         }
 

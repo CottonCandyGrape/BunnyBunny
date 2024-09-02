@@ -5,15 +5,17 @@ using UnityEngine.UI;
 
 public enum SkillBtnType
 {
+    Weapon,
     Skill,
     Item
 }
 
 public class SkillUpButton : MonoBehaviour
 {
-    public SkillBtnType BtnType = SkillBtnType.Skill;
+    public SkillBtnType BtnType = SkillBtnType.Weapon;
 
-    public Weapon Skill { set { weapon = value; } }
+    public Weapon Weapon { set { weapon = value; } }
+    public Skill Skill { set { skill = value; } }
 
     [Header("------ UI ------")]
     public Button SkillUp_Btn = null;
@@ -30,6 +32,7 @@ public class SkillUpButton : MonoBehaviour
     //star 관련
 
     Weapon weapon = null;
+    Skill skill = null;
     SkillUpPopUp skPopUp = null;
 
     void OnEnable()
@@ -46,6 +49,12 @@ public class SkillUpButton : MonoBehaviour
                 Weapon_Img.sprite = Ev_Sprite;
                 WpName_Txt.text = weapon.Ev_Name;
             }
+        }
+
+        if(skill != null)
+        {
+            string key = skill.GetExplainText();
+            Explain_Txt.text = AllSceneMgr.Instance.langMgr.GetLangValue(key); //설명 텍스트 설정
         }
     }
 
@@ -68,7 +77,7 @@ public class SkillUpButton : MonoBehaviour
 
         SkillUp_Btn.interactable = false;
 
-        if (BtnType == SkillBtnType.Skill)
+        if (BtnType == SkillBtnType.Weapon)
         {
             if (weapon.CurLv < 3)
             {
@@ -81,7 +90,22 @@ public class SkillUpButton : MonoBehaviour
                 weapon.EvolveWeapon(); //진화 시키고
 
                 if (skPopUp != null)
-                    skPopUp.WpBtns.Remove(this); //SkillUpPopUp의 List에서 삭제.
+                    skPopUp.SuBtns.Remove(this); //SkillUpPopUp의 List에서 삭제.
+                Destroy(gameObject); //프리팹 삭제
+            }
+        }
+        else if (BtnType == SkillBtnType.Skill)
+        { 
+            if (skill.CurLv < 3)
+            {
+                skill.LevelUpSkill();
+                StartCoroutine(FillStar());
+                return; //코루틴 후 사라져야하는 예외처리
+            }
+            else if (3 <= skill.CurLv) // 레벨업 끝
+            {
+                if (skPopUp != null)
+                    skPopUp.SuBtns.Remove(this); //SkillUpPopUp의 List에서 삭제.
                 Destroy(gameObject); //프리팹 삭제
             }
         }
@@ -99,7 +123,12 @@ public class SkillUpButton : MonoBehaviour
 
     IEnumerator FillStar()
     {
-        Image star = FStars_Img[weapon.CurLv - 1];
+        Image star = null;
+        if (weapon != null)
+            star = FStars_Img[weapon.CurLv - 1];
+        else if (skill != null)
+            star = FStars_Img[skill.CurLv - 1];
+
         star.gameObject.SetActive(true);
         star.rectTransform.sizeDelta = curSize;
 

@@ -243,6 +243,22 @@
         {
             "key": "adLoading",
             "value": "광고가 로드되고 있습니다. 잠시 후 다시 시도해 주세요."
+        },
+        {
+            "key": "magnetLv0",
+            "value": "주변 아이템 끌어 당기기"
+        },
+        {
+            "key": "magnetLv1",
+            "value": "끌어 당기기 범위 증가"
+        },
+        {
+            "key": "magnetLv3",
+            "value": "끌어 당기기 범위 대폭 증가"
+        },
+        {
+            "key": "magnetName",
+            "value": "자석"
         }
     ]
 }

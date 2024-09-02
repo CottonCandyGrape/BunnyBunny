@@ -243,6 +243,22 @@
         {
             "key": "adLoading",
             "value": "An ad is loading. Please try again in a moment."
+        },
+        {
+            "key": "magnetLv0",
+            "value": "Attract nearby items"
+        },
+        {
+            "key": "magnetLv1",
+            "value": "Increase the attraction range"
+        },
+        {
+            "key": "magnetLv3",
+            "value": "Significantly Increase the attraction range"
+        },
+        {
+            "key": "magnetName",
+            "value": "Magnet"
         }
     ]
 }

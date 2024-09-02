@@ -116,7 +116,6 @@ public class RocketCtrl : Weapon
                 MonsterCtrl monCtrl = colls[i].GetComponent<MonsterCtrl>();
                 monCtrl.TakeDamage((curLevel + 1) * dmg);
             }
-            else continue;
         }
 
         if (isEvole)

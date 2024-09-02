@@ -74,7 +74,7 @@ public class PlayerCtrl : MonoBehaviour
     [HideInInspector] public AtkType AttackType = AtkType.Fire;
     //Attack Type 관련
 
-    WeaponMgr wpMgr = null; //이 Script에서는 너무 많이 써서 선언하고 쓰는 중.
+    WeaponMgr wpMgr = null; //이 Script에서는 너무 많이 써서 선언하고 쓰는 중. (static 있어도)
 
     void Awake()
     {
@@ -112,6 +112,7 @@ public class PlayerCtrl : MonoBehaviour
 
         DirectionArrow();
         CalcWeaponsTimer();
+        CalcSkillTimer();
         PlayerStateUpdate();
 
         if (wpMgr.MainType == MWType.Gun)
@@ -373,6 +374,16 @@ public class PlayerCtrl : MonoBehaviour
             }
         }
         //드릴 타이머
+    }
+
+    void CalcSkillTimer()
+    {
+        //자석 스킬
+        if (SkillMgr.Inst.MagentCtrlSc.CurLv > 0)
+        {
+            SkillMgr.Inst.MagentCtrlSc.Magneting();
+        }
+        //자석 스킬
     }
 
     //state, action update 하는 함수 따로 만들기?

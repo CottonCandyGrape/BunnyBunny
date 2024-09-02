@@ -16,6 +16,13 @@ public class ItemCtrl : MonoBehaviour
                 goldVal = value;
         }
     }
+    bool magnet = false;
+    public bool Magnet
+    {
+        get { return magnet; }
+        set { magnet = value; }
+    }
+    float magnetSpeed = 9.0f;
 
     float bombRadius = 0.0f;
 
@@ -24,6 +31,11 @@ public class ItemCtrl : MonoBehaviour
         bombRadius = (ScreenMgr.InitScMax.x - ScreenMgr.InitScMin.x) / 2.0f;
 
         Destroy(gameObject, 10.0f);
+    }
+
+    void Update()
+    {
+        MagnetToPlayer();
     }
 
     void OnTriggerEnter2D(Collider2D coll)
@@ -61,5 +73,13 @@ public class ItemCtrl : MonoBehaviour
 
             Destroy(gameObject);
         }
+    }
+
+    void MagnetToPlayer()
+    {
+        if (!magnet) return;
+        Vector3 player = GameMgr.Inst.player.transform.position;
+
+        transform.position = Vector3.Lerp(transform.position, player, magnetSpeed * Time.deltaTime);
     }
 }

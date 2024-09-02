@@ -393,7 +393,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a3a021c873f71245b68987243815918, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BtnType: 1
+  BtnType: 2
   SkillUp_Btn: {fileID: 8020859358374397563}
   Weapon_Img: {fileID: 0}
   Ev_Sprite: {fileID: 0}
