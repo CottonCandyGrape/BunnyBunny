@@ -7,6 +7,7 @@ public class MagnetCtrl : Skill
     Vector3 playerPos = Vector3.zero;
 
     float radius = 0.0f;
+    float incRange = 0.5f;
 
     void Start() { }
 
@@ -33,7 +34,7 @@ public class MagnetCtrl : Skill
     public override void LevelUpSkill()
     {
         curLevel++;
-        radius = curLevel * 0.6f;
+        radius = curLevel * incRange;
     }
 
     public override string GetExplainText()

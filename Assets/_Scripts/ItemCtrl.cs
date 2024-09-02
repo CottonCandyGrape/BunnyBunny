@@ -22,7 +22,8 @@ public class ItemCtrl : MonoBehaviour
         get { return magnet; }
         set { magnet = value; }
     }
-    float magnetSpeed = 9.0f;
+    float elapsedTime = 0.0f;
+    Vector3 start = Vector3.zero;
 
     float bombRadius = 0.0f;
 
@@ -78,8 +79,18 @@ public class ItemCtrl : MonoBehaviour
     void MagnetToPlayer()
     {
         if (!magnet) return;
-        Vector3 player = GameMgr.Inst.player.transform.position;
 
-        transform.position = Vector3.Lerp(transform.position, player, magnetSpeed * Time.deltaTime);
+        if (start == Vector3.zero)
+            start = transform.position;
+
+        elapsedTime += Time.deltaTime;
+        if (elapsedTime > 1.0f)
+        {
+            elapsedTime = 0.0f;
+            return;
+        }
+
+        Vector3 player = GameMgr.Inst.player.transform.position;
+        transform.position = Vector3.Lerp(start, player, 2*elapsedTime);
     }
 }
