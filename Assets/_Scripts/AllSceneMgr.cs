@@ -202,7 +202,8 @@ public class AllSceneMgr : G_Singleton<AllSceneMgr>
 
         if (clear)
         {
-            user.unLockStageNum = CurStageNum + 1;
+            if (user.unLockStageNum == CurStageNum)
+                user.unLockStageNum++;
 
             if (battleMgr == null)
                 battleMgr = FindObjectOfType<BattleSceneMgr>();
