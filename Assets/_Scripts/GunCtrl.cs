@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class GunCtrl : Weapon
 {
-    //const float BulletOffset = 0.3f;
-    const int BaseShotCnt = 4;
-    int curCount = 0;
+    [HideInInspector] public int shotCnt = 0;
+    public const int LimitShotCnt = 4;
+    int evCurCount = 0;
 
     const float ShotOffset = 0.25f;
     const float FirePosOffsetX = 0.6f;
@@ -91,15 +91,15 @@ public class GunCtrl : Weapon
 
         //OneShot(dir, true); return; //진화 총알 test 용
 
-        if (curCount < BaseShotCnt)
+        if (evCurCount < LimitShotCnt)
         {
             FanFire(5, dir);
-            curCount++;
+            evCurCount++;
         }
         else
         {
             OneShot(dir, true);
-            curCount = 0;
+            evCurCount = 0;
         }
     }
 

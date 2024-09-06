@@ -1306,6 +1306,7 @@ MonoBehaviour:
   v: 0
   OffsetX: 4.7
   OffsetY: 5.1
+  MonsterPool: {fileID: 1335071687}
   DirArrow: {fileID: 1827385772}
   SubCanvas: {fileID: 2012018422}
   HpBar_Img: {fileID: 470771535}

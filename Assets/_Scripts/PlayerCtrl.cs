@@ -31,7 +31,9 @@ public class PlayerCtrl : MonoBehaviour
     //Flip 관련
 
     //화살표 관련
+    public Transform MonsterPool = null;
     public GameObject DirArrow = null;
+    Vector3 gunDir = Vector3.up;
     Vector3 arrowDir = Vector3.up;
     float arrowAngle = 0.0f;
     float angleOffset = 90.0f;
@@ -317,6 +319,42 @@ public class PlayerCtrl : MonoBehaviour
         HpBar_Img.fillAmount = curHp / maxHp;
     }
 
+    Vector3 GetCloseTarget()
+    {
+        Vector3 target = Vector3.up;
+
+        MonsterCtrl[] monsters = MonsterPool.GetComponentsInChildren<MonsterCtrl>();
+        if (monsters.Length > 0) 
+        {
+            target = monsters[0].transform.position;
+
+            float dist = Vector3.Distance(transform.position, target);
+            for (int i = 1; i < monsters.Length; i++)
+            {
+                float tmp = Vector3.Distance(transform.position, monsters[i].transform.position);
+                if (tmp < dist)
+                {
+                    dist = tmp;
+                    target = monsters[i].transform.position;
+                }
+            }
+        }
+
+        return target;
+    }
+
+    void SetGunDir()
+    {
+        if (!GameMgr.Inst.hasBoss)
+        {
+            Vector3 target = GetCloseTarget();
+            gunDir = target - transform.position;
+            gunDir.Normalize();
+        }
+        else
+            gunDir = arrowDir;
+    }
+
     void CalcWeaponsTimer()
     {
         //메인 무기 타이머
@@ -326,21 +364,35 @@ public class PlayerCtrl : MonoBehaviour
             mAtkTimer = mAtkTime;
             if (wpMgr.GunCtrlSc != null)
             {
-                SoundMgr.Instance.PlaySfxSound("laser");
+                SetGunDir();
 
                 if (!wpMgr.GunCtrlSc.IsEvolve)
                 {
+                    wpMgr.GunCtrlSc.shotCnt++;
+
+                    if (wpMgr.GunCtrlSc.shotCnt > wpMgr.GunCtrlSc.CurLv + 1)
+                    {
+                        if (wpMgr.GunCtrlSc.shotCnt > GunCtrl.LimitShotCnt)
+                            wpMgr.GunCtrlSc.shotCnt = 0;
+                        return;
+                    }
+
+                    SoundMgr.Instance.PlaySfxSound("laser");
+
                     if (wpMgr.GunCtrlSc.CurLv == 0)
-                        wpMgr.GunCtrlSc.OneShot(arrowDir, false);
+                        wpMgr.GunCtrlSc.OneShot(gunDir, false);
                     else if (wpMgr.GunCtrlSc.CurLv == 1)
-                        wpMgr.GunCtrlSc.DoubleShot(arrowDir);
+                        wpMgr.GunCtrlSc.DoubleShot(gunDir);
                     else if (wpMgr.GunCtrlSc.CurLv == 2)
-                        wpMgr.GunCtrlSc.FanFire(3, arrowDir);
+                        wpMgr.GunCtrlSc.FanFire(3, gunDir);
                     else if (wpMgr.GunCtrlSc.CurLv == 3)
-                        wpMgr.GunCtrlSc.FanFire(5, arrowDir);
+                        wpMgr.GunCtrlSc.FanFire(5, gunDir);
                 }
                 else
-                    wpMgr.GunCtrlSc.EvolvedShot(arrowDir);
+                {
+                    SoundMgr.Instance.PlaySfxSound("laser");
+                    wpMgr.GunCtrlSc.EvolvedShot(gunDir);
+                }
             }
         }
         //메인 무기 타이머
